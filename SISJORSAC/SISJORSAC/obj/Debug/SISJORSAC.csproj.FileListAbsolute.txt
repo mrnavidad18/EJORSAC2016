@@ -14,3 +14,6 @@ C:\Users\Administrador\Desktop\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.pdb
 C:\Users\Administrador\Desktop\SISJORSAC\SISJORSAC\obj\Debug\Resources\Icons.baml
 C:\Users\Administrador\Desktop\SISJORSAC\SISJORSAC\obj\Debug\Resources\IconsNonShared.baml
 C:\Users\Administrador\Desktop\SISJORSAC\SISJORSAC\obj\Debug\App.baml
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\SISJORSAC.exe.config
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.exe
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.pdb
