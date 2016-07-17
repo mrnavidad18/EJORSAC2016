@@ -10,7 +10,6 @@ namespace SISJORSAC.DATA.Conexion
 {
     class DBHelper
     {
-
         private static string cadenaConexion = "server=192.168.0.29;DataBase=BDJORSAC;user=sa;password=2015159";
         public static SqlParameter MakeParam(string paramName,object objValue)
         {
@@ -47,7 +46,7 @@ namespace SISJORSAC.DATA.Conexion
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand(query, cn);
-                cmd.CommandType = CommandType.Text;
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 if (dbParams != null)
                 {
@@ -57,8 +56,22 @@ namespace SISJORSAC.DATA.Conexion
                     }
                 }
                 return cmd.ExecuteNonQuery();
+                
 
             }
+        }
+
+
+        public static SqlDataReader ExecuteDataReaderProcedure(string query)
+        {
+            SqlDataReader dr;
+
+            SqlConnection cn = new SqlConnection(cadenaConexion);
+            cn.Open();
+            SqlCommand cmd = new SqlCommand(query, cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            return dr;
         }
         public static SqlDataReader ExecuteDataReader(string query)
         {
@@ -100,6 +113,17 @@ namespace SISJORSAC.DATA.Conexion
                 cmd.CommandType = CommandType.Text;
                 return cmd.ExecuteScalar();
 
+            }
+        }
+
+        public static object ExecuteScalarProcedure(string query)
+        {
+            using (SqlConnection cn = new SqlConnection(cadenaConexion))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand(query, cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                return cmd.ExecuteScalar();
             }
         }
     
