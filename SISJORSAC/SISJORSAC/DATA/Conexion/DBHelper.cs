@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace SISJORSAC.DATA.Conexion
 {
-    class DBHelper
+    public class DBHelper
     {
         private static string cadenaConexion = "server=192.168.0.29;DataBase=BDJORSAC;user=sa;password=2015159";
         public static SqlParameter MakeParam(string paramName,object objValue)

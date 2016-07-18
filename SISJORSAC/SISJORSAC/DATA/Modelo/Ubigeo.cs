@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SISJORSAC.DATA.Modelo
 {
-    class Ubigeo
+    public class Ubigeo
     {
         public string IdUbigeo { get; set; }
         public string Departamento { get; set; }

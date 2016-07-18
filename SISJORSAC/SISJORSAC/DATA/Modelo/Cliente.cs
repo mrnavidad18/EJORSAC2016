@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SISJORSAC.DATA.Modelo
 {
-    class Cliente
+    public class Cliente
     {
                 public int COD_CLI { get; set; }
                 public int NOMBRES { get; set; }
@@ -25,6 +25,7 @@ namespace SISJORSAC.DATA.Modelo
                 public int CELULAR { get; set; }
                 public int EMAIL { get; set; }
                 public int OBSERVACIONES { get; set; }
-                public int TIPO_CLIE { get; set; }    
+                public int TIPO_CLIE { get; set; }
+                public string ESTADO { get; set; }
     }
 }
