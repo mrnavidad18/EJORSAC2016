@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SISJORSAC.DATA.Modelo
 {
-    class Usuario
+    public class Usuario
     {
         public int idUsuario { get; set; }
         public string username { get; set; }
@@ -14,5 +14,6 @@ namespace SISJORSAC.DATA.Modelo
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
         public string DNI { get; set; }
+        public string ESTADO { get; set; }
     }
 }

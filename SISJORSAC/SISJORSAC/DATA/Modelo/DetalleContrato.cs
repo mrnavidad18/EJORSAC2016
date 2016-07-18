@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace SISJORSAC.DATA.Modelo
 {
-    public class Servicio
+    public class DetalleContrato
     {
-        public int COD_SERV { get; set; }
-        public string DESCRIPCION { get; set; }
-        public double PRECIO { get; set; }
-        public string UNIDAD_MEDIDA { get; set; }
-        public string TIPO_MONE { get; set; }
-        public double PESO { get; set; }
 
+        public int COD_DETALLE { get; set; }
+        public int COD_CONTRATO { get; set; }
+        public int COD_SERV { get; set; }
+        public int ITEM { get; set; }
+        public int CANTIDAD { get; set; }
+        public double PRECIO { get; set; }
+        public double IMPORTE { get; set; }
         public string ESTADO { get; set; }
 
     }
