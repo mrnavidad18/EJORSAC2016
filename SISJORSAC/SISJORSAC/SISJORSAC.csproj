@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="DATA\Conexion\DBHelper.cs" />
     <Compile Include="DATA\Modelo\Cliente.cs" />
+    <Compile Include="DATA\Modelo\Contrato.cs" />
     <Compile Include="DATA\Modelo\Servicio.cs" />
     <Compile Include="DATA\Modelo\Ubigeo.cs" />
     <Compile Include="DATA\Modelo\Usuario.cs" />
