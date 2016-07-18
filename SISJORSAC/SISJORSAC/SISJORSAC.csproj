@@ -68,6 +68,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DATA\Conexion\DBHelper.cs" />
+    <Compile Include="DATA\Modelo\Cliente.cs" />
+    <Compile Include="DATA\Modelo\Servicio.cs" />
+    <Compile Include="DATA\Modelo\Ubigeo.cs" />
+    <Compile Include="DATA\Modelo\Usuario.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -118,7 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DATA\DAO\" />
-    <Folder Include="DATA\Modelo\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IMG\logo_rep.PNG" />
