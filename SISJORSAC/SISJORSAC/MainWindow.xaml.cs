@@ -29,11 +29,49 @@ namespace SISJORSAC
         public MainWindow()
         {
             InitializeComponent();
+            this.lblUsuarioError.Visibility = Visibility.Hidden;
+            this.lblClaveError.Visibility = Visibility.Hidden;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
+              string usuario = this.txtUsuario.Text;
+            string clave = this.txtClave.Password;
 
+            if (usuario.Trim() == "")
+            {
+                this.lblUsuarioError.Visibility = Visibility.Visible;
+                return;
+            }
+
+            if (clave.Trim() == "")
+            {
+                this.lblClaveError.Visibility = Visibility.Visible;
+                return;
+            }
+
+            if (usuario == "11" && clave == "11")
+            {
+                await this.ShowMessageAsync("Exito","Usuario Correcto");
+                Menu menu = new Menu();
+                this.Close();
+                menu.ShowDialog();
+            }
+            else
+            {
+                await this.ShowMessageAsync("Error", "Usuario Incorrecto");
+            }
+        }
+
+        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            this.lblUsuarioError.Visibility = Visibility.Hidden;
+         
+        }
+
+        private void txtClave_KeyDown(object sender, KeyEventArgs e)
+        {
+            this.lblClaveError.Visibility = Visibility.Hidden;
         }
     }
 }
