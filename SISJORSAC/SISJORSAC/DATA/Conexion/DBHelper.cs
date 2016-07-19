@@ -10,7 +10,7 @@ namespace SISJORSAC.DATA.Conexion
 {
     public class DBHelper
     {
-        private static string cadenaConexion = "server=192.168.0.29;DataBase=BDJORSAC;user=sa;password=2015159";
+        private static string cadenaConexion = "server=192.168.0.26;DataBase=BDJORSAC;user=sa;password=2015159";
         public static SqlParameter MakeParam(string paramName,object objValue)
         {
             SqlParameter param;
@@ -40,8 +40,9 @@ namespace SISJORSAC.DATA.Conexion
         }
 
 
-        public static int ExecuteProcedure(string query, SqlParameter[] dbParams)
+        public static Object[] ExecuteProcedure(string query, SqlParameter[] dbParams)
         {
+            Object[] salidas = new Object[2];
             using (SqlConnection cn = new SqlConnection(cadenaConexion))
             {
                 cn.Open();
@@ -55,8 +56,14 @@ namespace SISJORSAC.DATA.Conexion
                         cmd.Parameters.Add(dbParam);
                     }
                 }
-                return cmd.ExecuteNonQuery();
-                
+                cmd.ExecuteNonQuery();
+
+                int id= Convert.ToInt32(cmd.Parameters["@PS_COD"].Value);
+                string mensaje = Convert.ToString(cmd.Parameters["@PS_MSJ"].Value);
+
+                salidas[0] = id;
+                salidas[1] = mensaje;
+                return salidas;
 
             }
         }

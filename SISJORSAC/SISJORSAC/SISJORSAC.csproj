@@ -76,6 +76,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DATA\Conexion\DBHelper.cs" />
+    <Compile Include="DATA\DAO\BoletaDAO.cs" />
     <Compile Include="DATA\DAO\UsuarioDAO.cs" />
     <Compile Include="DATA\Modelo\Boleta.cs" />
     <Compile Include="DATA\Modelo\Cliente.cs" />

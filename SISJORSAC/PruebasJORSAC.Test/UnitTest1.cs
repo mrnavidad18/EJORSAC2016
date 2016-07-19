@@ -23,8 +23,11 @@ namespace PruebasJORSAC.Test
             usu.clave = "AHYA";
             usu.Nombre = "RICARDO";
             usu.username = "huamanR";
-            Assert.IsTrue(usudao.Agregar(usu));
-            
+
+           var salidas= usudao.Agregar(usu);
+           int id = Convert.ToInt32(salidas[0]);
+           string msj = Convert.ToString(salidas[1]);
+           Assert.AreNotEqual(id,0);
             
         }
     }

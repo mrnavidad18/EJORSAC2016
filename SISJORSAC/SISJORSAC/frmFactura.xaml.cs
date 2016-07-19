@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
+using SISJORSAC.DATA.Modelo;
 
 namespace SISJORSAC
 {
@@ -25,10 +26,23 @@ namespace SISJORSAC
         public frmFactura()
         {
             InitializeComponent();
+            Listar();
         }
 
-     
 
+        public void Listar()
+        {
+            Usuario usu= new Usuario();
+            usu.Apellidos="juan";
+            usu.Nombre="Pepe";
+            usu.DNI="11111";
+
+            List<Usuario> lista = new List<Usuario>();
+
+            lista.Add(usu);
+            this.dgvListado.ItemsSource = lista;
+             
+        }
       
     }
 }

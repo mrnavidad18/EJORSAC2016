@@ -5,7 +5,7 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Registro - Factura" Height="590.425" Width="921.276"
-                      WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Image HorizontalAlignment="Left" Height="148" Margin="32,28,0,0" VerticalAlignment="Top" Width="162" Source="IMG/logo_rep.PNG"/>
         <Label Content="Tipo Compro.:" HorizontalAlignment="Left" Margin="230,55,0,0" VerticalAlignment="Top"/>
@@ -27,15 +27,8 @@
         <Label Content="Moneda:" HorizontalAlignment="Left" Margin="633,204,0,0" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" Margin="695,204,0,0" VerticalAlignment="Top" Width="62"/>
         <CheckBox Content="Sin IGV" HorizontalAlignment="Left" Margin="797,208,0,0" VerticalAlignment="Top"/>
-        <DataGrid HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="0.455,0.48" Margin="44,269,0,0" Width="821" Height="263">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="dgcItem" Header="Item" Width="50"></DataGridTextColumn>
-                <DataGridTextColumn x:Name="dgcCantidda" Header="Cant." Width="60"></DataGridTextColumn>
-                <DataGridTextColumn x:Name="dgcDescripcion" Header="Descripcion - Concepto de Servicio" Width="450"></DataGridTextColumn>
-                <DataGridTextColumn x:Name="dgcDias" Header="Nro.Dias" Width="80"></DataGridTextColumn>
-                <DataGridTextColumn x:Name="dgcPrecio" Header="Pre. Unita." Width="90"></DataGridTextColumn>
-                <DataGridTextColumn x:Name="dgcImporte" Header="Importe" Width="100"></DataGridTextColumn>
-            </DataGrid.Columns>
+        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Left"   VerticalAlignment="Top"  Margin="44,269,0,0" Width="821" Height="263" Background="#FFC9C9C9">
+            
         </DataGrid>
 
     </Grid>

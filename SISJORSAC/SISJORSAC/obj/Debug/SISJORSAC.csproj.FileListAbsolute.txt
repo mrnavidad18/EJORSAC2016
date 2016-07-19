@@ -40,7 +40,6 @@ C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\MahA
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\MahApps.Metro.pdb
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\MahApps.Metro.xml
-C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.csprojResolveAssemblyReference.cache
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\ElegirFactura.baml
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\frmFactura.baml
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\MainWindow.baml
