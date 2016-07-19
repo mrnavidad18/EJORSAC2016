@@ -18,20 +18,26 @@ using MahApps.Metro.Behaviours;
 namespace SISJORSAC
 {
     /// <summary>
-    /// Lógica de interacción para Menu.xaml
+    /// Lógica de interacción para ElegirFactura.xaml
     /// </summary>
-    public partial class Menu : MetroWindow
+    public partial class ElegirFactura : MetroWindow
     {
-        public Menu()
+        public ElegirFactura()
         {
             InitializeComponent();
         }
 
-        private async void ItemFactura_Click(object sender, RoutedEventArgs e)
+        private void rbtConGuia_Checked(object sender, RoutedEventArgs e)
         {
-            ElegirFactura _frmelegir = new ElegirFactura();
-            _frmelegir.Owner = this;
-            _frmelegir.ShowDialog();
+            this.txtnroGuia.Visibility = Visibility.Visible;
+            this.btnIngresar.Visibility = Visibility.Visible;
+        }
+
+        private void btnIngresar_Click(object sender, RoutedEventArgs e)
+        {
+            frmFactura factura = new frmFactura();
+            this.Close();
+            factura.ShowDialog();
         }
     }
 }

@@ -59,6 +59,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ElegirFactura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmFactura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,6 +89,12 @@
     <Compile Include="DATA\Modelo\Servicio.cs" />
     <Compile Include="DATA\Modelo\Ubigeo.cs" />
     <Compile Include="DATA\Modelo\Usuario.cs" />
+    <Compile Include="ElegirFactura.xaml.cs">
+      <DependentUpon>ElegirFactura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmFactura.xaml.cs">
+      <DependentUpon>frmFactura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

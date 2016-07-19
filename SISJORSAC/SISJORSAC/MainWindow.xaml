@@ -5,8 +5,10 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Ingreso" Height="393.284" Width="342.91"
-        ResizeMode="NoResize">
-    <Grid>
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+                      >
+    <Grid >
         <TextBox x:Name="txtUsuario" HorizontalAlignment="Left" Height="23" Controls:TextBoxHelper.Watermark="Ingrese su usuario" Controls:TextBoxHelper.ClearTextButton="True" Margin="25,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="278" KeyDown="txtUsuario_KeyDown"/>
 
 

@@ -40,11 +40,16 @@ C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\MahA
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\MahApps.Metro.pdb
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\MahApps.Metro.xml
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.csprojResolveAssemblyReference.cache
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\ElegirFactura.baml
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\frmFactura.baml
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\MainWindow.baml
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\Menu.baml
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\Resources\Icons.baml
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\Resources\IconsNonShared.baml
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\App.baml
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\ElegirFactura.g.cs
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\frmFactura.g.cs
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\MainWindow.g.cs
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\Menu.g.cs
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\App.g.cs
