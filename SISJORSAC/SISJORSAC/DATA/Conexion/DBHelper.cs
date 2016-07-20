@@ -10,7 +10,7 @@ namespace SISJORSAC.DATA.Conexion
 {
     public class DBHelper
     {
-        private static string cadenaConexion = "server=192.168.0.20;DataBase=BDJORSAC;user=sa;password=2015159";
+        private static string cadenaConexion = "server=192.168.0.26;DataBase=BDJORSAC;user=sa;password=2015159";
         public static SqlParameter MakeParam(string paramName,object objValue)
         {
             SqlParameter param;
@@ -40,9 +40,9 @@ namespace SISJORSAC.DATA.Conexion
         }
 
 
-        public static Object[] ExecuteProcedure(string query, SqlParameter[] dbParams)
+        public static string ExecuteProcedure(string query, SqlParameter[] dbParams)
         {
-            Object[] salidas = new Object[2];
+            
             using (SqlConnection cn = new SqlConnection(cadenaConexion))
             {
                 cn.Open();
@@ -58,12 +58,10 @@ namespace SISJORSAC.DATA.Conexion
                 }
                 cmd.ExecuteNonQuery();
 
-                int id= Convert.ToInt32(cmd.Parameters["@PS_COD"].Value);
                 string mensaje = Convert.ToString(cmd.Parameters["@PS_MSJ"].Value);
 
-                salidas[0] = id;
-                salidas[1] = mensaje;
-                return salidas;
+                
+                return mensaje;
 
             }
         }
@@ -140,9 +138,7 @@ namespace SISJORSAC.DATA.Conexion
         public static Object[] ExecuteProcedure(string query, SqlParameter[] dbParams,SqlTransaction trx,SqlConnection cn)
         {
             Object[] salidas = new Object[2];
-            using (cn)
-            {
-                cn.Open();
+            
                 SqlCommand cmd = new SqlCommand(query, cn,trx);
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -153,6 +149,7 @@ namespace SISJORSAC.DATA.Conexion
                         cmd.Parameters.Add(dbParam);
                     }
                 }
+
                 cmd.ExecuteNonQuery();
 
                 int id = Convert.ToInt32(cmd.Parameters["@PS_COD"].Value);
@@ -160,10 +157,37 @@ namespace SISJORSAC.DATA.Conexion
 
                 salidas[0] = id;
                 salidas[1] = mensaje;
+               
                 return salidas;
 
             }
+
+        public static string ExecuteProcedureDetalles(string query, SqlParameter[] dbParams, SqlTransaction trx, SqlConnection cn)
+        {
+          
+
+            SqlCommand cmd = new SqlCommand(query, cn, trx);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            if (dbParams != null)
+            {
+                foreach (SqlParameter dbParam in dbParams)
+                {
+                    cmd.Parameters.Add(dbParam);
+                }
+            }
+
+            cmd.ExecuteNonQuery();
+
+           
+            string mensaje = Convert.ToString(cmd.Parameters["@PS_MSJ"].Value);
+
+
+
+            return mensaje;
+
         }
+        
 
     }
 }

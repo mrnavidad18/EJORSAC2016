@@ -13,14 +13,13 @@ namespace SISJORSAC.DATA.DAO
     public class UsuarioDAO
     {
       
-        public Object[] Agregar(Usuario usuario)
+        public string Agregar(Usuario usuario)
         {
-            Object[] salidas;
+            string salidas;
           
             string query = "SP_TBL_USUARIO_AGREGAR";
 
-            SqlParameter id = new SqlParameter("@PS_COD", SqlDbType.Int);
-            id.Direction = ParameterDirection.Output;
+           
             SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar,100);
             msj.Direction = ParameterDirection.Output;
             try
@@ -33,7 +32,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_APELLIDOS",usuario.Apellidos),
                  DBHelper.MakeParam("@P_DNI",usuario.DNI),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
-                id ,msj
+                 msj
              };
               
                 salidas = DBHelper.ExecuteProcedure(query, dbParams);

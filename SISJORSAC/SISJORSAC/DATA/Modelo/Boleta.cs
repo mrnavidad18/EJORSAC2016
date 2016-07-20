@@ -12,6 +12,7 @@ namespace SISJORSAC.DATA.Modelo
         public int NRO_CP { get; set; }
         public DateTime FECHA_EMISION { get; set; }
         public string NRO_BOLETA { get; set; }
+
         public Cliente cliente { get; set; }
         public string MODALIDAD { get; set; }
         public string OBSERVACION { get; set; }
