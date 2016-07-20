@@ -18,5 +18,7 @@ namespace SISJORSAC.DATA.Modelo
         public double TOTAL { get; set; }
 
         public string ESTADO { get; set; }
+
+        public List<DetalleBoleta> DETALLEBOLETA { get; set; }
     }
 }

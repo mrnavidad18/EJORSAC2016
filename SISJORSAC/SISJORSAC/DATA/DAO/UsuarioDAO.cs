@@ -12,6 +12,7 @@ namespace SISJORSAC.DATA.DAO
 {
     public class UsuarioDAO
     {
+      
         public Object[] Agregar(Usuario usuario)
         {
             Object[] salidas;
@@ -34,6 +35,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
                 id ,msj
              };
+              
                 salidas = DBHelper.ExecuteProcedure(query, dbParams);
                 return salidas;
 
