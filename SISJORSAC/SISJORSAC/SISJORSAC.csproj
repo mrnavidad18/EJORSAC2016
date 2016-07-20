@@ -79,6 +79,7 @@
     <Compile Include="DATA\DAO\BoletaDAO.cs" />
     <Compile Include="DATA\DAO\ClienteDAO.cs" />
     <Compile Include="DATA\DAO\ContratoDAO.cs" />
+    <Compile Include="DATA\DAO\DetalleBoletaDAO.cs" />
     <Compile Include="DATA\DAO\FacturaDAO.cs" />
     <Compile Include="DATA\DAO\GuiaRemisionDAO.cs" />
     <Compile Include="DATA\DAO\ProveedorDAO.cs" />

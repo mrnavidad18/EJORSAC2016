@@ -93,5 +93,48 @@ namespace SISJORSAC.DATA.DAO
            
             return salidas = DBHelper.ExecuteProcedureDetalles(query, dbParams,trx,cn);
         }
+
+        public Boleta ObtenerXCodBoleta(int CodBoleta)
+        {
+            try
+            {
+                Boleta boleta = null;
+
+                string query = "SP_TBL_BOLETA_LISTAR_XCOD_BOLETA";
+                SqlParameter[] param = new SqlParameter[]
+                {
+                      DBHelper.MakeParam("@P_COD_BO",CodBoleta),
+                      DBHelper.MakeParam("@P_ESTADO","DISPONIBLE")
+                };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReader(query))
+                {
+
+                    if (lector != null && lector.HasRows)
+                    {
+                        ///COD_BOL, FECHA_EMISION, NRO_BOLETA, COD_CLI, MODALIDAD, OBSERVACION, TOTAL, ESTADO
+                        while (lector.Read())
+                        {
+                            boleta = new Boleta();
+                            boleta.NRO_CP = Convert.ToInt32(lector["COD_BOL"].ToString());
+                            boleta.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
+                            boleta.NRO_BOLETA = lector[" NRO_BOLETA"].ToString();
+                            boleta.MODALIDAD = lector["MODALIDAD"].ToString();
+                            boleta.OBSERVACION = lector["OBSERVACION"].ToString();
+                            boleta.TOTAL= Convert.ToDouble(lector["TOTAL"].ToString());
+                            boleta.ESTADO = lector["ESTADO"].ToString();
+
+                        }
+                    }
+                }
+
+                return boleta;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurio un error al obtener un usuario"); 
+            }
+           
+        }
     }
 }
