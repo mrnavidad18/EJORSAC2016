@@ -8,7 +8,6 @@ namespace SISJORSAC.DATA.Modelo
 {
     public class GuiaRemision
     {
-
         public int COD_GUIA { get; set; }
         public string NRO_GUIA { get; set; }
         public DateTime FECHA_EMISION { get; set; }

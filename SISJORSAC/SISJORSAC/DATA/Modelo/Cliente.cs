@@ -9,23 +9,23 @@ namespace SISJORSAC.DATA.Modelo
     public class Cliente
     {
                 public int COD_CLI { get; set; }
-                public int NOMBRES { get; set; }
-                public int AP_PATERNO { get; set; }
-                public int AP_MATERNO { get; set; }
-                public int DNI { get; set; }
-                public int RUC { get; set; }
-                public int RAZON_SOCIAL { get; set; }
-                public int DIRECCION { get; set; }
-                public int DEPARTAMENTO { get; set; }
-                public int PROVINCIA { get; set; }
+                public string NOMBRES { get; set; }
+                public string AP_PATERNO { get; set; }
+                public string AP_MATERNO { get; set; }
+                public string DNI { get; set; }
+                public string RUC { get; set; }
+                public string RAZON_SOCIAL { get; set; }
+                public string DIRECCION { get; set; }
+                public string DEPARTAMENTO { get; set; }
+                public string PROVINCIA { get; set; }
 
-                public int DISTRITO { get; set; }        
-                public int TEL_FIJO_CASA { get; set;}
-                public int TEL_FIJO_OFICINA { get; set; }
-                public int CELULAR { get; set; }
-                public int EMAIL { get; set; }
-                public int OBSERVACIONES { get; set; }
-                public int TIPO_CLIE { get; set; }
+                public string DISTRITO { get; set; }
+                public string TEL_FIJO_CASA { get; set; }
+                public string TEL_FIJO_OFICINA { get; set; }
+                public string CELULAR { get; set; }
+                public string EMAIL { get; set; }
+                public string OBSERVACIONES { get; set; }
+                public string TIPO_CLIE { get; set; }
                 public string ESTADO { get; set; }
     }
 }

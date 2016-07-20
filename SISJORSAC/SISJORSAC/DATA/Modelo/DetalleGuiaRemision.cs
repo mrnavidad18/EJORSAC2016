@@ -13,7 +13,7 @@ namespace SISJORSAC.DATA.Modelo
         public GuiaRemision GUIA_REMISION { get; set; }
         public int ITEM { get; set; }
         public int CANTIDAD { get; set; }
-        public string ESTADO { get; set; }
+        
 
     }
 
