@@ -108,6 +108,65 @@ namespace SISJORSAC.DATA.DAO
         }
 
 
+        public List<GuiaRemision> listarGuiaRemision(string estado)
+        {
+            List<GuiaRemision> listaGuiaRemision = new List<GuiaRemision>();
+            string query = "SP_TBL_GUIA_REMISION_LISTARTODO";
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]{
+
+                     DBHelper.MakeParam("@ESTADO",estado)
+                 };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
+                {
+                    if (lector != null && lector.HasRows)
+                    {
+                        Cliente cliente;
+                        ClienteDAO clienteDAO = new ClienteDAO();
+                        GuiaRemision guiaRemision;
+                        while (lector.Read())
+                        {
+                            cliente = new Cliente();
+                            guiaRemision = new GuiaRemision();
+                            guiaRemision.COD_GUIA=int.Parse(lector["COD_GUIA"].ToString());
+                            guiaRemision.NRO_GUIA = lector["NRO_GUIA"].ToString();
+                            guiaRemision.FECHA_EMISION = DateTime.Parse(lector["FECHA_EMISION"].ToString());
+                            guiaRemision.PTO_PARTIDA = lector["PTO_PARTIDA"].ToString();
+                            guiaRemision.PTO_LLEGADA = lector["PTO_LLEGADA"].ToString();
+                            int codCliente = int.Parse(lector["COD_CLIE"].ToString());
+                            cliente = clienteDAO.ObtenerCliente(codCliente);
+                            guiaRemision.cliente = cliente;
+                            guiaRemision.VEHICULO_MARCA = lector["VEHICULO_MARCA"].ToString();
+                            guiaRemision.NRO_CERTIFICADO = lector["NRO_CERTIFICADO"].ToString();
+                            guiaRemision.NONBRE_CONDUCTOR = lector["NOMBRE_CONDUCTOR"].ToString();
+                            guiaRemision.NRO_BREVETE = lector["NRO_BREVETE"].ToString();
+                            guiaRemision.NOMB_TRANSPORTE = lector["NOMB_TRANSPORTE"].ToString();
+                            guiaRemision.RUC_TRANSPORTE = lector["RUC_TRANSPORTE"].ToString();
+                            guiaRemision.TIPO_COMPROB = lector["TIPO_COMPROB"].ToString();
+                            guiaRemision.TIPO_TRASLADO = lector["TIPO_TRASLADO"].ToString();
+                            guiaRemision.MTO_TRASLADO = lector["MTO_TRASLADO"].ToString();
+                            guiaRemision.PROVINCIA = lector["PROVINCIA"].ToString();
+                            guiaRemision.DEPARTAMENTO = lector["DEPARTAMENTO"].ToString();
+                            guiaRemision.DISTRITO = lector["DISTRITO"].ToString();
+                            guiaRemision.SITUACION = lector["SITUACION"].ToString();
+                            guiaRemision.ESTADO = lector["ESTADO"].ToString();
+
+                            listaGuiaRemision.Add(guiaRemision);
+                        }
+                    }
+                }
+                return listaGuiaRemision;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+
 
     }
 }

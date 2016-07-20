@@ -121,5 +121,55 @@ namespace SISJORSAC.DATA.DAO
         }
 
 
+        public Cliente ObtenerCliente(int codCli)
+        {
+            Cliente cliente = new Cliente();
+            string query = "SP_TBL_CLIENTE_OBTENERCLIENTEXCODIGO";
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]{
+
+                     DBHelper.MakeParam("@P_COD_CLI",codCli)
+                 };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
+                {
+                    if (lector != null && lector.HasRows)
+                    {
+                        
+                        while (lector.Read())
+                        {                                                                                  
+                                cliente.COD_CLI = int.Parse(lector["COD_CLI"].ToString());
+                                cliente.NOMBRES = lector["NOMBRES"].ToString();
+                                cliente.AP_PATERNO = lector["AP_PATERNO"].ToString();
+                                cliente.AP_MATERNO = lector["AP_MATERNO"].ToString();
+                                cliente.DNI = lector["DNI"].ToString();
+                                cliente.RUC = lector["RUC"].ToString();
+                                cliente.RAZON_SOCIAL = lector["RAZON_SOCIAL"].ToString();
+                                cliente.DIRECCION = lector["DIRECCION"].ToString();
+                                cliente.DEPARTAMENTO = lector["DEPARTAMENTO"].ToString();
+                                cliente.PROVINCIA = lector["PROVINCIA"].ToString();
+                                cliente.DISTRITO = lector["DISTRITO"].ToString();
+                                cliente.TEL_FIJO_CASA = lector["TEL_FIJO_CASA"].ToString();
+                                cliente.TEL_FIJO_OFICINA = lector["TEL_FIJO_OFICINA"].ToString();
+                                cliente.CELULAR = lector["CELULAR"].ToString();
+                                cliente.EMAIL = lector["EMAIL"].ToString();
+                                cliente.OBSERVACIONES = lector["OBSERVACIONES"].ToString();
+                                cliente.TIPO_CLIE = lector["TIPO_CLIE"].ToString();
+                        }
+                    }
+                    
+                }
+                return cliente;
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
     }
 }
