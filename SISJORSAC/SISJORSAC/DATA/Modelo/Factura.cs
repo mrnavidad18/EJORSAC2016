@@ -19,8 +19,9 @@ namespace SISJORSAC.DATA.Modelo
         public double SUB_TOTAL { get; set; }
         public double IGV { get; set; }
         public double TOTAL { get; set; }
-
         public string ESTADO { get; set; }
+
+        public List<DetalleFactura> DETALLEFACTURA { get; set; }
 
     }
 }

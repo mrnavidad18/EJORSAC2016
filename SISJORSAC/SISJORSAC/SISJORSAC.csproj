@@ -77,16 +77,21 @@
     </Compile>
     <Compile Include="DATA\Conexion\DBHelper.cs" />
     <Compile Include="DATA\DAO\BoletaDAO.cs" />
+    <Compile Include="DATA\DAO\ProveedorDAO.cs" />
     <Compile Include="DATA\DAO\UsuarioDAO.cs" />
     <Compile Include="DATA\Modelo\Boleta.cs" />
     <Compile Include="DATA\Modelo\Cliente.cs" />
+    <Compile Include="DATA\Modelo\ConceptoGasto.cs" />
     <Compile Include="DATA\Modelo\Contrato.cs" />
+    <Compile Include="DATA\Modelo\DetalleGasto.cs" />
     <Compile Include="DATA\Modelo\DetalleBoleta.cs" />
     <Compile Include="DATA\Modelo\DetalleContrato.cs" />
     <Compile Include="DATA\Modelo\DetalleFactura.cs" />
     <Compile Include="DATA\Modelo\DetalleGuiaRemision.cs" />
     <Compile Include="DATA\Modelo\Factura.cs" />
+    <Compile Include="DATA\Modelo\Gasto.cs" />
     <Compile Include="DATA\Modelo\GuiaRemision.cs" />
+    <Compile Include="DATA\Modelo\Proveedor.cs" />
     <Compile Include="DATA\Modelo\Servicio.cs" />
     <Compile Include="DATA\Modelo\Ubigeo.cs" />
     <Compile Include="DATA\Modelo\Usuario.cs" />

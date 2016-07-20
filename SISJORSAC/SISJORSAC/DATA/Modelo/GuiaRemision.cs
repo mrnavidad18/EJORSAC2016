@@ -28,7 +28,9 @@ namespace SISJORSAC.DATA.Modelo
         public string DEPARTAMENTO { get; set; }
         public string DISTRITO { get; set; }
         public string SITUACION { get; set; }
-        public string ESTADO { get; set; }  
+        public string ESTADO { get; set; }
+
+        public List<DetalleGuiaRemision> DETALLEGUIAREMISION { get; set; }
       
     }
 }
