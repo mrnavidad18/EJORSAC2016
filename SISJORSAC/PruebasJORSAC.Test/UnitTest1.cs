@@ -15,19 +15,28 @@ namespace PruebasJORSAC.Test
         
 
         [TestMethod]
-        public void TestMethod1()
+        public void AgregarUsuarioTest()
         {
+
             Usuario usu = new Usuario();
             usu.Apellidos = "Huaman Meza";
             usu.DNI = "77446525";
             usu.clave = "AHYA";
             usu.Nombre = "RICARDO";
             usu.username = "huamanR";
-
-           var salidas= usudao.Agregar(usu);
-           int id = Convert.ToInt32(salidas[0]);
-           string msj = Convert.ToString(salidas[1]);
-           Assert.AreNotEqual(id,0);
+            try
+            {
+                var salidas = usudao.Agregar(usu);
+                int id = Convert.ToInt32(salidas[0]);
+                string msj = Convert.ToString(salidas[1]);
+                Assert.AreNotEqual(id, 0);
+            }
+            catch (Exception)
+            {
+                System.Console.WriteLine("Error");
+            }
+          
+          
             
         }
     }

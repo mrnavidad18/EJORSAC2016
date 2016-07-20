@@ -15,15 +15,16 @@ namespace SISJORSAC.DATA.DAO
         public Object[] Agregar(Usuario usuario)
         {
             Object[] salidas;
-           
+          
             string query = "SP_TBL_USUARIO_AGREGAR";
 
             SqlParameter id = new SqlParameter("@PS_COD", SqlDbType.Int);
             id.Direction = ParameterDirection.Output;
             SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar,100);
             msj.Direction = ParameterDirection.Output;
-
-            SqlParameter[] dbParams = new SqlParameter[]
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]
              {
                  DBHelper.MakeParam("@P_USERNAME",usuario.username),
                  DBHelper.MakeParam("@P_CLAVE",usuario.clave),  
@@ -33,8 +34,16 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
                 id ,msj
              };
-            salidas = DBHelper.ExecuteProcedure(query, dbParams);
-            return salidas;
+                salidas = DBHelper.ExecuteProcedure(query, dbParams);
+                return salidas;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+           
+            
         }
     }
 }
