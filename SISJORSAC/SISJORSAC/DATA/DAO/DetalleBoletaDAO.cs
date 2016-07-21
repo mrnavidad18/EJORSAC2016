@@ -39,10 +39,13 @@ namespace SISJORSAC.DATA.DAO
                             detalle.CANTIDAD = Convert.ToInt32(lector["CANTIDAD"]);
                             detalle.PRECIO = Convert.ToInt32(lector["PRECIO"]);
                             detalle.IMPORTE = Convert.ToInt32(lector["IMPORTE"]);
-                            lista.Add(campo);
+                            detalle.BOLETA = boletaDao.ObtenerXCodBoleta(Convert.ToInt32(lector["COD_BOLETA"]));
+                            detalle.SERVICIO=servicioDao
+                            lista.Add(detalle);
                         }
                     }
                 }
+                return lista;
             }
             catch (Exception)
             {
