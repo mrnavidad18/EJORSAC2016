@@ -124,7 +124,7 @@ namespace SISJORSAC.DATA.DAO
                       DBHelper.MakeParam("@P_ESTADO","DISPONIBLE")
                 };
 
-                using (SqlDataReader lector = DBHelper.ExecuteDataReader(query))
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query))
                 {
 
                     if (lector != null && lector.HasRows)
@@ -142,7 +142,7 @@ namespace SISJORSAC.DATA.DAO
                             factura.IGV = Convert.ToDouble(lector["IGV"].ToString());
                             factura.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
                             factura.ESTADO = lector["ESTADO"].ToString();
-                            factura.cliente = clienteDao.ObtenerCliente(Convert.ToInt32(lector[" COD_CLI"].ToString()));
+                            factura.cliente = clienteDao.ObtenerCliente(Convert.ToInt32(lector["COD_CLI"].ToString()));
                             factura.guiaRemision = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["NRO_GUIA"].ToString()));
                         }
                     }

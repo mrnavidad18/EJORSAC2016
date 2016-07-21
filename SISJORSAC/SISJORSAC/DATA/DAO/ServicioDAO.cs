@@ -121,5 +121,37 @@ namespace SISJORSAC.DATA.DAO
             }
         }
 
+        public string Actualizar(Servicio servicio)
+        {
+            string salidas;
+
+            string query = "SP_TBL_SERV_ACTUALIZAR";
+            SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
+            msj.Direction = ParameterDirection.Output;
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]
+             {
+                 DBHelper.MakeParam("@P_DESRIPCION",servicio.DESCRIPCION ),
+                 DBHelper.MakeParam("@P_PRECIO",servicio.PRECIO ),
+                 DBHelper.MakeParam("@P_UNIDAD_MEDIDA",servicio.UNIDAD_MEDIDA ),
+                 DBHelper.MakeParam("@P_TIPO_MONE",servicio.TIPO_MONE ),
+                 DBHelper.MakeParam("@P_PESO",servicio.PESO ),
+                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_COD_SERV",servicio.COD_SERV),
+                 msj
+             };
+
+                salidas = DBHelper.ExecuteProcedure(query, dbParams);
+                return salidas;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
+        }
+
     }
 }

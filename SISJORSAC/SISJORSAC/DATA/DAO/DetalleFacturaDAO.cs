@@ -35,7 +35,7 @@ namespace SISJORSAC.DATA.DAO
                         while (lector.Read())
                         {///  
                             detalle = new DetalleFactura();
-                            detalle.ITEM = Convert.ToInt32(lector["COD_ITEM"]);
+                            detalle.ITEM = Convert.ToInt32(lector["ITEM"]);
                             detalle.COD_DETALLE = Convert.ToInt32(lector["COD_DETALLE"]);
                             detalle.CANTIDAD = Convert.ToInt32(lector["CANTIDAD"]);
                             detalle.PRECIO = Convert.ToDouble(lector["PRECIO"]);

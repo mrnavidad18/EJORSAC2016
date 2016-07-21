@@ -15,7 +15,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
 using SISJORSAC.DATA.Modelo;
-
+using SISJORSAC.DATA.DAO;
 namespace SISJORSAC
 {
     /// <summary>
@@ -36,13 +36,24 @@ namespace SISJORSAC
             usu.Apellidos="juan";
             usu.Nombre="Pepe";
             usu.DNI="11111";
-
+            
             List<Usuario> lista = new List<Usuario>();
-
+            FacturaDAO facturadao = new FacturaDAO();
+            ClienteDAO clientedao = new ClienteDAO();
+            GuiaRemisionDAO guidao = new GuiaRemisionDAO();
+            var lisss = guidao.listarGuiaRemision("DISPONIBLE");
+          
             lista.Add(usu);
-            this.dgvListado.ItemsSource = lista;
+            this.dgvListado.ItemsSource = lisss;
              
         }
+
+        private void dgvListado_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+       
       
     }
 }

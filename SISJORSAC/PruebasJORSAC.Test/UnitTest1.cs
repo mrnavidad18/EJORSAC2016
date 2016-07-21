@@ -305,5 +305,18 @@ namespace PruebasJORSAC.Test
             Assert.IsNotNull(dao.ActualizarBoleta(boleta));
 
         }
+
+
+        [TestMethod]
+        public void validaRUsuario()
+        {
+
+            Usuario user = new Usuario();
+            user.username = "armandez";
+            user.clave="1234568987";
+            UsuarioDAO userDAO =new UsuarioDAO();
+            var usuario=userDAO.ValidarUsuario(user);
+            Assert.IsNotNull(usuario);
+        }
     }
 }

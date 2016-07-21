@@ -65,5 +65,39 @@ namespace SISJORSAC.DATA.DAO
             }
         }
 
+        public List<ConceptoGasto> listarConceptoGasto(string estado)
+        {
+            List<ConceptoGasto> listaConceptoGasto = new List<ConceptoGasto>();
+            ConceptoGasto conceptoGasto;
+            string query = "SP_TBL_CONCEP_GASTO_LISTAR";
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]{
+                     DBHelper.MakeParam("@ESTADO",estado)
+                 };
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
+                {
+                    if (lector != null && lector.HasRows)
+                    {
+
+                        while (lector.Read())
+                        {
+                            conceptoGasto = new ConceptoGasto();
+                            conceptoGasto.COD_CON_GAS = int.Parse(lector["COD_CON_GAS"].ToString());
+                            conceptoGasto.DESCRIPCION = lector["DESCRIPCION"].ToString();
+                            conceptoGasto.ESTADO = lector["ESTADO"].ToString();
+                            listaConceptoGasto.Add(conceptoGasto);
+                        }
+                    }
+                }
+                return listaConceptoGasto;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        
+        }
+
     }
 }

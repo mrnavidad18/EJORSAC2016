@@ -18,6 +18,8 @@ using MahApps.Metro.Behaviours;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
+using SISJORSAC.DATA.DAO;
+using SISJORSAC.DATA.Modelo;
 
 namespace SISJORSAC
 {
@@ -26,6 +28,7 @@ namespace SISJORSAC
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        UsuarioDAO usuDAO = new UsuarioDAO();
         public MainWindow()
         {
             InitializeComponent();
@@ -35,8 +38,12 @@ namespace SISJORSAC
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-              string usuario = this.txtUsuario.Text;
+            string usuario = this.txtUsuario.Text;
             string clave = this.txtClave.Password;
+
+            Usuario user = new Usuario();
+            user.username = usuario.Trim();
+            user.clave = clave.Trim();
 
             if (usuario.Trim() == "")
             {
@@ -50,7 +57,7 @@ namespace SISJORSAC
                 return;
             }
 
-            if (usuario == "11" && clave == "11")
+            if ( usuDAO.ValidarUsuario(user)!=null )
             {
                 await this.ShowMessageAsync("Exito","Usuario Correcto");
                 Menu menu = new Menu();

@@ -15,7 +15,7 @@ namespace SISJORSAC.DATA.DAO
 
         public Object[] Agregar(GuiaRemision guiaRemision)
         {
-            string cadenaConexion = "server=192.168.0.26;DataBase=BDJORSAC;user=sa;password=2015159";
+            string cadenaConexion = "server=192.168.0.28;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -116,7 +116,7 @@ namespace SISJORSAC.DATA.DAO
             {
                 SqlParameter[] dbParams = new SqlParameter[]{
 
-                     DBHelper.MakeParam("@ESTADO",estado)
+                     DBHelper.MakeParam("@P_ESTADO",estado)
                  };
 
                 using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))

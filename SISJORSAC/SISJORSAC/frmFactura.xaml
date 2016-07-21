@@ -27,9 +27,7 @@
         <Label Content="Moneda:" HorizontalAlignment="Left" Margin="633,204,0,0" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" Margin="695,204,0,0" VerticalAlignment="Top" Width="62"/>
         <CheckBox Content="Sin IGV" HorizontalAlignment="Left" Margin="797,208,0,0" VerticalAlignment="Top"/>
-        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Left"   VerticalAlignment="Top"  Margin="44,269,0,0" Width="821" Height="263" Background="#FFC9C9C9">
-            
-        </DataGrid>
+        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Left"   VerticalAlignment="Top"  Margin="44,269,0,0" Width="821" Height="263" Background="#FFC9C9C9" GridLinesVisibility="All" SelectionChanged="dgvListado_SelectionChanged" IsReadOnly="True"/>
 
     </Grid>
 </Controls:MetroWindow>

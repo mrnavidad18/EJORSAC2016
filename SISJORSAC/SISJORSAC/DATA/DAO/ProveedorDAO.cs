@@ -92,6 +92,8 @@ namespace SISJORSAC.DATA.DAO
                                 proveedor.CELULAR = lector["CELULAR"].ToString();
                                 proveedor.EMAIL = lector["EMAIL"].ToString();
                                 proveedor.OBSERVACIONES = lector["OBSERVACIONES"].ToString();
+                                proveedor.TIPO_PRO = lector["TIPO_PRO"].ToString();
+                                proveedor.ESTADO = lector["ESTADO"].ToString();  
                                 listaProveedor.Add(proveedor);
                             }
                             else
@@ -108,6 +110,8 @@ namespace SISJORSAC.DATA.DAO
 
                                 proveedor.EMAIL = lector["EMAIL"].ToString();
                                 proveedor.OBSERVACIONES = lector["OBSERVACIONES"].ToString();
+                                proveedor.TIPO_PRO = lector["TIPO_PRO"].ToString();
+                                proveedor.ESTADO = lector["ESTADO"].ToString();  
                                 listaProveedor.Add(proveedor);
                             }
                         }
@@ -160,6 +164,7 @@ namespace SISJORSAC.DATA.DAO
                                 proveedor.CELULAR = lector["CELULAR"].ToString();
                                 proveedor.EMAIL = lector["EMAIL"].ToString();
                                 proveedor.OBSERVACIONES = lector["OBSERVACIONES"].ToString();
+                                proveedor.TIPO_PRO = lector["TIPO_PRO"].ToString();
                                 proveedor.ESTADO = lector["ESTADO"].ToString();   
                             }
                         }
@@ -172,6 +177,54 @@ namespace SISJORSAC.DATA.DAO
                 throw;
             }
         }
+
+
+        public string Actualizar(Proveedor proveedor)
+        {
+            string salidas;
+
+            string query = "SP_TBL_PROVEEDOR_ACTUALIZAR";
+
+
+            SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
+            msj.Direction = ParameterDirection.Output;
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]
+             {
+
+                 DBHelper.MakeParam("@P_NOMBRES",proveedor.NOMBRES),
+                 DBHelper.MakeParam("@P_AP_PATERNO",proveedor.AP_PATERNO),
+                 DBHelper.MakeParam("@P_AP_MATERNO",proveedor.AP_MATERNO),
+                 DBHelper.MakeParam("@P_DNI",proveedor.DNI),
+                 DBHelper.MakeParam("@P_RUC",proveedor.RUC),
+                 DBHelper.MakeParam("@P_RAZON_SOCIAL",proveedor.RAZON_SOCIAL),
+                 DBHelper.MakeParam("@P_DIRECCION",proveedor.DIRECCION),
+                 DBHelper.MakeParam("@P_DEPARTAMENTO",proveedor.DEPARTAMENTO),
+                 DBHelper.MakeParam("@P_PROVINCIA",proveedor.PROVINCIA),
+                 DBHelper.MakeParam("@P_DISTRITO",proveedor.DISTRITO),
+                 DBHelper.MakeParam("@P_TELF_FIJO_CASA",proveedor.TELF_FIJO_CASA),
+                 DBHelper.MakeParam("@P_TELF_FIJO_OFICINA",proveedor.TELF_FIJO_OFICINA),
+                 DBHelper.MakeParam("@P_CELULAR",proveedor.CELULAR),
+                 DBHelper.MakeParam("@P_EMAIL",proveedor.EMAIL),
+                 DBHelper.MakeParam("@P_OBSERVACIONES",proveedor.OBSERVACIONES),
+                 DBHelper.MakeParam("@P_TIPO_PRO",proveedor.TIPO_PRO),
+                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_COD_PROV",proveedor.COD_PROV),                 
+                 msj
+             };
+
+                salidas = DBHelper.ExecuteProcedure(query, dbParams);
+                return salidas;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
 
     }
 }
