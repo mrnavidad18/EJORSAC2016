@@ -78,9 +78,13 @@
     <Compile Include="DATA\Conexion\DBHelper.cs" />
     <Compile Include="DATA\DAO\BoletaDAO.cs" />
     <Compile Include="DATA\DAO\ClienteDAO.cs" />
+    <Compile Include="DATA\DAO\ConceptoGastoDAO.cs" />
     <Compile Include="DATA\DAO\ContratoDAO.cs" />
-    <Compile Include="DATA\DAO\DetalleBoletaDAO.cs" />
+    <Compile Include="DATA\DAO\DetalleContratoDAO.cs" />
+    <Compile Include="DATA\DAO\DetalleGastoDAO.cs" />
+    <Compile Include="DATA\DAO\DetalleGuiaRemisionDAO.cs" />
     <Compile Include="DATA\DAO\FacturaDAO.cs" />
+    <Compile Include="DATA\DAO\GastoDAO.cs" />
     <Compile Include="DATA\DAO\GuiaRemisionDAO.cs" />
     <Compile Include="DATA\DAO\ProveedorDAO.cs" />
     <Compile Include="DATA\DAO\ServicioDAO.cs" />

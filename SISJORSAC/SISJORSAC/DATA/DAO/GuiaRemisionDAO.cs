@@ -68,7 +68,7 @@ namespace SISJORSAC.DATA.DAO
                     detalle.GUIA_REMISION = guiaa;
                     if (AgregarDetalle(detalle, trx, cn) == null)
                     {
-                        throw new Exception("Ocurrio un error en la insercion del detalle de la boleta :" + detalle.SERVICIO.DESCRIPCION);
+                        throw new Exception("Ocurrio un error en la insercion del detalle de la GUIA DE REMISIÓN :" + detalle.SERVICIO.DESCRIPCION);
                     }
                 }
                 trx.Commit();

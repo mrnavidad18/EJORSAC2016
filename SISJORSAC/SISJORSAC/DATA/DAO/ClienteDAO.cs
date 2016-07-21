@@ -135,8 +135,7 @@ namespace SISJORSAC.DATA.DAO
                 using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
                 {
                     if (lector != null && lector.HasRows)
-                    {
-                        
+                    {                        
                         while (lector.Read())
                         {                                                                                  
                                 cliente.COD_CLI = int.Parse(lector["COD_CLI"].ToString());
@@ -157,8 +156,7 @@ namespace SISJORSAC.DATA.DAO
                                 cliente.OBSERVACIONES = lector["OBSERVACIONES"].ToString();
                                 cliente.TIPO_CLIE = lector["TIPO_CLIE"].ToString();
                         }
-                    }
-                    
+                    }                    
                 }
                 return cliente;
                 
