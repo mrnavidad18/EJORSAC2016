@@ -16,6 +16,7 @@ namespace SISJORSAC.DATA.Modelo
         public string NRO_DOC_REF { get; set; }
         public string MONEDA { get; set; }
         public string ESTADO { get; set; }
+        public List<DetalleGasto> DetalleGASTO { get; set; }
 
     }
 }

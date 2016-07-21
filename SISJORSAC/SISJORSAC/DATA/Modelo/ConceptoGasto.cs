@@ -10,5 +10,6 @@ namespace SISJORSAC.DATA.Modelo
     {
         public int COD_CON_GAS { get; set; }
         public string DESCRIPCION { get; set; }
+        public string ESTADO { get; set; }
     }
 }

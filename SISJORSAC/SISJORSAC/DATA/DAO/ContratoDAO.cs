@@ -67,7 +67,7 @@ namespace SISJORSAC.DATA.DAO
                    
                     if (AgregarDetalle(detalle, trx, cn) == null)
                     {
-                        throw new Exception("Ocurrio un error en la insercion del detalle de la boleta :" + detalle.SERVICIO.DESCRIPCION);
+                        throw new Exception("Ocurrio un error en la insercion del detalle del Contrato :" + detalle.SERVICIO.DESCRIPCION);
                     }
                 }
                 trx.Commit();
@@ -83,7 +83,6 @@ namespace SISJORSAC.DATA.DAO
             }
 
         }
-
         public string AgregarDetalle(DetalleContrato detalle, SqlTransaction trx, SqlConnection cn)
         {
 
@@ -106,7 +105,127 @@ namespace SISJORSAC.DATA.DAO
 
             return salidas = DBHelper.ExecuteProcedureDetalles(query, dbParams, trx, cn);
         }
-    
+        public List<Contrato> listarContrato(string estado)
+        {
+            List<Contrato> listaContrato = new List<Contrato>();
+            string query = "SP_TBL_CONTRATO_LISTARTODO";
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]{
+
+                     DBHelper.MakeParam("@P_ESTADO",estado)
+                 };
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
+                {
+                    if (lector != null && lector.HasRows)
+                    {
+                        Cliente cliente;
+                        Usuario usuario;
+                        ClienteDAO clienteDAO = new ClienteDAO();
+                        UsuarioDAO usuarioDAO = new UsuarioDAO();
+                        Contrato contrato;
+                        while (lector.Read())
+                        {
+                            usuario = new Usuario();
+                            cliente = new Cliente();
+                            contrato = new Contrato();
+                            contrato.COD_CONTRATO=int.Parse(lector["COD_CONTRATO"].ToString());
+                            contrato.NRO_CONTRATO=lector["NRO_CONTRATO"].ToString();
+                            contrato.FECHA_CONTRATO=DateTime.Parse(lector["FECHA_CONTRATO"].ToString());
+                            cliente=clienteDAO.ObtenerCliente(int.Parse(lector["COD_CLI"].ToString()));
+                            contrato.cliente=cliente;
+                            contrato.DIRECCION_OBRA=lector["DIRECCION_OBRA"].ToString();
+                            contrato.TRANSPORTE=lector["TRANSPORTE"].ToString();
+                            usuario=usuarioDAO.ObtenerUsuario(int.Parse(lector["idUsuario"].ToString()));
+                            contrato.usuario=usuario;
+                            contrato.TOTAL_DIAS = int.Parse(lector["TOTAL_DIAS"].ToString());
+                            contrato.FECHA_ENTREGA = DateTime.Parse(lector["FECHA_ENTREGA"].ToString());
+                            contrato.HORA_ENTREGA = DateTime.Parse(lector["HORA_ENTREGA"].ToString());
+                            contrato.FECHA_DEVOLUCION = DateTime.Parse(lector["FECHA_DEVOLUCION"].ToString());
+                            contrato.HORA_DEVOLUCION = DateTime.Parse(lector["HORA_DEVOLUCION"].ToString());
+                            contrato.MONEDA = lector["MONEDA"].ToString();
+                            contrato.GARANTIA = double.Parse(lector["GARANTIA"].ToString());
+                            contrato.CHEQUE = lector["CHEQUE"].ToString();
+                            contrato.DOCUMENTO = lector["DOCUMENTO"].ToString();
+                            contrato.RECIBO = lector["RECIBO"].ToString();
+                            contrato.IGV = double.Parse(lector["IGV"].ToString());
+                            contrato.SUBTOTAL = double.Parse(lector["SUBTOTAL"].ToString());
+                            contrato.TOTAL = double.Parse(lector["TOTAL"].ToString());
+                            contrato.ESTADO = lector["ESTADO"].ToString();
+                            listaContrato.Add(contrato);
+                        }
+                    }
+                }
+                return listaContrato;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public Contrato ObtenerContrato(int codContra)
+        {
+
+            Contrato contrato = new Contrato();
+            string query = "SP_TBL_CONTRATO_OBTENERCONTRATOXCODIGO";
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]{
+
+                     DBHelper.MakeParam("@P_COD_CONTRATO ",codContra)
+                 };
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
+                {
+                    if (lector != null && lector.HasRows)
+                    {
+                        Cliente cliente;
+                        Usuario usuario;
+                        ClienteDAO clienteDAO = new ClienteDAO();
+                        UsuarioDAO usuarioDAO = new UsuarioDAO();
+                        
+                        while (lector.Read())
+                        {
+                            usuario = new Usuario();
+                            cliente = new Cliente();
+                            
+                            contrato.COD_CONTRATO = int.Parse(lector["COD_CONTRATO"].ToString());
+                            contrato.NRO_CONTRATO = lector["NRO_CONTRATO"].ToString();
+                            contrato.FECHA_CONTRATO = DateTime.Parse(lector["FECHA_CONTRATO"].ToString());
+                            cliente = clienteDAO.ObtenerCliente(int.Parse(lector["COD_CLI"].ToString()));
+                            contrato.cliente = cliente;
+                            contrato.DIRECCION_OBRA = lector["DIRECCION_OBRA"].ToString();
+                            contrato.TRANSPORTE = lector["TRANSPORTE"].ToString();
+                            usuario = usuarioDAO.ObtenerUsuario(int.Parse(lector["idUsuario"].ToString()));
+                            contrato.usuario = usuario;
+                            contrato.TOTAL_DIAS = int.Parse(lector["TOTAL_DIAS"].ToString());
+                            contrato.FECHA_ENTREGA = DateTime.Parse(lector["FECHA_ENTREGA"].ToString());
+                            contrato.HORA_ENTREGA = DateTime.Parse(lector["HORA_ENTREGA"].ToString());
+                            contrato.FECHA_DEVOLUCION = DateTime.Parse(lector["FECHA_DEVOLUCION"].ToString());
+                            contrato.HORA_DEVOLUCION = DateTime.Parse(lector["HORA_DEVOLUCION"].ToString());
+                            contrato.MONEDA = lector["MONEDA"].ToString();
+                            contrato.GARANTIA = double.Parse(lector["GARANTIA"].ToString());
+                            contrato.CHEQUE = lector["CHEQUE"].ToString();
+                            contrato.DOCUMENTO = lector["DOCUMENTO"].ToString();
+                            contrato.RECIBO = lector["RECIBO"].ToString();
+                            contrato.IGV = double.Parse(lector["IGV"].ToString());
+                            contrato.SUBTOTAL = double.Parse(lector["SUBTOTAL"].ToString());
+                            contrato.TOTAL = double.Parse(lector["TOTAL"].ToString());
+                            contrato.ESTADO = lector["ESTADO"].ToString();
+                            
+                        }
+                    }
+                }
+                return contrato;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
 
     }
 }

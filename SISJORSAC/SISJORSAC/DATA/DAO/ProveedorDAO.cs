@@ -124,5 +124,54 @@ namespace SISJORSAC.DATA.DAO
 
         }
 
+        public Proveedor ObtenerProveedor(int codprov)
+        {
+            Proveedor proveedor = new Proveedor();
+            string query = "SP_TBL_PROVEEDOR_OBTENERPROVEEDORXCODIGO";
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]{
+
+                     DBHelper.MakeParam("@P_COD_PROV",codprov)
+                 };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
+                {
+                    if (lector != null && lector.HasRows)
+                    {
+                        
+                        while (lector.Read())
+                        {
+                            proveedor = new Proveedor();
+
+                                proveedor.COD_PROV = int.Parse(lector["COD_PROV"].ToString());
+                                proveedor.NOMBRES = lector["NOMBRES"].ToString();
+                                proveedor.AP_PATERNO = lector["AP_PATERNO"].ToString();
+                                proveedor.AP_MATERNO = lector["AP_MATERNO"].ToString();
+                                proveedor.DNI = lector["DNI"].ToString();
+                                proveedor.RUC = lector["RUC"].ToString();
+                                proveedor.RAZON_SOCIAL = lector["RAZON_SOCIAL"].ToString();
+                                proveedor.DIRECCION = lector["DIRECCION"].ToString();
+                                proveedor.DEPARTAMENTO = lector["DEPARTAMENTO"].ToString();
+                                proveedor.PROVINCIA = lector["PROVINCIA"].ToString();
+                                proveedor.DISTRITO = lector["DISTRITO"].ToString();
+                                proveedor.TELF_FIJO_CASA = lector["TELF_FIJO_CASA"].ToString();
+                                proveedor.TELF_FIJO_OFICINA = lector["TELF_FIJO_OFICINA"].ToString();
+                                proveedor.CELULAR = lector["CELULAR"].ToString();
+                                proveedor.EMAIL = lector["EMAIL"].ToString();
+                                proveedor.OBSERVACIONES = lector["OBSERVACIONES"].ToString();
+                                proveedor.ESTADO = lector["ESTADO"].ToString();   
+                            }
+                        }
+                    }
+                return proveedor;
+                }
+            
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
