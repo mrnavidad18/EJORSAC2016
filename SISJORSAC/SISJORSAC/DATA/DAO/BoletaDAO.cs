@@ -12,7 +12,7 @@ namespace SISJORSAC.DATA.DAO
 {
    public class BoletaDAO
     {
-        public Object[] Agregar(Boleta boleta)
+        public Object[] AgregarBoleta(Boleta boleta)
         {
             string cadenaConexion = "server=192.168.0.26;DataBase=BDJORSAC;user=sa;password=2015159";
              SqlConnection cn = new SqlConnection(cadenaConexion);
@@ -71,7 +71,7 @@ namespace SISJORSAC.DATA.DAO
 
         }
 
-        public string AgregarDetalle(DetalleBoleta detalle ,SqlTransaction trx,SqlConnection cn)
+        public string AgregarDetalleSinTransacion(DetalleBoleta detalle)
         {
 
             string salidas;
@@ -91,7 +91,30 @@ namespace SISJORSAC.DATA.DAO
                 msj
              };
            
-            return salidas = DBHelper.ExecuteProcedureDetalles(query, dbParams,trx,cn);
+            return salidas = DBHelper.ExecuteProcedure(query, dbParams);
+        }
+
+        public string AgregarDetalle(DetalleBoleta detalle, SqlTransaction trx, SqlConnection cn)
+        {
+
+            string salidas;
+            string query = "SP_TBL_DETALLE_BOLETA_AGREGAR";
+
+            SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
+            msj.Direction = ParameterDirection.Output;
+
+
+            SqlParameter[] dbParams = new SqlParameter[]
+             {
+                 DBHelper.MakeParam("@P_ITEM",detalle.ITEM),
+                 DBHelper.MakeParam("@P_COD_SERV",detalle.SERVICIO.COD_SERV),
+                 DBHelper.MakeParam("@P_COD_BOLETA",detalle.BOLETA.NRO_CP),  
+                 DBHelper.MakeParam("@P_CANTIDAD",detalle.CANTIDAD),              
+                 DBHelper.MakeParam("@P_PRECIO",detalle.PRECIO),
+                msj
+             };
+
+            return salidas = DBHelper.ExecuteProcedureDetalles(query, dbParams, trx, cn);
         }
 
         public Boleta ObtenerXCodBoleta(int CodBoleta)
@@ -99,7 +122,7 @@ namespace SISJORSAC.DATA.DAO
             try
             {
                 Boleta boleta = null;
-
+                ClienteDAO clienteDao = new ClienteDAO();
                 string query = "SP_TBL_BOLETA_LISTAR_XCOD_BOLETA";
                 SqlParameter[] param = new SqlParameter[]
                 {
@@ -123,6 +146,7 @@ namespace SISJORSAC.DATA.DAO
                             boleta.OBSERVACION = lector["OBSERVACION"].ToString();
                             boleta.TOTAL= Convert.ToDouble(lector["TOTAL"].ToString());
                             boleta.ESTADO = lector["ESTADO"].ToString();
+                            boleta.cliente = clienteDao.ObtenerCliente(Convert.ToInt32(lector[" COD_CLI"].ToString()));
 
                         }
                     }
@@ -135,6 +159,131 @@ namespace SISJORSAC.DATA.DAO
                 throw new Exception("Ocurio un error al obtener un usuario"); 
             }
            
+        }
+
+        public List<Boleta> ListarBoletas(string estado)
+        {
+            try
+            {
+                List<Boleta> lista = null;
+                ClienteDAO clienteDao = new ClienteDAO();
+
+                string query = "SP_TBL_BOLETA_LISTAR";
+                SqlParameter[] param = new SqlParameter[]
+                {
+                      DBHelper.MakeParam("@P_ESTADO",estado),
+                };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReader(query))
+                {
+
+                    if (lector != null && lector.HasRows)
+                    {
+                        Boleta boleta;
+                        while (lector.Read())
+                        {
+                            boleta = new Boleta();
+                            boleta.NRO_CP = Convert.ToInt32(lector["COD_BOL"].ToString());
+                            boleta.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
+                            boleta.NRO_BOLETA = lector[" NRO_BOLETA"].ToString();
+                            boleta.MODALIDAD = lector["MODALIDAD"].ToString();
+                            boleta.OBSERVACION = lector["OBSERVACION"].ToString();
+                            boleta.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
+                            boleta.ESTADO = lector["ESTADO"].ToString();
+                            boleta.cliente = clienteDao.ObtenerCliente(Convert.ToInt32(lector["COD_CLI"].ToString()));
+                            lista.Add(boleta);
+                        }
+                    }
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurio un error al listar los usuarios");
+            }
+
+        }
+
+        public string ActualizarBoleta(Boleta boleta)
+        {
+            string cadenaConexion = "server=192.168.0.26;DataBase=BDJORSAC;user=sa;password=2015159";
+            SqlConnection cn = new SqlConnection(cadenaConexion);
+            cn.Open();
+            SqlTransaction trx = cn.BeginTransaction();
+
+            try
+            {
+               
+                string query = "SP_TBL_BOLETA_ACTUALIZAR";
+
+                SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
+                msj.Direction = ParameterDirection.Output;
+
+
+                SqlParameter[] dbParams = new SqlParameter[]
+             {
+                 DBHelper.MakeParam("@P_FECHA_EMISION",boleta.FECHA_EMISION),
+                 DBHelper.MakeParam("@P_COD_CLI",boleta.cliente.COD_CLI),  
+                 DBHelper.MakeParam("@P_MODALIDAD",boleta.MODALIDAD),              
+                 DBHelper.MakeParam("@P_OBSERVACION",boleta.OBSERVACION),
+                 DBHelper.MakeParam("@P_TOTAL",boleta.TOTAL),
+                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_COD_BOL",boleta.NRO_CP),
+                 DBHelper.MakeParam("@P_NRO_BOLETA",boleta.NRO_BOLETA),
+                 msj
+             };
+
+
+
+                string mensaje=DBHelper.ExecuteProcedureDetalles(query, dbParams, trx, cn);
+
+                foreach (DetalleBoleta detalle in boleta.DETALLEBOLETA)
+                {
+                    Boleta bol = new Boleta();
+                    bol.NRO_CP = boleta.NRO_CP;
+                    detalle.BOLETA = bol;
+                    if (ActualizarDetalle(detalle, trx, cn) == null)
+                    {
+                        throw new Exception("Ocurrio un error en la ACTUALIZACION del detalle de la boleta :" + detalle.SERVICIO.DESCRIPCION);
+                    }
+                }
+                trx.Commit();
+                cn.Close();
+                return mensaje;
+
+            }
+            catch (Exception ex)
+            {
+                trx.Rollback();
+                cn.Close();
+                throw ex;
+            }
+
+        }
+
+        public string ActualizarDetalle(DetalleBoleta detalle, SqlTransaction trx, SqlConnection cn)
+        {
+
+            string salidas;
+            string query = "SP_TBL_DETALLE_BOLETA_ACTUALIZAR";
+
+            SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
+            msj.Direction = ParameterDirection.Output;
+
+
+            SqlParameter[] dbParams = new SqlParameter[]
+             {
+                 DBHelper.MakeParam("@P_ITEM",detalle.ITEM),
+                 DBHelper.MakeParam("@P_COD_SERV",detalle.SERVICIO.COD_SERV),
+                 DBHelper.MakeParam("@P_COD_BOLETA",detalle.BOLETA.NRO_CP),  
+                 DBHelper.MakeParam("@P_CANTIDAD",detalle.CANTIDAD),              
+                 DBHelper.MakeParam("@P_PRECIO",detalle.PRECIO),
+                 DBHelper.MakeParam("@P_COD_DETALLE",detalle.COD_DETALLE),
+                msj
+             };
+
+            return salidas = DBHelper.ExecuteProcedureDetalles(query, dbParams, trx, cn);
         }
     }
 }

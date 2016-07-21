@@ -128,7 +128,7 @@ namespace PruebasJORSAC.Test
 
             BoletaDAO dao = new BoletaDAO();
             
-            Assert.IsNotNull(dao.Agregar(boleta));
+            Assert.IsNotNull(dao.AgregarBoleta(boleta));
 
         }
 
@@ -195,6 +195,114 @@ namespace PruebasJORSAC.Test
             var listado = clienteDAO.ListarCliente(tipocli);
             Assert.IsTrue(listado.Count > 0);
 
+
+        }
+
+        [TestMethod]
+        public void ActualizarBoleta()
+        {
+            BoletaDAO dao = new BoletaDAO();
+            
+            Servicio servicio = new Servicio
+            {
+                COD_SERV = 1
+            };
+
+            Cliente cliente = new Cliente
+            {
+                COD_CLI = 1
+            };
+
+            Boleta boleta = new Boleta();
+            boleta.NRO_CP = 20;
+            boleta.cliente = cliente;
+            boleta.ESTADO = "DISPONIBLE";
+            boleta.FECHA_EMISION = DateTime.Now;
+            boleta.MODALIDAD = "Venta";
+            boleta.OBSERVACION = "DASDSADAS";
+            boleta.NRO_BOLETA = "000508";
+
+
+            DetalleBoleta detalle = new DetalleBoleta();
+            detalle.CANTIDAD = 2;
+            detalle.ITEM = 1;
+            detalle.SERVICIO = servicio;
+            detalle.PRECIO = 50;
+            detalle.COD_DETALLE = 14;
+            detalle.BOLETA = boleta;
+
+            DetalleBoleta detalle2 = new DetalleBoleta();
+            detalle2.CANTIDAD = 2;
+            detalle2.ITEM = 2;
+            detalle2.SERVICIO = servicio;
+            detalle2.PRECIO = 10;
+            detalle2.COD_DETALLE = 15;
+            detalle2.BOLETA = boleta;
+
+          
+
+            List<DetalleBoleta> det = new List<DetalleBoleta>();
+            det.Add(detalle);
+            det.Add(detalle2);
+            boleta.DETALLEBOLETA = det;
+            boleta.TOTAL = 0;
+
+
+            
+
+
+
+            DetalleBoleta detalle3 = new DetalleBoleta();
+            detalle3.CANTIDAD = 3;
+            detalle3.ITEM = 3;
+            detalle3.SERVICIO = servicio;
+            detalle3.PRECIO = 10;
+            detalle3.BOLETA = boleta;
+
+           
+
+            int contador = 0;
+
+            det.Add(detalle3);
+
+            int CANTIDAD_ANTIGUA = det.Count;
+
+            DetalleBoleta detalle4 = new DetalleBoleta();
+            detalle4.CANTIDAD = 100;
+            detalle4.ITEM = 3;
+            detalle4.SERVICIO = servicio;
+            detalle4.PRECIO = 100;
+            detalle4.BOLETA = boleta;
+
+            det.Add(detalle4);
+
+            ///Usar esta logica en la vista
+           
+
+            foreach (var item in det)
+            {
+                if (contador < CANTIDAD_ANTIGUA)
+                {
+                    
+                    boleta.TOTAL = boleta.TOTAL + (item.CANTIDAD * item.PRECIO);
+                    dao.ActualizarBoleta(boleta);
+                }
+                else
+                {
+                    dao.AgregarDetalleSinTransacion(item);
+                    boleta.TOTAL = boleta.TOTAL + (item.CANTIDAD * item.PRECIO);
+                    dao.ActualizarBoleta(boleta);
+                }
+               
+
+                contador++;
+            }
+
+
+
+           
+
+            Assert.IsNotNull(dao.ActualizarBoleta(boleta));
 
         }
     }
