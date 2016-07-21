@@ -69,6 +69,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetPrincipal.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DATA\DAO\DetalleBoletaDAO.cs" />
+    <Compile Include="DATA\DAO\DetalleFacturaDAO.cs" />
     <Compile Include="Reportes\ReporteClientesJuridicos.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,47 +1,46 @@
-﻿using SISJORSAC.DATA.Modelo;
+﻿using SISJORSAC.DATA.Conexion;
+using SISJORSAC.DATA.Modelo;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
-using System.Data.SqlClient;
-using SISJORSAC.DATA.Conexion;
 
 namespace SISJORSAC.DATA.DAO
 {
-    class DetalleBoletaDAO
+    class DetalleFacturaDAO
     {
-        public List<DetalleBoleta> ListarXBoletas(int COD_BOLETA)
+        public List<DetalleFactura> ListarDetallesXFactura(int COD_Factura)
         {
-            List<DetalleBoleta> lista = null;
+            List<DetalleFactura> lista = null;
             ServicioDAO servicioDao = new ServicioDAO();
-            BoletaDAO boletaDao = new BoletaDAO();
+            FacturaDAO facturaDAO = new FacturaDAO();
 
-            string query = "SP_TBL_DETALLE_BOLETA_LISTAR";
+            string query = "SP_TBL_DETALLE_FACTURA_LISTAR";
 
             try
             {
                 SqlParameter[] param = new SqlParameter[]
                 {
-                    DBHelper.MakeParam("@P_COD_BOLETA",COD_BOLETA)
+                    DBHelper.MakeParam("@P_COD_FACTURA",COD_Factura)
                 };
 
                 using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, param))
                 {
                     if (lector != null && lector.HasRows)
                     {
-                        lista = new List<DetalleBoleta>();
-                        DetalleBoleta detalle;
+                        lista = new List<DetalleFactura>();
+                        DetalleFactura detalle;
                         while (lector.Read())
-                        {///COD_DETALLE, ITEM, COD_SERV, COD_BOLETA, CANTIDAD, PRECIO, IMPORTE
-                            detalle = new DetalleBoleta();
-                            detalle.ITEM = Convert.ToInt32(lector["ITEM"]);
+                        {///  
+                            detalle = new DetalleFactura();
+                            detalle.ITEM = Convert.ToInt32(lector["COD_ITEM"]);
                             detalle.COD_DETALLE = Convert.ToInt32(lector["COD_DETALLE"]);
                             detalle.CANTIDAD = Convert.ToInt32(lector["CANTIDAD"]);
                             detalle.PRECIO = Convert.ToDouble(lector["PRECIO"]);
                             detalle.IMPORTE = Convert.ToInt32(lector["IMPORTE"]);
-                            detalle.BOLETA = boletaDao.ObtenerXCodBoleta(Convert.ToInt32(lector["COD_BOLETA"]));
+                            detalle.FACTURA = facturaDAO.ObtenerFacturaXCodigo(Convert.ToInt32(lector["COD_FACTURA"]));
                             detalle.SERVICIO = servicioDao.ObtenerServicio(Convert.ToInt32(lector["COD_SERV"]));
                             lista.Add(detalle);
                         }
@@ -52,9 +51,8 @@ namespace SISJORSAC.DATA.DAO
             catch (Exception)
             {
 
-                throw;
+                throw new Exception("Se produjo un error al listar el detalle de las facturas");
             }
         }
-
     }
 }

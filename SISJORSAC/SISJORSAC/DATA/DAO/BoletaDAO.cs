@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace SISJORSAC.DATA.DAO
 {
-   public class BoletaDAO
+    public class BoletaDAO
     {
         public Object[] AgregarBoleta(Boleta boleta)
         {
-            string cadenaConexion = "server=192.168.0.26;DataBase=BDJORSAC;user=sa;password=2015159";
-             SqlConnection cn = new SqlConnection(cadenaConexion);
-             cn.Open();
-             SqlTransaction trx = cn.BeginTransaction();
-             
+            string cadenaConexion = "server=192.168.0.27;DataBase=BDJORSAC;user=sa;password=2015159";
+            SqlConnection cn = new SqlConnection(cadenaConexion);
+            cn.Open();
+            SqlTransaction trx = cn.BeginTransaction();
+
             try
             {
                 Object[] salidas = null;
@@ -43,16 +43,16 @@ namespace SISJORSAC.DATA.DAO
                 msj
              };
 
-               
+
 
                 salidas = DBHelper.ExecuteProcedure(query, dbParams, trx, cn);
 
                 foreach (DetalleBoleta detalle in boleta.DETALLEBOLETA)
                 {
-                    Boleta bol=new Boleta();
-                    bol.NRO_CP=Convert.ToInt32(salidas[0]);
+                    Boleta bol = new Boleta();
+                    bol.NRO_CP = Convert.ToInt32(salidas[0]);
                     detalle.BOLETA = bol;
-                    if (AgregarDetalle(detalle,trx,cn) == null)
+                    if (AgregarDetalle(detalle, trx, cn) == null)
                     {
                         throw new Exception("Ocurrio un error en la insercion del detalle de la boleta :" + detalle.SERVICIO.DESCRIPCION);
                     }
@@ -60,7 +60,7 @@ namespace SISJORSAC.DATA.DAO
                 trx.Commit();
                 cn.Close();
                 return salidas;
-              
+
             }
             catch (Exception ex)
             {
@@ -80,7 +80,7 @@ namespace SISJORSAC.DATA.DAO
             SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
             msj.Direction = ParameterDirection.Output;
 
-            
+
             SqlParameter[] dbParams = new SqlParameter[]
              {
                  DBHelper.MakeParam("@P_ITEM",detalle.ITEM),
@@ -90,7 +90,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_PRECIO",detalle.PRECIO),
                 msj
              };
-           
+
             return salidas = DBHelper.ExecuteProcedure(query, dbParams);
         }
 
@@ -126,11 +126,11 @@ namespace SISJORSAC.DATA.DAO
                 string query = "SP_TBL_BOLETA_LISTAR_XCOD_BOLETA";
                 SqlParameter[] param = new SqlParameter[]
                 {
-                      DBHelper.MakeParam("@P_COD_BO",CodBoleta),
+                      DBHelper.MakeParam("@P_COD_BOL",CodBoleta),
                       DBHelper.MakeParam("@P_ESTADO","DISPONIBLE")
                 };
 
-                using (SqlDataReader lector = DBHelper.ExecuteDataReader(query))
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, param))
                 {
 
                     if (lector != null && lector.HasRows)
@@ -141,12 +141,12 @@ namespace SISJORSAC.DATA.DAO
                             boleta = new Boleta();
                             boleta.NRO_CP = Convert.ToInt32(lector["COD_BOL"].ToString());
                             boleta.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
-                            boleta.NRO_BOLETA = lector[" NRO_BOLETA"].ToString();
+                            boleta.NRO_BOLETA = lector["NRO_BOLETA"].ToString();
                             boleta.MODALIDAD = lector["MODALIDAD"].ToString();
                             boleta.OBSERVACION = lector["OBSERVACION"].ToString();
-                            boleta.TOTAL= Convert.ToDouble(lector["TOTAL"].ToString());
+                            boleta.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
                             boleta.ESTADO = lector["ESTADO"].ToString();
-                            boleta.cliente = clienteDao.ObtenerCliente(Convert.ToInt32(lector[" COD_CLI"].ToString()));
+                            boleta.cliente = clienteDao.ObtenerCliente(Convert.ToInt32(lector["COD_CLI"].ToString()));
 
                         }
                     }
@@ -156,9 +156,9 @@ namespace SISJORSAC.DATA.DAO
             }
             catch (Exception)
             {
-                throw new Exception("Ocurio un error al obtener un usuario"); 
+                throw new Exception("Ocurio un error al obtener un usuario");
             }
-           
+
         }
 
         public List<Boleta> ListarBoletas(string estado)
@@ -167,30 +167,33 @@ namespace SISJORSAC.DATA.DAO
             {
                 List<Boleta> lista = null;
                 ClienteDAO clienteDao = new ClienteDAO();
-
+                DetalleBoletaDAO detalledao = new DetalleBoletaDAO();
                 string query = "SP_TBL_BOLETA_LISTAR";
+
                 SqlParameter[] param = new SqlParameter[]
                 {
-                      DBHelper.MakeParam("@P_ESTADO",estado),
+                      DBHelper.MakeParam("@P_ESTADO",estado)
                 };
 
-                using (SqlDataReader lector = DBHelper.ExecuteDataReader(query))
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, param))
                 {
 
                     if (lector != null && lector.HasRows)
                     {
+                        lista = new List<Boleta>();
                         Boleta boleta;
                         while (lector.Read())
                         {
                             boleta = new Boleta();
                             boleta.NRO_CP = Convert.ToInt32(lector["COD_BOL"].ToString());
                             boleta.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
-                            boleta.NRO_BOLETA = lector[" NRO_BOLETA"].ToString();
+                            boleta.NRO_BOLETA = lector["NRO_BOLETA"].ToString();
                             boleta.MODALIDAD = lector["MODALIDAD"].ToString();
                             boleta.OBSERVACION = lector["OBSERVACION"].ToString();
                             boleta.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
                             boleta.ESTADO = lector["ESTADO"].ToString();
                             boleta.cliente = clienteDao.ObtenerCliente(Convert.ToInt32(lector["COD_CLI"].ToString()));
+                            boleta.DETALLEBOLETA = detalledao.ListarXBoletas(boleta.NRO_CP);
                             lista.Add(boleta);
                         }
                     }
@@ -200,7 +203,7 @@ namespace SISJORSAC.DATA.DAO
             }
             catch (Exception)
             {
-                throw new Exception("Ocurio un error al listar los usuarios");
+                throw new Exception("Ocurio un error al listar los Boletas");
             }
 
         }
@@ -214,7 +217,7 @@ namespace SISJORSAC.DATA.DAO
 
             try
             {
-               
+
                 string query = "SP_TBL_BOLETA_ACTUALIZAR";
 
                 SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
@@ -236,7 +239,7 @@ namespace SISJORSAC.DATA.DAO
 
 
 
-                string mensaje=DBHelper.ExecuteProcedureDetalles(query, dbParams, trx, cn);
+                string mensaje = DBHelper.ExecuteProcedureDetalles(query, dbParams, trx, cn);
 
                 foreach (DetalleBoleta detalle in boleta.DETALLEBOLETA)
                 {

@@ -56,7 +56,7 @@ namespace SISJORSAC.DATA.DAO
 
                     if (AgregarDetalle(detalle, trx, cn) == null)
                     {
-                        throw new Exception("Ocurrio un error en la insercion del detalle del GASTO :" + detalle.SERVICIO.DESCRIPCION);
+                        throw new Exception("Ocurrio un error en la insercion del detalle del GASTO :" + detalle.ConceptoGasto.DESCRIPCION);
                     }
                 }
                 trx.Commit();

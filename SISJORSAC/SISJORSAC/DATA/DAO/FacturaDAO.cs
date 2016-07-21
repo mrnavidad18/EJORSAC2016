@@ -14,9 +14,9 @@ namespace SISJORSAC.DATA.DAO
     public class FacturaDAO
     {
 
-        public Object[] Agregar(Factura factura)
+        public Object[] AgregarFactura(Factura factura)
         {
-            string cadenaConexion = "server=192.168.0.26;DataBase=BDJORSAC;user=sa;password=2015159";
+            string cadenaConexion = "server=192.168.0.28;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -32,12 +32,23 @@ namespace SISJORSAC.DATA.DAO
                 SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
                 msj.Direction = ParameterDirection.Output;
 
+                //SqlParameter pguia;
+                //if (factura.guiaRemision == null)
+                //{
+                //    pguia = new SqlParameter("@P_NRO_GUIA",DBNull.Value);
+                //    pguia.Value = DBNull.Value;
+                //}
+                //else
+                //{
+                //    pguia = new SqlParameter("@P_NRO_GUIA",factura.guiaRemision.COD_GUIA);
+                //    pguia.Value = factura.guiaRemision.COD_GUIA;
+                //}
 
                 SqlParameter[] dbParams = new SqlParameter[]
              {
                  DBHelper.MakeParam("@P_FECHA_EMISION",factura.FECHA_EMISION ),
                 DBHelper.MakeParam("@P_COD_CLI",factura.cliente.COD_CLI ),
-                DBHelper.MakeParam("@P_NRO_GUIA",factura.guiaRemision.COD_GUIA ),
+                 DBHelper.MakeParam("@P_NRO_GUIA",factura.guiaRemision==null?System.Data.SqlTypes.SqlInt32.Null:factura.guiaRemision.COD_GUIA),
                 DBHelper.MakeParam("@P_MODALIDAD", factura.MODALIDAD),
                 DBHelper.MakeParam("@P_OBSERVACION", factura.OBSERVACION),
                 DBHelper.MakeParam("@P_SUB_TOTAL",factura.SUB_TOTAL ),
@@ -45,6 +56,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),              
                 id,
                 msj
+                
              };
 
 
@@ -55,7 +67,7 @@ namespace SISJORSAC.DATA.DAO
                 {
                     Factura factu = new Factura();
                     factu.COD_FAC = Convert.ToInt32(salidas[0]);
-                    detalle.FACTURA = factu;                    
+                    detalle.FACTURA = factu;
                     if (AgregarDetalle(detalle, trx, cn) == null)
                     {
                         throw new Exception("Ocurrio un error en la insercion del detalle de la boleta :" + detalle.SERVICIO.DESCRIPCION);
@@ -98,6 +110,102 @@ namespace SISJORSAC.DATA.DAO
             return salidas = DBHelper.ExecuteProcedureDetalles(query, dbParams, trx, cn);
         }
 
+        public Factura ObtenerFacturaXCodigo(int CodFactura)
+        {
+            try
+            {
+                Factura factura = null;
+                ClienteDAO clienteDao = new ClienteDAO();
+                GuiaRemisionDAO guiaDao = new GuiaRemisionDAO();
+                string query = "SP_TBL_FACTURA_LISTAR_XcODIGO";
+                SqlParameter[] param = new SqlParameter[]
+                {
+                      DBHelper.MakeParam("@P_COD_FAC",CodFactura),
+                      DBHelper.MakeParam("@P_ESTADO","DISPONIBLE")
+                };
 
+                using (SqlDataReader lector = DBHelper.ExecuteDataReader(query))
+                {
+
+                    if (lector != null && lector.HasRows)
+                    {
+
+                        while (lector.Read())
+                        {
+                            factura = new Factura();
+                            factura.COD_FAC = Convert.ToInt32(lector["COD_FAC"].ToString());
+                            factura.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
+                            factura.NRO_FACTURA = lector["NRO_FACTURA"].ToString();
+                            factura.MODALIDAD = lector["MODALIDAD"].ToString();
+                            factura.OBSERVACION = lector["OBSERVACION"].ToString();
+                            factura.SUB_TOTAL = Convert.ToDouble(lector["SUB_TOTAL"].ToString());
+                            factura.IGV = Convert.ToDouble(lector["IGV"].ToString());
+                            factura.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
+                            factura.ESTADO = lector["ESTADO"].ToString();
+                            factura.cliente = clienteDao.ObtenerCliente(Convert.ToInt32(lector[" COD_CLI"].ToString()));
+                            factura.guiaRemision = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["NRO_GUIA"].ToString()));
+                        }
+                    }
+                }
+
+                return factura;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurio un error al obtener la factura");
+            }
+
+        }
+
+        public List<Factura> listarFacturas(string estado)
+        {
+            try
+            {
+                List<Factura> lista = null;
+
+                ClienteDAO clienteDao = new ClienteDAO();
+                GuiaRemisionDAO guiaDao = new GuiaRemisionDAO();
+                DetalleFacturaDAO detalleDao = new DetalleFacturaDAO();
+                string query = "SP_TBL_FACTURA_LISTAR";
+                SqlParameter[] param = new SqlParameter[]
+                {
+                      DBHelper.MakeParam("@P_ESTADO",estado)
+                };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, param))
+                {
+
+                    if (lector != null && lector.HasRows)
+                    {
+                        lista = new List<Factura>();
+                        Factura factura;
+                        while (lector.Read())
+                        {
+                            factura = new Factura();
+                            factura.COD_FAC = Convert.ToInt32(lector["COD_FAC"].ToString());
+                            factura.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
+                            factura.NRO_FACTURA = lector["NRO_FACTURA"].ToString();
+                            factura.MODALIDAD = lector["MODALIDAD"].ToString();
+                            factura.OBSERVACION = lector["OBSERVACION"].ToString();
+                            factura.SUB_TOTAL = Convert.ToDouble(lector["SUB_TOTAL"].ToString());
+                            factura.IGV = Convert.ToDouble(lector["IGV"].ToString());
+                            factura.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
+                            factura.ESTADO = lector["ESTADO"].ToString();
+                            factura.cliente = clienteDao.ObtenerCliente(Convert.ToInt32(lector["COD_CLI"].ToString()));
+                            factura.guiaRemision = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["NRO_GUIA"].ToString()));
+                            factura.DETALLEFACTURA = detalleDao.ListarDetallesXFactura(factura.COD_FAC);
+                            lista.Add(factura);
+                        }
+                    }
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurio un error al obtener la factura");
+            }
+
+        }
     }
 }
