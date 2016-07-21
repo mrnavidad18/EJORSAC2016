@@ -82,5 +82,44 @@ namespace SISJORSAC.DATA.DAO
 
         }
 
+        public Servicio ObtenerServicio(int codServ)
+        {
+            Servicio servicio = new Servicio();
+            string query = "SP_TBL_SERV_OBTENERSERVICIOXCODIGO";
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]{
+
+                     DBHelper.MakeParam("@P_COD_SERV",codServ)
+                 };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
+                {
+                    if (lector != null && lector.HasRows)
+                    {
+
+                        while (lector.Read())
+                        {
+                            servicio.COD_SERV=int.Parse(lector["COD_SERV"].ToString());
+                            servicio.DESCRIPCION=lector["DESCRIPCION"].ToString();
+                            servicio.PRECIO=double.Parse(lector["PRECIO"].ToString());
+                            servicio.UNIDAD_MEDIDA=lector["UNIDAD_MEDIDAD"].ToString();
+                            servicio.TIPO_MONE=lector["TIPO_MONE"].ToString();
+                            servicio.PESO=double.Parse(lector["PESO"].ToString());
+                            servicio.ESTADO=lector["ESTADO"].ToString();                            
+                        }
+                    }
+
+                }
+                return servicio;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

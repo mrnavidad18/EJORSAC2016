@@ -46,5 +46,43 @@ namespace SISJORSAC.DATA.DAO
            
             
         }
+
+
+        public Usuario ObtenerUsuario(int idUsuario)
+        {
+            Usuario usuario = new Usuario();
+            string query = "SP_TBL_USUARIO_OBTENERUSUARIOXCODIGO";
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]{
+                     DBHelper.MakeParam("@P_IDUSUARIO",idUsuario)
+                 };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
+                {
+                    if (lector != null && lector.HasRows)
+                    {
+
+                        while (lector.Read())
+                        {
+                            usuario.idUsuario = int.Parse(lector["idUsuario"].ToString());
+                            usuario.username=lector["username"].ToString();
+                            usuario.clave = lector["clave"].ToString();
+                            usuario.Nombre = lector["Nombre"].ToString();
+                            usuario.Apellidos = lector["Apellidos"].ToString();
+                            usuario.DNI = lector["DNI"].ToString();
+                            usuario.ESTADO = lector["ESTADO"].ToString();
+                        }
+                    }
+                }
+                return usuario;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
