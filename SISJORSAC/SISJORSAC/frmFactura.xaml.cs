@@ -23,36 +23,135 @@ namespace SISJORSAC
     /// </summary>
     public partial class frmFactura : MetroWindow
     {
+        List<DetalleFactura> listaDetalle = new List<DetalleFactura>();
+        Cliente cliente;
+        Servicio servicio;
+        double subtotal = 0;
+        double total = 0;
+        double IGV = 0.18;
+        double igvMonto = 0;
+
+        ClienteDAO clienteDao = new ClienteDAO();
+        ServicioDAO servicioDAO = new ServicioDAO();
+        FacturaDAO facturaDao = new FacturaDAO();
         public frmFactura()
         {
             InitializeComponent();
-            Listar();
+            this.txtFechaEmision.Text = DateTime.Now.ToString();
+            this.txtNroFactura.Text =facturaDao.ObtenerNroFactura()+1;
+            ListarClientes();
+            ListarServicios();
+
         }
 
 
-        public void Listar()
-        {
-            Usuario usu= new Usuario();
-            usu.Apellidos="juan";
-            usu.Nombre="Pepe";
-            usu.DNI="11111";
-            
-            List<Usuario> lista = new List<Usuario>();
-            FacturaDAO facturadao = new FacturaDAO();
-            ClienteDAO clientedao = new ClienteDAO();
-            GuiaRemisionDAO guidao = new GuiaRemisionDAO();
-            var lisss = guidao.listarGuiaRemision("DISPONIBLE");
-          
-            lista.Add(usu);
-            this.dgvListado.ItemsSource = lisss;
-             
-        }
-
+       
         private void dgvListado_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+
+            var detalle = AgregarDetalles();
+            dgvListado.Items.Add(detalle);
+
+            subtotal = subtotal + detalle.IMPORTE;
+            this.txtSubtotal.Text = subtotal.ToString();
+
+            igvMonto = subtotal * IGV;
+            this.txtIgv.Text = igvMonto.ToString();
+
+            total = subtotal + igvMonto;
+            this.txtTotal.Text = total.ToString();
+
+            this.txtCantidad.Text = "";
+            this.txtPrecio.Text = "";
+            this.cboServicio.SelectedIndex = 0;
+        }
+
+
+        private void AgregarFactura()
+        {
+            Factura factura = new Factura();
+            factura.MODALIDAD = ((ComboBoxItem)this.cboModalidad.SelectedItem).Content.ToString();
+            factura.SUB_TOTAL = subtotal;
+            factura.IGV = igvMonto;
+            factura.FECHA_EMISION = DateTime.Now;
+            factura.cliente = cliente;
+            factura.guiaRemision = null;
+            factura.DETALLEFACTURA = listaDetalle;
+            factura.OBSERVACION = "dsdsdsds";
+            facturaDao.AgregarFactura(factura);
+            
+
+        }
+
+        private DetalleFactura AgregarDetalles()
+        {
+            
+            DetalleFactura detalle = new DetalleFactura();
+
+            int codServicio = Convert.ToInt32(this.cboServicio.SelectedValue);
+            int cantidad = Convert.ToInt32(this.txtCantidad.Text);
+            double precio = Convert.ToDouble(this.txtPrecio.Text);
+
+            detalle.SERVICIO = servicioDAO.ObtenerServicio(codServicio);
+            detalle.CANTIDAD = cantidad;
+            detalle.PRECIO = precio;
+          
+            listaDetalle.Add(detalle);
+
+            detalle.IMPORTE = cantidad * precio;
+
+            return detalle;
+        }
+
+        private void ListarClientes()
+        {
+            
+            var listacliente = clienteDao.ListarCliente("JURIDICA");
+            this.cboRazonsocial.ItemsSource = listacliente;
+            this.cboRazonsocial.DisplayMemberPath="RAZON_SOCIAL";
+            this.cboRazonsocial.SelectedValuePath = "COD_CLI";
+
+           
+        }
+
+        private void ListarServicios()
+        {
+
+            var listaServicios = servicioDAO.listarServicio("DISPONIBLE");
+            this.cboServicio.ItemsSource = listaServicios;
+            this.cboServicio.DisplayMemberPath = "DESCRIPCION";
+            this.cboServicio.SelectedValuePath = "COD_SERV";
+
+
+        }
+
+        private void cboRazonsocial_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int codCliente=Convert.ToInt32(this.cboRazonsocial.SelectedValue);
+            cliente = clienteDao.ObtenerCliente(codCliente);
+            this.txtDireccion.Text = cliente.DIRECCION;
+            this.txtRuc.Text = cliente.RUC;
+        }
+
+        private void cboServicio_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int codServicio = Convert.ToInt32(this.cboServicio.SelectedValue);
+            servicio = servicioDAO.ObtenerServicio(codServicio);
+            this.txtPrecio.Text = servicio.PRECIO.ToString();
+        }
+
+        private void btnGenerarFactura_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarFactura();
+        }
+
+
+        
        
       
     }

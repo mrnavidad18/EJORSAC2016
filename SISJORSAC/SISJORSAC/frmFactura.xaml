@@ -4,30 +4,125 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Registro - Factura" Height="590.425" Width="921.276"
+        Title="Registro - Factura" Height="701.425" Width="921.276"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <Image HorizontalAlignment="Left" Height="148" Margin="32,28,0,0" VerticalAlignment="Top" Width="162" Source="IMG/logo_rep.PNG"/>
-        <Label Content="Tipo Compro.:" HorizontalAlignment="Left" Margin="230,55,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="320,57,0,0" TextWrapping="Wrap" Text="FACTURA" VerticalAlignment="Top" Width="65" IsEnabled="False"/>
-        <Label Content="Nro. Factura:" HorizontalAlignment="Left" Margin="463,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.903,0.444"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="556,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102"/>
-        <Label Content="Fech. Emisión:" HorizontalAlignment="Left" Margin="692,56,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.352,-0.381"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="776,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83"/>
-        <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="230,107,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="318,107,0,0" VerticalAlignment="Top" Width="348"/>
-        <Label Content="Nro. RUC" HorizontalAlignment="Left" Margin="689,107,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="770,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" IsEnabled="False"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="318,159,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="346"/>
-        <Label Content="Dirección:" HorizontalAlignment="Left" Margin="230,158,0,0" VerticalAlignment="Top"/>
-        <Label Content="Nro. Guia" HorizontalAlignment="Left" Margin="695,159,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="776,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" IsEnabled="False"/>
-        <Label Content="Modalidad:" HorizontalAlignment="Left" Margin="420,204,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="490,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="99"/>
-        <Label Content="Moneda:" HorizontalAlignment="Left" Margin="633,204,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="695,204,0,0" VerticalAlignment="Top" Width="62"/>
-        <CheckBox Content="Sin IGV" HorizontalAlignment="Left" Margin="797,208,0,0" VerticalAlignment="Top"/>
-        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Left"   VerticalAlignment="Top"  Margin="44,269,0,0" Width="821" Height="263" Background="#FFC9C9C9" GridLinesVisibility="All" SelectionChanged="dgvListado_SelectionChanged" IsReadOnly="True"/>
+        <Image HorizontalAlignment="Left" Height="148" Margin="32,8,0,0" VerticalAlignment="Top" Width="162" Source="IMG/logo_rep.PNG"/>
+        <Label Content="Tipo Compro.:" HorizontalAlignment="Left" Margin="230,35,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="320,37,0,0" TextWrapping="Wrap" Text="FACTURA" VerticalAlignment="Top" Width="65" IsEnabled="False"/>
+        <Label Content="Nro. Factura:" HorizontalAlignment="Left" Margin="396,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.903,0.444"/>
+        <TextBox x:Name="txtNroFactura" HorizontalAlignment="Left" Height="23" Margin="477,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102" IsEnabled="False"/>
+        <Label Content="Fech. Emisión:" HorizontalAlignment="Left" Margin="718,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.352,-0.381"/>
+        <TextBox x:Name="txtFechaEmision" HorizontalAlignment="Left" Height="23" Margin="807,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83"/>
+        <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="230,68,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboRazonsocial" HorizontalAlignment="Left" Margin="318,68,0,0" VerticalAlignment="Top" Width="389" SelectionChanged="cboRazonsocial_SelectionChanged"/>
+        <Label Content="Nro. RUC" HorizontalAlignment="Left" Margin="720,68,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtRuc" HorizontalAlignment="Left" Height="23" Margin="807,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" IsEnabled="False"/>
+        <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Height="23" Margin="318,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="389" IsEnabled="False"/>
+        <Label Content="Dirección:" HorizontalAlignment="Left" Margin="230,101,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nro. Guia" HorizontalAlignment="Left" Margin="723,102,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNroGuia" HorizontalAlignment="Left" Height="23" Margin="807,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" IsEnabled="False"/>
+        <Label Content="Modalidad:" HorizontalAlignment="Left" Margin="360,137,0,0" VerticalAlignment="Top"/>
+        <Label Content="Moneda:" HorizontalAlignment="Left" Margin="575,137,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboMoneda" HorizontalAlignment="Left" Margin="642,137,0,0" VerticalAlignment="Top" Width="62">
+            <ComboBoxItem Content="S/."/>
+            <ComboBoxItem Content="$"/>
+        </ComboBox>
+        <CheckBox x:Name="chkIgv" Content="Sin IGV" HorizontalAlignment="Left" Margin="735,142,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.21,1.778"/>
+        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Left"   VerticalAlignment="Top"  Margin="44,245,0,0" Width="821" Height="258" Background="#FFC9C9C9"
+                   IsReadOnly="True"
+                   AutoGenerateColumns="False"
+                  CanUserAddRows="True"
+                  SelectionMode="Single"
+                  CanUserDeleteRows="False"
+                  CanUserResizeRows="False"
+                  CanUserSortColumns="False"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="None" SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock  Text="CANTIDAD" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="cantidad" Text="{Binding CANTIDAD}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate >
+                        <DataTemplate>
+                            <TextBox Text="{Binding CANTIDAD, UpdateSourceTrigger=LostFocus}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock  Text="Descripcion" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="txtTotal" Text="{Binding SERVICIO.DESCRIPCION}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate >
+                        <DataTemplate>
+                            <TextBox Text="{Binding SERVICIO.DESCRIPCION, UpdateSourceTrigger=LostFocus}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock  Text="PRECIO UNITARIO" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="cantidad" Text="{Binding PRECIO}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate >
+                        <DataTemplate>
+                            <TextBox Text="{Binding PRECIO, UpdateSourceTrigger=LostFocus}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock  Text="IMPORTE" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="importe" Text="{Binding IMPORTE}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate >
+                        <DataTemplate>
+                            <TextBox Text="{Binding IMPORTE, UpdateSourceTrigger=LostFocus}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <CheckBox x:Name="chkCambiarNroFact" Content="Cambiar Nro. Fact." HorizontalAlignment="Left" Margin="585,43,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboModalidad" HorizontalAlignment="Left" Margin="432,137,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="VENTA"/>
+            <ComboBoxItem Content="ALQUILER"/>
+        </ComboBox>
+        <Label Content="Servicio" HorizontalAlignment="Left" Margin="230,172,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboServicio" HorizontalAlignment="Left" Margin="315,172,0,0" VerticalAlignment="Top" Width="317" SelectionChanged="cboServicio_SelectionChanged"/>
+        <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="642,172,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="709,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45"/>
+        <Button x:Name="btnAgregar" Content="Agregar Detalle" HorizontalAlignment="Left" Margin="660,210,0,0" VerticalAlignment="Top" Width="137" Click="btnAgregar_Click"/>
+        <Label Content="Precio:" HorizontalAlignment="Left" Margin="764,172,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="820,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"/>
+        <TextBlock HorizontalAlignment="Left" Margin="44,539,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Height="68"/>
+        <CheckBox Content="Ingresar observaciones" HorizontalAlignment="Left" Margin="44,511,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtSubtotal" HorizontalAlignment="Left" Height="23" Margin="778,508,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False" Text="0.0"/>
+        <TextBox x:Name="txtIgv" HorizontalAlignment="Left" Height="23" Margin="778,539,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False" Text="0.0"/>
+        <TextBox x:Name="txtTotal" HorizontalAlignment="Left" Height="23" Margin="778,570,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False" Text="0.0"/>
+        <Label Content="Sub Total:" HorizontalAlignment="Left" Margin="712,507,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
+        <Label Content="IGV:" HorizontalAlignment="Left" Margin="735,538,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
+        <Label Content="Total:" HorizontalAlignment="Left" Margin="725,569,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
+        <Button x:Name="btnGenerarFactura" Content="Generar Factura" HorizontalAlignment="Left" Margin="712,622,0,0" VerticalAlignment="Top" Width="124" Click="btnGenerarFactura_Click"/>
 
     </Grid>
 </Controls:MetroWindow>
