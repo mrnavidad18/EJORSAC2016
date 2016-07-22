@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
+using SISJORSAC.Reportes;
 
 namespace SISJORSAC
 {
@@ -32,6 +33,13 @@ namespace SISJORSAC
             ElegirFactura _frmelegir = new ElegirFactura();
             _frmelegir.Owner = this;
             _frmelegir.ShowDialog();
+        }
+
+        private void ItemCliente_Click(object sender, RoutedEventArgs e)
+        {
+            FRTipoCliente frmtipoclienteReport = new FRTipoCliente();
+            frmtipoclienteReport.Owner = this;
+            frmtipoclienteReport.ShowDialog();
         }
     }
 }

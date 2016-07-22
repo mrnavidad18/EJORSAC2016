@@ -1,0 +1,20 @@
+﻿<Controls:MetroWindow x:Class="SISJORSAC.Reportes.FRTipoCliente"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Ecoger un Tipo Cliente..." Height="177.66" Width="423.404" 
+                      WindowStartupLocation="CenterScreen">
+    
+    <Grid Margin="0,0,-8,-21">
+        <Label Content="Tipo Cliente:" HorizontalAlignment="Left" Margin="62,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.583,-0.182"/>
+        <ComboBox x:Name="cboRTipoCiente" HorizontalAlignment="Left" Margin="180,49,0,0" VerticalAlignment="Top" Width="203">
+            <ComboBoxItem Content="--Seleccionar--"/>
+            <ComboBoxItem Content="Natural"/>
+            <ComboBoxItem Content="Juridico"/>
+        </ComboBox>
+        <Button x:Name="btnReportCliente" Content="Ver Reporte" HorizontalAlignment="Left" Margin="122,97,0,0" VerticalAlignment="Top" Width="191" Click="btnReportCliente_Click" Loaded="btnReportCliente_Loaded"/>
+
+    </Grid>
+</Controls:MetroWindow>

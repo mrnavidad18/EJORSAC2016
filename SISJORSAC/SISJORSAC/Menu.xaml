@@ -27,6 +27,9 @@
                     <MenuItem Header="Proveedores"/>
                 </MenuItem>
                 <MenuItem Header="Registro" >
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
                     <MenuItem.Icon>
                         <Image Source="IMG/save.png"/>
                     </MenuItem.Icon>
@@ -44,6 +47,8 @@
                     <MenuItem.Icon>
                         <Image Source="IMG/reporte.png"/>
                     </MenuItem.Icon>
+                    <MenuItem x:Name="ItemCliente" Header="Clientes" Click="ItemCliente_Click"/>
+                    
                 </MenuItem>
                 
                 
