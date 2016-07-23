@@ -29,24 +29,23 @@
             <ComboBoxItem Content="$"/>
         </ComboBox>
         <CheckBox x:Name="chkIgv" Content="Sin IGV" HorizontalAlignment="Left" Margin="735,142,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.21,1.778"/>
-        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Left"   VerticalAlignment="Top"  Margin="44,245,0,0" Width="821" Height="258" Background="#FFC9C9C9"
-                   IsReadOnly="True"
+        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,245,34,0" Width="835" Height="258" Background="#FFC9C9C9"
+                   IsReadOnly="False"
                    AutoGenerateColumns="False"
                   CanUserAddRows="True"
                   SelectionMode="Single"
-                  CanUserDeleteRows="False"
+                  CanUserDeleteRows="True"
                   CanUserResizeRows="False"
                   CanUserSortColumns="False"
                   HeadersVisibility="Column"
-                  GridLinesVisibility="None" SelectionUnit="FullRow">
+                  GridLinesVisibility="None" SelectionUnit="FullRow"  >
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="CANTIDAD" />
-                    </DataGridTemplateColumn.Header>
+                        <TextBlock  Text="CANTIDAD" Width="93" TextAlignment="Center" />                    </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock x:Name="cantidad" Text="{Binding CANTIDAD}"/>
+                            <TextBlock x:Name="cantidad" Text="{Binding CANTIDAD}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate >
@@ -57,7 +56,7 @@
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="Descripcion" />
+                        <TextBlock  Text="DESCRIPCION" Width="478" TextAlignment="Center" />
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -72,7 +71,7 @@
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="PRECIO UNITARIO" />
+                        <TextBlock  Text="PRECIO UNITARIO" Width="123" TextAlignment="Center" />
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -87,7 +86,7 @@
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="IMPORTE" />
+                        <TextBlock  Text="IMPORTE" Width="60" TextAlignment="Center"/>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

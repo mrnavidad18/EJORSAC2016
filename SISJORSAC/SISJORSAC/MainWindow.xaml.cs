@@ -34,6 +34,7 @@ namespace SISJORSAC
             InitializeComponent();
             this.lblUsuarioError.Visibility = Visibility.Hidden;
             this.lblClaveError.Visibility = Visibility.Hidden;
+            this.txtUsuario.Focus();
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -59,10 +60,9 @@ namespace SISJORSAC
 
             if ( usuDAO.ValidarUsuario(user)!=null )
             {
-                await this.ShowMessageAsync("Exito","Usuario Correcto");
                 Menu menu = new Menu();
                 this.Close();
-                menu.ShowDialog();
+                menu.Show();
             }
             else
             {
@@ -79,6 +79,42 @@ namespace SISJORSAC
         private void txtClave_KeyDown(object sender, KeyEventArgs e)
         {
             this.lblClaveError.Visibility = Visibility.Hidden;
+        }
+
+        private async void txtClave_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+             string usuario = this.txtUsuario.Text;
+            string clave = this.txtClave.Password;
+
+            Usuario user = new Usuario();
+            user.username = usuario.Trim();
+            user.clave = clave.Trim();
+
+            if (usuario.Trim() == "")
+            {
+                this.lblUsuarioError.Visibility = Visibility.Visible;
+                return;
+            }
+
+            if (clave.Trim() == "")
+            {
+                this.lblClaveError.Visibility = Visibility.Visible;
+                return;
+            }
+
+            if ( usuDAO.ValidarUsuario(user)!=null )
+            {
+                Menu menu = new Menu();
+                this.Close();
+                menu.Show();
+            }
+            else
+            {
+                await this.ShowMessageAsync("Error", "Usuario Incorrecto");
+            }
+            }
         }
     }
 }

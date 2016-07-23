@@ -96,6 +96,7 @@
     <Compile Include="Reportes\Tipo de Clientes.Designer.cs">
       <DependentUpon>Tipo de Clientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="VariablesGlobales.cs" />
     <Page Include="ElegirFactura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
