@@ -22,6 +22,8 @@ namespace SISJORSAC
     /// </summary>
     public partial class ElegirFactura : MetroWindow
     {
+        public string nroGuia;
+
         public ElegirFactura()
         {
             InitializeComponent();
@@ -35,9 +37,18 @@ namespace SISJORSAC
 
         private void btnIngresar_Click(object sender, RoutedEventArgs e)
         {
+            VariablesGlobales.NRO_GUIA_GLOBAL= this.txtnroGuia.Text;
+            
             frmFactura factura = new frmFactura();
             this.Close();
-            factura.ShowDialog();
+            factura.Show();
+        }
+
+        private void rbtSinGuia_Checked(object sender, RoutedEventArgs e)
+        {
+            frmFactura factura = new frmFactura();
+            this.Close();
+            factura.Show();
         }
     }
 }

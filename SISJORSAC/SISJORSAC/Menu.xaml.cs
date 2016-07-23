@@ -28,11 +28,11 @@ namespace SISJORSAC
             InitializeComponent();
         }
 
-        private async void ItemFactura_Click(object sender, RoutedEventArgs e)
+        private  void ItemFactura_Click(object sender, RoutedEventArgs e)
         {
             ElegirFactura _frmelegir = new ElegirFactura();
             _frmelegir.Owner = this;
-            _frmelegir.ShowDialog();
+            _frmelegir.Show();
         }
 
         private void ItemCliente_Click(object sender, RoutedEventArgs e)

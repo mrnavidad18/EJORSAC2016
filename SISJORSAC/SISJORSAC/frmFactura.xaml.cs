@@ -26,6 +26,7 @@ namespace SISJORSAC
         List<DetalleFactura> listaDetalle = new List<DetalleFactura>();
         Cliente cliente;
         Servicio servicio;
+        GuiaRemision guiaRemision;
         double subtotal = 0;
         double total = 0;
         double IGV = 0.18;
@@ -34,41 +35,58 @@ namespace SISJORSAC
         ClienteDAO clienteDao = new ClienteDAO();
         ServicioDAO servicioDAO = new ServicioDAO();
         FacturaDAO facturaDao = new FacturaDAO();
+        GuiaRemisionDAO guiaDao = new GuiaRemisionDAO();
         public frmFactura()
         {
             InitializeComponent();
             this.txtFechaEmision.Text = DateTime.Now.ToString();
-            this.txtNroFactura.Text =facturaDao.ObtenerNroFactura()+1;
-            ListarClientes();
+            this.txtNroFactura.Text =facturaDao.ObtenerNroFactura().ToString();
+
+            if (VariablesGlobales.NRO_GUIA_GLOBAL == "")
+            {
+                ListarClientes();
+            }
+            else
+            {
+                ObtenerGuia();
+            }
+           
             ListarServicios();
+            
+
+          
+           
 
         }
 
 
-       
-        private void dgvListado_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private  async void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
 
-        }
+            if (this.cboServicio.SelectedItem != null && this.txtCantidad.Text.Trim() != "" && this.txtPrecio.Text.Trim() != "")
+            {
+                var detalle = AgregarDetalles();
+                dgvListado.Items.Add(detalle);
 
-        private void btnAgregar_Click(object sender, RoutedEventArgs e)
-        {
+                subtotal = subtotal + detalle.IMPORTE;
+                this.txtSubtotal.Text = subtotal.ToString();
 
-            var detalle = AgregarDetalles();
-            dgvListado.Items.Add(detalle);
+                igvMonto = subtotal * IGV;
+                this.txtIgv.Text = igvMonto.ToString();
 
-            subtotal = subtotal + detalle.IMPORTE;
-            this.txtSubtotal.Text = subtotal.ToString();
+                total = subtotal + igvMonto;
+                this.txtTotal.Text = total.ToString();
 
-            igvMonto = subtotal * IGV;
-            this.txtIgv.Text = igvMonto.ToString();
-
-            total = subtotal + igvMonto;
-            this.txtTotal.Text = total.ToString();
-
-            this.txtCantidad.Text = "";
-            this.txtPrecio.Text = "";
-            this.cboServicio.SelectedIndex = 0;
+                this.txtCantidad.Text = "";
+                this.txtPrecio.Text = "";
+                this.cboServicio.SelectedIndex = 0;
+            }
+            else
+            {
+                await this.ShowMessageAsync("Error", "Falta llenar algunos campos");
+            }
+             
+           
         }
 
 
@@ -80,11 +98,19 @@ namespace SISJORSAC
             factura.IGV = igvMonto;
             factura.FECHA_EMISION = DateTime.Now;
             factura.cliente = cliente;
-            factura.guiaRemision = null;
+            if (this.txtNroGuia.Text == "")
+            {
+                factura.guiaRemision = null;
+            }
+            else
+            {
+
+                factura.guiaRemision = guiaRemision;
+            }
+            
             factura.DETALLEFACTURA = listaDetalle;
             factura.OBSERVACION = "dsdsdsds";
             facturaDao.AgregarFactura(factura);
-            
 
         }
 
@@ -92,7 +118,7 @@ namespace SISJORSAC
         {
             
             DetalleFactura detalle = new DetalleFactura();
-
+            
             int codServicio = Convert.ToInt32(this.cboServicio.SelectedValue);
             int cantidad = Convert.ToInt32(this.txtCantidad.Text);
             double precio = Convert.ToDouble(this.txtPrecio.Text);
@@ -112,9 +138,11 @@ namespace SISJORSAC
         {
             
             var listacliente = clienteDao.ListarCliente("JURIDICA");
+            
             this.cboRazonsocial.ItemsSource = listacliente;
             this.cboRazonsocial.DisplayMemberPath="RAZON_SOCIAL";
             this.cboRazonsocial.SelectedValuePath = "COD_CLI";
+       
 
            
         }
@@ -145,10 +173,94 @@ namespace SISJORSAC
             this.txtPrecio.Text = servicio.PRECIO.ToString();
         }
 
-        private void btnGenerarFactura_Click(object sender, RoutedEventArgs e)
+        private async void btnGenerarFactura_Click(object sender, RoutedEventArgs e)
         {
-            AgregarFactura();
+
+            if (this.txtNroFactura.Text.Trim() != "" && this.cboModalidad.SelectedItem != null && this.cboMoneda.SelectedItem != null ||
+                this.cboRazonsocial.SelectedItem == null && this.cboServicio.SelectedItem != null && this.txtPrecio.Text.Trim() != ""
+                && this.txtCantidad.Text.Trim() != "" )
+            {
+                if (this.dgvListado.Items.Count == 0)
+                {
+                    await this.ShowMessageAsync("Error", "Falta llenar detalles");
+                }
+                else
+                {
+                    if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar esta factura?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                    {
+                        AgregarFactura();
+                        this.Close();
+                    }
+                }
+
+            }
+            else
+            {
+                await this.ShowMessageAsync("Error", "Falta llenar algunos campos");
+            }
+
+          
+            
+
         }
+
+        public void ObtenerGuia()
+        {
+          
+             DetalleGuiaRemisionDAO detalleGuiaDao= new DetalleGuiaRemisionDAO();
+             guiaRemision = guiaDao.ObtenerGuiaRemisionXNroGuia(VariablesGlobales.NRO_GUIA_GLOBAL);
+            var detalleGuia = detalleGuiaDao.listarDetalleGuiaxGuia(guiaRemision.COD_GUIA);
+            this.cboRazonsocial.DisplayMemberPath = "RAZON_SOCIAL";
+            this.cboRazonsocial.SelectedValuePath = "COD_CLI";
+       
+            this.cboRazonsocial.Items.Add(guiaRemision.cliente);
+            this.cboRazonsocial.SelectedIndex = 0;
+            this.txtRuc.Text = guiaRemision.cliente.DNI;
+            this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL.ToString();
+
+            //foreach (var item in this.cboModalidad.Items)
+            //{
+                
+            //        this.cboModalidad.Items.Remove((ComboBoxItem)item);
+            //        this.cboModalidad.Items.Refresh();
+                
+                
+            //}
+            
+
+            
+
+            this.cboModalidad.IsEnabled = false;
+            DetalleFactura detalleFactura = new DetalleFactura();
+
+            foreach (var item in detalleGuia)
+            {
+                detalleFactura.CANTIDAD = item.CANTIDAD;
+                detalleFactura.SERVICIO = item.SERVICIO;
+                detalleFactura.PRECIO = item.SERVICIO.PRECIO;
+                
+                listaDetalle.Add(detalleFactura);
+                detalleFactura.IMPORTE = item.CANTIDAD * item.SERVICIO.PRECIO;
+                
+                dgvListado.Items.Add(detalleFactura);
+                subtotal = subtotal + detalleFactura.IMPORTE;
+                
+
+            }
+
+            igvMonto = subtotal * IGV;
+            total = subtotal + igvMonto;
+
+            this.txtSubtotal.Text = subtotal.ToString();
+            this.txtIgv.Text = igvMonto.ToString();
+            this.txtTotal.Text = total.ToString();
+           
+
+          
+
+        }
+
+       
 
 
         
