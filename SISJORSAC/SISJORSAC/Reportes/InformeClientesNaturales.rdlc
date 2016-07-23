@@ -6,28 +6,28 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.79104cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.34125cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.39417cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>1.60854cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.80729cm</Width>
+              <Width>5.53646cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.01625cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.24896cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>4.82833cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -45,11 +45,14 @@
                             <TextRun>
                               <Value>NOMBRES</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox1</rd:DefaultName>
@@ -75,8 +78,9 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>AP PATERNO</Value>
+                              <Value>APELLIDO PAT.</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -109,8 +113,9 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>AP MATERNO</Value>
+                              <Value>APELLIDO MAT.</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -145,6 +150,7 @@
                             <TextRun>
                               <Value>DNI</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -179,6 +185,7 @@
                             <TextRun>
                               <Value>DIRECCION</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -213,6 +220,7 @@
                             <TextRun>
                               <Value>DISTRITO</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -247,6 +255,7 @@
                             <TextRun>
                               <Value>TELEFONO</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -279,8 +288,9 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>EMAIL</Value>
+                              <Value>E-MAIL</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -319,7 +329,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!NOMBRES.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -349,7 +361,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!AP_PATERNO.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -379,7 +393,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!AP_MATERNO.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -409,7 +425,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!DNI.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -439,7 +457,20 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!DIRECCION.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -469,7 +500,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!DISTRITO.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -499,7 +532,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!TEL_FIJO_CASA.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -529,7 +564,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!EMAIL.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -575,11 +612,13 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
+        <RepeatRowHeaders>true</RepeatRowHeaders>
+        <FixedRowHeaders>true</FixedRowHeaders>
         <DataSetName>DataSet1</DataSetName>
         <Top>5.39433cm</Top>
-        <Left>0.7112cm</Left>
+        <Left>0.39432cm</Left>
         <Height>1.2cm</Height>
-        <Width>23.30729cm</Width>
+        <Width>24.765cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -607,7 +646,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox17</rd:DefaultName>
         <Top>1.82245cm</Top>
-        <Left>3.2112cm</Left>
+        <Left>5.03745cm</Left>
         <Height>1.92292cm</Height>
         <Width>16.40479cm</Width>
         <ZIndex>1</ZIndex>
@@ -625,10 +664,10 @@
         <Source>Embedded</Source>
         <Value>logo_rep</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>2.00766cm</Top>
-        <Left>21.18995cm</Left>
-        <Height>1.5cm</Height>
-        <Width>1.5cm</Width>
+        <Top>0.94933cm</Top>
+        <Left>20.67495cm</Left>
+        <Height>2.79604cm</Height>
+        <Width>3.135cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -637,15 +676,14 @@
         </Style>
       </Image>
     </ReportItems>
-    <Height>4.17708in</Height>
+    <Height>13.17708in</Height>
     <Style>
       <Border>
         <Style>None</Style>
       </Border>
-      <BackgroundColor>LightGrey</BackgroundColor>
     </Style>
   </Body>
-  <Width>9.75in</Width>
+  <Width>10.00316in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

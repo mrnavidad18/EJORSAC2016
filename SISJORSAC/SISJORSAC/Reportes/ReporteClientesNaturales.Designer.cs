@@ -30,13 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.dataSetPrincipal = new SISJORSAC.DataSetPrincipal();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReporteClientesNaturales));
             this.sPTBLCLIENTELISTARREPORTENATURALBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetPrincipal = new SISJORSAC.DataSetPrincipal();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.sP_TBL_CLIENTE_LISTAR_REPORTE_NATURALTableAdapter = new SISJORSAC.DataSetPrincipalTableAdapters.SP_TBL_CLIENTE_LISTAR_REPORTE_NATURALTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPTBLCLIENTELISTARREPORTENATURALBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetPrincipal)).BeginInit();
             this.SuspendLayout();
+            // 
+            // sPTBLCLIENTELISTARREPORTENATURALBindingSource
+            // 
+            this.sPTBLCLIENTELISTARREPORTENATURALBindingSource.DataMember = "SP_TBL_CLIENTE_LISTAR_REPORTE_NATURAL";
+            this.sPTBLCLIENTELISTARREPORTENATURALBindingSource.DataSource = this.dataSetPrincipal;
+            // 
+            // dataSetPrincipal
+            // 
+            this.dataSetPrincipal.DataSetName = "DataSetPrincipal";
+            this.dataSetPrincipal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -47,20 +58,10 @@
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "SISJORSAC.Reportes.InformeClientesNaturales.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(690, 479);
+            this.reportViewer1.Size = new System.Drawing.Size(1014, 616);
             this.reportViewer1.TabIndex = 0;
             this.reportViewer1.ReportRefresh += new System.ComponentModel.CancelEventHandler(this.reportViewer1_ReportRefresh);
             this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
-            // 
-            // dataSetPrincipal
-            // 
-            this.dataSetPrincipal.DataSetName = "DataSetPrincipal";
-            this.dataSetPrincipal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // sPTBLCLIENTELISTARREPORTENATURALBindingSource
-            // 
-            this.sPTBLCLIENTELISTARREPORTENATURALBindingSource.DataMember = "SP_TBL_CLIENTE_LISTAR_REPORTE_NATURAL";
-            this.sPTBLCLIENTELISTARREPORTENATURALBindingSource.DataSource = this.dataSetPrincipal;
             // 
             // sP_TBL_CLIENTE_LISTAR_REPORTE_NATURALTableAdapter
             // 
@@ -68,15 +69,21 @@
             // 
             // ReporteClientesNaturales
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 479);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(1014, 616);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ReporteClientesNaturales";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ReporteClientes";
+            this.TransparencyKey = System.Drawing.Color.Aquamarine;
             this.Load += new System.EventHandler(this.ReporteClientes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetPrincipal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPTBLCLIENTELISTARREPORTENATURALBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetPrincipal)).EndInit();
             this.ResumeLayout(false);
 
         }

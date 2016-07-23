@@ -101,9 +101,9 @@ C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORS
 C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.Properties.Resources.resources
 C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.Reportes.ReporteClientesJuridicos.resources
 C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.Reportes.ReporteClientesNaturales.resources
-C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.Reportes.Tipo_de_Clientes.resources
 C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.csproj.GenerateResource.Cache
 C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\RdlCompile.cache
 C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\RdlCompile.compiled
 C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.exe
 C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.pdb
+C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.csprojResolveAssemblyReference.cache

@@ -90,12 +90,6 @@
     <Compile Include="Reportes\ReporteClientesNaturales.Designer.cs">
       <DependentUpon>ReporteClientesNaturales.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\Tipo de Clientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reportes\Tipo de Clientes.Designer.cs">
-      <DependentUpon>Tipo de Clientes.cs</DependentUpon>
-    </Compile>
     <Page Include="ElegirFactura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,9 +191,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ReporteClientesNaturales.resx">
       <DependentUpon>ReporteClientesNaturales.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\Tipo de Clientes.resx">
-      <DependentUpon>Tipo de Clientes.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DataSetPrincipal.xsc">
       <DependentUpon>DataSetPrincipal.xsd</DependentUpon>
