@@ -69,7 +69,6 @@ C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debu
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.Properties.Resources.resources
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.Reportes.ReporteClientesJuridicos.resources
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.Reportes.ReporteClientesNaturales.resources
-C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.Reportes.Tipo_de_Clientes.resources
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.csproj.GenerateResource.Cache
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\RdlCompile.cache
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\RdlCompile.compiled
@@ -107,3 +106,8 @@ C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\RdlComp
 C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.exe
 C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.pdb
 C:\Users\Riki\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmGuiaRemision.baml
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\Reportes\FRTipoCliente.baml
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmGuiaRemision.g.cs
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\Reportes\FRTipoCliente.g.cs

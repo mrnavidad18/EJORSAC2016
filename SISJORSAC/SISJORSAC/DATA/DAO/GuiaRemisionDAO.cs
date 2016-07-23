@@ -273,5 +273,31 @@ namespace SISJORSAC.DATA.DAO
                 throw;
             }
         }
+
+        public string traerUltimoNroGuia()
+        {
+            string nro_guia = "";
+            string query = "SP_TBL_GUIA_REMISION_TRAER_ULTIMO_NRO_GUIA";
+            try
+            {
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query))
+                {
+                    if (lector != null && lector.HasRows)
+                    {
+
+                        while (lector.Read())
+                        {
+                            nro_guia = lector["NRO_GUIA"].ToString();
+                        }
+                    }
+                }
+                return nro_guia;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

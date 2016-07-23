@@ -35,7 +35,7 @@
                     </MenuItem.Icon>
                     <MenuItem x:Name="ItemFactura" Header="Factura" Click="ItemFactura_Click"/>
                     <MenuItem Header="Boleta"/>
-                    <MenuItem Header="Guía Remisión"/>
+                    <MenuItem x:Name="ItemGuiaRemision" Header="Guía Remisión" Click="ItemGuiaRemision_Click"/>
                     <MenuItem Header="Contrato de Alquiler"/>
                 </MenuItem>
                 <MenuItem Header="Consultas">

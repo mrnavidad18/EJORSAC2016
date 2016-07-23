@@ -41,5 +41,18 @@ namespace SISJORSAC
             frmtipoclienteReport.Owner = this;
             frmtipoclienteReport.ShowDialog();
         }
+
+
+
+        private void ItemGuiaRemision_Click(object sender, RoutedEventArgs e)
+        {
+            FrmGuiaRemision FrmGuiaRemision = new FrmGuiaRemision();
+            FrmGuiaRemision.Owner = this;
+            FrmGuiaRemision.ShowDialog();
+        }
+
+
+
+
     }
 }
