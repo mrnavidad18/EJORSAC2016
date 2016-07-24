@@ -24,20 +24,34 @@ namespace SISJORSAC
     /// </summary>
     public partial class FrmGuiaRemision : MetroWindow
     {
+
+        List<DetalleGuiaRemision> listaDetalleGuiaRemision = new List<DetalleGuiaRemision>();
         UbigeoDAO ubigeoDAO = new UbigeoDAO();
         ClienteDAO clienteDAO = new ClienteDAO();
         GuiaRemisionDAO guiaDAO = new GuiaRemisionDAO();
         Cliente cliente = new Cliente();
+        ServicioDAO servicioDAO = new ServicioDAO();
         string nuevoid = "";
+        int item = 1;
         string nuevoidProvincia = "";
         public FrmGuiaRemision()
         {
             InitializeComponent();
+            this.txtPtoPartida.Text = "Av. SANTIAGO DE SURCO 4676 - URB. SAN ROQUE, SURCO";
             this.txtFechaEmision.Text = DateTime.Now.ToString();
             string nroGuia =guiaDAO.traerUltimoNroGuia();
             llenarDepartamentos();
             this.txtNroGuiaRemision.Text = nroGuia;
+            Listarservicios("DISPONIBLE");
             this.cboCliente.IsEnabled = false;                       
+        }
+        private void Listarservicios(string estado)
+        {
+            var listaServicios = servicioDAO.listarServicio(estado);
+            this.cboServicio.ItemsSource = listaServicios;
+            this.cboServicio.DisplayMemberPath = "DESCRIPCION";
+            this.cboServicio.SelectedValuePath = "COD_SERV";
+            this.cboServicio.SelectedIndex = 0;
         }
 
         private void ListarClientes(string tipoCliente)
@@ -143,6 +157,79 @@ namespace SISJORSAC
             }
           
         }
+
+        private DetalleGuiaRemision AgregarDetallesGuiaButton()
+        {
+            DetalleGuiaRemision detalle = new DetalleGuiaRemision();
+            
+            int codServicio = Convert.ToInt32(this.cboServicio.SelectedValue);
+            int cantidad = Convert.ToInt32(this.txtCantidadServicio.Text);
+            double precio = Convert.ToDouble(this.txtPrecioServicio.Text);
+
+            detalle.SERVICIO = servicioDAO.ObtenerServicio(codServicio);
+            detalle.CANTIDAD = cantidad;
+            detalle.ITEM = item;
+
+            listaDetalleGuiaRemision.Add(detalle);
+
+            item++;
+            return detalle;
+        
+        }
+
+        private void cboServicio_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var servicio = servicioDAO.ObtenerServicio(int.Parse(cboServicio.SelectedValue.ToString()));
+            this.txtPrecioServicio.Text = servicio.PRECIO.ToString();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var detalle = AgregarDetallesGuiaButton();
+            dgvDetalleGuia.Items.Add(detalle);
+        }
+
+        private void agregarGuiaRemision()
+        {
+            GuiaRemision guiaRemision = new GuiaRemision();
+            guiaRemision.PTO_PARTIDA = this.txtPtoPartida.Text;
+            guiaRemision.PTO_LLEGADA = this.txtptoLlegada.Text;
+            guiaRemision.FECHA_EMISION =Convert.ToDateTime(this.txtFechaEmision.Text);
+            guiaRemision.cliente = cliente;
+            guiaRemision.VEHICULO_MARCA = this.txtVehiculoMarca.Text;
+            guiaRemision.NONBRE_CONDUCTOR = this.txtNombreConductor.Text;
+            guiaRemision.NRO_CERTIFICADO = this.txtNroCertificado.Text;
+            guiaRemision.NRO_BREVETE = this.txtNroBrevete.Text;
+            //transportista:
+            guiaRemision.NOMB_TRANSPORTE = this.txtNombreTransporte.Text;
+            guiaRemision.RUC_TRANSPORTE = this.txtRUC.Text.Trim();
+            guiaRemision.TIPO_TRASLADO = ((ComboBoxItem)cboTipoTraslado.SelectedItem).Content.ToString();
+            guiaRemision.MTO_TRASLADO = this.txtMotivoTraslado.Text;
+            //Direcciones:
+            guiaRemision.DEPARTAMENTO = cboDepartamento.Text.ToString();
+            guiaRemision.PROVINCIA = cboProvincia.Text.ToString();
+            guiaRemision.DISTRITO = cboDistrito.Text.ToString();
+            guiaRemision.SITUACION = "GENERADA";
+            guiaRemision.DETALLEGUIAREMISION = listaDetalleGuiaRemision;
+            //tipo
+            guiaRemision.TIPO_COMPROB = "FACTURA";
+            guiaDAO.Agregar(guiaRemision);
+            MessageBox.Show("Agregado Correctamente", "Gracias");
+           
+        }
+
+        private void btnAgregarGuiaFinal_Click(object sender, RoutedEventArgs e)
+        {
+            agregarGuiaRemision();
+        }
+
+        private void btnBotonPrueba_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(((ComboBoxItem)cboTipoTraslado.SelectedItem).Content.ToString());
+            MessageBox.Show(cboDepartamento.Text.ToString());
+        }
+
+
 
 
     }

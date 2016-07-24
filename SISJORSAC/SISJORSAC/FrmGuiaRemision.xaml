@@ -4,14 +4,14 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Registro - Guia de Remisión" Height="669.425" Width="802.276"
+        Title="Registro - Guia de Remisión" Height="721.425" Width="802.276"
         WindowStartupLocation="CenterScreen">
-    <Grid Margin="-3,0,-8,-6">
+    <Grid Margin="-3,0,-8,-2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.ColumnSpan="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="58" Margin="25,355,0,0" Stroke="Black" VerticalAlignment="Top" Width="501"/>
+        <Rectangle Grid.ColumnSpan="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="58" Margin="25,355,0,0" Stroke="Black" VerticalAlignment="Top" Width="465"/>
 
         <Label Content="Pto. Partida:" HorizontalAlignment="Left" Margin="17,12,0,0" VerticalAlignment="Top" Width="81" Grid.Column="1" Height="26"/>
         <Label Content="Pto. Llegada:" HorizontalAlignment="Left" Margin="17,60,0,0" VerticalAlignment="Top" Width="81" Grid.Column="1" Height="26"/>
@@ -22,9 +22,9 @@
         <RadioButton x:Name="rbNATURAL" Grid.ColumnSpan="2" Content="NATURAL" HorizontalAlignment="Left" Margin="22,128,0,0" VerticalAlignment="Top" Checked="rbNATURAL_Checked" />
         <RadioButton x:Name="rbJURIDICA" Grid.ColumnSpan="2" Content="JURIDICA" HorizontalAlignment="Left" Margin="134,128,0,0" VerticalAlignment="Top" Checked="rbJURIDICA_Checked"/>
         <Label x:Name="lblDNIRUC" Grid.ColumnSpan="2" Content="TIPO DOC:" HorizontalAlignment="Left" Margin="239,124,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtDNIRUC" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="307,124,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <TextBox x:Name="ptoLlegada" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="103,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="317"/>
-        <TextBox x:Name="txtPtoPartida" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="103,13,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="317"/>
+        <TextBox x:Name="txtDNIRUC" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="307,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <TextBox x:Name="txtptoLlegada" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="103,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="317"/>
+        <TextBox x:Name="txtPtoPartida" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="103,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="317"/>
         <Label Content="Fecha Emisión:" HorizontalAlignment="Left" Margin="445,43,0,0" VerticalAlignment="Top" Width="94" Grid.Column="1" Height="26"/>
         <TextBox x:Name="txtFechaEmision" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="550,43,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="95" IsReadOnly="True"/>
         <Label Content="Vehículo Marca:" HorizontalAlignment="Left" Margin="18,196,0,0" VerticalAlignment="Top" Width="107" Grid.Column="1" Height="26"/>
@@ -34,7 +34,7 @@
         <TextBox x:Name="txtNroCertificado" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="130,227,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="217"/>
         <TextBox x:Name="txtNombreConductor" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="505,193,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="217"/>
         <Label Content="Nº de Brevete:" HorizontalAlignment="Left" Margin="362,224,0,0" VerticalAlignment="Top" Width="139" Grid.Column="1" Height="26"/>
-        <TextBox x:Name="txtNroBrevete" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="506,226,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="217"/>
+        <TextBox x:Name="txtNroBrevete" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="506,226,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="217"/>
         <Rectangle Grid.ColumnSpan="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="79" Margin="23,258,0,0" Stroke="Black" VerticalAlignment="Top" Width="747"/>
         <Label Content="Nombre del Transporte:" HorizontalAlignment="Left" Margin="29,268,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
         <TextBox x:Name="txtNombreTransporte" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="171,268,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="217"/>
@@ -49,11 +49,11 @@
             <ComboBoxItem Content="Alquiler"/>
         </ComboBox>
         <TextBox x:Name="txtNroGuiaRemision" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="580,8,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="106"/>
-        <ComboBox x:Name="cboDepartamento" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="48,381,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboDepartamento_SelectionChanged"/>
-        <ComboBox x:Name="cboProvincia" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="211,381,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboProvincia_SelectionChanged"/>
-        <ComboBox x:Name="cboDistrito" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="353,381,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Grid.ColumnSpan="2" Content="Departamento:" HorizontalAlignment="Left" Margin="45,355,0,0" VerticalAlignment="Top"/>
-        <Label Grid.ColumnSpan="2" Content="Distrito:" HorizontalAlignment="Left" Margin="366,355,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+        <ComboBox x:Name="cboDepartamento" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="29,381,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboDepartamento_SelectionChanged"/>
+        <ComboBox x:Name="cboProvincia" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="171,381,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboProvincia_SelectionChanged"/>
+        <ComboBox x:Name="cboDistrito" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="307,381,0,0" VerticalAlignment="Top" Width="173"/>
+        <Label Grid.ColumnSpan="2" Content="Departamento:" HorizontalAlignment="Left" Margin="29,355,0,0" VerticalAlignment="Top"/>
+        <Label Grid.ColumnSpan="2" Content="Distrito:" HorizontalAlignment="Left" Margin="314,354,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -63,7 +63,120 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label Grid.ColumnSpan="2" Content="Provincia:" HorizontalAlignment="Left" Margin="211,355,0,0" VerticalAlignment="Top"/>
+        <Label Grid.ColumnSpan="2" Content="Provincia:" HorizontalAlignment="Left" Margin="171,355,0,0" VerticalAlignment="Top"/>
+        <DataGrid  x:Name="dgvDetalleGuia" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="29,457,0,0" VerticalAlignment="Top" Height="169" Width="715" Background="White" GridLinesVisibility="All" BorderBrush="#FF0D1113" BorderThickness="1" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock  Text="ITEM" Width="93" TextAlignment="Center" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="item" Text="{Binding  ITEM, StringFormat='0{0}'}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate >
+                        <DataTemplate>
+                            <TextBox Text="{Binding ITEM, UpdateSourceTrigger=LostFocus}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock  Text="CANTIDAD" Width="93" TextAlignment="Center" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="cantidad" Text="{Binding CANTIDAD}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate >
+                        <DataTemplate>
+                            <TextBox Text="{Binding CANTIDAD, UpdateSourceTrigger=LostFocus}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock  Text="DESCRIPCION SERVICIO"  Width="250" TextAlignment="Center" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="txtDescripcion" Text="{Binding SERVICIO.DESCRIPCION}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate >
+                        <DataTemplate>
+                            <TextBox Text="{Binding SERVICIO.DESCRIPCION, UpdateSourceTrigger=LostFocus}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock  Text="UNIDAD MEDIDA" TextAlignment="Center" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="txtUnidadMedida" Text="{Binding SERVICIO.UNIDAD_MEDIDA}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate >
+                        <DataTemplate>
+                            <TextBox Text="{Binding SERVICIO.UNIDAD_MEDIDA, UpdateSourceTrigger=LostFocus}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock  Text="PESO TOTAL" Width="80" TextAlignment="Center"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="PESO_TOTAL" Text="{Binding SERVICIO.PESO}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate >
+                        <DataTemplate>
+                            <TextBox Text="{Binding SERVICIO.PESO, UpdateSourceTrigger=LostFocus}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+
+
+
+
+
+
+        </DataGrid>
+        <ComboBox x:Name="cboServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="559,355,0,0" VerticalAlignment="Top" Width="146" SelectionChanged="cboServicio_SelectionChanged" />
+        <Label Grid.ColumnSpan="2" Content="Servicio:" HorizontalAlignment="Left" Margin="505,355,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.222,-0.346"/>
+        <Button Grid.ColumnSpan="2" Content="Agregar Servicio" HorizontalAlignment="Left" Margin="643,384,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click"/>
+        <TextBox x:Name="txtPrecioServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="563,387,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="69"/>
+        <Label Grid.ColumnSpan="2" Content="Precio S/." HorizontalAlignment="Left" Margin="505,387,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCantidadServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="563,418,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="69"/>
+        <Label Grid.ColumnSpan="2" Content="Cantidad:" HorizontalAlignment="Left" Margin="505,418,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnAgregarGuiaFinal" Grid.ColumnSpan="2" Content="Agregar Guia" HorizontalAlignment="Left" Margin="458,644,0,0" VerticalAlignment="Top" Width="136"  BorderBrush="#FFEA2121" Foreground="#FFF3EBEB" FontSize="16" FontFamily="Verdana" FontWeight="Bold" Click="btnAgregarGuiaFinal_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FFA6C1D8" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnCancelarGuia" Grid.ColumnSpan="2" Content="Cancelar Guia" HorizontalAlignment="Left" Margin="618,644,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click" BorderBrush="#FFEA2121" Foreground="#FFF3EBEB" FontSize="16" FontFamily="Verdana" FontWeight="Bold">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FFA6C1D8" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnBotonPrueba" Grid.ColumnSpan="2" Content="BOTON PRUEBA" HorizontalAlignment="Left" Margin="271,418,0,0" VerticalAlignment="Top" Width="136" Click="btnBotonPrueba_Click" />
+
 
     </Grid>
 </Controls:MetroWindow>
