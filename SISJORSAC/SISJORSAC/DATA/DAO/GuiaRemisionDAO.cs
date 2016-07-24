@@ -168,7 +168,7 @@ namespace SISJORSAC.DATA.DAO
 
         public GuiaRemision ObtenerGuiaRemision(int codGuia)
         {
-            GuiaRemision guiaRemision = new GuiaRemision();
+            GuiaRemision guiaRemision = null;
             string query = "SP_TBL_GUIA_REMISION_OBTENERGUIAXCODIGO";
             try
             {
@@ -182,7 +182,8 @@ namespace SISJORSAC.DATA.DAO
                         ClienteDAO clienteDAO = new ClienteDAO();
                         Cliente cliente = new Cliente();
                         while (lector.Read())
-                        {                            
+                        {
+                            guiaRemision = new GuiaRemision();
                             guiaRemision.COD_GUIA = int.Parse(lector["COD_GUIA"].ToString());
                             guiaRemision.NRO_GUIA = lector["NRO_GUIA"].ToString();
                             guiaRemision.FECHA_EMISION = DateTime.Parse(lector["FECHA_EMISION"].ToString());
@@ -222,7 +223,7 @@ namespace SISJORSAC.DATA.DAO
 
         public GuiaRemision ObtenerGuiaRemisionXNroGuia(string nroGuia)
         {
-            GuiaRemision guiaRemision = new GuiaRemision();
+            GuiaRemision guiaRemision = null;
             string query = "SP_TBL_GUIA_REMISION_OBTENERGUIAXNROGUIA";
             try
             {
@@ -237,6 +238,7 @@ namespace SISJORSAC.DATA.DAO
                         Cliente cliente = new Cliente();
                         while (lector.Read())
                         {
+                            guiaRemision = new GuiaRemision();
                             guiaRemision.COD_GUIA = int.Parse(lector["COD_GUIA"].ToString());
                             guiaRemision.NRO_GUIA = lector["NRO_GUIA"].ToString();
                             guiaRemision.FECHA_EMISION = DateTime.Parse(lector["FECHA_EMISION"].ToString());

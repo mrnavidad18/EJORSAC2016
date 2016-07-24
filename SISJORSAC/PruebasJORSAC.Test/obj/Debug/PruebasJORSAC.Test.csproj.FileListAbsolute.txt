@@ -9,14 +9,3 @@ C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.csprojResolveAssemblyReference.cache
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.dll
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.pdb
-C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\PruebasJORSAC.Test.dll
-C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\PruebasJORSAC.Test.pdb
-C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\SISJORSAC.exe
-C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\MahApps.Metro.dll
-C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\System.Windows.Interactivity.dll
-C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\SISJORSAC.pdb
-C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\MahApps.Metro.pdb
-C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\MahApps.Metro.xml
-C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.csprojResolveAssemblyReference.cache
-C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.dll
-C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.pdb

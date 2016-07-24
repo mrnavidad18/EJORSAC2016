@@ -9,16 +9,23 @@ using System.Data;
 using System.Data.SqlClient;
 
 
+
+
 namespace SISJORSAC.DATA.DAO
 {
     public class FacturaDAO
     {
 
+      
+
         public Object[] AgregarFactura(Factura factura)
         {
+
             string cadenaConexion = "server=192.168.0.27;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
+            
             cn.Open();
+
             SqlTransaction trx = cn.BeginTransaction();
 
             try
@@ -260,7 +267,7 @@ namespace SISJORSAC.DATA.DAO
 
         public Object[] AgregarFacturaConNroFac(Factura factura)
         {
-            string cadenaConexion = "server=192.168.0.31;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=192.168.0.27;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();

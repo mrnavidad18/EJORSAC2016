@@ -16,6 +16,7 @@ using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
 using SISJORSAC.DATA.Modelo;
 using SISJORSAC.DATA.DAO;
+using System.Data.SqlClient;
 namespace SISJORSAC
 {
     /// <summary>
@@ -31,6 +32,8 @@ namespace SISJORSAC
         double total = 0;
         double IGV = 0.18;
         double igvMonto = 0;
+        int item = 1;
+        string mensaje = "";
 
         ClienteDAO clienteDao = new ClienteDAO();
         ServicioDAO servicioDAO = new ServicioDAO();
@@ -62,30 +65,36 @@ namespace SISJORSAC
 
         private  async void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
+            
+                if (this.cboServicio.SelectedItem != null && this.txtCantidad.Text.Trim() != "" && this.txtPrecio.Text.Trim() != "")
+                {
+                    var detalle = AgregarDetalles();
+                    dgvListado.Items.Add(detalle);
+                    subtotal = subtotal + detalle.IMPORTE;
 
-            if (this.cboServicio.SelectedItem != null && this.txtCantidad.Text.Trim() != "" && this.txtPrecio.Text.Trim() != "")
-            {
-                var detalle = AgregarDetalles();
-                dgvListado.Items.Add(detalle);
 
-                subtotal = subtotal + detalle.IMPORTE;
-                this.txtSubtotal.Text = subtotal.ToString();
+                    if (this.chkIgv.IsChecked == false)
+                        igvMonto = subtotal * IGV;
+                    else
+                        igvMonto = 0;
 
-                igvMonto = subtotal * IGV;
-                this.txtIgv.Text = igvMonto.ToString();
-
-                total = subtotal + igvMonto;
-                this.txtTotal.Text = total.ToString();
-
-                this.txtCantidad.Text = "";
-                this.txtPrecio.Text = "";
-                this.cboServicio.SelectedIndex = 0;
-            }
-            else
-            {
-                await this.ShowMessageAsync("Error", "Falta llenar algunos campos");
-            }
+                    total = subtotal + igvMonto;
+                    this.txtSubtotal.Text = subtotal.ToString();
+                    this.txtIgv.Text = igvMonto.ToString();
+                    this.txtTotal.Text = total.ToString();
+                    this.txtCantidad.Text = "";
+                    this.txtPrecio.Text = "";
+                    this.cboServicio.SelectedIndex = 0;
+                }
+                else
+                {
+                    await this.ShowMessageAsync("Error", "Falta llenar algunos campos");
+                }
              
+            
+        
+
+          
            
         }
 
@@ -93,7 +102,10 @@ namespace SISJORSAC
         private void AgregarFactura()
         {
             Factura factura = new Factura();
+          
+
             factura.MODALIDAD = ((ComboBoxItem)this.cboModalidad.SelectedItem).Content.ToString();
+            
             factura.SUB_TOTAL = subtotal;
             factura.IGV = igvMonto;
             factura.FECHA_EMISION = DateTime.Now;
@@ -109,8 +121,19 @@ namespace SISJORSAC
             }
             
             factura.DETALLEFACTURA = listaDetalle;
-            factura.OBSERVACION = "dsdsdsds";
-            facturaDao.AgregarFactura(factura);
+            factura.OBSERVACION = this.txtObservacion.Text;
+            if (chkCambiarNroFact.IsChecked == true)
+            {
+                factura.NRO_FACTURA = this.txtNroFactura.Text;
+               Object[] result= facturaDao.AgregarFacturaConNroFac(factura);
+               mensaje = result[1].ToString();
+            }
+            else
+            {
+                Object[] result = facturaDao.AgregarFactura(factura);
+                mensaje = result[1].ToString();
+            }
+            
 
         }
 
@@ -126,11 +149,12 @@ namespace SISJORSAC
             detalle.SERVICIO = servicioDAO.ObtenerServicio(codServicio);
             detalle.CANTIDAD = cantidad;
             detalle.PRECIO = precio;
+            detalle.ITEM = item;
           
             listaDetalle.Add(detalle);
 
             detalle.IMPORTE = cantidad * precio;
-
+            item++;
             return detalle;
         }
 
@@ -175,29 +199,39 @@ namespace SISJORSAC
 
         private async void btnGenerarFactura_Click(object sender, RoutedEventArgs e)
         {
-
-            if (this.txtNroFactura.Text.Trim() != "" && this.cboModalidad.SelectedItem != null && this.cboMoneda.SelectedItem != null ||
-                this.cboRazonsocial.SelectedItem == null && this.cboServicio.SelectedItem != null && this.txtPrecio.Text.Trim() != ""
-                && this.txtCantidad.Text.Trim() != "" )
+            try
             {
-                if (this.dgvListado.Items.Count == 0)
+                if (this.txtNroFactura.Text.Trim() != "" && this.cboModalidad.SelectedItem != null && this.cboMoneda.SelectedItem != null ||
+             this.cboRazonsocial.SelectedItem == null && this.cboServicio.SelectedItem != null && this.txtPrecio.Text.Trim() != ""
+             && this.txtCantidad.Text.Trim() != "")
                 {
-                    await this.ShowMessageAsync("Error", "Falta llenar detalles");
+                    if (this.dgvListado.Items.Count == 0)
+                    {
+                        await this.ShowMessageAsync("Error", "Falta llenar detalles");
+                    }
+                    else
+                    {
+                        if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar esta factura?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                        {
+                            AgregarFactura();
+                            await this.ShowMessageAsync("Correcto",mensaje);
+                            this.Close();
+                        }
+                    }
+
                 }
                 else
                 {
-                    if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar esta factura?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
-                    {
-                        AgregarFactura();
-                        this.Close();
-                    }
+                    await this.ShowMessageAsync("Error", "Falta llenar algunos campos");
                 }
-
             }
-            else
+            catch (Exception ex)
             {
-                await this.ShowMessageAsync("Error", "Falta llenar algunos campos");
+               
+                MessageBox.Show( ex.Message,"Error");
             }
+
+         
 
           
             
@@ -209,42 +243,39 @@ namespace SISJORSAC
           
              DetalleGuiaRemisionDAO detalleGuiaDao= new DetalleGuiaRemisionDAO();
              guiaRemision = guiaDao.ObtenerGuiaRemisionXNroGuia(VariablesGlobales.NRO_GUIA_GLOBAL);
-            var detalleGuia = detalleGuiaDao.listarDetalleGuiaxGuia(guiaRemision.COD_GUIA);
+            var listaDetalleGuia = detalleGuiaDao.listarDetalleGuiaxGuia(guiaRemision.COD_GUIA);
+
             this.cboRazonsocial.DisplayMemberPath = "RAZON_SOCIAL";
             this.cboRazonsocial.SelectedValuePath = "COD_CLI";
        
             this.cboRazonsocial.Items.Add(guiaRemision.cliente);
             this.cboRazonsocial.SelectedIndex = 0;
-            this.txtRuc.Text = guiaRemision.cliente.DNI;
+
+            this.txtRuc.Text = guiaRemision.cliente.RUC;
             this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL.ToString();
-
-            //foreach (var item in this.cboModalidad.Items)
-            //{
-                
-            //        this.cboModalidad.Items.Remove((ComboBoxItem)item);
-            //        this.cboModalidad.Items.Refresh();
-                
-                
-            //}
-            
-
-            
-
+            this.cboModalidad.Items.Clear();
+            ComboBoxItem itemModalidad = new ComboBoxItem();
+            itemModalidad.Content = guiaRemision.TIPO_TRASLADO;
+            this.cboModalidad.Items.Add(itemModalidad);
+         
+            this.cboModalidad.SelectedIndex = 0;
+       
             this.cboModalidad.IsEnabled = false;
-            DetalleFactura detalleFactura = new DetalleFactura();
+            DetalleFactura detalleFactura = null;
 
-            foreach (var item in detalleGuia)
+            foreach (var detalle in listaDetalleGuia)
             {
-                detalleFactura.CANTIDAD = item.CANTIDAD;
-                detalleFactura.SERVICIO = item.SERVICIO;
-                detalleFactura.PRECIO = item.SERVICIO.PRECIO;
-                
+                detalleFactura = new DetalleFactura();
+                detalleFactura.CANTIDAD = detalle.CANTIDAD;
+                detalleFactura.SERVICIO = detalle.SERVICIO;
+                detalleFactura.PRECIO = detalle.SERVICIO.PRECIO;
+                detalleFactura.ITEM = item;
                 listaDetalle.Add(detalleFactura);
-                detalleFactura.IMPORTE = item.CANTIDAD * item.SERVICIO.PRECIO;
+                detalleFactura.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
                 
                 dgvListado.Items.Add(detalleFactura);
                 subtotal = subtotal + detalleFactura.IMPORTE;
-                
+                item++;
 
             }
 
@@ -259,6 +290,52 @@ namespace SISJORSAC
           
 
         }
+
+        private void txtCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            VariablesGlobales.NRO_GUIA_GLOBAL = "";
+            this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(((ComboBoxItem)this.cboModalidad.SelectedItem).Content.ToString(), "dsds");
+        }
+
+        private void chkObservacion_Checked(object sender, RoutedEventArgs e)
+        {
+            this.txtObservacion.IsEnabled = true;
+        }
+
+        private void chkIgv_Checked(object sender, RoutedEventArgs e)
+        {
+           
+            this.txtIgv.Text = "0.0";
+            igvMonto = 0;
+            this.txtTotal.Text = subtotal.ToString();
+        }
+
+        private void chkIgv_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (this.txtSubtotal.Text == this.txtTotal.Text)
+            {
+                igvMonto = subtotal * IGV;
+                total = subtotal + igvMonto;
+                this.txtIgv.Text = igvMonto.ToString();
+                this.txtTotal.Text = total.ToString();
+                this.txtSubtotal.Text = subtotal.ToString();
+                
+            }
+        }
+
+        private void chkCambiarNroFact_Checked(object sender, RoutedEventArgs e)
+        {
+            this.txtNroFactura.IsEnabled = true;
+            
+            this.txtNroFactura.Focus();
+        }
+
+      
 
        
 

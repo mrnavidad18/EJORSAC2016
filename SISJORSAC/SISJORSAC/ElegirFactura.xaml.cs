@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
+using SISJORSAC.DATA.DAO;
 
 namespace SISJORSAC
 {
@@ -35,13 +36,32 @@ namespace SISJORSAC
             this.btnIngresar.Visibility = Visibility.Visible;
         }
 
-        private void btnIngresar_Click(object sender, RoutedEventArgs e)
+        private async void btnIngresar_Click(object sender, RoutedEventArgs e)
         {
-            VariablesGlobales.NRO_GUIA_GLOBAL= this.txtnroGuia.Text;
-            
-            frmFactura factura = new frmFactura();
-            this.Close();
-            factura.Show();
+            string nroGuia = this.txtnroGuia.Text;
+            if (nroGuia.Trim() != "")
+            {
+                GuiaRemisionDAO guiaDao = new GuiaRemisionDAO();
+                var guia = guiaDao.ObtenerGuiaRemisionXNroGuia(nroGuia);
+                if (guia != null)
+                {
+                    VariablesGlobales.NRO_GUIA_GLOBAL = nroGuia;
+                    frmFactura factura = new frmFactura();
+                    this.Close();
+                    factura.Show();
+                }
+                else
+                {
+                    await this.ShowMessageAsync("Error", "Guia no encontrada");
+                }
+               
+            }
+            else
+            {
+                await this.ShowMessageAsync("Error","ingrese Nro. Guia");
+            }
+
+           
         }
 
         private void rbtSinGuia_Checked(object sender, RoutedEventArgs e)

@@ -10,7 +10,7 @@ namespace SISJORSAC.DATA.Conexion
 {
     public class DBHelper
     {
-        private static string cadenaConexion = "server=192.168.0.27;DataBase=BDJORSAC;user=sa;password=Developer2016";
+        private staticstring cadenaConexion = "server=192.168.0.27;DataBase=BDJORSAC;user=sa;password=Developer2016";
         public static SqlParameter MakeParam(string paramName,object objValue)
         {
             SqlParameter param;
@@ -160,6 +160,7 @@ namespace SISJORSAC.DATA.Conexion
             Object[] salidas = new Object[2];
             
                 SqlCommand cmd = new SqlCommand(query, cn,trx);
+                 cmd.CommandTimeout=5;
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 if (dbParams != null)
