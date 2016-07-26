@@ -69,7 +69,8 @@ namespace SISJORSAC
                 if (this.cboServicio.SelectedItem != null && this.txtCantidad.Text.Trim() != "" && this.txtPrecio.Text.Trim() != "")
                 {
                     var detalle = AgregarDetalles();
-                    dgvListado.Items.Add(detalle);
+                    this.dgvListado.ItemsSource = null;
+                    dgvListado.ItemsSource = listaDetalle;
                     subtotal = subtotal + detalle.IMPORTE;
 
 
@@ -150,10 +151,10 @@ namespace SISJORSAC
             detalle.CANTIDAD = cantidad;
             detalle.PRECIO = precio;
             detalle.ITEM = item;
-          
+            detalle.IMPORTE = cantidad * precio;
             listaDetalle.Add(detalle);
 
-            detalle.IMPORTE = cantidad * precio;
+      
             item++;
             return detalle;
         }
@@ -270,14 +271,17 @@ namespace SISJORSAC
                 detalleFactura.SERVICIO = detalle.SERVICIO;
                 detalleFactura.PRECIO = detalle.SERVICIO.PRECIO;
                 detalleFactura.ITEM = item;
-                listaDetalle.Add(detalleFactura);
                 detalleFactura.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
+                listaDetalle.Add(detalleFactura);
+             
                 
-                dgvListado.Items.Add(detalleFactura);
+               
                 subtotal = subtotal + detalleFactura.IMPORTE;
                 item++;
-
+                
             }
+
+            this.dgvListado.ItemsSource = listaDetalle;
 
             igvMonto = subtotal * IGV;
             total = subtotal + igvMonto;
@@ -333,6 +337,80 @@ namespace SISJORSAC
             this.txtNroFactura.IsEnabled = true;
             
             this.txtNroFactura.Focus();
+        }
+
+        private async void btnEliminarDetalle_Click(object sender, RoutedEventArgs e)
+        {
+            if(this.dgvListado.SelectedIndex != -1)
+            {
+                var detalleFactura = this.dgvListado.SelectedItem as DetalleFactura;
+                listaDetalle.RemoveAll(x => x.ITEM==detalleFactura.ITEM);
+                item=1;
+                subtotal = 0;
+                igvMonto = 0;
+                foreach (var detalle in listaDetalle)
+                {
+                    detalle.ITEM = item;
+                    subtotal = subtotal + detalle.IMPORTE;
+
+                    if (this.chkIgv.IsChecked == false)
+                        igvMonto = subtotal * IGV;
+                    else
+                        igvMonto = 0;
+                    
+                    item++;
+                }
+                total = subtotal + igvMonto;
+                this.txtSubtotal.Text = subtotal.ToString();
+                this.txtIgv.Text = igvMonto.ToString();
+                this.txtTotal.Text = total.ToString();
+                this.dgvListado.ItemsSource = null;
+                dgvListado.ItemsSource = listaDetalle;
+
+            }
+            else
+            {
+                await this.ShowMessageAsync("Error", "Seleccione un detalle");
+            }
+        }
+
+        private void Importe_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TextBox t = (TextBox)sender;
+                int cantidad = Convert.ToInt32(t.Text);
+
+                var detalleFactura = this.dgvListado.SelectedItem as DetalleFactura;
+                var detalleEncontrado=listaDetalle.Find(x => x.IMPORTE==detalleFactura.IMPORTE);
+                detalleEncontrado.CANTIDAD = cantidad;
+                detalleEncontrado.IMPORTE = cantidad * detalleEncontrado.PRECIO;
+
+                subtotal = 0;
+                igvMonto = 0;
+                foreach (var detalle in listaDetalle)
+                {
+                    
+                    subtotal = subtotal + detalle.IMPORTE;
+
+                    if (this.chkIgv.IsChecked == false)
+                        igvMonto = subtotal * IGV;
+                    else
+                        igvMonto = 0;
+
+                    
+                }
+                total = subtotal + igvMonto;
+                this.txtSubtotal.Text = subtotal.ToString();
+                this.txtIgv.Text = igvMonto.ToString();
+                this.txtTotal.Text = total.ToString();
+                this.dgvListado.ItemsSource = null;
+                dgvListado.ItemsSource = listaDetalle;
+
+
+
+               
+            }
         }
 
       

@@ -30,91 +30,29 @@
         </ComboBox>
         <CheckBox x:Name="chkIgv" Content="Sin IGV" HorizontalAlignment="Left" Margin="820,197,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.21,1.778" Checked="chkIgv_Checked" Unchecked="chkIgv_Unchecked"/>
         <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,245,34,0" Width="835" Height="257" Background="#FFB8B6B6"
-                   IsReadOnly="False"
+                  
                    AutoGenerateColumns="False"
-                  CanUserAddRows="True"
+                  CanUserAddRows="false"
                   SelectionMode="Single"
                   CanUserDeleteRows="True"
                   CanUserResizeRows="False"
                   CanUserSortColumns="False"
                   HeadersVisibility="Column"
-                  GridLinesVisibility="None" SelectionUnit="FullRow" BorderBrush="#FFA8A8A8" BorderThickness="1"  >
+                  GridLinesVisibility="None" 
+                    SelectionUnit="FullRow" BorderBrush="#FFA8A8A8" BorderThickness="1">
             <DataGrid.Columns>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="ITEM" Width="50" TextAlignment="Center" />
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock x:Name="item" Text="{Binding ITEM,StringFormat='0{0}'}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate >
-                        <DataTemplate>
-                            <TextBox Text="{Binding CANTIDAD, UpdateSourceTrigger=LostFocus}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="CANTIDAD" Width="93" TextAlignment="Center" />
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock x:Name="cantidad" Text="{Binding CANTIDAD}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate >
-                        <DataTemplate>
-                            <TextBox Text="{Binding CANTIDAD, UpdateSourceTrigger=LostFocus}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="DESCRIPCION" Width="400" TextAlignment="Center" />
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock x:Name="txtTotal" Text="{Binding SERVICIO.DESCRIPCION}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate >
-                        <DataTemplate>
-                            <TextBox Text="{Binding SERVICIO.DESCRIPCION, UpdateSourceTrigger=LostFocus}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="PRECIO UNITARIO" Width="123" TextAlignment="Center" />
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock x:Name="cantidad" Text="{Binding PRECIO}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate >
-                        <DataTemplate>
-                            <TextBox Text="{Binding PRECIO, UpdateSourceTrigger=LostFocus}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="IMPORTE" Width="60" TextAlignment="Center"/>
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock x:Name="importe" Text="{Binding IMPORTE}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate >
-                        <DataTemplate>
-                            <TextBox Text="{Binding IMPORTE, UpdateSourceTrigger=LostFocus}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="ITEM" Header="ITEM" Binding="{Binding Path=ITEM,StringFormat='0{0}'}" IsReadOnly="true"/>
+                <DataGridTextColumn x:Name="CANTIDAD" Header="CANTIDAD" Binding="{Binding Path=CANTIDAD}" IsReadOnly="False">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="{x:Type TextBox}">
+                            <EventSetter Event="KeyDown" Handler="Importe_KeyDown"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="DESCRIPCION" Header="CONCEPTO DE SERVICIO" Binding="{Binding Path=SERVICIO.DESCRIPCION}" IsReadOnly="True" Width="450" />
+                <DataGridTextColumn x:Name="PRECIO" Header="PRECIO UNITARIO" Binding="{Binding Path=PRECIO}" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="IMPORTE" Header="IMPORTE" Binding="{Binding Path=IMPORTE}" IsReadOnly="True" Width="*"/>
+                    
             </DataGrid.Columns>
         </DataGrid>
         <CheckBox x:Name="chkCambiarNroFact" Content="Cambiar Nro. Fact." HorizontalAlignment="Left" Margin="585,14,0,0" VerticalAlignment="Top" Checked="chkCambiarNroFact_Checked"/>
@@ -139,6 +77,7 @@
         <Button x:Name="btnGenerarFactura" Content="Generar Factura" HorizontalAlignment="Left" Margin="379,538,0,0" VerticalAlignment="Top" Width="157" Click="btnGenerarFactura_Click" Background="#FF42A5F7" Foreground="White" FontWeight="Bold" Height="45"/>
         <TextBox x:Name="txtObservacion" HorizontalAlignment="Left" Height="58" Margin="44,531,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" IsEnabled="False"/>
         <Button x:Name="txtCancelar" Content="Salir" HorizontalAlignment="Left" Margin="557,538,0,0" VerticalAlignment="Top" Width="103" Height="45" Background="#FFE24030" BorderBrush="#FFAEAEAE" Foreground="White" FontWeight="Bold" Click="txtCancelar_Click"/>
+        <Button x:Name="btnEliminarDetalle" Content="Eliminar" HorizontalAlignment="Left" Margin="432,197,0,0" VerticalAlignment="Top" Width="75" Click="btnEliminarDetalle_Click" Background="#FFF10E0E" Foreground="#FFF9F3F3" FontWeight="Bold"/>
 
     </Grid>
 </Controls:MetroWindow>
