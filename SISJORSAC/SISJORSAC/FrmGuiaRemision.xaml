@@ -115,21 +115,6 @@
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="UNIDAD MEDIDA" TextAlignment="Center" />
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock x:Name="txtUnidadMedida" Text="{Binding SERVICIO.UNIDAD_MEDIDA}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate >
-                        <DataTemplate>
-                            <TextBox Text="{Binding SERVICIO.UNIDAD_MEDIDA, UpdateSourceTrigger=LostFocus}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.Header>
                         <TextBlock  Text="PESO TOTAL" Width="80" TextAlignment="Center"/>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>

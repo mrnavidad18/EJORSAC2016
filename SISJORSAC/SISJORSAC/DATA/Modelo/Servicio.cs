@@ -10,11 +10,9 @@ namespace SISJORSAC.DATA.Modelo
     {
         public int COD_SERV { get; set; }
         public string DESCRIPCION { get; set; }
-        public double PRECIO { get; set; }
-        public string UNIDAD_MEDIDA { get; set; }
+        public double PRECIO { get; set; }      
         public string TIPO_MONE { get; set; }
         public double PESO { get; set; }
-
         public string ESTADO { get; set; }
 
     }

@@ -80,6 +80,9 @@
       <DependentUpon>FrmClienteRegistro.xaml</DependentUpon>
     </Compile>
     <Compile Include="FrmGuiaRemision.xaml.cs" />
+    <Compile Include="FrmServicioRegistro.xaml.cs">
+      <DependentUpon>FrmServicioRegistro.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReporteClientesNaturales.Designer.cs" />
     <Compile Include="Reportes\FRTipoCliente.xaml.cs">
       <DependentUpon>FRTipoCliente.xaml</DependentUpon>
@@ -112,6 +115,10 @@
     <Page Include="FrmGuiaRemision.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmServicioRegistro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

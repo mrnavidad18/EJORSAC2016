@@ -25,6 +25,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Proveedores"/>
+                    <MenuItem  x:Name="ItemServicioRegistro"  Header="Servicios" Click="ItemServicioRegistro_Click"/>
                 </MenuItem>
                 <MenuItem Header="Registro" >
                     <MenuItem.ContextMenu>
