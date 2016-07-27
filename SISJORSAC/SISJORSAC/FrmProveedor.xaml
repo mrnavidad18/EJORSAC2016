@@ -1,0 +1,43 @@
+﻿<Controls:MetroWindow x:Class="SISJORSAC.FrmProveedor"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Registrar Clientes"
+        Height="546" Width="715">
+    <Grid x:Name="Clientesss" Margin="0,0,2,0" >
+        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="27,77,0,0" VerticalAlignment="Top"/>
+        <Label Content="Apellido Paterno:" HorizontalAlignment="Left" Margin="330,78,0,0" VerticalAlignment="Top"/>
+        <Label Content="Apellido Materno:" HorizontalAlignment="Left" Margin="26,110,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblTipoDocumento" Content="DNI:" HorizontalAlignment="Left" Margin="377,110,0,0" VerticalAlignment="Top"/>
+        <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="27,163,0,0" VerticalAlignment="Top"/>
+        <Label Content="Dirección:" HorizontalAlignment="Left" Margin="27,204,0,0" VerticalAlignment="Top"/>
+        <Label Content="Departamento:" HorizontalAlignment="Left" Margin="26,327,0,0" VerticalAlignment="Top"/>
+        <Label Content="Provincia:" HorizontalAlignment="Left" Margin="263,329,0,0" VerticalAlignment="Top"/>
+        <Label Content="Distrito:" HorizontalAlignment="Left" Margin="471,329,0,0" VerticalAlignment="Top"/>
+        <Label Content="Telf. Fijo Casa:" HorizontalAlignment="Left" Margin="27,247,0,0" VerticalAlignment="Top"/>
+        <Label Content="Telf. Fijo Oficina:" HorizontalAlignment="Left" Margin="281,247,0,0" VerticalAlignment="Top"/>
+        <Label Content="Celular:" HorizontalAlignment="Left" Margin="27,278,0,0" VerticalAlignment="Top"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="337,278,0,0" VerticalAlignment="Top"/>
+        <Label Content="Observaciones:" HorizontalAlignment="Left" Margin="16,378,0,0" VerticalAlignment="Top"/>
+        <GroupBox Header="Tipo de Proveedor" HorizontalAlignment="Left" Margin="256,11,0,0" VerticalAlignment="Top" Width="218" Height="60"/>
+        <RadioButton x:Name="rdNATUTAL" Content="NATURAL" HorizontalAlignment="Left" Margin="265,46,0,0" VerticalAlignment="Top" Checked="rdNATUTAL_Checked"  />
+        <RadioButton x:Name="rbJURIDICA" Content="JURIDICA" HorizontalAlignment="Left" Margin="357,46,0,0" VerticalAlignment="Top" Checked="rbJURIDICA_Checked" />
+        <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="130,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="170"/>
+        <TextBox x:Name="txtAPPaterno" HorizontalAlignment="Left" Height="23" Margin="442,77,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="219"/>
+        <TextBox x:Name="txtAPMaterno" HorizontalAlignment="Left" Height="23" Margin="132,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="219"/>
+        <TextBox x:Name="txtDocumento" HorizontalAlignment="Left" Height="23" Margin="442,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="104"/>
+        <TextBox x:Name="txtRazonSocial" HorizontalAlignment="Left" Height="23" Margin="120,163,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280"/>
+        <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Height="23" Margin="120,204,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="395" RenderTransformOrigin="0.6,7.115"/>
+        <TextBox x:Name="txtTelfFijoCasa" HorizontalAlignment="Left" Height="23" Margin="123,247,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="115"/>
+        <TextBox x:Name="txtTelfFijoOficina" HorizontalAlignment="Left" Height="23" Margin="400,247,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="115"/>
+        <TextBox x:Name="txtCelular" HorizontalAlignment="Left" Height="23" Margin="123,278,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="115"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="400,278,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="230"/>
+        <TextBox x:Name="txtObservaciones" HorizontalAlignment="Left" Height="43" Margin="118,378,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="248"/>
+        <ComboBox x:Name="cboDepartamento" HorizontalAlignment="Left" Margin="118,329,0,0" VerticalAlignment="Top" Width="134" SelectionChanged="cboDepartamento_SelectionChanged"/>
+        <ComboBox x:Name="cboProvincia" HorizontalAlignment="Left" Margin="324,329,0,0" VerticalAlignment="Top" Width="134" SelectionChanged="cboProvincia_SelectionChanged"/>
+        <ComboBox x:Name="cboDistrito" HorizontalAlignment="Left" Margin="527,327,0,0" VerticalAlignment="Top" Width="164"/>
+        <Button x:Name="btnCrearCliente" Content="Crear Proveedor" HorizontalAlignment="Left" Margin="224,447,0,0" VerticalAlignment="Top" Width="142" Click="btnCrearCliente_Click" />
+    </Grid>
+</Controls:MetroWindow>

@@ -63,6 +63,12 @@ namespace SISJORSAC
             frmServicio.Show();
         }
 
+        private void ItemProveedor_Click(object sender, RoutedEventArgs e)
+        {
+            FrmProveedor frmProveedor = new FrmProveedor();
+            frmProveedor.Show();
+        }
+
 
 
 

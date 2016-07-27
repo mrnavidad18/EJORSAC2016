@@ -154,3 +154,13 @@ C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmB
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmClienteRegistro.g.cs
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmElegirBoleta.baml
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmElegirBoleta.g.cs
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmBoleta.baml
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmClienteRegistro.baml
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmElegirBoleta.baml
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmProveedor.baml
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmServicioRegistro.baml
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmBoleta.g.cs
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmClienteRegistro.g.cs
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmElegirBoleta.g.cs
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmProveedor.g.cs
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmServicioRegistro.g.cs

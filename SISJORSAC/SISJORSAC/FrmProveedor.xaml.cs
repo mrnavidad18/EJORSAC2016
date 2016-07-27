@@ -17,41 +17,25 @@ using MahApps.Metro.Behaviours;
 using SISJORSAC.DATA.DAO;
 using SISJORSAC.DATA.Modelo;
 
-
 namespace SISJORSAC
 {
     /// <summary>
-    /// Lógica de interacción para FrmClienteRegistro.xaml
+    /// Lógica de interacción para FrmProveedor.xaml
     /// </summary>
-    public partial class FrmClienteRegistro : MetroWindow
+    public partial class FrmProveedor : MetroWindow
     {
 
-        ClienteDAO clienteDAO = new ClienteDAO();
+        ProveedorDAO proveedorDAO = new ProveedorDAO();
         UbigeoDAO ubigeoDAO = new UbigeoDAO();
-        string nuevoid = "";        
+        string nuevoid = "";
         string nuevoidProvincia = "";
-        public FrmClienteRegistro()
+        public FrmProveedor()
         {
             InitializeComponent();
+            BloquearTodosLosControles();
+            llenarDepartamentos();
         }
-        private void limpiarTodosLosControles()
-        {
-            txtNombre.Text = "";
-            txtAPPaterno.Text = "";
-            txtAPMaterno.Text = "";
-            txtDocumento.Text = ""; txtDireccion.Text = "";
-            txtRazonSocial.Text = "";
-            txtTelfFijoCasa.Text = "";
-            txtTelfFijoOficina.Text = "";
-            txtCelular.Text = "";
-            txtEmail.Text = "";
-            txtObservaciones.Text = "";
-            cboDepartamento.SelectedIndex = -1;
-            cboProvincia.SelectedIndex = -1;
-            cboDistrito.SelectedIndex = -1;
 
-
-        }
         private void llenarDepartamentos()
         {
             var listaDepartamentos = ubigeoDAO.llenarDepartamentos();
@@ -76,7 +60,24 @@ namespace SISJORSAC
             this.cboDistrito.SelectedValuePath = "IdUbigeo";
         }
 
-
+        private void limpiarTodosLosControles()
+        {
+            txtNombre.Text = "";
+            txtAPPaterno.Text = "";
+            txtAPMaterno.Text = "";
+            txtDocumento.Text = ""; txtDireccion.Text = "";
+            txtRazonSocial.Text = "";
+            txtTelfFijoCasa.Text = "";
+            txtTelfFijoOficina.Text = "";
+            txtCelular.Text = "";
+            txtEmail.Text = "";
+            txtObservaciones.Text = "";
+            cboDepartamento.SelectedIndex = -1;
+            cboProvincia.SelectedIndex = -1;
+            cboDistrito.SelectedIndex = -1;            
+            
+            
+        }
         private void BloquearTodosLosControles()
         {
             txtNombre.IsEnabled = false;
@@ -92,11 +93,6 @@ namespace SISJORSAC
             cboDepartamento.IsEnabled = false;
             cboProvincia.IsEnabled = false;
             cboDistrito.IsEnabled = false;
-        }
-        private void Clientesss_Loaded(object sender, RoutedEventArgs e)
-        {
-            llenarDepartamentos();
-            BloquearTodosLosControles();           
         }
 
         private void activarParaNaturales()
@@ -133,16 +129,16 @@ namespace SISJORSAC
         {
             txtNombre.BorderBrush = Brushes.Transparent;
             txtAPPaterno.BorderBrush = Brushes.Transparent;
-            txtAPMaterno.BorderBrush = Brushes.Transparent;                       
+            txtAPMaterno.BorderBrush = Brushes.Transparent;
             txtTelfFijoCasa.BorderBrush = Brushes.Transparent;
-            txtCelular.BorderBrush = Brushes.Transparent;           
+            txtCelular.BorderBrush = Brushes.Transparent;
             txtObservaciones.BorderBrush = Brushes.Transparent;
             BloquearTodosLosControles();
             lblTipoDocumento.Content = "RUC:";
-            txtDocumento.IsEnabled = true; 
+            txtDocumento.IsEnabled = true;
             txtDireccion.IsEnabled = true;
-            txtRazonSocial.IsEnabled = true;           
-            txtTelfFijoOficina.IsEnabled = true;          
+            txtRazonSocial.IsEnabled = true;
+            txtTelfFijoOficina.IsEnabled = true;
             txtEmail.IsEnabled = true;
             txtObservaciones.IsEnabled = true;
             cboDepartamento.IsEnabled = true;
@@ -179,7 +175,7 @@ namespace SISJORSAC
                 llenarProvincias(nuevoid);
                 cboProvincia.IsEnabled = true;
             }
-           
+            
         }
 
         private void cboProvincia_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -200,55 +196,58 @@ namespace SISJORSAC
 
         private async void btnCrearCliente_Click(object sender, RoutedEventArgs e)
         {
+            Proveedor proveedor = new Proveedor();
             string resul = "";
-            Cliente clienteAgregar = new Cliente();
-            if(rdNATUTAL.IsChecked==true){
-            clienteAgregar.NOMBRES = txtNombre.Text;
-            clienteAgregar.AP_PATERNO = txtAPPaterno.Text;
-            clienteAgregar.AP_MATERNO = txtAPMaterno.Text;
-            clienteAgregar.DNI = txtDocumento.Text.Trim();
-            clienteAgregar.DIRECCION = txtDireccion.Text;
-            clienteAgregar.DEPARTAMENTO = cboDepartamento.Text.ToString();
-            clienteAgregar.PROVINCIA = cboProvincia.Text.ToString();
-            clienteAgregar.DISTRITO = cboDistrito.Text.ToString();
-            clienteAgregar.TEL_FIJO_CASA = txtTelfFijoCasa.Text;
-            clienteAgregar.CELULAR = txtCelular.Text;
-            clienteAgregar.EMAIL = txtEmail.Text;
-            clienteAgregar.OBSERVACIONES = txtObservaciones.Text;
-            clienteAgregar.TIPO_CLIE = rdNATUTAL.Content.ToString();
-             resul= clienteDAO.Agregar(clienteAgregar);
-             if (resul.Equals("Agregado"))
-                 await this.ShowMessageAsync(resul, "Cliente  : " + clienteAgregar.NOMBRES + " , " + clienteAgregar.AP_PATERNO + " , agregado Correctamente");
-             else
-                 await this.ShowMessageAsync(resul, "¡Lamentablemente ocurrió un error al Agregar!");
-           
+
+            if (rdNATUTAL.IsChecked == true)
+            {
+                proveedor.NOMBRES = txtNombre.Text;
+                proveedor.AP_PATERNO = txtAPPaterno.Text;
+                proveedor.AP_MATERNO = txtAPMaterno.Text;
+                proveedor.DNI = txtDocumento.Text.Trim();
+                proveedor.DIRECCION = txtDireccion.Text;
+                proveedor.DEPARTAMENTO = cboDepartamento.Text.ToString();
+                proveedor.PROVINCIA = cboProvincia.Text.ToString();
+                proveedor.DISTRITO = cboDistrito.Text.ToString();
+                proveedor.TELF_FIJO_CASA = txtTelfFijoCasa.Text;
+                proveedor.CELULAR = txtCelular.Text;
+                proveedor.EMAIL = txtEmail.Text;
+                proveedor.OBSERVACIONES = txtObservaciones.Text;
+                proveedor.TIPO_PRO = rdNATUTAL.Content.ToString();
+                resul = proveedorDAO.Agregar(proveedor);
+                if (resul.Equals("Agregado"))
+                await this.ShowMessageAsync(resul, "Cliente  : " + proveedor.NOMBRES + " , " + proveedor.AP_PATERNO + " , agregado Correctamente");
+                else
+                    await this.ShowMessageAsync(resul, "¡Lamentablemente ocurrió un error al Agregar!");
             }
             else if (rbJURIDICA.IsChecked == true)
             {
-                clienteAgregar.RUC = txtDocumento.Text.Trim();
-                clienteAgregar.RAZON_SOCIAL = txtRazonSocial.Text;
-                clienteAgregar.DIRECCION = txtDireccion.Text;
-                clienteAgregar.DEPARTAMENTO = cboDepartamento.Text.ToString();
-                clienteAgregar.PROVINCIA = cboProvincia.Text.ToString();
-                clienteAgregar.DISTRITO = cboDistrito.Text.ToString();
-                clienteAgregar.TEL_FIJO_OFICINA = txtTelfFijoOficina.Text;
-                clienteAgregar.EMAIL = txtEmail.Text;
-                clienteAgregar.OBSERVACIONES = txtObservaciones.Text;
-                clienteAgregar.TIPO_CLIE = rbJURIDICA.Content.ToString();
-                resul= clienteDAO.Agregar(clienteAgregar);
-                if (resul.Equals("Agregado"))
-                    await this.ShowMessageAsync(resul, "Cliente :   " + clienteAgregar.RAZON_SOCIAL + " , agregado correctamente");
+                proveedor.RUC = txtDocumento.Text.Trim();
+                proveedor.RAZON_SOCIAL = txtRazonSocial.Text;
+                proveedor.DIRECCION = txtDireccion.Text;
+                proveedor.DEPARTAMENTO = cboDepartamento.Text.ToString();
+                proveedor.PROVINCIA = cboProvincia.Text.ToString();
+                proveedor.DISTRITO = cboDistrito.Text.ToString();
+                proveedor.TELF_FIJO_OFICINA = txtTelfFijoOficina.Text;
+                proveedor.EMAIL = txtEmail.Text;
+                proveedor.OBSERVACIONES = txtObservaciones.Text;
+                proveedor.TIPO_PRO = rbJURIDICA.Content.ToString();
+                resul=proveedorDAO.Agregar(proveedor);
+                if(resul.Equals("Agregado"))
+                await this.ShowMessageAsync(resul, "Cliente :   " + proveedor.RAZON_SOCIAL + " , agregado correctamente");
                 else
                     await this.ShowMessageAsync(resul, "¡Lamentablemente ocurrió un error al Agregar!");
-               
             }
             else
             {
-                await this.ShowMessageAsync("Error", "Falta Llenar Campos, seleccione que cliente desea agregar.");
-            }
-            
+                await this.ShowMessageAsync("Error", "Falta Llenar Campos, seleccione que Tipo de Proveedor desea agregar.");
 
-            
+            }
+           
+
         }
+
+
+
     }
 }
