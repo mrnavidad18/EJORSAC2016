@@ -17,9 +17,9 @@
             <Menu Height="30" VerticalAlignment="Top" DockPanel.Dock="Top" >
                 <MenuItem Header="Mantenimiento"  >
                     <MenuItem.Icon>
-                        <Image Source="IMG/mantenimiento.png"/>
+                        <Image Source="IMG/mantenimiento.png" />
                     </MenuItem.Icon>
-                    <MenuItem Header="Clientes">
+                    <MenuItem x:Name="ItemClienteRegistro" Header="Clientes" Click="ItemClienteRegistro_Click"    >
                         <MenuItem.Icon>
                             <Image Source="IMG/cliente.png" Height="44" Width="60"/>
                         </MenuItem.Icon>

@@ -51,6 +51,12 @@ namespace SISJORSAC
             FrmGuiaRemision.ShowDialog();
         }
 
+        private void ItemClienteRegistro_Click(object sender, RoutedEventArgs e)
+        {
+            FrmClienteRegistro frmCliente = new FrmClienteRegistro();
+            frmCliente.Show();            
+        }
+
 
 
 

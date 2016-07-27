@@ -76,6 +76,9 @@
     <Compile Include="DATA\DAO\DetalleBoletaDAO.cs" />
     <Compile Include="DATA\DAO\DetalleFacturaDAO.cs" />
     <Compile Include="DATA\DAO\UbigeoDAO.cs" />
+    <Compile Include="FrmClienteRegistro.xaml.cs">
+      <DependentUpon>FrmClienteRegistro.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrmGuiaRemision.xaml.cs" />
     <Compile Include="ReporteClientesNaturales.Designer.cs" />
     <Compile Include="Reportes\FRTipoCliente.xaml.cs">
@@ -95,6 +98,10 @@
     </Compile>
     <Compile Include="VariablesGlobales.cs" />
     <Page Include="ElegirFactura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmClienteRegistro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -21,7 +21,7 @@ namespace SISJORSAC.DATA.DAO
         public Object[] AgregarFactura(Factura factura)
         {
 
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=192.168.0.26;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             
             cn.Open();
@@ -267,7 +267,7 @@ namespace SISJORSAC.DATA.DAO
 
         public Object[] AgregarFacturaConNroFac(Factura factura)
         {
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=192.168.0.26;DataBase=BDJORSAC;user=sa;password=Developer2016";
 
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
