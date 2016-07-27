@@ -57,6 +57,12 @@ namespace SISJORSAC
             frmCliente.Show();            
         }
 
+        private void ItemServicioRegistro_Click(object sender, RoutedEventArgs e)
+        {
+            FrmServicioRegistro frmServicio = new FrmServicioRegistro();
+            frmServicio.Show();
+        }
+
 
 
 

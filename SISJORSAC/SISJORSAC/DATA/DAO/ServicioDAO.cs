@@ -25,8 +25,7 @@ namespace SISJORSAC.DATA.DAO
                 SqlParameter[] dbParams = new SqlParameter[]
              {
                  DBHelper.MakeParam("@P_DESCRIPCION",servicio.DESCRIPCION ),
-                 DBHelper.MakeParam("@P_PRECIO",servicio.PRECIO ),
-                 DBHelper.MakeParam("@P_UNIDAD_MEDIDA",servicio.UNIDAD_MEDIDA ),
+                 DBHelper.MakeParam("@P_PRECIO",servicio.PRECIO ),               
                  DBHelper.MakeParam("@P_TIPO_MONE",servicio.TIPO_MONE ),
                  DBHelper.MakeParam("@P_PESO",servicio.PESO ),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
@@ -65,8 +64,7 @@ namespace SISJORSAC.DATA.DAO
                             servicio = new Servicio();
                             servicio.COD_SERV=int.Parse(lector["COD_SERV"].ToString());
                             servicio.DESCRIPCION=lector["DESCRIPCION"].ToString();
-                            servicio.PRECIO=double.Parse(lector["PRECIO"].ToString());
-                            servicio.UNIDAD_MEDIDA=lector["UNIDAD_MEDIDA"].ToString();
+                            servicio.PRECIO=double.Parse(lector["PRECIO"].ToString());                            
                             servicio.TIPO_MONE=lector["TIPO_MONE"].ToString();
                             servicio.PESO=double.Parse(lector["PESO"].ToString());
                             listarServi.Add(servicio);   
@@ -102,8 +100,7 @@ namespace SISJORSAC.DATA.DAO
                         {
                             servicio.COD_SERV=int.Parse(lector["COD_SERV"].ToString());
                             servicio.DESCRIPCION=lector["DESCRIPCION"].ToString();
-                            servicio.PRECIO=double.Parse(lector["PRECIO"].ToString());
-                            servicio.UNIDAD_MEDIDA=lector["UNIDAD_MEDIDA"].ToString();
+                            servicio.PRECIO=double.Parse(lector["PRECIO"].ToString());                            
                             servicio.TIPO_MONE=lector["TIPO_MONE"].ToString();
                             servicio.PESO=double.Parse(lector["PESO"].ToString());
                             servicio.ESTADO=lector["ESTADO"].ToString();                            
@@ -133,8 +130,7 @@ namespace SISJORSAC.DATA.DAO
                 SqlParameter[] dbParams = new SqlParameter[]
              {
                  DBHelper.MakeParam("@P_DESCRIPCION",servicio.DESCRIPCION ),
-                 DBHelper.MakeParam("@P_PRECIO",servicio.PRECIO ),
-                 DBHelper.MakeParam("@P_UNIDAD_MEDIDA",servicio.UNIDAD_MEDIDA ),
+                 DBHelper.MakeParam("@P_PRECIO",servicio.PRECIO ),               
                  DBHelper.MakeParam("@P_TIPO_MONE",servicio.TIPO_MONE ),
                  DBHelper.MakeParam("@P_PESO",servicio.PESO ),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
