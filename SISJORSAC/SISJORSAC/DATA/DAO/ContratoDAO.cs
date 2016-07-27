@@ -15,7 +15,7 @@ namespace SISJORSAC.DATA.DAO
 
         public Object[] Agregar(Contrato contrato)
         {
-            string cadenaConexion = "server=192.168.1.34;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=192.168.0.27;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
