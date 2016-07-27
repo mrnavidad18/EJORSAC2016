@@ -182,7 +182,7 @@ namespace SISJORSAC.DATA.DAO
 
                 ClienteDAO clienteDao = new ClienteDAO();
                 GuiaRemisionDAO guiaDao = new GuiaRemisionDAO();
-                DetalleFacturaDAO detalleDao = new DetalleFacturaDAO();
+                
                 string query = "SP_TBL_FACTURA_LISTAR";
                 SqlParameter[] param = new SqlParameter[]
                 {
@@ -209,7 +209,7 @@ namespace SISJORSAC.DATA.DAO
                             factura.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
                             factura.ESTADO = lector["ESTADO"].ToString();
                             factura.cliente = clienteDao.ObtenerCliente(Convert.ToInt32(lector["COD_CLI"].ToString()));
-                            Object o = lector["NRO_GUIA"];
+                            
                             if (lector["NRO_GUIA"]== DBNull.Value)
                             {
                                 factura.guiaRemision = null;
@@ -218,7 +218,7 @@ namespace SISJORSAC.DATA.DAO
                             {
                                 factura.guiaRemision = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["NRO_GUIA"].ToString()));
                             }
-                            factura.DETALLEFACTURA = detalleDao.ListarDetallesXFactura(factura.COD_FAC);
+                           
                             lista.Add(factura);
                         }
                     }
@@ -276,7 +276,7 @@ namespace SISJORSAC.DATA.DAO
             try
             {
                 Object[] salidas = null;
-                string query = "SP_TBL_FACTURA_AGREGAR_CON_NRO_FACTURA";
+                string query = "SP_TBL_BOLETA_AGREGAR_CON_NRO_BOLETA";
 
                 SqlParameter id = new SqlParameter("@PS_COD", SqlDbType.Int);
                 id.Direction = ParameterDirection.Output;

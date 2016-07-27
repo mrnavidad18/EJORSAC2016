@@ -20,6 +20,8 @@ namespace SISJORSAC.DATA.Modelo
 
         public string ESTADO { get; set; }
 
+        public GuiaRemision GUIA { get; set; }
+
         public List<DetalleBoleta> DETALLEBOLETA { get; set; }
     }
 }

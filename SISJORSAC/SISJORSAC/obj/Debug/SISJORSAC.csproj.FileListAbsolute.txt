@@ -148,3 +148,9 @@ C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\Syste
 C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\MahApps.Metro.pdb
 C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\MahApps.Metro.xml
 C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.csprojResolveAssemblyReference.cache
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmBoleta.baml
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmClienteRegistro.baml
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmBoleta.g.cs
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmClienteRegistro.g.cs
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmElegirBoleta.baml
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmElegirBoleta.g.cs

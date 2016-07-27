@@ -202,9 +202,8 @@ namespace SISJORSAC
         {
             try
             {
-                if (this.txtNroFactura.Text.Trim() != "" && this.cboModalidad.SelectedItem != null && this.cboMoneda.SelectedItem != null ||
-             this.cboRazonsocial.SelectedItem == null && this.cboServicio.SelectedItem != null && this.txtPrecio.Text.Trim() != ""
-             && this.txtCantidad.Text.Trim() != "")
+                if (this.txtNroFactura.Text.Trim() != "" && this.cboModalidad.SelectedItem != null && this.cboMoneda.SelectedItem != null &&
+             this.cboRazonsocial.SelectedItem == null)
                 {
                     if (this.dgvListado.Items.Count == 0)
                     {
@@ -216,6 +215,7 @@ namespace SISJORSAC
                         {
                             AgregarFactura();
                             await this.ShowMessageAsync("Correcto",mensaje);
+                            VariablesGlobales.NRO_GUIA_GLOBAL = "";
                             this.Close();
                         }
                     }
@@ -228,7 +228,7 @@ namespace SISJORSAC
             }
             catch (Exception ex)
             {
-               
+                VariablesGlobales.NRO_GUIA_GLOBAL = "";
                 MessageBox.Show( ex.Message,"Error");
             }
 

@@ -76,8 +76,14 @@
     <Compile Include="DATA\DAO\DetalleBoletaDAO.cs" />
     <Compile Include="DATA\DAO\DetalleFacturaDAO.cs" />
     <Compile Include="DATA\DAO\UbigeoDAO.cs" />
+    <Compile Include="FrmBoleta.xaml.cs">
+      <DependentUpon>FrmBoleta.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrmClienteRegistro.xaml.cs">
       <DependentUpon>FrmClienteRegistro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmElegirBoleta.xaml.cs">
+      <DependentUpon>FrmElegirBoleta.xaml</DependentUpon>
     </Compile>
     <Compile Include="FrmGuiaRemision.xaml.cs" />
     <Compile Include="ReporteClientesNaturales.Designer.cs" />
@@ -101,7 +107,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FrmBoleta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FrmClienteRegistro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmElegirBoleta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\
 SISJORSAC
 none
 false
 DEBUG;TRACE
-C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\App.xaml
-9916455275
+C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\App.xaml
+11-1083792276
 
-55-1626931763
-20-356431706
-ElegirFactura.xaml;FrmClienteRegistro.xaml;frmFactura.xaml;FrmGuiaRemision.xaml;MainWindow.xaml;Menu.xaml;Reportes\FRTipoCliente.xaml;Resources\Icons.xaml;Resources\IconsNonShared.xaml;
+57410168169
+20-145877906
+ElegirFactura.xaml;FrmBoleta.xaml;FrmClienteRegistro.xaml;FrmElegirBoleta.xaml;frmFactura.xaml;FrmGuiaRemision.xaml;MainWindow.xaml;Menu.xaml;Reportes\FRTipoCliente.xaml;Resources\Icons.xaml;Resources\IconsNonShared.xaml;
 
 False
 
