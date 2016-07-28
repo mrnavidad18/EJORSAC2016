@@ -52,6 +52,9 @@
                     <MenuItem x:Name="ItemCliente" Header="Clientes" Click="ItemCliente_Click"/>
                     
                 </MenuItem>
+                <MenuItem Header="Mi Cuenta">
+                    <MenuItem x:Name="ItemMiCuenta" Header="Actualizar Mis Datos" Click="ItemMiCuenta_Click" />
+                </MenuItem>
                 
                 
             </Menu>

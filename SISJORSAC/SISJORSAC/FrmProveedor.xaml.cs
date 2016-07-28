@@ -35,7 +35,6 @@ namespace SISJORSAC
             BloquearTodosLosControles();
             llenarDepartamentos();
         }
-
         private void llenarDepartamentos()
         {
             var listaDepartamentos = ubigeoDAO.llenarDepartamentos();
@@ -246,7 +245,6 @@ namespace SISJORSAC
            
 
         }
-
 
 
     }

@@ -164,3 +164,5 @@ C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debu
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmElegirBoleta.g.cs
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmProveedor.g.cs
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmServicioRegistro.g.cs
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmUsuarioDatos.baml
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmUsuarioDatos.g.cs

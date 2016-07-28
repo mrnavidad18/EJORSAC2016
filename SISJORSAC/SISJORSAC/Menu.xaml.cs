@@ -69,6 +69,12 @@ namespace SISJORSAC
             frmProveedor.Show();
         }
 
+        private void ItemMiCuenta_Click(object sender, RoutedEventArgs e)
+        {
+            FrmUsuarioDatos frmUsuarioCambiarInfor = new FrmUsuarioDatos();
+            frmUsuarioCambiarInfor.Show();
+        }
+
 
 
 

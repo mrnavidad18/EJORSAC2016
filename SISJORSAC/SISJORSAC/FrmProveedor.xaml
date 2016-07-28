@@ -4,7 +4,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Registrar Clientes"
+        Title="Registrar Proveedores"
         Height="546" Width="715">
     <Grid x:Name="Clientesss" Margin="0,0,2,0" >
         <Label Content="Nombre:" HorizontalAlignment="Left" Margin="27,77,0,0" VerticalAlignment="Top"/>
