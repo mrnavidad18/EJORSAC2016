@@ -17,6 +17,7 @@ using MahApps.Metro.Behaviours;
 using SISJORSAC.DATA.Modelo;
 using SISJORSAC.DATA.DAO;
 using System.Data.SqlClient;
+using Xceed.Wpf.Toolkit;
 namespace SISJORSAC
 {
     /// <summary>
@@ -42,6 +43,7 @@ namespace SISJORSAC
         public frmFactura()
         {
             InitializeComponent();
+            DATE.Format = DateTimeFormat.FullDateTime;
             this.txtFechaEmision.Text = DateTime.Now.ToString();
             this.txtNroFactura.Text =facturaDao.ObtenerNroFactura().ToString();
 
@@ -229,7 +231,7 @@ namespace SISJORSAC
             catch (Exception ex)
             {
                 VariablesGlobales.NRO_GUIA_GLOBAL = "";
-                MessageBox.Show( ex.Message,"Error");
+              
             }
 
          
@@ -303,7 +305,6 @@ namespace SISJORSAC
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(((ComboBoxItem)this.cboModalidad.SelectedItem).Content.ToString(), "dsds");
         }
 
         private void chkObservacion_Checked(object sender, RoutedEventArgs e)
@@ -411,6 +412,13 @@ namespace SISJORSAC
 
                
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            string dia = DATE.Text;
+            DateTime date =Convert.ToDateTime(dia);
+            System.Windows.MessageBox.Show(DATE.Text);
         }
 
       
