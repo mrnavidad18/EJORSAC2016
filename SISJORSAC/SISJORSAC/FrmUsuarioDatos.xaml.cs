@@ -24,11 +24,23 @@ namespace SISJORSAC
     /// </summary>
     public partial class FrmUsuarioDatos : MetroWindow
     {
+        UsuarioDAO usuDAO = new UsuarioDAO();
         public FrmUsuarioDatos()
         {
             InitializeComponent();
             ocultarCambioPassword();
+            cargarDatosACambiar();
         }
+
+        public void cargarDatosACambiar(){
+            Usuario usu = VariablesGlobales.usuarioConectado;
+            txtNombre.Text = usu.Nombre;
+            txtApellidos.Text = usu.Apellidos;
+            txtUsername.Text = usu.username;
+            txtClave.Password = usu.clave;            
+        }
+
+
         public void ocultarCambioPassword()
         {
             lblConfirmarContra.Visibility = Visibility.Hidden;
@@ -54,6 +66,33 @@ namespace SISJORSAC
         private void chkCambiarContraseña_Unchecked(object sender, RoutedEventArgs e)
         {
             ocultarCambioPassword();
+        }
+
+        private async void btnGuardarCambios_Click(object sender, RoutedEventArgs e)
+        {
+            string resul="";
+            VariablesGlobales.usuarioConectado.Nombre = txtNombre.Text;
+            VariablesGlobales.usuarioConectado.Apellidos = txtApellidos.Text;
+            VariablesGlobales.usuarioConectado.username = txtUsername.Text;
+            VariablesGlobales.usuarioConectado.clave = txtClave.Password;
+            if (chkCambiarContraseña.IsChecked == true)
+            {
+                string clave=txtnuevaContra.Password.Trim();
+                if(txtConfirmacionNuevaContra.Password.Trim().Equals(clave)){
+                VariablesGlobales.usuarioConectado.clave = clave;
+                resul = usuDAO.Actualizar(VariablesGlobales.usuarioConectado);
+                await this.ShowMessageAsync(resul, "¡Tu cuenta fue actualizada!");
+                }
+                else
+                {
+                    await this.ShowMessageAsync("Error", "No Coinciden las nuevas Contraseñas");
+                }                
+            }
+            else
+            {
+                resul = usuDAO.Actualizar(VariablesGlobales.usuarioConectado);
+                await this.ShowMessageAsync(resul ,"¡Tu cuenta fue actualizada!");
+            }
         }
 
 

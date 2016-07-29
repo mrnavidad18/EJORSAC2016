@@ -89,6 +89,13 @@ namespace SISJORSAC
             contrato.ShowDialog();
         }
 
+        private void ItemConceptoGastoRegistro_Click(object sender, RoutedEventArgs e)
+        {
+            FrmConceptoGasto frmConceptoGastoRegistro = new FrmConceptoGasto();
+            frmConceptoGastoRegistro.ShowDialog();
+
+        }
+
 
 
 

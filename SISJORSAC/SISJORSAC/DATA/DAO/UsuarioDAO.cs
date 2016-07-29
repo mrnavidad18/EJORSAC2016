@@ -11,15 +11,12 @@ using System.Data.SqlClient;
 namespace SISJORSAC.DATA.DAO
 {
     public class UsuarioDAO
-    {      
+    {
         public string Agregar(Usuario usuario)
         {
             string salidas;
-          
             string query = "SP_TBL_USUARIO_AGREGAR";
-
-           
-            SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar,100);
+            SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
             msj.Direction = ParameterDirection.Output;
             try
             {
@@ -33,20 +30,14 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
                  msj
              };
-              
                 salidas = DBHelper.ExecuteProcedure(query, dbParams);
                 return salidas;
-
             }
             catch (Exception)
             {
                 throw;
             }
-           
-            
         }
-
-
         public Usuario ObtenerUsuario(int idUsuario)
         {
             Usuario usuario = new Usuario();
@@ -65,7 +56,7 @@ namespace SISJORSAC.DATA.DAO
                         while (lector.Read())
                         {
                             usuario.idUsuario = int.Parse(lector["idUsuario"].ToString());
-                            usuario.username=lector["username"].ToString();
+                            usuario.username = lector["username"].ToString();
                             usuario.clave = lector["clave"].ToString();
                             usuario.Nombre = lector["Nombre"].ToString();
                             usuario.Apellidos = lector["Apellidos"].ToString();
@@ -82,7 +73,6 @@ namespace SISJORSAC.DATA.DAO
                 throw;
             }
         }
-
         public string Actualizar(Usuario usuario)
         {
             string salidas;
@@ -99,7 +89,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_NOMBRE",usuario.Nombre),              
                  DBHelper.MakeParam("@P_APELLIDOS",usuario.Apellidos),
                  DBHelper.MakeParam("@P_DNI",usuario.DNI),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                  DBHelper.MakeParam("@P_IDUSUARIO",usuario.idUsuario),
                  msj
              };
@@ -113,18 +103,16 @@ namespace SISJORSAC.DATA.DAO
 
 
         }
-
-
         public Usuario ValidarUsuario(Usuario usuario)
         {
             string resultado;
-           Usuario usu  = new Usuario();
+            Usuario usu = new Usuario();
             string query = "SP_TBL_USUARIO_VALIDARUSUARIO";
             string queryListado = "SP_TBL_USUARIO_TRAERUSUARIOVALIDADO";
             try
             {
                 SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
-            msj.Direction = ParameterDirection.Output;
+                msj.Direction = ParameterDirection.Output;
 
 
                 SqlParameter[] dbParams = new SqlParameter[]{
@@ -137,38 +125,62 @@ namespace SISJORSAC.DATA.DAO
                      DBHelper.MakeParam("@P_USERNAME",usuario.username),
                      DBHelper.MakeParam("@P_CLAVE",usuario.clave)                     
                  };
-                 resultado=DBHelper.ExecuteProcedure(query,dbParams);
-                 if (resultado.Equals("CORRECTO"))
-                 {
-                     using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(queryListado, dbParamListado))
-                     {
-                         if (lector != null && lector.HasRows)
-                         {
-                             while (lector.Read())
-                             {
-                                 usu.idUsuario = int.Parse(lector["idUsuario"].ToString());
-                                 usu.username = lector["username"].ToString();
-                                 usu.Nombre = lector["Nombre"].ToString();
-                                 usu.Apellidos = lector["Apellidos"].ToString();
-                                 usu.DNI = lector["DNI"].ToString();
-                                 usu.ESTADO = lector["ESTADO"].ToString();
-                             }
-                         }
-                     }
-                 }
-                 else
-                 {
-                     usu = null;
-                 }
-                 return usu;
+                resultado = DBHelper.ExecuteProcedure(query, dbParams);
+                if (resultado.Equals("CORRECTO"))
+                {
+                    using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(queryListado, dbParamListado))
+                    {
+                        if (lector != null && lector.HasRows)
+                        {
+                            while (lector.Read())
+                            {
+                                usu.idUsuario = int.Parse(lector["idUsuario"].ToString());
+                                usu.username = lector["username"].ToString();
+                                usu.Nombre = lector["Nombre"].ToString();
+                                usu.clave = lector["clave"].ToString();
+                                usu.Apellidos = lector["Apellidos"].ToString();
+                                usu.DNI = lector["DNI"].ToString();
+                                usu.ESTADO = lector["ESTADO"].ToString();
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    usu = null;
+                }
+                return usu;
             }
             catch (Exception)
             {
                 throw;
             }
-        
-        }
-        
 
+        }
+
+        public string ModificarCuentausuario(Usuario usuario)
+        {
+            string salidas;
+            string query = "SP_TBL_USUARIO_MODIFICARPASSWORD";
+
+            SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
+            msj.Direction = ParameterDirection.Output;
+            try
+            {
+              SqlParameter[] dbParams = new SqlParameter[]
+             {
+              DBHelper.MakeParam("@P_IDUSUARIO",usuario.idUsuario),
+              DBHelper.MakeParam("@P_CLAVE",usuario.clave),                   
+               msj
+             };
+                salidas = DBHelper.ExecuteProcedure(query, dbParams);
+                return salidas;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
+
 }

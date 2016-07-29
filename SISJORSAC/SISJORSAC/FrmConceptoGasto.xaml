@@ -1,0 +1,15 @@
+﻿<Controls:MetroWindow x:Class="SISJORSAC.FrmConceptoGasto"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Registrar Concepto Gasto" Height="182.395" Width="539.03"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBox x:Name="txtConceptoGasto" HorizontalAlignment="Left" Height="23" Margin="133,16,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="323"/>
+        <Label Content="Concepto Gasto:" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnAgregarConcepto" Content="Agregar Concepto Gasto" HorizontalAlignment="Left" Margin="284,112,0,0" VerticalAlignment="Top" Width="172" Click="btnAgregarConcepto_Click"/>
+
+    </Grid>
+</Controls:MetroWindow>
