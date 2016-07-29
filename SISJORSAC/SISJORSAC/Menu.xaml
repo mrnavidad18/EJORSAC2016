@@ -27,6 +27,7 @@
                     <MenuItem Header="Proveedores"/>
                     <MenuItem  x:Name="ItemServicioRegistro"  Header="Servicios" Click="ItemServicioRegistro_Click"/>
                     <MenuItem  x:Name="ItemProveedor"  Header="Proveedores" Click="ItemProveedor_Click" />
+                    <MenuItem  x:Name="ItemConceptoGastoRegistro"  Header="Concepto de Gasto" Click="ItemConceptoGastoRegistro_Click"  />
                 </MenuItem>
                 <MenuItem Header="Registro" >
                     <MenuItem.ContextMenu>

@@ -100,6 +100,9 @@
     <Compile Include="FrmClienteRegistro.xaml.cs">
       <DependentUpon>FrmClienteRegistro.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrmConceptoGasto.xaml.cs">
+      <DependentUpon>FrmConceptoGasto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrmContratoAlquiler.xaml.cs">
       <DependentUpon>FrmContratoAlquiler.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FrmClienteRegistro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmConceptoGasto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

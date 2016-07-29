@@ -16,14 +16,14 @@
         <Label Content="Nombre:" HorizontalAlignment="Left" Margin="29,10,0,0" VerticalAlignment="Top" Height="26" Width="83"/>
         <Label Content="Apellidos" HorizontalAlignment="Left" Margin="29,55,0,0" VerticalAlignment="Top" Height="26" Width="60"/>
         <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="17" Margin="112,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
-        <TextBox x:Name="txtClave" HorizontalAlignment="Left" Height="26" Margin="112,138,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
+        <PasswordBox x:Name="txtClave" HorizontalAlignment="Left" Height="26" Margin="112,138,0,0"  VerticalAlignment="Top" Width="185"/>
         <TextBox x:Name="txtApellidos" HorizontalAlignment="Left" Height="26" Margin="112,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
         <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="26" Margin="112,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185" RenderTransformOrigin="0.658,-4.192"/>
-        <Button x:Name="btnGuardarCambios" Content="Guardar Cambios" HorizontalAlignment="Left" Margin="29,312,0,0" VerticalAlignment="Top" Width="166" Height="29" RenderTransformOrigin="-0.295,2.241"  />
+        <Button x:Name="btnGuardarCambios" Content="Guardar Cambios" HorizontalAlignment="Left" Margin="29,312,0,0" VerticalAlignment="Top" Width="166" Height="29" RenderTransformOrigin="-0.295,2.241" Click="btnGuardarCambios_Click"  />
         <Label x:Name="lblNuevaContra" Content="Nueva Contraseña:" HorizontalAlignment="Left" Margin="29,178,0,0" VerticalAlignment="Top" Height="26" Width="115"/>
-        <TextBox x:Name="txtnuevaContra" HorizontalAlignment="Left" Height="26" Margin="165,178,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
-        <Label x:Name="lblConfirmarContra" Content="Confirme Contraseña:" HorizontalAlignment="Left" Margin="29,217,0,0" VerticalAlignment="Top" Height="26" Width="127"/>
-        <TextBox x:Name="txtConfirmacionNuevaContra" HorizontalAlignment="Left" Height="26" Margin="165,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
+        <PasswordBox x:Name="txtnuevaContra" HorizontalAlignment="Left" Height="26" Margin="165,178,0,0"  VerticalAlignment="Top" Width="185"/>
+        <Label x:Name="lblConfirmarContra" Content="Confirme Contraseña:" HorizontalAlignment="Left" Margin="29,220,0,0" VerticalAlignment="Top" Height="26" Width="127"/>
+        <PasswordBox x:Name="txtConfirmacionNuevaContra" HorizontalAlignment="Left" Height="26" Margin="165,218,0,0"  VerticalAlignment="Top" Width="185"/>
         <CheckBox x:Name="chkCambiarContraseña" Content="Cambiar Contraseña " HorizontalAlignment="Left" Margin="334,142,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="152" Checked="chkCambiarContraseña_Checked" Unchecked="chkCambiarContraseña_Unchecked"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="30" Margin="325,134,0,0" VerticalAlignment="Top" Width="161"/>
 

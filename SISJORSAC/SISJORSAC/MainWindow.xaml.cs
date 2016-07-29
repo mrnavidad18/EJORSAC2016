@@ -43,6 +43,7 @@ namespace SISJORSAC
             string clave = this.txtClave.Password;
 
             Usuario user = new Usuario();
+            
             user.username = usuario.Trim();
             user.clave = clave.Trim();
 
@@ -58,7 +59,8 @@ namespace SISJORSAC
                 return;
             }
 
-            if ( usuDAO.ValidarUsuario(user)!=null )
+            VariablesGlobales.usuarioConectado = usuDAO.ValidarUsuario(user);
+            if (VariablesGlobales.usuarioConectado != null)
             {
                 Menu menu = new Menu();
                 this.Close();
@@ -103,8 +105,8 @@ namespace SISJORSAC
                 this.lblClaveError.Visibility = Visibility.Visible;
                 return;
             }
-
-            if ( usuDAO.ValidarUsuario(user)!=null )
+            VariablesGlobales.usuarioConectado = usuDAO.ValidarUsuario(user);
+            if (VariablesGlobales.usuarioConectado != null)
             {
                 Menu menu = new Menu();
                 this.Close();
