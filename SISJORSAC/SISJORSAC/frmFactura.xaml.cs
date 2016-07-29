@@ -43,7 +43,7 @@ namespace SISJORSAC
         public frmFactura()
         {
             InitializeComponent();
-            DATE.Format = DateTimeFormat.FullDateTime;
+           
             this.txtFechaEmision.Text = DateTime.Now.ToString();
             this.txtNroFactura.Text =facturaDao.ObtenerNroFactura().ToString();
 
@@ -414,12 +414,7 @@ namespace SISJORSAC
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            string dia = DATE.Text;
-            DateTime date =Convert.ToDateTime(dia);
-            System.Windows.MessageBox.Show(DATE.Text);
-        }
+    
 
       
 

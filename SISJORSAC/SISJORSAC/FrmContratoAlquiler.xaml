@@ -17,7 +17,7 @@
         <Label Content="Fech. Emisión:" HorizontalAlignment="Left" Margin="635,8,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.352,-0.381"/>
         <TextBox x:Name="txtFechaEmision" HorizontalAlignment="Left" Height="23" Margin="724,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83"/>
         <Label Content="Señores:" HorizontalAlignment="Left" Margin="147,39,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cboRazonsocial" HorizontalAlignment="Left" Margin="235,39,0,0" VerticalAlignment="Top" Width="314" SelectionChanged="cboRazonsocial_SelectionChanged"/>
+        <ComboBox x:Name="cboRazonsocial" HorizontalAlignment="Left" Margin="235,39,0,0" VerticalAlignment="Top" Width="314"/>
         <Label Content="Nro. RUC:" HorizontalAlignment="Left" Margin="560,39,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtRuc" HorizontalAlignment="Left" Height="23" Margin="647,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" IsEnabled="False"/>
         <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Height="23" Margin="253,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="296" IsEnabled="False"/>
@@ -29,7 +29,7 @@
             <ComboBoxItem Content="S/."/>
             <ComboBoxItem Content="$"/>
         </ComboBox>
-        <CheckBox x:Name="chkIgv" Content="Sin IGV" HorizontalAlignment="Left" Margin="832,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.21,1.778" Checked="chkIgv_Checked" Unchecked="chkIgv_Unchecked"/>
+        <CheckBox x:Name="chkIgv" Content="Sin IGV" HorizontalAlignment="Left" Margin="832,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.21,1.778"/>
         <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,299,34,0" Width="835" Height="222" Background="#FFB8B6B6"
                   
 			AutoGenerateColumns="False"
@@ -44,11 +44,11 @@
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="ITEM" Header="ITEM" Binding="{Binding ITEM, StringFormat=0\{0\}}" IsReadOnly="true"/>
                 <DataGridTextColumn x:Name="CANTIDAD" Header="CANTIDAD" Binding="{Binding CANTIDAD}" IsReadOnly="False">
-                    <DataGridTextColumn.EditingElementStyle>
+                    <!--<DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="{x:Type TextBox}">
                             <EventSetter Event="UIElement.KeyDown" Handler="Importe_KeyDown"/>
                         </Style>
-                    </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn.EditingElementStyle>-->
                 </DataGridTextColumn>
                 <DataGridTextColumn x:Name="DESCRIPCION" Header="CONCEPTO DE SERVICIO" Binding="{Binding SERVICIO.DESCRIPCION}" IsReadOnly="True" Width="450" />
                 <DataGridTextColumn x:Name="PRECIO" Header="PRECIO UNITARIO" Binding="{Binding PRECIO}" IsReadOnly="True"/>
@@ -56,25 +56,25 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <CheckBox x:Name="chkCambiarNroFact" Content="Cambiar Nro. Contra." HorizontalAlignment="Left" Margin="502,14,0,0" VerticalAlignment="Top" Checked="chkCambiarNroFact_Checked"/>
+        <CheckBox x:Name="chkCambiarNroFact" Content="Cambiar Nro. Contra." HorizontalAlignment="Left" Margin="502,14,0,0" VerticalAlignment="Top"/>
         <Label Content="Servicio:" HorizontalAlignment="Left" Margin="142,208,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cboServicio" HorizontalAlignment="Left" Margin="227,208,0,0" VerticalAlignment="Top" Width="317" SelectionChanged="cboServicio_SelectionChanged"/>
+        <ComboBox x:Name="cboServicio" HorizontalAlignment="Left" Margin="227,208,0,0" VerticalAlignment="Top" Width="317"/>
         <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="554,208,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="621,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45"/>
-        <Button x:Name="btnAgregar" Content="Agregar Detalle" HorizontalAlignment="Left" Margin="728,250,0,0" VerticalAlignment="Top" Width="137" Click="btnAgregar_Click" Foreground="White" Background="#FF42A9FF" FontWeight="Bold"/>
+        <Button x:Name="btnAgregar" Content="Agregar Detalle" HorizontalAlignment="Left" Margin="728,250,0,0" VerticalAlignment="Top" Width="137" Foreground="White" Background="#FF42A9FF" FontWeight="Bold"/>
         <Label Content="Precio:" HorizontalAlignment="Left" Margin="676,208,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="732,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" BorderBrush="#FFB6B6B6"/>
-        <CheckBox x:Name="chkObservacion" Content="Ingresar observaciones" HorizontalAlignment="Left" Margin="44,528,0,0" VerticalAlignment="Top" Checked="chkObservacion_Checked"/>
+        <CheckBox x:Name="chkObservacion" Content="Ingresar observaciones" HorizontalAlignment="Left" Margin="44,528,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtSubtotal" HorizontalAlignment="Left" Height="23" Margin="778,525,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False" Text="0.0" FontWeight="Bold"/>
         <TextBox x:Name="txtIgv" HorizontalAlignment="Left" Height="23" Margin="778,553,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False" Text="0.0" FontWeight="Bold"/>
         <TextBox x:Name="txtTotal" HorizontalAlignment="Left" Height="23" Margin="778,581,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False" Text="0.0" FontWeight="Bold"/>
         <Label Content="Sub Total:" HorizontalAlignment="Left" Margin="712,524,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
         <Label Content="IGV:" HorizontalAlignment="Left" Margin="735,552,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
         <Label Content="Total:" HorizontalAlignment="Left" Margin="725,580,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
-        <Button x:Name="btnGenerarFactura" Content="Generar Factura" HorizontalAlignment="Left" Margin="379,555,0,0" VerticalAlignment="Top" Width="157" Click="btnGenerarFactura_Click" Background="#FF42A5F7" Foreground="White" FontWeight="Bold" Height="45"/>
+        <Button x:Name="btnGenerarFactura" Content="Generar Factura" HorizontalAlignment="Left" Margin="379,555,0,0" VerticalAlignment="Top" Width="157" Background="#FF42A5F7" Foreground="White" FontWeight="Bold" Height="45"/>
         <TextBox x:Name="txtObservacion" HorizontalAlignment="Left" Height="58" Margin="44,548,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" IsEnabled="False"/>
-        <Button x:Name="txtCancelar" Content="Salir" HorizontalAlignment="Left" Margin="557,555,0,0" VerticalAlignment="Top" Width="103" Height="45" Background="#FFE24030" BorderBrush="#FFAEAEAE" Foreground="White" FontWeight="Bold" Click="txtCancelar_Click"/>
-        <Button x:Name="btnEliminarDetalle" Content="Eliminar" HorizontalAlignment="Left" Margin="644,250,0,0" VerticalAlignment="Top" Width="75" Click="btnEliminarDetalle_Click" Background="#FFF10E0E" Foreground="#FFF9F3F3" FontWeight="Bold"/>
+        <Button x:Name="txtCancelar" Content="Salir" HorizontalAlignment="Left" Margin="557,555,0,0" VerticalAlignment="Top" Width="103" Height="45" Background="#FFE24030" BorderBrush="#FFAEAEAE" Foreground="White" FontWeight="Bold"/>
+        <Button x:Name="btnEliminarDetalle" Content="Eliminar" HorizontalAlignment="Left" Margin="644,250,0,0" VerticalAlignment="Top" Width="75" Background="#FFF10E0E" Foreground="#FFF9F3F3" FontWeight="Bold"/>
         <Label Content="Telf.:" HorizontalAlignment="Left" Margin="745,39,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="784,39,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="120"/>
         <Label Content="Responsable:" HorizontalAlignment="Left" Margin="147,68,0,0" VerticalAlignment="Top"/>
@@ -103,4 +103,4 @@
 
 
     </Grid>
-</>
+</Controls:MetroWindow>

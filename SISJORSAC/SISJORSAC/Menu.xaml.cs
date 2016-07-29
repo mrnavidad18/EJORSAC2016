@@ -32,7 +32,7 @@ namespace SISJORSAC
         {
             ElegirFactura _frmelegir = new ElegirFactura();
             _frmelegir.Owner = this;
-            _frmelegir.Show();
+            _frmelegir.ShowDialog();
         }
 
         private void ItemCliente_Click(object sender, RoutedEventArgs e)
@@ -54,25 +54,39 @@ namespace SISJORSAC
         private void ItemClienteRegistro_Click(object sender, RoutedEventArgs e)
         {
             FrmClienteRegistro frmCliente = new FrmClienteRegistro();
-            frmCliente.Show();            
+            frmCliente.ShowDialog();            
         }
 
         private void ItemServicioRegistro_Click(object sender, RoutedEventArgs e)
         {
             FrmServicioRegistro frmServicio = new FrmServicioRegistro();
-            frmServicio.Show();
+            frmServicio.ShowDialog();
         }
 
         private void ItemProveedor_Click(object sender, RoutedEventArgs e)
         {
             FrmProveedor frmProveedor = new FrmProveedor();
-            frmProveedor.Show();
+            frmProveedor.ShowDialog();
         }
 
         private void ItemMiCuenta_Click(object sender, RoutedEventArgs e)
         {
             FrmUsuarioDatos frmUsuarioCambiarInfor = new FrmUsuarioDatos();
-            frmUsuarioCambiarInfor.Show();
+            frmUsuarioCambiarInfor.ShowDialog();
+        }
+
+        private void ItemBoleta_Click(object sender, RoutedEventArgs e)
+        {
+            FrmElegirBoleta boleta = new FrmElegirBoleta();
+          
+            boleta.ShowDialog();
+            
+        }
+
+        private void ItemContrato_Click(object sender, RoutedEventArgs e)
+        {
+            FrmContratoAlquiler contrato = new FrmContratoAlquiler();
+            contrato.ShowDialog();
         }
 
 

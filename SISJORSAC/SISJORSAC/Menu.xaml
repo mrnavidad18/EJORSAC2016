@@ -36,9 +36,9 @@
                         <Image Source="IMG/save.png"/>
                     </MenuItem.Icon>
                     <MenuItem x:Name="ItemFactura" Header="Factura" Click="ItemFactura_Click"/>
-                    <MenuItem Header="Boleta"/>
+                    <MenuItem x:Name="ItemBoleta" Header="Boleta" Click="ItemBoleta_Click"/>
                     <MenuItem x:Name="ItemGuiaRemision" Header="Guía Remisión" Click="ItemGuiaRemision_Click"/>
-                    <MenuItem Header="Contrato de Alquiler"/>
+                    <MenuItem x:Name="ItemContrato" Header="Contrato de Alquiler" Click="ItemContrato_Click"/>
                 </MenuItem>
                 <MenuItem Header="Consultas">
                     <MenuItem.Icon>
