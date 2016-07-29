@@ -25,7 +25,7 @@ namespace SISJORSAC
     /// </summary>
     public partial class frmFactura : MetroWindow
     {
-        List<DetalleFactura> listaDetalle = new List<DetalleFactura>();
+       
         Cliente cliente;
         Servicio servicio;
         GuiaRemision guiaRemision;
@@ -72,7 +72,7 @@ namespace SISJORSAC
                 {
                     var detalle = AgregarDetalles();
                     this.dgvListado.ItemsSource = null;
-                    dgvListado.ItemsSource = listaDetalle;
+                    dgvListado.ItemsSource = VariablesGlobales.listaDetallesFactura;
                     subtotal = subtotal + detalle.IMPORTE;
 
 
@@ -123,7 +123,7 @@ namespace SISJORSAC
                 factura.guiaRemision = guiaRemision;
             }
             
-            factura.DETALLEFACTURA = listaDetalle;
+            factura.DETALLEFACTURA = VariablesGlobales.listaDetallesFactura;
             factura.OBSERVACION = this.txtObservacion.Text;
             if (chkCambiarNroFact.IsChecked == true)
             {
@@ -154,7 +154,7 @@ namespace SISJORSAC
             detalle.PRECIO = precio;
             detalle.ITEM = item;
             detalle.IMPORTE = cantidad * precio;
-            listaDetalle.Add(detalle);
+            VariablesGlobales.listaDetallesFactura.Add(detalle);
 
       
             item++;
@@ -188,7 +188,9 @@ namespace SISJORSAC
         private void cboRazonsocial_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int codCliente=Convert.ToInt32(this.cboRazonsocial.SelectedValue);
+           
             cliente = clienteDao.ObtenerCliente(codCliente);
+            VariablesGlobales.clienteFactura = cliente;
             this.txtDireccion.Text = cliente.DIRECCION;
             this.txtRuc.Text = cliente.RUC;
         }
@@ -205,7 +207,7 @@ namespace SISJORSAC
             try
             {
                 if (this.txtNroFactura.Text.Trim() != "" && this.cboModalidad.SelectedItem != null && this.cboMoneda.SelectedItem != null &&
-             this.cboRazonsocial.SelectedItem == null)
+             this.cboRazonsocial.SelectedItem != null)
                 {
                     if (this.dgvListado.Items.Count == 0)
                     {
@@ -274,7 +276,7 @@ namespace SISJORSAC
                 detalleFactura.PRECIO = detalle.SERVICIO.PRECIO;
                 detalleFactura.ITEM = item;
                 detalleFactura.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
-                listaDetalle.Add(detalleFactura);
+                VariablesGlobales.listaDetallesFactura.Add(detalleFactura);
              
                 
                
@@ -283,7 +285,7 @@ namespace SISJORSAC
                 
             }
 
-            this.dgvListado.ItemsSource = listaDetalle;
+            this.dgvListado.ItemsSource = VariablesGlobales.listaDetallesFactura;
 
             igvMonto = subtotal * IGV;
             total = subtotal + igvMonto;
@@ -345,11 +347,11 @@ namespace SISJORSAC
             if(this.dgvListado.SelectedIndex != -1)
             {
                 var detalleFactura = this.dgvListado.SelectedItem as DetalleFactura;
-                listaDetalle.RemoveAll(x => x.ITEM==detalleFactura.ITEM);
+                VariablesGlobales.listaDetallesFactura.RemoveAll(x => x.ITEM==detalleFactura.ITEM);
                 item=1;
                 subtotal = 0;
                 igvMonto = 0;
-                foreach (var detalle in listaDetalle)
+                foreach (var detalle in VariablesGlobales.listaDetallesFactura)
                 {
                     detalle.ITEM = item;
                     subtotal = subtotal + detalle.IMPORTE;
@@ -366,7 +368,7 @@ namespace SISJORSAC
                 this.txtIgv.Text = igvMonto.ToString();
                 this.txtTotal.Text = total.ToString();
                 this.dgvListado.ItemsSource = null;
-                dgvListado.ItemsSource = listaDetalle;
+                dgvListado.ItemsSource = VariablesGlobales.listaDetallesFactura;
 
             }
             else
@@ -383,13 +385,13 @@ namespace SISJORSAC
                 int cantidad = Convert.ToInt32(t.Text);
 
                 var detalleFactura = this.dgvListado.SelectedItem as DetalleFactura;
-                var detalleEncontrado=listaDetalle.Find(x => x.IMPORTE==detalleFactura.IMPORTE);
+                var detalleEncontrado=VariablesGlobales.listaDetallesFactura.Find(x => x.IMPORTE==detalleFactura.IMPORTE);
                 detalleEncontrado.CANTIDAD = cantidad;
                 detalleEncontrado.IMPORTE = cantidad * detalleEncontrado.PRECIO;
 
                 subtotal = 0;
                 igvMonto = 0;
-                foreach (var detalle in listaDetalle)
+                foreach (var detalle in VariablesGlobales.listaDetallesFactura)
                 {
                     
                     subtotal = subtotal + detalle.IMPORTE;
@@ -406,7 +408,7 @@ namespace SISJORSAC
                 this.txtIgv.Text = igvMonto.ToString();
                 this.txtTotal.Text = total.ToString();
                 this.dgvListado.ItemsSource = null;
-                dgvListado.ItemsSource = listaDetalle;
+                dgvListado.ItemsSource = VariablesGlobales.listaDetallesFactura;
 
 
 
@@ -414,15 +416,12 @@ namespace SISJORSAC
             }
         }
 
-    
+        private void btnCambiarBoleta_Click(object sender, RoutedEventArgs e)
+        {
+            FrmBoleta frmBoleta = new FrmBoleta();
+            this.Close();
+            frmBoleta.ShowDialog();
 
-      
-
-       
-
-
-        
-       
-      
+        }
     }
 }

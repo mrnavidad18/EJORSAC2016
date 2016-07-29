@@ -44,30 +44,62 @@ namespace SISJORSAC
             this.txtNroBoleta.Text = boletaDao.ObtenerNroBoleta();
             this.txtFechaEmision.Text = DateTime.Now.ToString();
             ListarServicios();
-
-            if (VariablesGlobales.NRO_GUIA_GLOBAL != "")
+            ObtenerGuia();
+            if (VariablesGlobales.NRO_GUIA_GLOBAL == "")
             {
-                
-                var guia = ObtenerGuia();
-                if (guia.cliente.TIPO_CLIE.Equals("NATURAL")){
-                    this.rbNATURAL.IsChecked = true;
-                    this.txtDniRuc.Text = guia.cliente.DNI;
-                }
-                else
-                {
-                    this.rbJURIDICA.IsChecked = true;
-                    this.txtDniRuc.Text = guia.cliente.RUC;
-                }
-                  
-
-                
+                ObtenerDatosFactura();
             }
            
         }
 
+        public void ObtenerDatosFactura()
+        {
+            this.cboCliente.DisplayMemberPath = "RAZON_SOCIAL";
+            this.cboCliente.SelectedValuePath = "COD_CLI";
+
+            this.cboCliente.Items.Add(VariablesGlobales.clienteFactura);
+            this.cboCliente.SelectedIndex = 0;
+
+            this.txtDniRuc.Text = VariablesGlobales.clienteFactura.RUC;
+
+            DetalleBoleta detalleBoleta = null;
+
+
+            foreach (var detalle in VariablesGlobales.listaDetallesFactura)
+            {
+                detalleBoleta = new DetalleBoleta();
+                detalleBoleta.CANTIDAD = detalle.CANTIDAD;
+                detalleBoleta.SERVICIO = detalle.SERVICIO;
+                detalleBoleta.PRECIO = detalle.SERVICIO.PRECIO;
+                detalleBoleta.ITEM = item;
+                detalleBoleta.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
+                listaDetalle.Add(detalleBoleta);
+                total = total + detalleBoleta.IMPORTE;
+                item++;
+
+            }
+
+            LlenarGrid(listaDetalle);
+
+            this.txtTotal.Text = total.ToString();
+
+
+            if (VariablesGlobales.clienteFactura.TIPO_CLIE.Equals("NATURAL"))
+            {
+                this.rbNATURAL.IsChecked = true;
+                this.txtDniRuc.Text = VariablesGlobales.clienteFactura.DNI;
+            }
+            else
+            {
+                this.rbJURIDICA.IsChecked = true;
+                this.txtDniRuc.Text = VariablesGlobales.clienteFactura.RUC;
+            }
+         
+        }
+
         private void ListarClientes(string tipoCliente)
         {
-            if (VariablesGlobales.NRO_GUIA_GLOBAL == "")
+            if (VariablesGlobales.NRO_GUIA_GLOBAL == "" && VariablesGlobales.clienteFactura==null)
             {
                 var listacliente = clienteDao.ListarCliente(tipoCliente);
 
@@ -320,50 +352,63 @@ namespace SISJORSAC
 
         public GuiaRemision ObtenerGuia()
         {
-
-            DetalleGuiaRemisionDAO detalleGuiaDao = new DetalleGuiaRemisionDAO();
-            guiaRemision = guiaDao.ObtenerGuiaRemisionXNroGuia(VariablesGlobales.NRO_GUIA_GLOBAL);
-            var listaDetalleGuia = detalleGuiaDao.listarDetalleGuiaxGuia(guiaRemision.COD_GUIA);
-
-            this.cboCliente.DisplayMemberPath = "RAZON_SOCIAL";
-            this.cboCliente.SelectedValuePath = "COD_CLI";
-
-            this.cboCliente.Items.Add(guiaRemision.cliente);
-            this.cboCliente.SelectedIndex = 0;
-
-            this.txtDniRuc.Text = guiaRemision.cliente.RUC;
-            this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL.ToString();
-            this.cboModalidad.Items.Clear();
-            ComboBoxItem itemModalidad = new ComboBoxItem();
-            itemModalidad.Content = guiaRemision.TIPO_TRASLADO;
-            this.cboModalidad.Items.Add(itemModalidad);
-
-            this.cboModalidad.SelectedIndex = 0;
-
-            this.cboModalidad.IsEnabled = false;
-            DetalleBoleta detalleBoleta = null;
-
-            foreach (var detalle in listaDetalleGuia)
+            if (VariablesGlobales.NRO_GUIA_GLOBAL != "")
             {
-                detalleBoleta = new DetalleBoleta();
-                detalleBoleta.CANTIDAD = detalle.CANTIDAD;
-                detalleBoleta.SERVICIO = detalle.SERVICIO;
-                detalleBoleta.PRECIO = detalle.SERVICIO.PRECIO;
-                detalleBoleta.ITEM = item;
-                detalleBoleta.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
-                listaDetalle.Add(detalleBoleta);
+                DetalleGuiaRemisionDAO detalleGuiaDao = new DetalleGuiaRemisionDAO();
+                guiaRemision = guiaDao.ObtenerGuiaRemisionXNroGuia(VariablesGlobales.NRO_GUIA_GLOBAL);
+                var listaDetalleGuia = detalleGuiaDao.listarDetalleGuiaxGuia(guiaRemision.COD_GUIA);
+
+                this.cboCliente.DisplayMemberPath = "RAZON_SOCIAL";
+                this.cboCliente.SelectedValuePath = "COD_CLI";
+
+                this.cboCliente.Items.Add(guiaRemision.cliente);
+                this.cboCliente.SelectedIndex = 0;
+
+                this.txtDniRuc.Text = guiaRemision.cliente.RUC;
+                this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL.ToString();
+                this.cboModalidad.Items.Clear();
+                ComboBoxItem itemModalidad = new ComboBoxItem();
+                itemModalidad.Content = guiaRemision.TIPO_TRASLADO;
+                this.cboModalidad.Items.Add(itemModalidad);
+
+                this.cboModalidad.SelectedIndex = 0;
+
+                this.cboModalidad.IsEnabled = false;
+                DetalleBoleta detalleBoleta = null;
+
+                foreach (var detalle in listaDetalleGuia)
+                {
+                    detalleBoleta = new DetalleBoleta();
+                    detalleBoleta.CANTIDAD = detalle.CANTIDAD;
+                    detalleBoleta.SERVICIO = detalle.SERVICIO;
+                    detalleBoleta.PRECIO = detalle.SERVICIO.PRECIO;
+                    detalleBoleta.ITEM = item;
+                    detalleBoleta.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
+                    listaDetalle.Add(detalleBoleta);
 
 
 
-                total = total + detalleBoleta.IMPORTE;
-                item++;
+                    total = total + detalleBoleta.IMPORTE;
+                    item++;
 
+                }
+
+                LlenarGrid(listaDetalle);
+
+                this.txtTotal.Text = total.ToString();
+
+
+                if (guiaRemision.cliente.TIPO_CLIE.Equals("NATURAL"))
+                {
+                    this.rbNATURAL.IsChecked = true;
+                    this.txtDniRuc.Text = guiaRemision.cliente.DNI;
+                }
+                else
+                {
+                    this.rbJURIDICA.IsChecked = true;
+                    this.txtDniRuc.Text = guiaRemision.cliente.RUC;
+                }
             }
-
-            LlenarGrid(listaDetalle);
-
-            this.txtTotal.Text = total.ToString();
-
             return guiaRemision;
         }
 

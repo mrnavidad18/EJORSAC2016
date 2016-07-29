@@ -244,7 +244,7 @@ namespace SISJORSAC
             }
             else
             {
-                await this.ShowMessageAsync("Error", "Falta Llenar Campos, seleccione que cliente desea agregar.");
+                await this.ShowMessageAsync("Error", "Falta Llenar Campos, seleccione que clienteFactura desea agregar.");
             }
             
 
