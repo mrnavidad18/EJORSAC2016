@@ -17,9 +17,9 @@ namespace SISJORSAC.DATA.Modelo
         public Usuario usuario { get; set; }
         public int TOTAL_DIAS { get; set; }
         public DateTime FECHA_ENTREGA { get; set; }
-        public DateTime HORA_ENTREGA { get; set; }
+        public TimeSpan HORA_ENTREGA { get; set; }
         public DateTime FECHA_DEVOLUCION { get; set; }
-        public DateTime HORA_DEVOLUCION { get; set; }
+        public TimeSpan HORA_DEVOLUCION { get; set; }
         public string MONEDA { get; set; }
         public double GARANTIA { get; set; }
         public string CHEQUE { get; set; }

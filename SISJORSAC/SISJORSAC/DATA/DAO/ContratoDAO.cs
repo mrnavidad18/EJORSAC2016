@@ -15,7 +15,7 @@ namespace SISJORSAC.DATA.DAO
 
         public Object[] Agregar(Contrato contrato)
         {
-            string cadenaConexion = "server=192.168.0.27;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -140,9 +140,9 @@ namespace SISJORSAC.DATA.DAO
                             contrato.usuario=usuario;
                             contrato.TOTAL_DIAS = int.Parse(lector["TOTAL_DIAS"].ToString());
                             contrato.FECHA_ENTREGA = DateTime.Parse(lector["FECHA_ENTREGA"].ToString());
-                            contrato.HORA_ENTREGA = DateTime.Parse(lector["HORA_ENTREGA"].ToString());
+                            contrato.HORA_ENTREGA = TimeSpan.Parse(lector["HORA_ENTREGA"].ToString());
                             contrato.FECHA_DEVOLUCION = DateTime.Parse(lector["FECHA_DEVOLUCION"].ToString());
-                            contrato.HORA_DEVOLUCION = DateTime.Parse(lector["HORA_DEVOLUCION"].ToString());
+                            contrato.HORA_DEVOLUCION = TimeSpan.Parse(lector["HORA_DEVOLUCION"].ToString());
                             contrato.MONEDA = lector["MONEDA"].ToString();
                             contrato.GARANTIA = double.Parse(lector["GARANTIA"].ToString());
                             contrato.CHEQUE = lector["CHEQUE"].ToString();
@@ -201,9 +201,9 @@ namespace SISJORSAC.DATA.DAO
                             contrato.usuario = usuario;
                             contrato.TOTAL_DIAS = int.Parse(lector["TOTAL_DIAS"].ToString());
                             contrato.FECHA_ENTREGA = DateTime.Parse(lector["FECHA_ENTREGA"].ToString());
-                            contrato.HORA_ENTREGA = DateTime.Parse(lector["HORA_ENTREGA"].ToString());
+                            contrato.HORA_ENTREGA = TimeSpan.Parse(lector["HORA_ENTREGA"].ToString());
                             contrato.FECHA_DEVOLUCION = DateTime.Parse(lector["FECHA_DEVOLUCION"].ToString());
-                            contrato.HORA_DEVOLUCION = DateTime.Parse(lector["HORA_DEVOLUCION"].ToString());
+                            contrato.HORA_DEVOLUCION = TimeSpan.Parse(lector["HORA_DEVOLUCION"].ToString());
                             contrato.MONEDA = lector["MONEDA"].ToString();
                             contrato.GARANTIA = double.Parse(lector["GARANTIA"].ToString());
                             contrato.CHEQUE = lector["CHEQUE"].ToString();
@@ -226,6 +226,108 @@ namespace SISJORSAC.DATA.DAO
 
         }
 
+        public string ObtenerNroContrato()
+        {
+            try
+            {
+                string nroContrato = "";
+                string query = "SP_TBL_CONTRATO_TRAER_ULTIMO_NRO_CONTRATO";
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query))
+                {
 
+                    if (lector != null && lector.HasRows)
+                    {
+
+                        while (lector.Read())
+                        {
+
+                            nroContrato = lector["NRO_CONTRATO"].ToString();
+
+
+
+                        }
+                    }
+                }
+
+                return nroContrato;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurio un error al recuperar el ultimo nro. Contrato");
+            }
+
+        }
+
+        public Object[] AgregarConNroContrato(Contrato contrato)
+        {
+            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            SqlConnection cn = new SqlConnection(cadenaConexion);
+            cn.Open();
+            SqlTransaction trx = cn.BeginTransaction();
+
+            try
+            {
+                Object[] salidas = null;
+                string query = "SP_TBL_CONTRATO_AGREGAR_CON_NRO_CONTRATO";
+
+                SqlParameter id = new SqlParameter("@PS_COD", SqlDbType.Int);
+                id.Direction = ParameterDirection.Output;
+
+                SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
+                msj.Direction = ParameterDirection.Output;
+
+                SqlParameter[] dbParams = new SqlParameter[]
+             {
+                 DBHelper.MakeParam("@P_NRO_CONTRATO",contrato.NRO_CONTRATO),
+                 DBHelper.MakeParam("@P_FECHA_CONTRATO",contrato.FECHA_CONTRATO),
+                 DBHelper.MakeParam("@P_COD_CLI",contrato.cliente.COD_CLI),
+                 DBHelper.MakeParam("@P_DIRECCION_OBRA",contrato.DIRECCION_OBRA),
+                 DBHelper.MakeParam("@P_TRANSPORTE",contrato.TRANSPORTE),
+                 DBHelper.MakeParam("@P_idUsuario",contrato.usuario.idUsuario),
+                 DBHelper.MakeParam("@P_TOTAL_DIAS",contrato.TOTAL_DIAS),
+                 DBHelper.MakeParam("@P_FECHA_ENTREGA",contrato.FECHA_ENTREGA),
+                 DBHelper.MakeParam("@P_HORA_ENTREGA",contrato.HORA_ENTREGA),
+                 DBHelper.MakeParam("@P_FECHA_DEVOLUCION",contrato.FECHA_DEVOLUCION),
+                 DBHelper.MakeParam("@P_HORA_DEVOLUCION",contrato.HORA_DEVOLUCION),
+                 DBHelper.MakeParam("@P_MONEDA",contrato.MONEDA),
+                 DBHelper.MakeParam("@P_GARANTIA",contrato.GARANTIA),
+                 DBHelper.MakeParam("@P_CHEQUE",contrato.CHEQUE),
+                 DBHelper.MakeParam("@P_DOCUMENTO",contrato.DOCUMENTO),
+                 DBHelper.MakeParam("@P_RECIBO",contrato.RECIBO),
+                 DBHelper.MakeParam("@P_IGV",contrato.IGV),
+                 DBHelper.MakeParam("@P_SUBTOTAL",contrato.SUBTOTAL),
+                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),                             
+                id,
+                msj
+             };
+
+
+
+                salidas = DBHelper.ExecuteProcedure(query, dbParams, trx, cn);
+
+                foreach (DetalleContrato detalle in contrato.DETALLECONTRATO)
+                {
+                    Contrato contra = new Contrato();
+                    contra.COD_CONTRATO = Convert.ToInt32(salidas[0]);
+                    detalle.CONTRATO = contra;
+
+                    if (AgregarDetalle(detalle, trx, cn) == null)
+                    {
+                        throw new Exception("Ocurrio un error en la insercion del detalle del Contrato :" + detalle.SERVICIO.DESCRIPCION);
+                    }
+                }
+                trx.Commit();
+                cn.Close();
+                return salidas;
+
+            }
+            catch (Exception ex)
+            {
+                trx.Rollback();
+                cn.Close();
+                throw ex;
+            }
+
+        }
     }
 }

@@ -15,5 +15,7 @@ namespace SISJORSAC.DATA.Modelo
         public string Apellidos { get; set; }
         public string DNI { get; set; }
         public string ESTADO { get; set; }
+
+        public string NOMBRE_COMPLETO { get; set; }
     }
 }

@@ -17,7 +17,7 @@ using MahApps.Metro.Behaviours;
 using SISJORSAC.DATA.Modelo;
 using SISJORSAC.DATA.DAO;
 using System.Data.SqlClient;
-using Xceed.Wpf.Toolkit;
+
 namespace SISJORSAC
 {
     /// <summary>
@@ -43,18 +43,16 @@ namespace SISJORSAC
         public frmFactura()
         {
             InitializeComponent();
-           
+            VariablesGlobales.listaDetallesFactura = new List<DetalleFactura>();
             this.txtFechaEmision.Text = DateTime.Now.ToString();
             this.txtNroFactura.Text =facturaDao.ObtenerNroFactura().ToString();
 
-            if (VariablesGlobales.NRO_GUIA_GLOBAL == "")
-            {
+            
                 ListarClientes();
-            }
-            else
-            {
+           
                 ObtenerGuia();
-            }
+
+            
            
             ListarServicios();
             
@@ -220,6 +218,8 @@ namespace SISJORSAC
                             AgregarFactura();
                             await this.ShowMessageAsync("Correcto",mensaje);
                             VariablesGlobales.NRO_GUIA_GLOBAL = "";
+                            VariablesGlobales.clienteFactura = null;
+                            VariablesGlobales.listaDetallesFactura = null;
                             this.Close();
                         }
                     }
@@ -232,6 +232,7 @@ namespace SISJORSAC
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message,"Error");
                 VariablesGlobales.NRO_GUIA_GLOBAL = "";
               
             }
@@ -245,63 +246,76 @@ namespace SISJORSAC
 
         public void ObtenerGuia()
         {
-          
-             DetalleGuiaRemisionDAO detalleGuiaDao= new DetalleGuiaRemisionDAO();
-             guiaRemision = guiaDao.ObtenerGuiaRemisionXNroGuia(VariablesGlobales.NRO_GUIA_GLOBAL);
-            var listaDetalleGuia = detalleGuiaDao.listarDetalleGuiaxGuia(guiaRemision.COD_GUIA);
-
-            this.cboRazonsocial.DisplayMemberPath = "RAZON_SOCIAL";
-            this.cboRazonsocial.SelectedValuePath = "COD_CLI";
-       
-            this.cboRazonsocial.Items.Add(guiaRemision.cliente);
-            this.cboRazonsocial.SelectedIndex = 0;
-
-            this.txtRuc.Text = guiaRemision.cliente.RUC;
-            this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL.ToString();
-            this.cboModalidad.Items.Clear();
-            ComboBoxItem itemModalidad = new ComboBoxItem();
-            itemModalidad.Content = guiaRemision.TIPO_TRASLADO;
-            this.cboModalidad.Items.Add(itemModalidad);
-         
-            this.cboModalidad.SelectedIndex = 0;
-       
-            this.cboModalidad.IsEnabled = false;
-            DetalleFactura detalleFactura = null;
-
-            foreach (var detalle in listaDetalleGuia)
+            if (VariablesGlobales.NRO_GUIA_GLOBAL != "")
             {
-                detalleFactura = new DetalleFactura();
-                detalleFactura.CANTIDAD = detalle.CANTIDAD;
-                detalleFactura.SERVICIO = detalle.SERVICIO;
-                detalleFactura.PRECIO = detalle.SERVICIO.PRECIO;
-                detalleFactura.ITEM = item;
-                detalleFactura.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
-                VariablesGlobales.listaDetallesFactura.Add(detalleFactura);
-             
-                
-               
-                subtotal = subtotal + detalleFactura.IMPORTE;
-                item++;
-                
-            }
+                DetalleGuiaRemisionDAO detalleGuiaDao = new DetalleGuiaRemisionDAO();
+                guiaRemision = guiaDao.ObtenerGuiaRemisionXNroGuia(VariablesGlobales.NRO_GUIA_GLOBAL);
+                VariablesGlobales.clienteFactura = guiaRemision.cliente;
+                var listaDetalleGuia = detalleGuiaDao.listarDetalleGuiaxGuia(guiaRemision.COD_GUIA);
+                if (guiaRemision.cliente.TIPO_CLIE.Equals("JURIDICA"))
+                {
 
-            this.dgvListado.ItemsSource = VariablesGlobales.listaDetallesFactura;
 
-            igvMonto = subtotal * IGV;
-            total = subtotal + igvMonto;
+                    this.cboRazonsocial.Text = guiaRemision.cliente.RAZON_SOCIAL;
 
-            this.txtSubtotal.Text = subtotal.ToString();
-            this.txtIgv.Text = igvMonto.ToString();
-            this.txtTotal.Text = total.ToString();
+                    this.txtRuc.Text = guiaRemision.cliente.RUC;
+                }
+                //this.cboRazonsocial.DisplayMemberPath = "RAZON_SOCIAL";
+                //this.cboRazonsocial.SelectedValuePath = "COD_CLI";
+
+                //this.cboRazonsocial.Items.Add(guiaRemision.cliente);
+                //this.cboRazonsocial.SelectedIndex = 0;
+
+                //this.txtRuc.Text = guiaRemision.cliente.RUC;
+                this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL.ToString();
+                this.cboModalidad.Items.Clear();
+                ComboBoxItem itemModalidad = new ComboBoxItem();
+                itemModalidad.Content = guiaRemision.TIPO_TRASLADO;
+                this.cboModalidad.Items.Add(itemModalidad);
+
+                this.cboModalidad.SelectedIndex = 0;
+
+                this.cboModalidad.IsEnabled = false;
+                DetalleFactura detalleFactura = null;
+
+                foreach (var detalle in listaDetalleGuia)
+                {
+                    detalleFactura = new DetalleFactura();
+                    detalleFactura.CANTIDAD = detalle.CANTIDAD;
+                    detalleFactura.SERVICIO = detalle.SERVICIO;
+                    detalleFactura.PRECIO = detalle.SERVICIO.PRECIO;
+                    detalleFactura.ITEM = item;
+                    detalleFactura.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
+                    VariablesGlobales.listaDetallesFactura.Add(detalleFactura);
+
+
+
+                    subtotal = subtotal + detalleFactura.IMPORTE;
+                    item++;
+
+                }
+
+                this.dgvListado.ItemsSource = VariablesGlobales.listaDetallesFactura;
+
+                igvMonto = subtotal * IGV;
+                total = subtotal + igvMonto;
+
+                this.txtSubtotal.Text = subtotal.ToString();
+                this.txtIgv.Text = igvMonto.ToString();
+                this.txtTotal.Text = total.ToString();
            
 
           
+            }
+            
 
         }
 
         private void txtCancelar_Click(object sender, RoutedEventArgs e)
         {
             VariablesGlobales.NRO_GUIA_GLOBAL = "";
+            VariablesGlobales.clienteFactura=null;
+            VariablesGlobales.listaDetallesFactura = new List<DetalleFactura>();
             this.Close();
         }
 
@@ -418,10 +432,31 @@ namespace SISJORSAC
 
         private void btnCambiarBoleta_Click(object sender, RoutedEventArgs e)
         {
+            VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
+            
             FrmBoleta frmBoleta = new FrmBoleta();
+          
             this.Close();
             frmBoleta.ShowDialog();
 
+        }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            
+           
+            VariablesGlobales.listaDetallesFactura = new List<DetalleFactura>();
+
+        }
+
+        private void btnCambiarContrato_Click(object sender, RoutedEventArgs e)
+        {
+            VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
+            VariablesGlobales.ClickFacturaContrato = true;
+            FrmContratoAlquiler frmContrato = new FrmContratoAlquiler();
+
+            this.Close();
+            frmContrato.ShowDialog();
         }
     }
 }

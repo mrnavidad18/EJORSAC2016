@@ -44,22 +44,28 @@ namespace SISJORSAC
             this.txtNroBoleta.Text = boletaDao.ObtenerNroBoleta();
             this.txtFechaEmision.Text = DateTime.Now.ToString();
             ListarServicios();
-            ObtenerGuia();
-            if (VariablesGlobales.NRO_GUIA_GLOBAL == "")
+            
+            if (VariablesGlobales.NRO_GUIA_GLOBAL != "" && VariablesGlobales.clienteFactura == null)
+            {
+                ObtenerGuia();
+                
+            }
+            if (VariablesGlobales.clienteFactura != null)
             {
                 ObtenerDatosFactura();
             }
+            
            
         }
 
         public void ObtenerDatosFactura()
         {
+
             this.cboCliente.DisplayMemberPath = "RAZON_SOCIAL";
             this.cboCliente.SelectedValuePath = "COD_CLI";
-
-            this.cboCliente.Items.Add(VariablesGlobales.clienteFactura);
-            this.cboCliente.SelectedIndex = 0;
-
+            this.cboCliente.SelectedIndex = VariablesGlobales.indexCliente;
+            this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL;
+            guiaRemision = guiaDao.ObtenerGuiaRemisionXNroGuia(VariablesGlobales.NRO_GUIA_GLOBAL);
             this.txtDniRuc.Text = VariablesGlobales.clienteFactura.RUC;
 
             DetalleBoleta detalleBoleta = null;
@@ -99,11 +105,14 @@ namespace SISJORSAC
 
         private void ListarClientes(string tipoCliente)
         {
-            if (VariablesGlobales.NRO_GUIA_GLOBAL == "" && VariablesGlobales.clienteFactura==null)
-            {
+            
                 var listacliente = clienteDao.ListarCliente(tipoCliente);
-
-                this.cboCliente.ItemsSource = listacliente;
+                this.cboCliente.Items.Clear();
+                foreach (var cliente in listacliente)
+                {
+                    this.cboCliente.Items.Add(cliente);
+                }
+               
                 if (tipoCliente.Equals("JURIDICA"))
                 {
                     this.cboCliente.DisplayMemberPath = "RAZON_SOCIAL";
@@ -114,7 +123,7 @@ namespace SISJORSAC
                     this.cboCliente.DisplayMemberPath = "NOMBRES";
                     this.cboCliente.SelectedValuePath = "COD_CLI";
                 } 
-            }
+            
            
         }
 
@@ -288,8 +297,6 @@ namespace SISJORSAC
 
         }
 
-
-
         private async void btnGenerarBoleta_Click(object sender, RoutedEventArgs e)
         {
              try
@@ -308,6 +315,8 @@ namespace SISJORSAC
                             AgregarBoleta();
                             await this.ShowMessageAsync("Boleta Generada",mensaje);
                             VariablesGlobales.NRO_GUIA_GLOBAL = "";
+                            VariablesGlobales.clienteFactura = null;
+                            VariablesGlobales.listaDetallesFactura = null;
                             this.Close();
                         }
                     }
@@ -358,13 +367,12 @@ namespace SISJORSAC
                 guiaRemision = guiaDao.ObtenerGuiaRemisionXNroGuia(VariablesGlobales.NRO_GUIA_GLOBAL);
                 var listaDetalleGuia = detalleGuiaDao.listarDetalleGuiaxGuia(guiaRemision.COD_GUIA);
 
-                this.cboCliente.DisplayMemberPath = "RAZON_SOCIAL";
-                this.cboCliente.SelectedValuePath = "COD_CLI";
 
-                this.cboCliente.Items.Add(guiaRemision.cliente);
-                this.cboCliente.SelectedIndex = 0;
+
+                this.cboCliente.Text = guiaRemision.cliente.RAZON_SOCIAL;
 
                 this.txtDniRuc.Text = guiaRemision.cliente.RUC;
+                this.txtDireccion.Text = guiaRemision.cliente.DIRECCION;
                 this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL.ToString();
                 this.cboModalidad.Items.Clear();
                 ComboBoxItem itemModalidad = new ComboBoxItem();
@@ -410,6 +418,13 @@ namespace SISJORSAC
                 }
             }
             return guiaRemision;
+        }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            VariablesGlobales.clienteFactura = null;
+            VariablesGlobales.NRO_GUIA_GLOBAL = "";
+            VariablesGlobales.listaDetallesFactura = null;
         }
 
     }

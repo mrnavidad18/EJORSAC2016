@@ -28,7 +28,11 @@ namespace SISJORSAC
         }
 
         public static Usuario usuarioConectado;
-
+        public static int indexCliente;
+        public static List<DetalleFactura> listaDetallesFactura = new List<DetalleFactura>();
+        public static List<DetalleContrato> listaDetallesContrato = new List<DetalleContrato>();
+        public static Cliente clienteFactura=null;
+        public static bool ClickFacturaContrato = false;
         
     }
 }

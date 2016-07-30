@@ -66,6 +66,7 @@ namespace SISJORSAC
 
         private void rbtSinGuia_Checked(object sender, RoutedEventArgs e)
         {
+            VariablesGlobales.NRO_GUIA_GLOBAL = "";
             frmFactura factura = new frmFactura();
             this.Close();
             factura.Show();

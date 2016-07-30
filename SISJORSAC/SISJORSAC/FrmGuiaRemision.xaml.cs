@@ -93,7 +93,8 @@ namespace SISJORSAC
             {
 
             }
-            else { 
+            else {
+                VariablesGlobales.indexCliente = this.cboCliente.SelectedIndex;
             int codCliente = Convert.ToInt32(this.cboCliente.SelectedValue);
             cliente = clienteDAO.ObtenerCliente(codCliente);
             if (cliente.TIPO_CLIE.Equals("NATURAL"))

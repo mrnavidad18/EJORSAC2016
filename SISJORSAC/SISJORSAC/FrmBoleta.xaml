@@ -4,7 +4,7 @@
          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="FrmBoleta"  Height="661.425" Width="825.276">
+        Title="FrmBoleta"  Height="661.425" Width="825.276" Closing="MetroWindow_Closing">
     <Grid >
         <Image HorizontalAlignment="Left" Height="136" Margin="21,18,0,0" VerticalAlignment="Top" Width="163" Source="IMG/logo_rep.PNG"/>
         <Label Content="Tipo Compro.:" HorizontalAlignment="Left" Margin="215,31,0,0" VerticalAlignment="Top"/>

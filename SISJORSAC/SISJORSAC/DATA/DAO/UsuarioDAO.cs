@@ -181,6 +181,46 @@ namespace SISJORSAC.DATA.DAO
                 throw;
             }
         }
+
+        public List<Usuario> ListarUsuarios(string estado)
+        {
+            List<Usuario> listaUsuarios = null;
+            string query = "SP_TBL_USUARIOS_LISTAR";
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]{
+                     DBHelper.MakeParam("@ESTADO",estado)
+                 };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
+                {
+                    if (lector != null && lector.HasRows)
+                    {
+                        listaUsuarios = new List<Usuario>();
+                        Usuario usuario;
+                        while (lector.Read())
+                        {
+                            usuario = new Usuario();
+                            usuario.idUsuario = int.Parse(lector["idUsuario"].ToString());
+                            usuario.username = lector["username"].ToString();
+                            usuario.clave = lector["clave"].ToString();
+                            usuario.Nombre = lector["Nombre"].ToString();
+                            usuario.Apellidos = lector["Apellidos"].ToString();
+                            usuario.DNI = lector["DNI"].ToString();
+                            usuario.ESTADO = lector["ESTADO"].ToString();
+                            usuario.NOMBRE_COMPLETO = lector["NOMBRE_COMPLETO"].ToString();
+                            listaUsuarios.Add(usuario);
+                        }
+                    }
+                }
+                return listaUsuarios;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 
 }
