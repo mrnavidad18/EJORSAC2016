@@ -50,7 +50,7 @@ namespace SISJORSAC
                 ObtenerGuia();
                 
             }
-            if (VariablesGlobales.clienteFactura != null)
+            if (VariablesGlobales.ClickFacturaBoleta)
             {
                 ObtenerDatosFactura();
             }
@@ -66,7 +66,7 @@ namespace SISJORSAC
             this.cboCliente.SelectedIndex = VariablesGlobales.indexCliente;
             this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL;
             guiaRemision = guiaDao.ObtenerGuiaRemisionXNroGuia(VariablesGlobales.NRO_GUIA_GLOBAL);
-            this.txtDniRuc.Text = VariablesGlobales.clienteFactura.RUC;
+            this.txtDniRuc.Text = VariablesGlobales.clienteFactura == null ? "" : VariablesGlobales.clienteFactura.RUC;
 
             DetalleBoleta detalleBoleta = null;
 
@@ -89,17 +89,20 @@ namespace SISJORSAC
 
             this.txtTotal.Text = total.ToString();
 
-
-            if (VariablesGlobales.clienteFactura.TIPO_CLIE.Equals("NATURAL"))
+            if (VariablesGlobales.clienteFactura != null)
             {
-                this.rbNATURAL.IsChecked = true;
-                this.txtDniRuc.Text = VariablesGlobales.clienteFactura.DNI;
+                if (VariablesGlobales.clienteFactura.TIPO_CLIE.Equals("NATURAL"))
+                {
+                    this.rbNATURAL.IsChecked = true;
+                    this.txtDniRuc.Text = VariablesGlobales.clienteFactura.DNI;
+                }
+                else
+                {
+                    this.rbJURIDICA.IsChecked = true;
+                    this.txtDniRuc.Text = VariablesGlobales.clienteFactura.RUC;
+                }
             }
-            else
-            {
-                this.rbJURIDICA.IsChecked = true;
-                this.txtDniRuc.Text = VariablesGlobales.clienteFactura.RUC;
-            }
+           
          
         }
 
@@ -167,7 +170,7 @@ namespace SISJORSAC
                 int cantidad = Convert.ToInt32(t.Text);
 
                 var detalleBoleta = this.dgvListado.SelectedItem as DetalleBoleta;
-                var detalleEncontrado = listaDetalle.Find(x => x.IMPORTE == detalleBoleta.IMPORTE);
+                var detalleEncontrado = listaDetalle.Find(x => x.ITEM == detalleBoleta.ITEM);
                 detalleEncontrado.CANTIDAD = cantidad;
                 detalleEncontrado.IMPORTE = cantidad * detalleEncontrado.PRECIO;
 
@@ -302,7 +305,7 @@ namespace SISJORSAC
              try
             {
                 if (this.txtNroBoleta.Text.Trim() != "" && this.cboModalidad.SelectedItem != null && this.cboMoneda.SelectedItem != null &&
-             this.cboCliente.SelectedItem != null)
+             this.txtDniRuc.Text.Trim()!="")
                 {
                     if (this.dgvListado.Items.Count == 0)
                     {
@@ -317,6 +320,7 @@ namespace SISJORSAC
                             VariablesGlobales.NRO_GUIA_GLOBAL = "";
                             VariablesGlobales.clienteFactura = null;
                             VariablesGlobales.listaDetallesFactura = null;
+                            VariablesGlobales.ClickFacturaBoleta = false;
                             this.Close();
                         }
                     }
@@ -425,6 +429,16 @@ namespace SISJORSAC
             VariablesGlobales.clienteFactura = null;
             VariablesGlobales.NRO_GUIA_GLOBAL = "";
             VariablesGlobales.listaDetallesFactura = null;
+            VariablesGlobales.ClickFacturaBoleta = false;
+        }
+
+        private void txtCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            VariablesGlobales.clienteFactura = null;
+            VariablesGlobales.NRO_GUIA_GLOBAL = "";
+            VariablesGlobales.listaDetallesFactura = null;
+            VariablesGlobales.ClickFacturaBoleta = false;
+            this.Close();
         }
 
     }

@@ -4,56 +4,51 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Registro - Guia de Remisión" Height="721.425" Width="802.276"
-        WindowStartupLocation="CenterScreen">
-    <Grid Margin="-3,0,-8,-2">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Rectangle Grid.ColumnSpan="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="58" Margin="25,355,0,0" Stroke="Black" VerticalAlignment="Top" Width="465"/>
+        Title="Registro - Guia de Remisión" Height="633.425" Width="912.276"
+        WindowStartupLocation="CenterScreen" Closing="MetroWindow_Closing">
+    <Grid Margin="-3,0,2,-2">
 
-        <Label Content="Pto. Partida:" HorizontalAlignment="Left" Margin="17,12,0,0" VerticalAlignment="Top" Width="81" Grid.Column="1" Height="26"/>
-        <Label Content="Pto. Llegada:" HorizontalAlignment="Left" Margin="17,60,0,0" VerticalAlignment="Top" Width="81" Grid.Column="1" Height="26"/>
-        <Label Content="Nro. Guia de Remisión::" HorizontalAlignment="Left" Margin="441,8,0,0" VerticalAlignment="Top" Width="153" Grid.Column="1" Height="26"/>
-        <ComboBox x:Name="cboCliente" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="76,158,0,0" VerticalAlignment="Top" Width="158" SelectionChanged="cboCliente_SelectionChanged"/>
-        <Label Content="Cliente:" HorizontalAlignment="Left" Margin="16,158,0,0" VerticalAlignment="Top" Width="81" Grid.Column="1" Height="26"/>
-        <GroupBox Grid.ColumnSpan="2" Header="Tipo de Cliente" HorizontalAlignment="Left" Margin="16,91,0,0" VerticalAlignment="Top" Width="218" Height="60"/>
-        <RadioButton x:Name="rbNATURAL" Grid.ColumnSpan="2" Content="NATURAL" HorizontalAlignment="Left" Margin="22,128,0,0" VerticalAlignment="Top" Checked="rbNATURAL_Checked" />
-        <RadioButton x:Name="rbJURIDICA" Grid.ColumnSpan="2" Content="JURIDICA" HorizontalAlignment="Left" Margin="134,128,0,0" VerticalAlignment="Top" Checked="rbJURIDICA_Checked"/>
-        <Label x:Name="lblDNIRUC" Grid.ColumnSpan="2" Content="TIPO DOC:" HorizontalAlignment="Left" Margin="239,124,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtDNIRUC" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="307,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <TextBox x:Name="txtptoLlegada" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="103,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="317"/>
-        <TextBox x:Name="txtPtoPartida" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="103,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="317"/>
-        <Label Content="Fecha Emisión:" HorizontalAlignment="Left" Margin="445,43,0,0" VerticalAlignment="Top" Width="94" Grid.Column="1" Height="26"/>
-        <TextBox x:Name="txtFechaEmision" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="550,43,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="95" IsReadOnly="True"/>
-        <Label Content="Vehículo Marca:" HorizontalAlignment="Left" Margin="18,196,0,0" VerticalAlignment="Top" Width="107" Grid.Column="1" Height="26"/>
-        <TextBox x:Name="txtVehiculoMarca" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="116,196,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="217"/>
-        <Label Content="Nº de Certificado:" HorizontalAlignment="Left" Margin="18,226,0,0" VerticalAlignment="Top" Width="107" Grid.Column="1" Height="26"/>
-        <Label Content="Nombre del Conductor:" HorizontalAlignment="Left" Margin="362,194,0,0" VerticalAlignment="Top" Width="139" Grid.Column="1" Height="26"/>
-        <TextBox x:Name="txtNroCertificado" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="130,227,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="217"/>
-        <TextBox x:Name="txtNombreConductor" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="505,193,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="217"/>
-        <Label Content="Nº de Brevete:" HorizontalAlignment="Left" Margin="362,224,0,0" VerticalAlignment="Top" Width="139" Grid.Column="1" Height="26"/>
-        <TextBox x:Name="txtNroBrevete" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="506,226,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="217"/>
-        <Rectangle Grid.ColumnSpan="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="79" Margin="23,258,0,0" Stroke="Black" VerticalAlignment="Top" Width="747"/>
-        <Label Content="Nombre del Transporte:" HorizontalAlignment="Left" Margin="29,268,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
-        <TextBox x:Name="txtNombreTransporte" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="171,268,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="217"/>
-        <Label Content="RUC :" HorizontalAlignment="Left" Margin="29,299,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
-        <TextBox x:Name="txtRUC" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="171,299,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="217"/>
-        <Label Content="Tipo Traslado :" HorizontalAlignment="Left" Margin="394,268,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
-        <Label Content="Motivo Traslado :" HorizontalAlignment="Left" Margin="394,299,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
-        <TextBox x:Name="txtMotivoTraslado" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="527,298,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="217"/>
-        <ComboBox x:Name="cboTipoTraslado" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="524,266,0,0" VerticalAlignment="Top" Width="210" SelectedIndex="0" >
+
+        <Label Content="Pto. Partida:" HorizontalAlignment="Left" Margin="158,63,0,0" VerticalAlignment="Top" Width="81" Grid.Column="1" Height="26"/>
+        <Label Content="Pto. Llegada:" HorizontalAlignment="Left" Margin="525,64,0,0" VerticalAlignment="Top" Width="81" Grid.Column="1" Height="26"/>
+        <Label Content="Nro. Guia de Remisión:" HorizontalAlignment="Left" Margin="409,33,0,0" VerticalAlignment="Top" Width="153" Grid.Column="1" Height="26"/>
+        <ComboBox x:Name="cboCliente" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="218,120,0,0" VerticalAlignment="Top" Width="158" SelectionChanged="cboCliente_SelectionChanged"/>
+        <Label Content="Cliente:" HorizontalAlignment="Left" Margin="158,120,0,0" VerticalAlignment="Top" Width="81" Grid.Column="1" Height="26"/>
+
+        <RadioButton x:Name="rbNATURAL" Grid.ColumnSpan="2" Content="NATURAL" HorizontalAlignment="Left" Margin="248,96,0,0" VerticalAlignment="Top" Checked="rbNATURAL_Checked" />
+        <RadioButton x:Name="rbJURIDICA" Grid.ColumnSpan="2" Content="JURIDICA" HorizontalAlignment="Left" Margin="360,96,0,0" VerticalAlignment="Top" Checked="rbJURIDICA_Checked"/>
+        <Label x:Name="lblDNIRUC" Grid.ColumnSpan="2" Content="Tipo Doc.:" HorizontalAlignment="Left" Margin="156,151,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtDNIRUC" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="219,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <TextBox x:Name="txtptoLlegada" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="606,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="279"/>
+        <TextBox x:Name="txtPtoPartida" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="244,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
+        <Label Content="Fecha Emisión:" HorizontalAlignment="Left" Margin="701,32,0,0" VerticalAlignment="Top" Width="94" Grid.Column="1" Height="26"/>
+        <TextBox x:Name="txtFechaEmision" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="790,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" IsReadOnly="True"/>
+        <Label Content="Vehículo Marca:" HorizontalAlignment="Left" Margin="156,214,0,0" VerticalAlignment="Top" Width="107" Grid.Column="1" Height="26"/>
+        <TextBox x:Name="txtVehiculoMarca" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="301,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="217"/>
+        <Label Content="Nº de Certificado:" HorizontalAlignment="Left" Margin="635,215,0,0" VerticalAlignment="Top" Width="107" Grid.Column="1" Height="26"/>
+        <Label Content="Nombre del Conductor:" HorizontalAlignment="Left" Margin="158,185,0,0" VerticalAlignment="Top" Width="139" Grid.Column="1" Height="26"/>
+        <TextBox x:Name="txtNroCertificado" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="740,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
+        <TextBox x:Name="txtNombreConductor" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="301,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328"/>
+        <Label Content="Nº de Brevete:" HorizontalAlignment="Left" Margin="654,185,0,0" VerticalAlignment="Top" Width="139" Grid.Column="1" Height="26"/>
+        <TextBox x:Name="txtNroBrevete" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="740,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
+        <Label Content="Nombre del Transporte:" HorizontalAlignment="Left" Margin="20,512,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
+        <TextBox x:Name="txtNombreTransporte" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="158,512,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196"/>
+        <Label Content="RUC :" HorizontalAlignment="Left" Margin="20,543,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
+        <TextBox x:Name="txtRUC" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="60,543,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
+        <Label Content="Tipo Traslado :" HorizontalAlignment="Left" Margin="353,512,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
+        <Label Content="Motivo Traslado :" HorizontalAlignment="Left" Margin="187,543,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
+        <TextBox x:Name="txtMotivoTraslado" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="289,543,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266"/>
+        <ComboBox x:Name="cboTipoTraslado" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="450,512,0,0" VerticalAlignment="Top" Width="105" SelectedIndex="0" >
             <ComboBoxItem Content="Seleccionar"/>
             <ComboBoxItem Content="Venta"/>
             <ComboBoxItem Content="Alquiler"/>
         </ComboBox>
-        <TextBox x:Name="txtNroGuiaRemision" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="580,8,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="106"/>
-        <ComboBox x:Name="cboDepartamento" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="29,381,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboDepartamento_SelectionChanged"/>
-        <ComboBox x:Name="cboProvincia" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="171,381,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboProvincia_SelectionChanged"/>
-        <ComboBox x:Name="cboDistrito" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="307,381,0,0" VerticalAlignment="Top" Width="173"/>
-        <Label Grid.ColumnSpan="2" Content="Departamento:" HorizontalAlignment="Left" Margin="29,355,0,0" VerticalAlignment="Top"/>
-        <Label Grid.ColumnSpan="2" Content="Distrito:" HorizontalAlignment="Left" Margin="314,354,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+        <TextBox x:Name="txtNroGuiaRemision" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="536,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106" IsEnabled="False"/>
+        <ComboBox x:Name="cboDepartamento" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="482,119,0,0" VerticalAlignment="Top" Width="147" SelectionChanged="cboDepartamento_SelectionChanged"/>
+        <ComboBox x:Name="cboProvincia" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="704,119,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="cboProvincia_SelectionChanged"/>
+        <ComboBox x:Name="cboDistrito" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="704,153,0,0" VerticalAlignment="Top" Width="173"/>
+        <Label Grid.ColumnSpan="2" Content="Departamento:" HorizontalAlignment="Left" Margin="393,119,0,0" VerticalAlignment="Top"/>
+        <Label Grid.ColumnSpan="2" Content="Distrito:" HorizontalAlignment="Left" Margin="653,153,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -63,104 +58,48 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label Grid.ColumnSpan="2" Content="Provincia:" HorizontalAlignment="Left" Margin="171,355,0,0" VerticalAlignment="Top"/>
-        <DataGrid  x:Name="dgvDetalleGuia" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="29,457,0,0" VerticalAlignment="Top" Height="169" Width="715" Background="White" GridLinesVisibility="All" BorderBrush="#FF0D1113" BorderThickness="1" >
+        <Label Grid.ColumnSpan="2" Content="Provincia:" HorizontalAlignment="Left" Margin="647,120,0,0" VerticalAlignment="Top" Width="78"/>
+        <DataGrid  x:Name="dgvDetalleGuia" HorizontalAlignment="Left" Margin="20,336,0,0" VerticalAlignment="Top" Height="169" Width="857" Background="White"
+                    BorderThickness="1"
+                   AutoGenerateColumns="False"
+			        CanUserAddRows="false"
+			        SelectionMode="Single"
+			        CanUserDeleteRows="True"
+			        CanUserResizeRows="False"
+			        CanUserSortColumns="False"
+			        HeadersVisibility="Column"
+			        GridLinesVisibility="None" 
+			        SelectionUnit="FullRow" BorderBrush="#FFA8A8A8">
             <DataGrid.Columns>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="ITEM" Width="93" TextAlignment="Center" />
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock x:Name="item" Text="{Binding  ITEM, StringFormat='0{0}'}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate >
-                        <DataTemplate>
-                            <TextBox Text="{Binding ITEM, UpdateSourceTrigger=LostFocus}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="ITEM" Header="ITEM" Binding="{Binding ITEM, StringFormat=0\{0\}}" IsReadOnly="true" Width="70"/>
+                <DataGridTextColumn x:Name="CANTIDAD" Header="CANTIDAD" Binding="{Binding CANTIDAD}" IsReadOnly="False" Width="100">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="{x:Type TextBox}">
+                            <EventSetter Event="UIElement.KeyDown" Handler="Importe_KeyDown"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="DESCRIPCIONSERVICIO" Header="DESCRIPCION SERVICIO" Binding="{Binding SERVICIO.DESCRIPCION}" IsReadOnly="True" Width="460"/>
+                <DataGridTextColumn x:Name="PESO" Header="PESO TOTAL" Binding="{Binding SERVICIO.PESO}" IsReadOnly="True" Width="*" />
 
-
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="CANTIDAD" Width="93" TextAlignment="Center" />
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock x:Name="cantidad" Text="{Binding CANTIDAD}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate >
-                        <DataTemplate>
-                            <TextBox Text="{Binding CANTIDAD, UpdateSourceTrigger=LostFocus}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="DESCRIPCION SERVICIO"  Width="250" TextAlignment="Center" />
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock x:Name="txtDescripcion" Text="{Binding SERVICIO.DESCRIPCION}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate >
-                        <DataTemplate>
-                            <TextBox Text="{Binding SERVICIO.DESCRIPCION, UpdateSourceTrigger=LostFocus}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.Header>
-                        <TextBlock  Text="PESO TOTAL" Width="80" TextAlignment="Center"/>
-                    </DataGridTemplateColumn.Header>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock x:Name="PESO_TOTAL" Text="{Binding SERVICIO.PESO}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate >
-                        <DataTemplate>
-                            <TextBox Text="{Binding SERVICIO.PESO, UpdateSourceTrigger=LostFocus}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
 
-
-
-
-
-
-
         </DataGrid>
-        <ComboBox x:Name="cboServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="559,355,0,0" VerticalAlignment="Top" Width="146" SelectionChanged="cboServicio_SelectionChanged" />
-        <Label Grid.ColumnSpan="2" Content="Servicio:" HorizontalAlignment="Left" Margin="505,355,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.222,-0.346"/>
-        <Button Grid.ColumnSpan="2" Content="Agregar Servicio" HorizontalAlignment="Left" Margin="643,384,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click"/>
-        <TextBox x:Name="txtPrecioServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="563,387,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="69"/>
-        <Label Grid.ColumnSpan="2" Content="Precio S/." HorizontalAlignment="Left" Margin="505,387,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCantidadServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="563,418,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="69"/>
-        <Label Grid.ColumnSpan="2" Content="Cantidad:" HorizontalAlignment="Left" Margin="505,418,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnAgregarGuiaFinal" Grid.ColumnSpan="2" Content="Agregar Guia" HorizontalAlignment="Left" Margin="458,644,0,0" VerticalAlignment="Top" Width="136"  BorderBrush="#FFEA2121" Foreground="#FFF3EBEB" FontSize="16" FontFamily="Verdana" FontWeight="Bold" Click="btnAgregarGuiaFinal_Click">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="#FFA6C1D8" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnCancelarGuia" Grid.ColumnSpan="2" Content="Cancelar Guia" HorizontalAlignment="Left" Margin="618,644,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click" BorderBrush="#FFEA2121" Foreground="#FFF3EBEB" FontSize="16" FontFamily="Verdana" FontWeight="Bold">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="#FFA6C1D8" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnBotonPrueba" Grid.ColumnSpan="2" Content="BOTON PRUEBA" HorizontalAlignment="Left" Margin="271,418,0,0" VerticalAlignment="Top" Width="136" Click="btnBotonPrueba_Click" />
+        <ComboBox x:Name="cboServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="213,264,0,0" VerticalAlignment="Top" Width="382" SelectionChanged="cboServicio_SelectionChanged" />
+        <Label Grid.ColumnSpan="2" Content="Servicio:" HorizontalAlignment="Left" Margin="159,264,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.222,-0.346"/>
+        <Button x:Name="btnAgragarDetalle" Grid.ColumnSpan="2" Content="Agregar detalle" HorizontalAlignment="Left" Margin="741,302,0,0" VerticalAlignment="Top" Width="136" Click="btnAgragarDetalle_Click" Background="#FF47A4F1" Foreground="White" FontWeight="Bold"/>
+        <TextBox x:Name="txtPrecioServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="808,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="69"/>
+        <Label Grid.ColumnSpan="2" Content="Precio S/." HorizontalAlignment="Left" Margin="750,264,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCantidadServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="669,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="69"/>
+        <Label Grid.ColumnSpan="2" Content="Cantidad:" HorizontalAlignment="Left" Margin="611,264,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnAgregarGuiaFinal" Grid.ColumnSpan="2" Content="Generar Guía" HorizontalAlignment="Left" Margin="642,516,0,0" VerticalAlignment="Top" Width="136"  BorderBrush="#FFEA2121" Foreground="#FFF3EBEB" FontSize="16" FontWeight="Bold" Click="btnAgregarGuiaFinal_Click" Background="#FF1FA0DC"/>
+        <Button x:Name="btnCancelarGuia" Grid.ColumnSpan="2" Content="Salir" HorizontalAlignment="Left" Margin="783,516,0,0" VerticalAlignment="Top" Width="95" Click="btnCancelarGuia_Click" BorderBrush="#FFEA2121" Foreground="#FFF3EBEB" FontSize="16" FontWeight="Bold" Background="#FFF53131"/>
+        <Label Grid.ColumnSpan="2" Content="Tip. Comprob." HorizontalAlignment="Left" Margin="159,32,0,0" VerticalAlignment="Top"/>
+        <Image Grid.ColumnSpan="2"  Source="IMG/logo_rep.PNG" HorizontalAlignment="Left" Height="155" Margin="10,11,0,0" VerticalAlignment="Top" Width="147"/>
+        <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="244,33,0,0" TextWrapping="Wrap" Text="GUÍA REMISION" VerticalAlignment="Top" Width="108" IsEnabled="False" FontWeight="Bold"/>
+        <CheckBox x:Name="chkCambiarNroGuia" Grid.ColumnSpan="2" Content="Cambiar Nro. Guía" HorizontalAlignment="Left" Margin="498,10,0,0" VerticalAlignment="Top"/>
+        <Label Grid.ColumnSpan="2" Content="Tipo Cliente:" HorizontalAlignment="Left" Margin="158,92,0,0" VerticalAlignment="Top"/>
+        <Button Grid.ColumnSpan="2" Content="Eliminar" HorizontalAlignment="Left" Margin="661,302,0,0" VerticalAlignment="Top" Width="75" Background="#FFE83C3C" Foreground="#FFFFFBFB" FontWeight="Bold"/>
 
 
     </Grid>

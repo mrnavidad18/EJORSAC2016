@@ -216,7 +216,7 @@ namespace SISJORSAC
                         if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar esta factura?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
                         {
                             AgregarFactura();
-                            await this.ShowMessageAsync("Correcto",mensaje);
+                            await this.ShowMessageAsync(mensaje,"Factura Generada Correctamente");
                             VariablesGlobales.NRO_GUIA_GLOBAL = "";
                             VariablesGlobales.clienteFactura = null;
                             VariablesGlobales.listaDetallesFactura = null;
@@ -399,7 +399,7 @@ namespace SISJORSAC
                 int cantidad = Convert.ToInt32(t.Text);
 
                 var detalleFactura = this.dgvListado.SelectedItem as DetalleFactura;
-                var detalleEncontrado=VariablesGlobales.listaDetallesFactura.Find(x => x.IMPORTE==detalleFactura.IMPORTE);
+                var detalleEncontrado = VariablesGlobales.listaDetallesFactura.Find(x => x.ITEM == detalleFactura.ITEM);
                 detalleEncontrado.CANTIDAD = cantidad;
                 detalleEncontrado.IMPORTE = cantidad * detalleEncontrado.PRECIO;
 
@@ -433,7 +433,7 @@ namespace SISJORSAC
         private void btnCambiarBoleta_Click(object sender, RoutedEventArgs e)
         {
             VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
-            
+            VariablesGlobales.ClickFacturaBoleta = true;
             FrmBoleta frmBoleta = new FrmBoleta();
           
             this.Close();
@@ -454,9 +454,19 @@ namespace SISJORSAC
             VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
             VariablesGlobales.ClickFacturaContrato = true;
             FrmContratoAlquiler frmContrato = new FrmContratoAlquiler();
-
             this.Close();
             frmContrato.ShowDialog();
         }
+
+        private void btnCambiarGuia_Click(object sender, RoutedEventArgs e)
+        {
+            VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
+            VariablesGlobales.ClickFacturaGuia = true;
+            FrmGuiaRemision frmGuia = new FrmGuiaRemision();
+            this.Close();
+            frmGuia.ShowDialog();
+        }
+
+       
     }
 }

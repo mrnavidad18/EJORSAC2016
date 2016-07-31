@@ -33,6 +33,9 @@ namespace SISJORSAC
         public static List<DetalleContrato> listaDetallesContrato = new List<DetalleContrato>();
         public static Cliente clienteFactura=null;
         public static bool ClickFacturaContrato = false;
+        public static bool ClickFacturaBoleta = false;
+        public static bool ClickFacturaGuia = false;
+        public static List<DetalleGuiaRemision> listaDetallesGuia = new List<DetalleGuiaRemision>();
         
     }
 }

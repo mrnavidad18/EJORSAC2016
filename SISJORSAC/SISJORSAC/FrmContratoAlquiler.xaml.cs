@@ -376,10 +376,10 @@ namespace SISJORSAC
                     }
                     else
                     {
-                        if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar esta factura?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                        if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar este contrato?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
                         {
                             AgregarContrato();
-                            await this.ShowMessageAsync("Correcto",mensaje);
+                            await this.ShowMessageAsync(mensaje,"Contrato Generado Correctamente");
                             VariablesGlobales.NRO_GUIA_GLOBAL = "";
                             VariablesGlobales.listaDetallesContrato.Clear();
                             VariablesGlobales.ClickFacturaContrato = false;
@@ -429,9 +429,9 @@ namespace SISJORSAC
             this.cboRazonsocial.DisplayMemberPath = "RAZON_SOCIAL";
             this.cboRazonsocial.SelectedValuePath = "COD_CLI";
             this.cboRazonsocial.SelectedIndex = VariablesGlobales.indexCliente;
-            this.txtDniRuc.Text = VariablesGlobales.clienteFactura.RUC;
-            this.txtDireccion.Text = VariablesGlobales.clienteFactura.DIRECCION;
-            this.txtTelf.Text = VariablesGlobales.clienteFactura.TEL_FIJO_OFICINA;
+            this.txtDniRuc.Text = VariablesGlobales.clienteFactura == null ? "" : VariablesGlobales.clienteFactura.RUC;
+            this.txtDireccion.Text = VariablesGlobales.clienteFactura == null ? "" : VariablesGlobales.clienteFactura.DIRECCION;
+            this.txtTelf.Text = VariablesGlobales.clienteFactura == null ? "" : VariablesGlobales.clienteFactura.TEL_FIJO_OFICINA;
             DetalleContrato detalleContrato = null;
 
 
@@ -455,17 +455,20 @@ namespace SISJORSAC
             this.txtIgv.Text = igvMonto.ToString();
             this.txtTotal.Text = total.ToString();
 
-
-            if (VariablesGlobales.clienteFactura.TIPO_CLIE.Equals("NATURAL"))
+            if (VariablesGlobales.clienteFactura != null)
             {
-                this.rbNATURAL.IsChecked = true;
-                this.txtDniRuc.Text = VariablesGlobales.clienteFactura.DNI;
+                if (VariablesGlobales.clienteFactura.TIPO_CLIE.Equals("NATURAL"))
+                {
+                    this.rbNATURAL.IsChecked = true;
+                    this.txtDniRuc.Text = VariablesGlobales.clienteFactura.DNI;
+                }
+                else
+                {
+                    this.rbJURIDICA.IsChecked = true;
+                    this.txtDniRuc.Text = VariablesGlobales.clienteFactura.RUC;
+                }
             }
-            else
-            {
-                this.rbJURIDICA.IsChecked = true;
-                this.txtDniRuc.Text = VariablesGlobales.clienteFactura.RUC;
-            }
+            
          
         }
       

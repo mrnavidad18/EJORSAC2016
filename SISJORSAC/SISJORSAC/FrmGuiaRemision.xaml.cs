@@ -25,12 +25,12 @@ namespace SISJORSAC
     public partial class FrmGuiaRemision : MetroWindow
     {
 
-        List<DetalleGuiaRemision> listaDetalleGuiaRemision = new List<DetalleGuiaRemision>();
         UbigeoDAO ubigeoDAO = new UbigeoDAO();
         ClienteDAO clienteDAO = new ClienteDAO();
         GuiaRemisionDAO guiaDAO = new GuiaRemisionDAO();
         Cliente cliente = new Cliente();
         ServicioDAO servicioDAO = new ServicioDAO();
+        string mensaje = "";
         string nuevoid = "";
         int item = 1;
         string nuevoidProvincia = "";
@@ -43,7 +43,12 @@ namespace SISJORSAC
             llenarDepartamentos();
             this.txtNroGuiaRemision.Text = nroGuia;
             Listarservicios("DISPONIBLE");
-            this.cboCliente.IsEnabled = false;                       
+            this.cboCliente.IsEnabled = false;
+
+            if (VariablesGlobales.ClickFacturaGuia)
+            {
+                ObtenerDatosFactura();
+            }
         }
         private void Listarservicios(string estado)
         {
@@ -171,7 +176,7 @@ namespace SISJORSAC
             detalle.CANTIDAD = cantidad;
             detalle.ITEM = item;
 
-            listaDetalleGuiaRemision.Add(detalle);
+            VariablesGlobales.listaDetallesGuia.Add(detalle);
 
             item++;
             return detalle;
@@ -184,10 +189,20 @@ namespace SISJORSAC
             this.txtPrecioServicio.Text = servicio.PRECIO.ToString();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void btnAgragarDetalle_Click(object sender, RoutedEventArgs e)
         {
-            var detalle = AgregarDetallesGuiaButton();
-            dgvDetalleGuia.Items.Add(detalle);
+            if (this.txtCantidadServicio.Text.Trim() != "" && this.cboServicio.SelectedItem!=null && this.txtPrecioServicio.Text.Trim()!="")
+            {
+                var detalle = AgregarDetallesGuiaButton();
+                dgvDetalleGuia.Items.Add(detalle);
+            }
+            else
+            {
+                await this.ShowMessageAsync("Error", "Falta llenar algunos campos");
+               
+            }
+
+            
         }
 
         private void agregarGuiaRemision()
@@ -211,27 +226,135 @@ namespace SISJORSAC
             guiaRemision.PROVINCIA = cboProvincia.Text.ToString();
             guiaRemision.DISTRITO = cboDistrito.Text.ToString();
             guiaRemision.SITUACION = "GENERADA";
-            guiaRemision.DETALLEGUIAREMISION = listaDetalleGuiaRemision;
+            guiaRemision.DETALLEGUIAREMISION = VariablesGlobales.listaDetallesGuia;
             //tipo
             guiaRemision.TIPO_COMPROB = "FACTURA";
-            guiaDAO.Agregar(guiaRemision);
-            MessageBox.Show("Agregado Correctamente", "Gracias");
+            if (this.chkCambiarNroGuia.IsChecked == true)
+            {
+                guiaRemision.NRO_GUIA = this.txtNroGuiaRemision.Text;
+                Object[] result = guiaDAO.AgregarConNroGuia(guiaRemision);
+                mensaje = result[1].ToString();
+            }
+            else
+            {
+                Object[] result = guiaDAO.Agregar(guiaRemision);
+                mensaje = result[1].ToString();
+            }
            
         }
 
-        private void btnAgregarGuiaFinal_Click(object sender, RoutedEventArgs e)
+        private async void btnAgregarGuiaFinal_Click(object sender, RoutedEventArgs e)
         {
-            agregarGuiaRemision();
+            if (this.dgvDetalleGuia.Items.Count == 0)
+            {
+                await this.ShowMessageAsync("Error","Falta agregar detalles");
+            }
+            else
+            {
+                if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar esta Guía?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                {
+                    agregarGuiaRemision();
+                    await this.ShowMessageAsync(mensaje,"Guia generada correctamente");
+                    VariablesGlobales.NRO_GUIA_GLOBAL = "";
+                    VariablesGlobales.clienteFactura = null;
+                    VariablesGlobales.listaDetallesFactura = null;
+                    VariablesGlobales.listaDetallesGuia = null;
+                    VariablesGlobales.ClickFacturaGuia = false;
+                    this.Close();
+                }
+               
+            }
+          
         }
 
-        private void btnBotonPrueba_Click(object sender, RoutedEventArgs e)
+        public void ObtenerDatosFactura()
         {
-            MessageBox.Show(((ComboBoxItem)cboTipoTraslado.SelectedItem).Content.ToString());
-            MessageBox.Show(cboDepartamento.Text.ToString());
+            this.cboCliente.DisplayMemberPath = "RAZON_SOCIAL";
+            this.cboCliente.SelectedValuePath = "COD_CLI";
+            this.cboCliente.SelectedIndex = VariablesGlobales.indexCliente;
+         
+            this.txtDNIRUC.Text = VariablesGlobales.clienteFactura == null ? "" : VariablesGlobales.clienteFactura.RUC;
+
+            DetalleGuiaRemision detalleGuia = null;
+
+
+            foreach (var detalle in VariablesGlobales.listaDetallesFactura)
+            {
+                detalleGuia = new DetalleGuiaRemision();
+                detalleGuia.CANTIDAD = detalle.CANTIDAD;
+                detalleGuia.SERVICIO = detalle.SERVICIO;
+                detalleGuia.ITEM = item;
+                VariablesGlobales.listaDetallesGuia.Add(detalleGuia);
+                item++;
+
+            }
+
+            LlenarGrid(VariablesGlobales.listaDetallesGuia);
+
+            if (VariablesGlobales.clienteFactura != null)
+            {
+                if (VariablesGlobales.clienteFactura.TIPO_CLIE.Equals("NATURAL"))
+                {
+                    this.rbNATURAL.IsChecked = true;
+                    this.txtDNIRUC.Text = VariablesGlobales.clienteFactura.DNI;
+                }
+                else
+                {
+                    this.rbJURIDICA.IsChecked = true;
+                    this.txtDNIRUC.Text = VariablesGlobales.clienteFactura.RUC;
+                }
+            }
+
+
         }
 
+        public void LlenarGrid(List<DetalleGuiaRemision> detalle)
+        {
+            this.dgvDetalleGuia.ItemsSource = null;
+            this.dgvDetalleGuia.ItemsSource = detalle;
+        }
+
+        private void Importe_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TextBox t = (TextBox)sender;
+                int cantidad = Convert.ToInt32(t.Text);
+
+                var detalleGuia = this.dgvDetalleGuia.SelectedItem as DetalleGuiaRemision;
+                var detalleEncontrado = VariablesGlobales.listaDetallesGuia.Find(x => x.ITEM == detalleGuia.ITEM);
+                detalleEncontrado.CANTIDAD = cantidad;
+
+                LlenarGrid(VariablesGlobales.listaDetallesGuia);
+                
 
 
+
+
+            }
+        }
+
+        private void btnCancelarGuia_Click(object sender, RoutedEventArgs e)
+        {
+            VariablesGlobales.NRO_GUIA_GLOBAL = "";
+            VariablesGlobales.clienteFactura = null;
+            VariablesGlobales.listaDetallesFactura = null;
+            VariablesGlobales.ClickFacturaGuia = false;
+            VariablesGlobales.listaDetallesGuia = null;
+            this.Close();
+        }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            VariablesGlobales.NRO_GUIA_GLOBAL = "";
+            VariablesGlobales.clienteFactura = null;
+            VariablesGlobales.listaDetallesFactura = null;
+            VariablesGlobales.ClickFacturaGuia = false;
+            VariablesGlobales.listaDetallesGuia = null;
+           
+        }
+
+      
 
     }
 }
