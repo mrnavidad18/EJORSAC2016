@@ -96,6 +96,15 @@ namespace SISJORSAC
 
         }
 
+        private void itemListadoCliente_Click(object sender, RoutedEventArgs e)
+        {
+            FrmListadoClientes frmListadoClientes = new FrmListadoClientes();
+            frmListadoClientes.ShowDialog();
+
+        }
+
+
+
 
 
 
