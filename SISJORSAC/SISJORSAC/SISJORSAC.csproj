@@ -114,6 +114,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AutoPrintCls.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ConjuntoDatos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConjuntoDatos.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSetPrincipal.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,6 +161,12 @@
     <Compile Include="ReporteClientesNaturales.Designer.cs" />
     <Compile Include="Reportes\FRTipoCliente.xaml.cs">
       <DependentUpon>FRTipoCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ImprimirFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\ImprimirFactura.Designer.cs">
+      <DependentUpon>ImprimirFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="Reportes\ReporteClientesJuridicos.cs">
       <SubType>Form</SubType>
@@ -301,6 +315,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ImprimirFactura.rdlc" />
+    <EmbeddedResource Include="Reportes\ImprimirFactura.resx">
+      <DependentUpon>ImprimirFactura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\InformeClientesJuridicos.rdlc" />
     <EmbeddedResource Include="Reportes\InformeClientesNaturales.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteClientesJuridicos.resx">
@@ -309,6 +327,17 @@
     <EmbeddedResource Include="Reportes\ReporteClientesNaturales.resx">
       <DependentUpon>ReporteClientesNaturales.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ConjuntoDatos.xsc">
+      <DependentUpon>ConjuntoDatos.xsd</DependentUpon>
+    </None>
+    <None Include="ConjuntoDatos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ConjuntoDatos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ConjuntoDatos.xss">
+      <DependentUpon>ConjuntoDatos.xsd</DependentUpon>
+    </None>
     <None Include="DataSetPrincipal.xsc">
       <DependentUpon>DataSetPrincipal.xsd</DependentUpon>
     </None>

@@ -45,6 +45,8 @@ namespace SISJORSAC
                 var guia = guiaDao.ObtenerGuiaRemisionXNroGuia(nroGuia);
                 if (guia != null)
                 {
+                    VariablesGlobales.listaDetallesFactura.Clear();
+                    VariablesGlobales.ClickFacturaConGuia = true;
                     VariablesGlobales.NRO_GUIA_GLOBAL = nroGuia;
                     frmFactura factura = new frmFactura();
                     this.Close();
@@ -66,7 +68,10 @@ namespace SISJORSAC
 
         private void rbtSinGuia_Checked(object sender, RoutedEventArgs e)
         {
+            VariablesGlobales.listaDetallesFactura.Clear();
+
             VariablesGlobales.NRO_GUIA_GLOBAL = "";
+            VariablesGlobales.ClickFacturaConGuia = false;
             frmFactura factura = new frmFactura();
             this.Close();
             factura.Show();

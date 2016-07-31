@@ -404,7 +404,11 @@ namespace SISJORSAC
 
         private void txtCancelar_Click(object sender, RoutedEventArgs e)
         {
+            VariablesGlobales.listaDetallesBoleta.Clear();
+            VariablesGlobales.listaDetallesFactura.Clear();
+            VariablesGlobales.listaDetallesGuia.Clear();
             VariablesGlobales.listaDetallesContrato.Clear();
+            VariablesGlobales.clienteFactura = null;
             VariablesGlobales.ClickFacturaContrato = false;
 
             this.Close();
@@ -419,6 +423,9 @@ namespace SISJORSAC
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            VariablesGlobales.listaDetallesBoleta.Clear();
+            VariablesGlobales.listaDetallesFactura.Clear();
+            VariablesGlobales.listaDetallesGuia.Clear();
             VariablesGlobales.listaDetallesContrato.Clear();
             VariablesGlobales.ClickFacturaContrato = false;
 
@@ -440,9 +447,9 @@ namespace SISJORSAC
                 detalleContrato = new DetalleContrato();
                 detalleContrato.CANTIDAD = detalle.CANTIDAD;
                 detalleContrato.SERVICIO = detalle.SERVICIO;
-                detalleContrato.PRECIO = detalle.SERVICIO.PRECIO;
+                detalleContrato.PRECIO = detalle.PRECIO;
                 detalleContrato.ITEM = item;
-                detalleContrato.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
+                detalleContrato.IMPORTE = detalle.CANTIDAD * detalle.PRECIO;
                 VariablesGlobales.listaDetallesContrato.Add(detalleContrato);
                 subtotal = subtotal + detalleContrato.IMPORTE;
                 item++;

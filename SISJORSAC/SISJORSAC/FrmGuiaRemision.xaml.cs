@@ -194,7 +194,7 @@ namespace SISJORSAC
             if (this.txtCantidadServicio.Text.Trim() != "" && this.cboServicio.SelectedItem!=null && this.txtPrecioServicio.Text.Trim()!="")
             {
                 var detalle = AgregarDetallesGuiaButton();
-                dgvDetalleGuia.Items.Add(detalle);
+                LlenarGrid(VariablesGlobales.listaDetallesGuia);
             }
             else
             {
@@ -338,9 +338,11 @@ namespace SISJORSAC
         {
             VariablesGlobales.NRO_GUIA_GLOBAL = "";
             VariablesGlobales.clienteFactura = null;
-            VariablesGlobales.listaDetallesFactura = null;
+            VariablesGlobales.listaDetallesFactura.Clear();
+            VariablesGlobales.listaDetallesBoleta.Clear();
+            VariablesGlobales.listaDetallesContrato.Clear();
             VariablesGlobales.ClickFacturaGuia = false;
-            VariablesGlobales.listaDetallesGuia = null;
+            VariablesGlobales.listaDetallesGuia.Clear();
             this.Close();
         }
 
@@ -348,9 +350,11 @@ namespace SISJORSAC
         {
             VariablesGlobales.NRO_GUIA_GLOBAL = "";
             VariablesGlobales.clienteFactura = null;
-            VariablesGlobales.listaDetallesFactura = null;
+            VariablesGlobales.listaDetallesFactura.Clear();
+            VariablesGlobales.listaDetallesBoleta.Clear();
+            VariablesGlobales.listaDetallesContrato.Clear();
             VariablesGlobales.ClickFacturaGuia = false;
-            VariablesGlobales.listaDetallesGuia = null;
+            VariablesGlobales.listaDetallesGuia.Clear();
            
         }
 

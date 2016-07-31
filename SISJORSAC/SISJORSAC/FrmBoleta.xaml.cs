@@ -26,8 +26,7 @@ namespace SISJORSAC
     public partial class FrmBoleta : MetroWindow
     {
 
-        List<DetalleBoleta> listaDetalle = new List<DetalleBoleta>();
-        Cliente cliente;
+       
         Servicio servicio;
         GuiaRemision guiaRemision;
         int item =1;
@@ -45,7 +44,7 @@ namespace SISJORSAC
             this.txtFechaEmision.Text = DateTime.Now.ToString();
             ListarServicios();
             
-            if (VariablesGlobales.NRO_GUIA_GLOBAL != "" && VariablesGlobales.clienteFactura == null)
+            if (VariablesGlobales.ClickBoletaConGuia)
             {
                 ObtenerGuia();
                 
@@ -66,26 +65,25 @@ namespace SISJORSAC
             this.cboCliente.SelectedIndex = VariablesGlobales.indexCliente;
             this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL;
             guiaRemision = guiaDao.ObtenerGuiaRemisionXNroGuia(VariablesGlobales.NRO_GUIA_GLOBAL);
-            this.txtDniRuc.Text = VariablesGlobales.clienteFactura == null ? "" : VariablesGlobales.clienteFactura.RUC;
 
             DetalleBoleta detalleBoleta = null;
 
-
+            VariablesGlobales.listaDetallesBoleta.Clear();
             foreach (var detalle in VariablesGlobales.listaDetallesFactura)
             {
                 detalleBoleta = new DetalleBoleta();
                 detalleBoleta.CANTIDAD = detalle.CANTIDAD;
                 detalleBoleta.SERVICIO = detalle.SERVICIO;
-                detalleBoleta.PRECIO = detalle.SERVICIO.PRECIO;
+                detalleBoleta.PRECIO = detalle.PRECIO;
                 detalleBoleta.ITEM = item;
-                detalleBoleta.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
-                listaDetalle.Add(detalleBoleta);
+                detalleBoleta.IMPORTE = detalle.CANTIDAD * detalle.PRECIO;
+                VariablesGlobales.listaDetallesBoleta.Add(detalleBoleta);
                 total = total + detalleBoleta.IMPORTE;
                 item++;
 
             }
 
-            LlenarGrid(listaDetalle);
+            LlenarGrid(VariablesGlobales.listaDetallesBoleta);
 
             this.txtTotal.Text = total.ToString();
 
@@ -170,18 +168,18 @@ namespace SISJORSAC
                 int cantidad = Convert.ToInt32(t.Text);
 
                 var detalleBoleta = this.dgvListado.SelectedItem as DetalleBoleta;
-                var detalleEncontrado = listaDetalle.Find(x => x.ITEM == detalleBoleta.ITEM);
+                var detalleEncontrado = VariablesGlobales.listaDetallesBoleta.Find(x => x.ITEM == detalleBoleta.ITEM);
                 detalleEncontrado.CANTIDAD = cantidad;
                 detalleEncontrado.IMPORTE = cantidad * detalleEncontrado.PRECIO;
 
                 total = 0;
-                foreach (var detalle in listaDetalle)
+                foreach (var detalle in VariablesGlobales.listaDetallesBoleta)
                 {
                     total = total + detalle.IMPORTE;
                 }
                 this.txtTotal.Text = total.ToString();
 
-                LlenarGrid(listaDetalle);
+                LlenarGrid(VariablesGlobales.listaDetallesBoleta);
             }
 
             int ascci = Convert.ToInt32(Convert.ToChar(e.Key));
@@ -194,21 +192,21 @@ namespace SISJORSAC
         {
             if (cboCliente.SelectedIndex == -1)
             {
-
+                VariablesGlobales.clienteBoleta = null;
             }
             else
             {
                 int codCliente = Convert.ToInt32(this.cboCliente.SelectedValue);
-                cliente = clienteDao.ObtenerCliente(codCliente);
-                if (cliente.TIPO_CLIE.Equals("NATURAL"))
+                VariablesGlobales.clienteBoleta = clienteDao.ObtenerCliente(codCliente);
+                if (VariablesGlobales.clienteBoleta.TIPO_CLIE.Equals("NATURAL"))
                 {
-                    this.txtDniRuc.Text = cliente.DNI;
+                    this.txtDniRuc.Text = VariablesGlobales.clienteBoleta.DNI;
                 }
                 else
                 {
-                    this.txtDniRuc.Text = cliente.RUC;
+                    this.txtDniRuc.Text = VariablesGlobales.clienteBoleta.RUC;
                 }
-                this.txtDireccion.Text = cliente.DIRECCION.ToString();
+                this.txtDireccion.Text = VariablesGlobales.clienteBoleta.DIRECCION.ToString();
             }
         }
 
@@ -226,8 +224,8 @@ namespace SISJORSAC
             detalle.PRECIO = precio;
             detalle.ITEM = item;
             detalle.IMPORTE = cantidad * precio;
-            listaDetalle.Add(detalle);
-            LlenarGrid(listaDetalle);
+            VariablesGlobales.listaDetallesBoleta.Add(detalle);
+            LlenarGrid(VariablesGlobales.listaDetallesBoleta);
             total = total + detalle.IMPORTE;
             item++;
             return detalle;
@@ -271,7 +269,7 @@ namespace SISJORSAC
             Boleta boleta = new Boleta();
             boleta.MODALIDAD = ((ComboBoxItem)this.cboModalidad.SelectedItem).Content.ToString();
             boleta.FECHA_EMISION = DateTime.Now;
-            boleta.cliente = cliente;
+            boleta.cliente = VariablesGlobales.clienteBoleta;
             boleta.TOTAL = total;
             if (this.txtNroGuia.Text == "")
             {
@@ -283,7 +281,7 @@ namespace SISJORSAC
                 boleta.GUIA = guiaRemision;
             }
 
-            boleta.DETALLEBOLETA = listaDetalle;
+            boleta.DETALLEBOLETA = VariablesGlobales.listaDetallesBoleta;
             boleta.OBSERVACION = this.txtObservacion.Text;
             if (chkCambiarNroBol.IsChecked == true)
             {
@@ -319,6 +317,7 @@ namespace SISJORSAC
                             await this.ShowMessageAsync("Boleta Generada",mensaje);
                             VariablesGlobales.NRO_GUIA_GLOBAL = "";
                             VariablesGlobales.clienteFactura = null;
+                            VariablesGlobales.clienteBoleta = null;
                             VariablesGlobales.listaDetallesFactura = null;
                             VariablesGlobales.ClickFacturaBoleta = false;
                             this.Close();
@@ -343,10 +342,10 @@ namespace SISJORSAC
              if(this.dgvListado.SelectedIndex != -1)
             {
                 var detalleBoleta = this.dgvListado.SelectedItem as DetalleBoleta;
-                listaDetalle.RemoveAll(x => x.ITEM==detalleBoleta.ITEM);
+                VariablesGlobales.listaDetallesBoleta.RemoveAll(x => x.ITEM==detalleBoleta.ITEM);
                 item=1;
                 total = 0;
-                foreach (var detalle in listaDetalle)
+                foreach (var detalle in VariablesGlobales.listaDetallesBoleta)
                 {
                     detalle.ITEM = item;
                     total=total+detalle.IMPORTE;
@@ -354,7 +353,7 @@ namespace SISJORSAC
                 }
               
                 this.txtTotal.Text = total.ToString();
-                LlenarGrid(listaDetalle);
+                LlenarGrid(VariablesGlobales.listaDetallesBoleta);
 
             }
             else
@@ -371,12 +370,10 @@ namespace SISJORSAC
                 guiaRemision = guiaDao.ObtenerGuiaRemisionXNroGuia(VariablesGlobales.NRO_GUIA_GLOBAL);
                 var listaDetalleGuia = detalleGuiaDao.listarDetalleGuiaxGuia(guiaRemision.COD_GUIA);
 
+                VariablesGlobales.clienteBoleta = guiaRemision.cliente;
 
+                
 
-                this.cboCliente.Text = guiaRemision.cliente.RAZON_SOCIAL;
-
-                this.txtDniRuc.Text = guiaRemision.cliente.RUC;
-                this.txtDireccion.Text = guiaRemision.cliente.DIRECCION;
                 this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL.ToString();
                 this.cboModalidad.Items.Clear();
                 ComboBoxItem itemModalidad = new ComboBoxItem();
@@ -396,7 +393,7 @@ namespace SISJORSAC
                     detalleBoleta.PRECIO = detalle.SERVICIO.PRECIO;
                     detalleBoleta.ITEM = item;
                     detalleBoleta.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
-                    listaDetalle.Add(detalleBoleta);
+                    VariablesGlobales.listaDetallesBoleta.Add(detalleBoleta);
 
 
 
@@ -405,7 +402,7 @@ namespace SISJORSAC
 
                 }
 
-                LlenarGrid(listaDetalle);
+                LlenarGrid(VariablesGlobales.listaDetallesBoleta);
 
                 this.txtTotal.Text = total.ToString();
 
@@ -413,11 +410,15 @@ namespace SISJORSAC
                 if (guiaRemision.cliente.TIPO_CLIE.Equals("NATURAL"))
                 {
                     this.rbNATURAL.IsChecked = true;
+                    this.cboCliente.Text = guiaRemision.cliente.NOMBRES;
                     this.txtDniRuc.Text = guiaRemision.cliente.DNI;
+                    this.txtDireccion.Text = guiaRemision.cliente.DIRECCION;
                 }
                 else
                 {
                     this.rbJURIDICA.IsChecked = true;
+                    this.cboCliente.Text = guiaRemision.cliente.RAZON_SOCIAL;
+                    this.txtDireccion.Text = guiaRemision.cliente.DIRECCION;
                     this.txtDniRuc.Text = guiaRemision.cliente.RUC;
                 }
             }
@@ -426,19 +427,29 @@ namespace SISJORSAC
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            VariablesGlobales.clienteFactura = null;
-            VariablesGlobales.NRO_GUIA_GLOBAL = "";
-            VariablesGlobales.listaDetallesFactura = null;
+
+            VariablesGlobales.ClickBoletaConGuia = false;
+            
             VariablesGlobales.ClickFacturaBoleta = false;
         }
 
         private void txtCancelar_Click(object sender, RoutedEventArgs e)
         {
-            VariablesGlobales.clienteFactura = null;
+            VariablesGlobales.clienteBoleta = null;
             VariablesGlobales.NRO_GUIA_GLOBAL = "";
-            VariablesGlobales.listaDetallesFactura = null;
+            VariablesGlobales.listaDetallesBoleta.Clear();
             VariablesGlobales.ClickFacturaBoleta = false;
             this.Close();
+        }
+
+        private void btnCambiarFactura_Click(object sender, RoutedEventArgs e)
+        {
+            VariablesGlobales.indexCliente = this.cboCliente.SelectedIndex;
+            VariablesGlobales.ClickBoletaFactura = true;
+            VariablesGlobales.ClickFacturaBoleta = false;
+            frmFactura frmFactura = new frmFactura();
+            this.Close();
+            frmFactura.ShowDialog();
         }
 
     }

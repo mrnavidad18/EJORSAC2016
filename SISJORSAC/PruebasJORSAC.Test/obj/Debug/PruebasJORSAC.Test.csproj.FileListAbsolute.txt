@@ -10,3 +10,4 @@ C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.dll
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.pdb
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.csprojResolveAssemblyReference.cache
+C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.csprojResolveAssemblyReference.cache

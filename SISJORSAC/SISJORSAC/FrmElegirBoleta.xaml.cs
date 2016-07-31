@@ -43,6 +43,8 @@ namespace SISJORSAC
                 var guia = guiaDao.ObtenerGuiaRemisionXNroGuia(nroGuia);
                 if (guia != null)
                 {
+                    VariablesGlobales.listaDetallesBoleta.Clear();
+                    VariablesGlobales.ClickBoletaConGuia = true;
                     VariablesGlobales.NRO_GUIA_GLOBAL = nroGuia;
                     FrmBoleta boleta = new FrmBoleta();
                     this.Close();
@@ -64,6 +66,9 @@ namespace SISJORSAC
 
         private void rbtSinGuia_Checked(object sender, RoutedEventArgs e)
         {
+            VariablesGlobales.listaDetallesBoleta.Clear();
+            VariablesGlobales.NRO_GUIA_GLOBAL = "";
+            VariablesGlobales.ClickBoletaConGuia = false;
             FrmBoleta boleta = new FrmBoleta();
             this.Close();
             boleta.ShowDialog();

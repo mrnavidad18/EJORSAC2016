@@ -4,7 +4,7 @@
          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="FrmBoleta"  Height="661.425" Width="825.276" Closing="MetroWindow_Closing">
+        Title="FrmBoleta"  Height="661.425" Width="914.276" Closing="MetroWindow_Closing">
     <Grid >
         <Image HorizontalAlignment="Left" Height="136" Margin="21,18,0,0" VerticalAlignment="Top" Width="163" Source="IMG/logo_rep.PNG"/>
         <Label Content="Tipo Compro.:" HorizontalAlignment="Left" Margin="215,31,0,0" VerticalAlignment="Top"/>
@@ -29,9 +29,9 @@
             <ComboBoxItem Content="US$ - DOLARES"/>
         </ComboBox>
         <Label Content="Moneda:" HorizontalAlignment="Left" Margin="621,162,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnAgregarDetalle" Content="Agregar Detalle" HorizontalAlignment="Left" Margin="683,239,0,0" VerticalAlignment="Top" Width="120" Background="#FF3D97F1" Foreground="White" Click="btnAgregarDetalle_Click"/>
-        <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Margin="608,239,0,0" VerticalAlignment="Top" Width="70" Background="#FFEE0B00" Foreground="White" RenderTransformOrigin="-0.4,0.586" Click="btnEliminar_Click"/>
-        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,278,15,0" Width="782" Height="257" Background="#FFB8B6B6"
+        <Button x:Name="btnAgregarDetalle" Content="Agregar Detalle" HorizontalAlignment="Left" Margin="683,239,0,0" VerticalAlignment="Top" Width="136" Background="#FF3D97F1" Foreground="White" Click="btnAgregarDetalle_Click" FontWeight="Bold"/>
+        <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Margin="597,239,0,0" VerticalAlignment="Top" Width="81" Background="#FFEE0B00" Foreground="White" RenderTransformOrigin="-0.4,0.586" Click="btnEliminar_Click" FontWeight="Bold"/>
+        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,278,87,0" Width="782" Height="257" Background="#FFB8B6B6"
                   
                    AutoGenerateColumns="False"
                   CanUserAddRows="false"
@@ -76,6 +76,8 @@
         <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="608,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" MaxLength="5" />
         <Label Content="Precio:" HorizontalAlignment="Left" Margin="676,198,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="732,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" BorderBrush="#FFB6B6B6"/>
+        <Button x:Name="btnCambiarFactura" Content="Factura" HorizontalAlignment="Left" Margin="825,364,0,0" VerticalAlignment="Top" Width="75" Background="#FF13BD68" Foreground="White" FontWeight="Bold" Click="btnCambiarFactura_Click"/>
+        <Label Content="Cambiar a:" HorizontalAlignment="Left" Margin="830,333,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Controls:MetroWindow>
