@@ -41,11 +41,14 @@
                     <MenuItem x:Name="ItemGuiaRemision" Header="Guía Remisión" Click="ItemGuiaRemision_Click"/>
                     <MenuItem x:Name="ItemContrato" Header="Contrato de Alquiler" Click="ItemContrato_Click"/>
                 </MenuItem>
-                <MenuItem Header="Consultas">
+                <MenuItem Header="Consultas" >
                     <MenuItem.Icon>
                         <Image Source="IMG/consultas.png"/>
                     </MenuItem.Icon>
-                </MenuItem>
+                    <MenuItem x:Name="itemListadoCliente" Header="Listado de Clientes" Click="itemListadoCliente_Click"/>
+                    <MenuItem x:Name="itemListadoProveedores" Header="Listado de Proveedores"/>
+
+                    </MenuItem>
                 <MenuItem Header="Reportes">
                     <MenuItem.Icon>
                         <Image Source="IMG/reporte.png"/>

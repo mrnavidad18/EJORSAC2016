@@ -138,6 +138,9 @@
       <DependentUpon>FrmElegirBoleta.xaml</DependentUpon>
     </Compile>
     <Compile Include="FrmGuiaRemision.xaml.cs" />
+    <Compile Include="FrmListadoClientes.xaml.cs">
+      <DependentUpon>FrmListadoClientes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrmProveedor.xaml.cs">
       <DependentUpon>FrmProveedor.xaml</DependentUpon>
     </Compile>
@@ -195,6 +198,10 @@
     <Page Include="FrmGuiaRemision.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmListadoClientes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FrmProveedor.xaml">
       <SubType>Designer</SubType>
