@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
-using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
-using MahApps.Metro.Behaviours;
 using SISJORSAC.DATA.DAO;
 using SISJORSAC.DATA.Modelo;
 

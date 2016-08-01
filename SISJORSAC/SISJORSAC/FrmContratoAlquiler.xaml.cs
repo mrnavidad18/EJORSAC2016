@@ -57,9 +57,14 @@ namespace SISJORSAC
             {
                 ObtenerDatosBoleta();
             }
+            if (VariablesGlobales.ClickGuiaContrato)
+            {
+                ObtenerDatosGuia();
+            }
             
         }
 
+       
        
 
 
@@ -428,13 +433,10 @@ namespace SISJORSAC
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            VariablesGlobales.listaDetallesBoleta.Clear();
-            VariablesGlobales.listaDetallesFactura.Clear();
-            VariablesGlobales.listaDetallesGuia.Clear();
-            VariablesGlobales.listaDetallesContrato.Clear();
             VariablesGlobales.ClickFacturaContrato = false;
             VariablesGlobales.ClickBoletaContrato = false;
-
+            VariablesGlobales.ClickContratoBoleta = false;
+            VariablesGlobales.ClickGuiaContrato = false;
         }
 
         private void ObtenerDatosFactura()
@@ -445,7 +447,7 @@ namespace SISJORSAC
             this.txtDireccion.Text = VariablesGlobales.clienteFactura == null ? "" : VariablesGlobales.clienteFactura.DIRECCION;
             this.txtTelf.Text = VariablesGlobales.clienteFactura == null ? "" : VariablesGlobales.clienteFactura.TEL_FIJO_OFICINA;
             DetalleContrato detalleContrato = null;
-
+            VariablesGlobales.listaDetallesContrato.Clear();
 
             foreach (var detalle in VariablesGlobales.listaDetallesFactura)
             {
@@ -496,7 +498,7 @@ namespace SISJORSAC
             this.cboRazonsocial.SelectedIndex = VariablesGlobales.indexCliente;
             
            DetalleContrato detalleContrato = null;
-
+           VariablesGlobales.listaDetallesContrato.Clear();
 
             foreach (var detalle in VariablesGlobales.listaDetallesBoleta)
             {
@@ -541,6 +543,106 @@ namespace SISJORSAC
             }
            
 
+        }
+        private void ObtenerDatosGuia()
+        {
+            this.cboRazonsocial.DisplayMemberPath = "RAZON_SOCIAL";
+            this.cboRazonsocial.SelectedValuePath = "COD_CLI";
+            this.cboRazonsocial.SelectedIndex = VariablesGlobales.indexCliente;
+
+            DetalleContrato detalleContrato = null;
+            VariablesGlobales.listaDetallesContrato.Clear();
+
+            foreach (var detalle in VariablesGlobales.listaDetallesGuia)
+            {
+                detalleContrato = new DetalleContrato();
+                detalleContrato.CANTIDAD = detalle.CANTIDAD;
+                detalleContrato.SERVICIO = detalle.SERVICIO;
+                detalleContrato.PRECIO = detalle.SERVICIO.PRECIO;
+                detalleContrato.ITEM = item;
+                detalleContrato.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
+                VariablesGlobales.listaDetallesContrato.Add(detalleContrato);
+                subtotal = subtotal + detalleContrato.IMPORTE;
+                item++;
+
+            }
+            igvMonto = subtotal * IGV;
+            total = igvMonto + subtotal;
+            LlenarGrid(VariablesGlobales.listaDetallesContrato);
+            this.txtSubtotal.Text = subtotal.ToString();
+            this.txtIgv.Text = igvMonto.ToString();
+            this.txtTotal.Text = total.ToString();
+
+            if (VariablesGlobales.indexCliente != -1)
+            {
+                if (VariablesGlobales.clienteGuia!= null)
+                {
+                    if (VariablesGlobales.clienteGuia.TIPO_CLIE.Equals("NATURAL"))
+                    {
+                        this.rbNATURAL.IsChecked = true;
+                        this.txtDniRuc.Text = VariablesGlobales.clienteGuia.DNI;
+                        this.txtDireccion.Text = VariablesGlobales.clienteGuia.DIRECCION;
+                        this.txtTelf.Text = VariablesGlobales.clienteGuia.TEL_FIJO_CASA;
+
+                    }
+                    else
+                    {
+                        this.rbJURIDICA.IsChecked = true;
+                        this.txtDireccion.Text = VariablesGlobales.clienteGuia.DIRECCION;
+                        this.txtTelf.Text = VariablesGlobales.clienteGuia.TEL_FIJO_OFICINA;
+                        this.txtDniRuc.Text = VariablesGlobales.clienteGuia.RUC;
+                    }
+                }
+            }
+        }
+
+
+        private void btnCambiarFactura_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.cboRazonsocial.SelectedIndex == -1)
+            {
+                VariablesGlobales.clienteContrato = null;
+            }
+            else
+            {
+                VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
+            }
+            VariablesGlobales.clickContratoFactura = true;
+            frmFactura frmFactura = new frmFactura();
+            this.Close();
+            frmFactura.ShowDialog();
+        }
+
+        private void btnCambiarBoleta_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.cboRazonsocial.SelectedIndex == -1)
+            {
+                VariablesGlobales.clienteContrato = null;
+            }
+            else
+            {
+                VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
+            }
+            VariablesGlobales.ClickContratoBoleta = true;
+            FrmBoleta frmBoleta = new FrmBoleta();
+            this.Close();
+            frmBoleta.ShowDialog();
+        }
+
+        private void btnCambiarGuia_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.cboRazonsocial.SelectedIndex == -1)
+            {
+                VariablesGlobales.clienteContrato = null;
+            }
+            else
+            {
+                VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
+            }
+            VariablesGlobales.ClickContratoGuia = true;
+            FrmGuiaRemision frmGuia = new FrmGuiaRemision();
+            this.Close();
+            frmGuia.ShowDialog();
         }
       
     }

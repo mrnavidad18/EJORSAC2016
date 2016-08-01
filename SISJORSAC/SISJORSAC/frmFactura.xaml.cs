@@ -50,15 +50,20 @@ namespace SISJORSAC
           
             ListarServicios();
             if (VariablesGlobales.ClickFacturaConGuia)
-            {
                 ObtenerGuia();
-
-            }
+   
             if (VariablesGlobales.ClickBoletaFactura)
-            {
                 ObtenerDatosBoleta();
-            }
+          
+            if (VariablesGlobales.clickContratoFactura)
+                ObtenerDatosContrato();
+
+            if (VariablesGlobales.ClickGuiaFactura)
+                ObtenerDatosGuia();
         }
+
+     
+       
 
 
         private  async void btnAgregar_Click(object sender, RoutedEventArgs e)
@@ -220,7 +225,7 @@ namespace SISJORSAC
                             await this.ShowMessageAsync(mensaje,"Factura Generada Correctamente");
                             VariablesGlobales.NRO_GUIA_GLOBAL = "";
                             VariablesGlobales.clienteFactura = null;
-                            VariablesGlobales.listaDetallesFactura = null;
+                            VariablesGlobales.listaDetallesFactura.Clear();
                             this.Close();
                             frmimprimir.ShowDialog();
                            
@@ -458,6 +463,8 @@ namespace SISJORSAC
         {
             VariablesGlobales.ClickFacturaConGuia = false;
             VariablesGlobales.ClickBoletaFactura = false;
+            VariablesGlobales.clickContratoFactura = false;
+            VariablesGlobales.ClickGuiaFactura = false;
 
         }
 
@@ -498,10 +505,6 @@ namespace SISJORSAC
 
         private void ObtenerDatosBoleta()
         {
-           
-
-            //this.txtRuc.Text = VariablesGlobales.clienteBoleta == null ? "" : VariablesGlobales.clienteBoleta.RUC;
-
             DetalleFactura detalleFactura = null;
             
             VariablesGlobales.listaDetallesFactura.Clear();
@@ -543,11 +546,99 @@ namespace SISJORSAC
             }
            
         }
+        private void ObtenerDatosGuia()
+        {
+            DetalleFactura detalleFactura = null;
+
+            VariablesGlobales.listaDetallesFactura.Clear();
+
+            foreach (var detalle in VariablesGlobales.listaDetallesGuia)
+            {
+                detalleFactura = new DetalleFactura();
+                detalleFactura.CANTIDAD = detalle.CANTIDAD;
+                detalleFactura.SERVICIO = detalle.SERVICIO;
+                detalleFactura.PRECIO = detalle.SERVICIO.PRECIO;
+                detalleFactura.ITEM = item;
+                detalleFactura.IMPORTE = detalle.CANTIDAD * detalle.SERVICIO.PRECIO;
+                VariablesGlobales.listaDetallesFactura.Add(detalleFactura);
+                subtotal = subtotal + detalleFactura.IMPORTE;
+                item++;
+            }
+
+            igvMonto = subtotal * IGV;
+            total = subtotal + igvMonto;
+
+            this.dgvListado.ItemsSource = VariablesGlobales.listaDetallesFactura;
+            this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL;
+            this.txtSubtotal.Text = subtotal.ToString();
+            this.txtIgv.Text = igvMonto.ToString();
+            this.txtTotal.Text = total.ToString();
+
+            if (VariablesGlobales.indexCliente != -1)
+            {
+                if (VariablesGlobales.clienteGuia != null)
+                {
+                    if (VariablesGlobales.clienteGuia.TIPO_CLIE.Equals("JURIDICA"))
+                    {
+                        this.cboRazonsocial.SelectedIndex = VariablesGlobales.indexCliente;
+                        this.txtRuc.Text = VariablesGlobales.clienteGuia.RUC;
+                        this.txtDireccion.Text = VariablesGlobales.clienteGuia.DIRECCION;
+                    }
+
+                }
+            }
+        }
+
 
         private void LlenarGrid(List<DetalleFactura> list)
         {
             this.dgvListado.ItemsSource = null;
             dgvListado.ItemsSource = list;
+        }
+
+        private void ObtenerDatosContrato()
+        {
+
+            DetalleFactura detalleFactura = null;
+
+            VariablesGlobales.listaDetallesFactura.Clear();
+
+            foreach (var detalle in VariablesGlobales.listaDetallesContrato)
+            {
+                detalleFactura = new DetalleFactura();
+                detalleFactura.CANTIDAD = detalle.CANTIDAD;
+                detalleFactura.SERVICIO = detalle.SERVICIO;
+                detalleFactura.PRECIO = detalle.PRECIO;
+                detalleFactura.ITEM = item;
+                detalleFactura.IMPORTE = detalle.CANTIDAD * detalle.PRECIO;
+                VariablesGlobales.listaDetallesFactura.Add(detalleFactura);
+                subtotal = subtotal + detalleFactura.IMPORTE;
+                item++;
+            }
+
+            igvMonto = subtotal * IGV;
+            total = subtotal + igvMonto;
+
+            this.dgvListado.ItemsSource = VariablesGlobales.listaDetallesFactura;
+            this.txtNroGuia.Text = VariablesGlobales.NRO_GUIA_GLOBAL;
+            this.txtSubtotal.Text = subtotal.ToString();
+            this.txtIgv.Text = igvMonto.ToString();
+            this.txtTotal.Text = total.ToString();
+
+            if (VariablesGlobales.indexCliente != -1)
+            {
+                if (VariablesGlobales.clienteContrato != null)
+                {
+                    if (VariablesGlobales.clienteContrato.TIPO_CLIE.Equals("JURIDICA"))
+                    {
+                        this.cboRazonsocial.SelectedIndex = VariablesGlobales.indexCliente;
+                        this.txtRuc.Text = VariablesGlobales.clienteContrato.RUC;
+                        this.txtDireccion.Text = VariablesGlobales.clienteContrato.DIRECCION;
+                    }
+
+                }
+            }
+           
         }
        
     }

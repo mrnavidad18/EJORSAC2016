@@ -28,7 +28,6 @@ namespace SISJORSAC
         UbigeoDAO ubigeoDAO = new UbigeoDAO();
         ClienteDAO clienteDAO = new ClienteDAO();
         GuiaRemisionDAO guiaDAO = new GuiaRemisionDAO();
-        Cliente cliente = new Cliente();
         ServicioDAO servicioDAO = new ServicioDAO();
         string mensaje = "";
         string nuevoid = "";
@@ -53,7 +52,13 @@ namespace SISJORSAC
             {
                 ObtenerDatosBoleta();
             }
+            if (VariablesGlobales.ClickContratoGuia)
+            {
+                ObtenerDatosContrato();
+            }
         }
+
+       
 
        
         private void Listarservicios(string estado)
@@ -107,14 +112,14 @@ namespace SISJORSAC
             else {
                 VariablesGlobales.indexCliente = this.cboCliente.SelectedIndex;
             int codCliente = Convert.ToInt32(this.cboCliente.SelectedValue);
-            cliente = clienteDAO.ObtenerCliente(codCliente);
-            if (cliente.TIPO_CLIE.Equals("NATURAL"))
+            VariablesGlobales.clienteGuia = clienteDAO.ObtenerCliente(codCliente);
+            if (VariablesGlobales.clienteGuia.TIPO_CLIE.Equals("NATURAL"))
             {
-                this.txtDNIRUC.Text = cliente.DNI;                
+                this.txtDNIRUC.Text = VariablesGlobales.clienteGuia.DNI;                
             }
             else
             {               
-                this.txtDNIRUC.Text = cliente.RUC;
+                this.txtDNIRUC.Text = VariablesGlobales.clienteGuia.RUC;
             }
             }
             
@@ -217,7 +222,7 @@ namespace SISJORSAC
             guiaRemision.PTO_PARTIDA = this.txtPtoPartida.Text;
             guiaRemision.PTO_LLEGADA = this.txtptoLlegada.Text;
             guiaRemision.FECHA_EMISION =Convert.ToDateTime(this.txtFechaEmision.Text);
-            guiaRemision.cliente = cliente;
+            guiaRemision.cliente = VariablesGlobales.clienteGuia;
             guiaRemision.VEHICULO_MARCA = this.txtVehiculoMarca.Text;
             guiaRemision.NONBRE_CONDUCTOR = this.txtNombreConductor.Text;
             guiaRemision.NRO_CERTIFICADO = this.txtNroCertificado.Text;
@@ -284,7 +289,7 @@ namespace SISJORSAC
 
             DetalleGuiaRemision detalleGuia = null;
 
-
+            VariablesGlobales.listaDetallesGuia.Clear();
             foreach (var detalle in VariablesGlobales.listaDetallesFactura)
             {
                 detalleGuia = new DetalleGuiaRemision();
@@ -322,7 +327,7 @@ namespace SISJORSAC
             this.cboCliente.SelectedIndex = VariablesGlobales.indexCliente;
 
             DetalleGuiaRemision detalleGuia = null;
-
+            VariablesGlobales.listaDetallesGuia.Clear();
 
             foreach (var detalle in VariablesGlobales.listaDetallesBoleta)
             {
@@ -348,6 +353,44 @@ namespace SISJORSAC
                 {
                     this.rbJURIDICA.IsChecked = true;
                     this.txtDNIRUC.Text = VariablesGlobales.clienteBoleta.RUC;
+                }
+            }
+        }
+
+        private void ObtenerDatosContrato()
+        {
+
+            this.cboCliente.DisplayMemberPath = "RAZON_SOCIAL";
+            this.cboCliente.SelectedValuePath = "COD_CLI";
+            this.cboCliente.SelectedIndex = VariablesGlobales.indexCliente;
+
+            DetalleGuiaRemision detalleGuia = null;
+            VariablesGlobales.listaDetallesGuia.Clear();
+
+            foreach (var detalle in VariablesGlobales.listaDetallesContrato)
+            {
+                detalleGuia = new DetalleGuiaRemision();
+                detalleGuia.CANTIDAD = detalle.CANTIDAD;
+                detalleGuia.SERVICIO = detalle.SERVICIO;
+                detalleGuia.ITEM = item;
+                VariablesGlobales.listaDetallesGuia.Add(detalleGuia);
+                item++;
+
+            }
+
+            LlenarGrid(VariablesGlobales.listaDetallesGuia);
+
+            if (VariablesGlobales.clienteContrato != null)
+            {
+                if (VariablesGlobales.clienteContrato.TIPO_CLIE.Equals("NATURAL"))
+                {
+                    this.rbNATURAL.IsChecked = true;
+                    this.txtDNIRUC.Text = VariablesGlobales.clienteContrato.DNI;
+                }
+                else
+                {
+                    this.rbJURIDICA.IsChecked = true;
+                    this.txtDNIRUC.Text = VariablesGlobales.clienteContrato.RUC;
                 }
             }
         }
@@ -392,11 +435,62 @@ namespace SISJORSAC
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            VariablesGlobales.NRO_GUIA_GLOBAL = "";
-            VariablesGlobales.clienteFactura = null;
+          
             VariablesGlobales.ClickFacturaGuia = false;
             VariablesGlobales.ClickBoletaGuia = false;
+            VariablesGlobales.ClickContratoGuia = false;
+            VariablesGlobales.ClickGuiaFactura = false;
+            VariablesGlobales.ClickGuiaContrato = false;
+            VariablesGlobales.ClickGuiaBoleta = false;
            
+        }
+
+        private void btnCambiarFactura_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.cboCliente.SelectedIndex == -1)
+            {
+                VariablesGlobales.clienteGuia = null;
+            }
+            else
+            {
+                VariablesGlobales.indexCliente = this.cboCliente.SelectedIndex;
+            }
+            VariablesGlobales.ClickGuiaFactura = true;
+            frmFactura frmFactura = new frmFactura();
+            this.Close();
+            frmFactura.ShowDialog();
+        }
+
+        private void btnCambiarContrato_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.cboCliente.SelectedIndex == -1)
+            {
+                VariablesGlobales.clienteGuia = null;
+            }
+            else
+            {
+                VariablesGlobales.indexCliente = this.cboCliente.SelectedIndex;
+            }
+            VariablesGlobales.ClickGuiaContrato = true;
+            FrmContratoAlquiler frmContrato = new FrmContratoAlquiler();
+            this.Close();
+            frmContrato.ShowDialog();
+        }
+
+        private void btnCambiarBoleta_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.cboCliente.SelectedIndex == -1)
+            {
+                VariablesGlobales.clienteGuia = null;
+            }
+            else
+            {
+                VariablesGlobales.indexCliente = this.cboCliente.SelectedIndex;
+            }
+            VariablesGlobales.ClickGuiaBoleta = true;
+            FrmBoleta frmBoleta = new FrmBoleta();
+            this.Close();
+            frmBoleta.ShowDialog();
         }
 
       

@@ -5,7 +5,7 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="SISJORSAC.frmFactura"
-        Title="Registro - Factura" Height="641.425" Width="1043.276"
+        Title="Registro - Factura" Height="641.425" Width="980.276"
         WindowStartupLocation="CenterScreen" Closing="MetroWindow_Closing"
         >
     <Grid>
@@ -31,7 +31,7 @@
             <ComboBoxItem Content="$"/>
         </ComboBox>
         <CheckBox x:Name="chkIgv" Content="Sin IGV" HorizontalAlignment="Left" Margin="820,197,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.21,1.778" Checked="chkIgv_Checked" Unchecked="chkIgv_Unchecked"/>
-        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,245,168,0" Width="835" Height="257" Background="#FFB8B6B6"
+        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,245,104,0" Width="835" Height="257" Background="#FFB8B6B6"
                   
 			AutoGenerateColumns="False"
 			CanUserAddRows="false"
@@ -80,9 +80,10 @@
         <TextBox x:Name="txtObservacion" HorizontalAlignment="Left" Height="58" Margin="44,531,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" IsEnabled="False"/>
         <Button x:Name="txtCancelar" Content="Salir" HorizontalAlignment="Left" Margin="557,538,0,0" VerticalAlignment="Top" Width="103" Height="45" Background="#FFE24030" BorderBrush="#FFAEAEAE" Foreground="White" FontWeight="Bold" Click="txtCancelar_Click"/>
         <Button x:Name="btnEliminarDetalle" Content="Eliminar" HorizontalAlignment="Left" Margin="585,191,0,0" VerticalAlignment="Top" Width="75" Click="btnEliminarDetalle_Click" Background="#FFF10E0E" Foreground="#FFF9F3F3" FontWeight="Bold"/>
-        <Button x:Name="btnCambiarBoleta" Content="Cambiar a Boleta" HorizontalAlignment="Left" Margin="880,318,0,0" VerticalAlignment="Top" Width="137" Click="btnCambiarBoleta_Click"/>
-        <Button x:Name="btnCambiarContrato" Content="Cambiar a Contrato" HorizontalAlignment="Left" Margin="875,352,0,0" VerticalAlignment="Top" Width="153" Click="btnCambiarContrato_Click"/>
-        <Button x:Name="btnCambiarGuia" Content="Cambiar a Guía" HorizontalAlignment="Left" Margin="896,386,0,0" VerticalAlignment="Top" Width="121" Click="btnCambiarGuia_Click"/>
+        <Button x:Name="btnCambiarBoleta" Content="Boleta" HorizontalAlignment="Left" Margin="885,358,0,0" VerticalAlignment="Top" Width="79" Click="btnCambiarBoleta_Click" Background="#FF13BD68" FontWeight="Bold" Foreground="#FFFDFDFD"/>
+        <Button x:Name="btnCambiarContrato" Content="Contrato" HorizontalAlignment="Left" Margin="885,392,0,0" VerticalAlignment="Top" Width="79" Click="btnCambiarContrato_Click" Background="#FF13BD68" FontWeight="Bold" Foreground="#FFFDFDFD"/>
+        <Button x:Name="btnCambiarGuia" Content="Guía" HorizontalAlignment="Left" Margin="885,426,0,0" VerticalAlignment="Top" Width="79" Click="btnCambiarGuia_Click" Background="#FF13BD68" FontWeight="Bold" Foreground="#FFFDFDFD"/>
+        <Label Content="Cambiar a:" HorizontalAlignment="Left" Margin="888,327,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
     </Grid>
 </Controls:MetroWindow>

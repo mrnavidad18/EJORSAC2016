@@ -6,7 +6,7 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="SISJORSAC.FrmContratoAlquiler"
-        Title="FrmContratoAlquiler" Height="622.425" Width="921.276"
+        Title="FrmContratoAlquiler" Height="622.425" Width="976.776"
         WindowStartupLocation="CenterScreen" Closing="MetroWindow_Closing">
     <Grid>
         <Image HorizontalAlignment="Left" Height="148" VerticalAlignment="Top" Width="162" Source="IMG/logo_rep.PNG"/>
@@ -30,7 +30,7 @@
             <ComboBoxItem Content="$"/>
         </ComboBox>
         <CheckBox x:Name="chkIgv" Content="Sin IGV" HorizontalAlignment="Left" Margin="832,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.21,1.778" Unchecked="chkIgv_Unchecked" Checked="chkIgv_Checked"/>
-        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,299,34,0" Width="835" Height="190" Background="#FFB8B6B6"
+        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,299,104,0" Width="845" Height="190" Background="#FFB8B6B6"
                   
 			AutoGenerateColumns="False"
 			CanUserAddRows="false"
@@ -70,8 +70,8 @@
         <Label Content="Sub Total:" HorizontalAlignment="Left" Margin="712,496,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
         <Label Content="IGV:" HorizontalAlignment="Left" Margin="735,524,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
         <Label Content="Total:" HorizontalAlignment="Left" Margin="725,552,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
-        <Button x:Name="btnGenerarContrato" Content="Generar Contrato" HorizontalAlignment="Left" Margin="418,527,0,0" VerticalAlignment="Top" Width="157" Background="#FF42A5F7" Foreground="White" FontWeight="Bold" Height="45" Click="btnGenerarContrato_Click"/>
-        <Button x:Name="txtCancelar" Content="Salir" HorizontalAlignment="Left" Margin="584,527,0,0" VerticalAlignment="Top" Width="103" Height="45" Background="#FFE24030" BorderBrush="#FFAEAEAE" Foreground="White" FontWeight="Bold" Click="txtCancelar_Click"/>
+        <Button x:Name="btnGenerarContrato" Content="Generar Contrato" HorizontalAlignment="Left" Margin="418,527,0,0" VerticalAlignment="Top" Width="157" Background="#FF42A9FF" Foreground="White" FontWeight="Bold" Height="45" Click="btnGenerarContrato_Click"/>
+        <Button x:Name="txtCancelar" Content="Salir" HorizontalAlignment="Left" Margin="584,527,0,0" VerticalAlignment="Top" Width="103" Height="45" Background="#FFF10E0E" BorderBrush="#FFAEAEAE" Foreground="White" FontWeight="Bold" Click="txtCancelar_Click"/>
         <Button x:Name="btnEliminarDetalle" Content="Eliminar" HorizontalAlignment="Left" Margin="672,250,0,0" VerticalAlignment="Top" Width="75" Background="#FFF10E0E" Foreground="#FFF9F3F3" FontWeight="Bold" Click="btnEliminarDetalle_Click"/>
         <Label Content="Telf.:" HorizontalAlignment="Left" Margin="745,68,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtTelf" HorizontalAlignment="Left" Height="23" Margin="784,68,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="120"/>
@@ -103,6 +103,10 @@
         <RadioButton x:Name="rbJURIDICA" Content="JURIDICA" HorizontalAlignment="Left" Margin="344,41,0,0" VerticalAlignment="Top" Checked="rbJURIDICA_Checked"/>
         <Label Content="Tipo Cliente:" HorizontalAlignment="Left" Margin="147,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.531,-0.346"/>
         <ComboBox x:Name="cboVendedor" HorizontalAlignment="Left" Margin="515,135,0,0" VerticalAlignment="Top" Width="219"/>
+        <Button x:Name="btnCambiarFactura" Content="Factura" HorizontalAlignment="Left" Margin="878,358,0,0" VerticalAlignment="Top" Width="75" Background="#FF13BD68" Foreground="White" FontWeight="Bold" Click="btnCambiarFactura_Click" RenderTransformOrigin="0.707,-0.586"/>
+        <Label Content="Cambiar a:" HorizontalAlignment="Left" Margin="881,330,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnCambiarBoleta" Content="Boleta" HorizontalAlignment="Left" Margin="876,392,0,0" VerticalAlignment="Top" Width="81" Background="#FF13BD68" Foreground="White" FontWeight="Bold" RenderTransformOrigin="0.707,-0.586" Click="btnCambiarBoleta_Click"/>
+        <Button x:Name="btnCambiarGuia" Content="Guía" HorizontalAlignment="Left" Margin="876,426,0,0" VerticalAlignment="Top" Width="81" Background="#FF13BD68" Foreground="White" FontWeight="Bold"  RenderTransformOrigin="0.707,-0.586" Click="btnCambiarGuia_Click"/>
 
 
     </Grid>

@@ -4,7 +4,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Registro - Guia de Remisión" Height="633.425" Width="912.276"
+        Title="Registro - Guia de Remisión" Height="633.425" Width="989.888"
         WindowStartupLocation="CenterScreen" Closing="MetroWindow_Closing">
     <Grid Margin="-3,0,2,-2">
 
@@ -31,14 +31,14 @@
         <TextBox x:Name="txtNombreConductor" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="301,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328"/>
         <Label Content="Nº de Brevete:" HorizontalAlignment="Left" Margin="654,185,0,0" VerticalAlignment="Top" Width="139" Grid.Column="1" Height="26"/>
         <TextBox x:Name="txtNroBrevete" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="740,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
-        <Label Content="Nombre del Transporte:" HorizontalAlignment="Left" Margin="20,512,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
-        <TextBox x:Name="txtNombreTransporte" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="158,512,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196"/>
-        <Label Content="RUC :" HorizontalAlignment="Left" Margin="20,543,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
-        <TextBox x:Name="txtRUC" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="60,543,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
-        <Label Content="Tipo Traslado :" HorizontalAlignment="Left" Margin="353,512,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
-        <Label Content="Motivo Traslado :" HorizontalAlignment="Left" Margin="187,543,0,0" VerticalAlignment="Top" Width="137" Grid.Column="1" Height="26"/>
-        <TextBox x:Name="txtMotivoTraslado" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="289,543,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266"/>
-        <ComboBox x:Name="cboTipoTraslado" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="450,512,0,0" VerticalAlignment="Top" Width="105" SelectedIndex="0" >
+        <Label Content="Nombre del Transporte:" HorizontalAlignment="Left" Margin="20,539,0,0" VerticalAlignment="Top" Width="137" Height="26"/>
+        <TextBox x:Name="txtNombreTransporte" HorizontalAlignment="Left" Height="23" Margin="158,539,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196"/>
+        <Label Content="RUC :" HorizontalAlignment="Left" Margin="20,570,0,0" VerticalAlignment="Top" Width="137" Height="26"/>
+        <TextBox x:Name="txtRUC" HorizontalAlignment="Left" Height="23" Margin="60,570,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
+        <Label Content="Tipo Traslado :" HorizontalAlignment="Left" Margin="353,539,0,0" VerticalAlignment="Top" Width="137" Height="26"/>
+        <Label Content="Motivo Traslado :" HorizontalAlignment="Left" Margin="187,570,0,0" VerticalAlignment="Top" Width="137" Height="26"/>
+        <TextBox x:Name="txtMotivoTraslado" HorizontalAlignment="Left" Height="23" Margin="289,570,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266"/>
+        <ComboBox x:Name="cboTipoTraslado" HorizontalAlignment="Left" Margin="450,539,0,0" VerticalAlignment="Top" Width="105" SelectedIndex="0" >
             <ComboBoxItem Content="Seleccionar"/>
             <ComboBoxItem Content="Venta"/>
             <ComboBoxItem Content="Alquiler"/>
@@ -59,7 +59,7 @@
             </Label.RenderTransform>
         </Label>
         <Label Grid.ColumnSpan="2" Content="Provincia:" HorizontalAlignment="Left" Margin="647,120,0,0" VerticalAlignment="Top" Width="78"/>
-        <DataGrid  x:Name="dgvDetalleGuia" HorizontalAlignment="Left" Margin="20,336,0,0" VerticalAlignment="Top" Height="169" Width="857" Background="White"
+        <DataGrid  x:Name="dgvDetalleGuia" HorizontalAlignment="Left" Margin="20,336,0,0" VerticalAlignment="Top" Height="198" Width="857" Background="#FFB9B9B9"
                     BorderThickness="1"
                    AutoGenerateColumns="False"
 			        CanUserAddRows="false"
@@ -92,14 +92,18 @@
         <Label Grid.ColumnSpan="2" Content="Precio S/." HorizontalAlignment="Left" Margin="750,264,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCantidadServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="669,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="69"/>
         <Label Grid.ColumnSpan="2" Content="Cantidad:" HorizontalAlignment="Left" Margin="611,264,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnAgregarGuiaFinal" Grid.ColumnSpan="2" Content="Generar Guía" HorizontalAlignment="Left" Margin="642,516,0,0" VerticalAlignment="Top" Width="136"  BorderBrush="#FFEA2121" Foreground="#FFF3EBEB" FontSize="16" FontWeight="Bold" Click="btnAgregarGuiaFinal_Click" Background="#FF1FA0DC"/>
-        <Button x:Name="btnCancelarGuia" Grid.ColumnSpan="2" Content="Salir" HorizontalAlignment="Left" Margin="783,516,0,0" VerticalAlignment="Top" Width="95" Click="btnCancelarGuia_Click" BorderBrush="#FFEA2121" Foreground="#FFF3EBEB" FontSize="16" FontWeight="Bold" Background="#FFF53131"/>
+        <Button x:Name="btnAgregarGuiaFinal" Content="Generar Guía" HorizontalAlignment="Left" Margin="642,543,0,0" VerticalAlignment="Top" Width="136"  BorderBrush="#FFEA2121" Foreground="#FFF3EBEB" FontSize="16" FontWeight="Bold" Click="btnAgregarGuiaFinal_Click" Background="#FF1FA0DC"/>
+        <Button x:Name="btnCancelarGuia" Content="Salir" HorizontalAlignment="Left" Margin="783,543,0,0" VerticalAlignment="Top" Width="95" Click="btnCancelarGuia_Click" BorderBrush="#FFEA2121" Foreground="#FFF3EBEB" FontSize="16" FontWeight="Bold" Background="#FFF53131"/>
         <Label Grid.ColumnSpan="2" Content="Tip. Comprob." HorizontalAlignment="Left" Margin="159,32,0,0" VerticalAlignment="Top"/>
         <Image Grid.ColumnSpan="2"  Source="IMG/logo_rep.PNG" HorizontalAlignment="Left" Height="155" Margin="10,11,0,0" VerticalAlignment="Top" Width="147"/>
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="244,33,0,0" TextWrapping="Wrap" Text="GUÍA REMISION" VerticalAlignment="Top" Width="108" IsEnabled="False" FontWeight="Bold"/>
         <CheckBox x:Name="chkCambiarNroGuia" Grid.ColumnSpan="2" Content="Cambiar Nro. Guía" HorizontalAlignment="Left" Margin="498,10,0,0" VerticalAlignment="Top"/>
         <Label Grid.ColumnSpan="2" Content="Tipo Cliente:" HorizontalAlignment="Left" Margin="158,92,0,0" VerticalAlignment="Top"/>
         <Button Grid.ColumnSpan="2" Content="Eliminar" HorizontalAlignment="Left" Margin="661,302,0,0" VerticalAlignment="Top" Width="75" Background="#FFE83C3C" Foreground="#FFFFFBFB" FontWeight="Bold"/>
+        <Button x:Name="btnCambiarFactura" Content="Factura" HorizontalAlignment="Left" Margin="892,404,0,0" VerticalAlignment="Top" Width="75" Background="#FF13BD68" Foreground="White" FontWeight="Bold" Click="btnCambiarFactura_Click" RenderTransformOrigin="0.707,-0.586"/>
+        <Label Content="Cambiar a:" HorizontalAlignment="Left" Margin="895,376,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnCambiarContrato" Content="Contrato" HorizontalAlignment="Left" Margin="890,438,0,0" VerticalAlignment="Top" Width="81" Background="#FF13BD68" Foreground="White" FontWeight="Bold"  RenderTransformOrigin="0.707,-0.586" Click="btnCambiarContrato_Click"/>
+        <Button x:Name="btnCambiarBoleta" Content="Boleta" HorizontalAlignment="Left" Margin="890,471,0,0" VerticalAlignment="Top" Width="81" Background="#FF13BD68" Foreground="White" FontWeight="Bold" RenderTransformOrigin="0.707,-0.586" Click="btnCambiarBoleta_Click"/>
 
 
     </Grid>
