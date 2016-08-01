@@ -24,7 +24,7 @@ namespace SISJORSAC
     /// </summary>
     public partial class FrmContratoAlquiler : MetroWindow
     {
-        Cliente cliente;
+        
         Servicio servicio;
         
         double subtotal = 0;
@@ -49,12 +49,18 @@ namespace SISJORSAC
             ListarServicios();
             ListarUsuarios();
 
-            if (VariablesGlobales.ClickFacturaContrato == true)
+            if (VariablesGlobales.ClickFacturaContrato)
             {
                 ObtenerDatosFactura();
             }
+            if (VariablesGlobales.ClickBoletaContrato)
+            {
+                ObtenerDatosBoleta();
+            }
             
         }
+
+       
 
 
         private void ListarClientes(string tipoCliente)
@@ -105,23 +111,23 @@ namespace SISJORSAC
         {
             if (this.cboRazonsocial.SelectedIndex == -1)
             {
-
+                VariablesGlobales.clienteContrato = null;
             }
             else
             {
                 int codCliente = Convert.ToInt32(this.cboRazonsocial.SelectedValue);
-                cliente = clienteDao.ObtenerCliente(codCliente);
-                if (cliente.TIPO_CLIE.Equals("NATURAL"))
+                VariablesGlobales.clienteContrato = clienteDao.ObtenerCliente(codCliente);
+                if (VariablesGlobales.clienteContrato.TIPO_CLIE.Equals("NATURAL"))
                 {
-                    this.txtDniRuc.Text = cliente.DNI;
-                    this.txtTelf.Text = cliente.TEL_FIJO_CASA;
+                    this.txtDniRuc.Text = VariablesGlobales.clienteContrato.DNI;
+                    this.txtTelf.Text = VariablesGlobales.clienteContrato.TEL_FIJO_CASA;
                 }
                 else
                 {
-                    this.txtDniRuc.Text = cliente.RUC;
-                    this.txtTelf.Text = cliente.TEL_FIJO_OFICINA;
+                    this.txtDniRuc.Text = VariablesGlobales.clienteContrato.RUC;
+                    this.txtTelf.Text = VariablesGlobales.clienteContrato.TEL_FIJO_OFICINA;
                 }
-                this.txtDireccion.Text = cliente.DIRECCION.ToString();
+                this.txtDireccion.Text = VariablesGlobales.clienteContrato.DIRECCION.ToString();
             }
         }
 
@@ -313,14 +319,13 @@ namespace SISJORSAC
             }
         }
 
-
         private void AgregarContrato()
         {
             Contrato contrato = new Contrato();
             contrato.SUBTOTAL = subtotal;
             contrato.IGV = igvMonto;
             contrato.FECHA_CONTRATO = DateTime.Now;
-            contrato.cliente = cliente;
+            contrato.cliente = VariablesGlobales.clienteContrato;
             contrato.CHEQUE = this.txtCheque.Text;
             contrato.DIRECCION_OBRA = this.txtDireccionObra.Text;
             contrato.DOCUMENTO = this.txtDocumento.Text;
@@ -428,6 +433,7 @@ namespace SISJORSAC
             VariablesGlobales.listaDetallesGuia.Clear();
             VariablesGlobales.listaDetallesContrato.Clear();
             VariablesGlobales.ClickFacturaContrato = false;
+            VariablesGlobales.ClickBoletaContrato = false;
 
         }
 
@@ -436,7 +442,6 @@ namespace SISJORSAC
             this.cboRazonsocial.DisplayMemberPath = "RAZON_SOCIAL";
             this.cboRazonsocial.SelectedValuePath = "COD_CLI";
             this.cboRazonsocial.SelectedIndex = VariablesGlobales.indexCliente;
-            this.txtDniRuc.Text = VariablesGlobales.clienteFactura == null ? "" : VariablesGlobales.clienteFactura.RUC;
             this.txtDireccion.Text = VariablesGlobales.clienteFactura == null ? "" : VariablesGlobales.clienteFactura.DIRECCION;
             this.txtTelf.Text = VariablesGlobales.clienteFactura == null ? "" : VariablesGlobales.clienteFactura.TEL_FIJO_OFICINA;
             DetalleContrato detalleContrato = null;
@@ -468,15 +473,74 @@ namespace SISJORSAC
                 {
                     this.rbNATURAL.IsChecked = true;
                     this.txtDniRuc.Text = VariablesGlobales.clienteFactura.DNI;
+                    this.txtDireccion.Text = VariablesGlobales.clienteFactura.DIRECCION;
+                    this.txtTelf.Text = VariablesGlobales.clienteFactura.TEL_FIJO_CASA;
+        
                 }
                 else
                 {
                     this.rbJURIDICA.IsChecked = true;
                     this.txtDniRuc.Text = VariablesGlobales.clienteFactura.RUC;
+                    this.txtDireccion.Text = VariablesGlobales.clienteFactura.DIRECCION;
+                    this.txtTelf.Text = VariablesGlobales.clienteFactura.TEL_FIJO_OFICINA;
                 }
             }
             
          
+        }
+
+        private void ObtenerDatosBoleta()
+        {
+            this.cboRazonsocial.DisplayMemberPath = "RAZON_SOCIAL";
+            this.cboRazonsocial.SelectedValuePath = "COD_CLI";
+            this.cboRazonsocial.SelectedIndex = VariablesGlobales.indexCliente;
+            
+           DetalleContrato detalleContrato = null;
+
+
+            foreach (var detalle in VariablesGlobales.listaDetallesBoleta)
+            {
+                detalleContrato = new DetalleContrato();
+                detalleContrato.CANTIDAD = detalle.CANTIDAD;
+                detalleContrato.SERVICIO = detalle.SERVICIO;
+                detalleContrato.PRECIO = detalle.PRECIO;
+                detalleContrato.ITEM = item;
+                detalleContrato.IMPORTE = detalle.CANTIDAD * detalle.PRECIO;
+                VariablesGlobales.listaDetallesContrato.Add(detalleContrato);
+                subtotal = subtotal + detalleContrato.IMPORTE;
+                item++;
+
+            }
+            igvMonto = subtotal * IGV;
+            total = igvMonto + subtotal;
+            LlenarGrid(VariablesGlobales.listaDetallesContrato);
+            this.txtSubtotal.Text = subtotal.ToString();
+            this.txtIgv.Text = igvMonto.ToString();
+            this.txtTotal.Text = total.ToString();
+
+            if (VariablesGlobales.indexCliente != -1)
+            {
+                if (VariablesGlobales.clienteBoleta != null)
+                {
+                    if (VariablesGlobales.clienteBoleta.TIPO_CLIE.Equals("NATURAL"))
+                    {
+                        this.rbNATURAL.IsChecked = true;
+                        this.txtDniRuc.Text = VariablesGlobales.clienteBoleta.DNI;
+                        this.txtDireccion.Text = VariablesGlobales.clienteBoleta.DIRECCION;
+                        this.txtTelf.Text = VariablesGlobales.clienteBoleta.TEL_FIJO_CASA;
+
+                    }
+                    else
+                    {
+                        this.rbJURIDICA.IsChecked = true;
+                        this.txtDireccion.Text = VariablesGlobales.clienteBoleta.DIRECCION;
+                        this.txtTelf.Text = VariablesGlobales.clienteBoleta.TEL_FIJO_OFICINA;
+                        this.txtDniRuc.Text = VariablesGlobales.clienteBoleta.RUC;
+                    }
+                }
+            }
+           
+
         }
       
     }

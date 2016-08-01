@@ -435,7 +435,17 @@ namespace SISJORSAC
 
         private void btnCambiarBoleta_Click(object sender, RoutedEventArgs e)
         {
-            VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
+            if (this.cboRazonsocial.SelectedIndex == -1)
+            {
+                VariablesGlobales.clienteFactura = null;
+            }
+            else
+            {
+                VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
+            }
+            
+            
+
             VariablesGlobales.ClickFacturaBoleta = true;
             FrmBoleta frmBoleta = new FrmBoleta();
           
@@ -453,7 +463,15 @@ namespace SISJORSAC
 
         private void btnCambiarContrato_Click(object sender, RoutedEventArgs e)
         {
-            VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
+            if (this.cboRazonsocial.SelectedIndex == -1)
+            {
+                VariablesGlobales.clienteFactura = null;
+            }
+            else
+            {
+                VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
+            }
+            
             VariablesGlobales.ClickFacturaContrato = true;
             FrmContratoAlquiler frmContrato = new FrmContratoAlquiler();
             this.Close();
@@ -462,7 +480,16 @@ namespace SISJORSAC
 
         private void btnCambiarGuia_Click(object sender, RoutedEventArgs e)
         {
-            VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
+            if (this.cboRazonsocial.SelectedIndex == -1)
+            {
+                VariablesGlobales.clienteFactura = null;
+            }
+            else
+            {
+                VariablesGlobales.indexCliente = this.cboRazonsocial.SelectedIndex;
+            }
+            
+            
             VariablesGlobales.ClickFacturaGuia = true;
             FrmGuiaRemision frmGuia = new FrmGuiaRemision();
             this.Close();

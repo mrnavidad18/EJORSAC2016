@@ -49,7 +49,13 @@ namespace SISJORSAC
             {
                 ObtenerDatosFactura();
             }
+            if (VariablesGlobales.ClickBoletaGuia)
+            {
+                ObtenerDatosBoleta();
+            }
         }
+
+       
         private void Listarservicios(string estado)
         {
             var listaServicios = servicioDAO.listarServicio(estado);
@@ -257,9 +263,10 @@ namespace SISJORSAC
                     await this.ShowMessageAsync(mensaje,"Guia generada correctamente");
                     VariablesGlobales.NRO_GUIA_GLOBAL = "";
                     VariablesGlobales.clienteFactura = null;
-                    VariablesGlobales.listaDetallesFactura = null;
-                    VariablesGlobales.listaDetallesGuia = null;
+                    VariablesGlobales.listaDetallesFactura.Clear();
+                    VariablesGlobales.listaDetallesGuia.Clear();
                     VariablesGlobales.ClickFacturaGuia = false;
+                    VariablesGlobales.ClickBoletaGuia = false;
                     this.Close();
                 }
                
@@ -308,6 +315,43 @@ namespace SISJORSAC
 
         }
 
+        private void ObtenerDatosBoleta()
+        {
+            this.cboCliente.DisplayMemberPath = "RAZON_SOCIAL";
+            this.cboCliente.SelectedValuePath = "COD_CLI";
+            this.cboCliente.SelectedIndex = VariablesGlobales.indexCliente;
+
+            DetalleGuiaRemision detalleGuia = null;
+
+
+            foreach (var detalle in VariablesGlobales.listaDetallesBoleta)
+            {
+                detalleGuia = new DetalleGuiaRemision();
+                detalleGuia.CANTIDAD = detalle.CANTIDAD;
+                detalleGuia.SERVICIO = detalle.SERVICIO;
+                detalleGuia.ITEM = item;
+                VariablesGlobales.listaDetallesGuia.Add(detalleGuia);
+                item++;
+
+            }
+
+            LlenarGrid(VariablesGlobales.listaDetallesGuia);
+
+            if (VariablesGlobales.clienteBoleta!= null)
+            {
+                if (VariablesGlobales.clienteBoleta.TIPO_CLIE.Equals("NATURAL"))
+                {
+                    this.rbNATURAL.IsChecked = true;
+                    this.txtDNIRUC.Text = VariablesGlobales.clienteBoleta.DNI;
+                }
+                else
+                {
+                    this.rbJURIDICA.IsChecked = true;
+                    this.txtDNIRUC.Text = VariablesGlobales.clienteBoleta.RUC;
+                }
+            }
+        }
+
         public void LlenarGrid(List<DetalleGuiaRemision> detalle)
         {
             this.dgvDetalleGuia.ItemsSource = null;
@@ -350,11 +394,8 @@ namespace SISJORSAC
         {
             VariablesGlobales.NRO_GUIA_GLOBAL = "";
             VariablesGlobales.clienteFactura = null;
-            VariablesGlobales.listaDetallesFactura.Clear();
-            VariablesGlobales.listaDetallesBoleta.Clear();
-            VariablesGlobales.listaDetallesContrato.Clear();
             VariablesGlobales.ClickFacturaGuia = false;
-            VariablesGlobales.listaDetallesGuia.Clear();
+            VariablesGlobales.ClickBoletaGuia = false;
            
         }
 

@@ -429,7 +429,6 @@ namespace SISJORSAC
         {
 
             VariablesGlobales.ClickBoletaConGuia = false;
-            
             VariablesGlobales.ClickFacturaBoleta = false;
         }
 
@@ -450,6 +449,26 @@ namespace SISJORSAC
             frmFactura frmFactura = new frmFactura();
             this.Close();
             frmFactura.ShowDialog();
+        }
+
+        private void btnCambiarContrato_Click(object sender, RoutedEventArgs e)
+        {
+            VariablesGlobales.indexCliente = this.cboCliente.SelectedIndex;
+            VariablesGlobales.ClickBoletaContrato = true;
+            VariablesGlobales.ClickFacturaBoleta = false;
+            FrmContratoAlquiler frmcontrato = new FrmContratoAlquiler();
+            this.Close();
+            frmcontrato.ShowDialog();
+        }
+
+        private void btnCambiarGuia_Click(object sender, RoutedEventArgs e)
+        {
+            VariablesGlobales.indexCliente = this.cboCliente.SelectedIndex;
+            VariablesGlobales.ClickBoletaGuia = true;
+            VariablesGlobales.ClickFacturaBoleta = false;
+            FrmGuiaRemision frmGuia = new FrmGuiaRemision();
+            this.Close();
+            frmGuia.ShowDialog();
         }
 
     }
