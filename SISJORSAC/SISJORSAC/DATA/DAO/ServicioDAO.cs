@@ -24,9 +24,9 @@ namespace SISJORSAC.DATA.DAO
             {
                 SqlParameter[] dbParams = new SqlParameter[]
              {
-                 DBHelper.MakeParam("@P_DESCRIPCION",servicio.DESCRIPCION ),
+                 DBHelper.MakeParam("@P_DESCRIPCION",servicio.DESCRIPCION.ToUpper() ),
                  DBHelper.MakeParam("@P_PRECIO",servicio.PRECIO ),               
-                 DBHelper.MakeParam("@P_TIPO_MONE",servicio.TIPO_MONE ),
+                 DBHelper.MakeParam("@P_TIPO_MONE",servicio.TIPO_MONE.ToUpper()),
                  DBHelper.MakeParam("@P_PESO",servicio.PESO ),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
                  msj
@@ -129,9 +129,9 @@ namespace SISJORSAC.DATA.DAO
             {
                 SqlParameter[] dbParams = new SqlParameter[]
              {
-                 DBHelper.MakeParam("@P_DESCRIPCION",servicio.DESCRIPCION ),
+                 DBHelper.MakeParam("@P_DESCRIPCION",servicio.DESCRIPCION.ToUpper()),
                  DBHelper.MakeParam("@P_PRECIO",servicio.PRECIO ),               
-                 DBHelper.MakeParam("@P_TIPO_MONE",servicio.TIPO_MONE ),
+                 DBHelper.MakeParam("@P_TIPO_MONE",servicio.TIPO_MONE.ToUpper()),
                  DBHelper.MakeParam("@P_PESO",servicio.PESO ),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
                  DBHelper.MakeParam("@P_COD_SERV",servicio.COD_SERV),
