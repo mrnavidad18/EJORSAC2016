@@ -232,6 +232,64 @@ namespace SISJORSAC.DATA.DAO
             }
 
         }
+        public List<Factura> BuscarPorNroFactura(string NroFactura)
+        {
+            try
+            {
+                List<Factura> lista = null;
+
+                ClienteDAO clienteDao = new ClienteDAO();
+                GuiaRemisionDAO guiaDao = new GuiaRemisionDAO();
+
+                string query = "SP_TBL_FACTURA_BUSCAR_NRO_FACTURA";
+                SqlParameter[] param = new SqlParameter[]
+                {
+                      DBHelper.MakeParam("@P_NRO_FACTURA",NroFactura)
+                };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, param))
+                {
+
+                    if (lector != null && lector.HasRows)
+                    {
+                        lista = new List<Factura>();
+                        Factura factura;
+                        while (lector.Read())
+                        {
+                            factura = new Factura();
+                            factura.COD_FAC = Convert.ToInt32(lector["COD_FAC"].ToString());
+                            factura.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
+                            factura.NRO_FACTURA = lector["NRO_FACTURA"].ToString();
+                            factura.MODALIDAD = lector["MODALIDAD"].ToString();
+                            factura.OBSERVACION = lector["OBSERVACION"].ToString();
+                            factura.SUB_TOTAL = Convert.ToDouble(lector["SUB_TOTAL"].ToString());
+                            factura.IGV = Convert.ToDouble(lector["IGV"].ToString());
+                            factura.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
+                            factura.ESTADO = lector["ESTADO"].ToString();
+                            factura.cliente = clienteDao.ObtenerCliente(Convert.ToInt32(lector["COD_CLI"].ToString()));
+
+                            if (lector["NRO_GUIA"] == DBNull.Value)
+                            {
+                                factura.guiaRemision = null;
+                            }
+                            else
+                            {
+                                factura.guiaRemision = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["NRO_GUIA"].ToString()));
+                            }
+
+                            lista.Add(factura);
+                        }
+                    }
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurio un error al obtener la factura");
+            }
+
+        }
 
         public string ObtenerNroFactura()
         {

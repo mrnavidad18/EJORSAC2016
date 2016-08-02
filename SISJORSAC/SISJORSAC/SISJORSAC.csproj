@@ -145,9 +145,15 @@
     <Compile Include="FrmElegirBoleta.xaml.cs">
       <DependentUpon>FrmElegirBoleta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrmGasto.xaml.cs">
+      <DependentUpon>FrmGasto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrmGuiaRemision.xaml.cs" />
     <Compile Include="FrmListadoClientes.xaml.cs">
       <DependentUpon>FrmListadoClientes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmListadoFacturas.xaml.cs">
+      <DependentUpon>FrmListadoFacturas.xaml</DependentUpon>
     </Compile>
     <Compile Include="FrmProveedor.xaml.cs">
       <DependentUpon>FrmProveedor.xaml</DependentUpon>
@@ -181,6 +187,12 @@
       <DependentUpon>ReporteClientesNaturales.cs</DependentUpon>
     </Compile>
     <Compile Include="VariablesGlobales.cs" />
+    <Compile Include="VISTAPREVIA\FrmVerDetalleFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTAPREVIA\FrmVerDetalleFactura.Designer.cs">
+      <DependentUpon>FrmVerDetalleFactura.cs</DependentUpon>
+    </Compile>
     <Page Include="ElegirFactura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -209,11 +221,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FrmGasto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FrmGuiaRemision.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="FrmListadoClientes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmListadoFacturas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -327,6 +347,10 @@
     <EmbeddedResource Include="Reportes\ReporteClientesNaturales.resx">
       <DependentUpon>ReporteClientesNaturales.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VISTAPREVIA\FrmVerDetalleFactura.resx">
+      <DependentUpon>FrmVerDetalleFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTAPREVIA\Report1.rdlc" />
     <None Include="ConjuntoDatos.xsc">
       <DependentUpon>ConjuntoDatos.xsd</DependentUpon>
     </None>

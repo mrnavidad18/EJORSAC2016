@@ -103,6 +103,12 @@ namespace SISJORSAC
 
         }
 
+        private void itemListadoFacturas_Click(object sender, RoutedEventArgs e)
+        {
+            FrmListadoFacturas listadoFactura = new FrmListadoFacturas();
+            listadoFactura.ShowDialog();
+        }
+
 
 
 

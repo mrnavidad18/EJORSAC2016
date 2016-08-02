@@ -47,8 +47,8 @@
                     </MenuItem.Icon>
                     <MenuItem x:Name="itemListadoCliente" Header="Listado de Clientes" Click="itemListadoCliente_Click"/>
                     <MenuItem x:Name="itemListadoProveedores" Header="Listado de Proveedores"/>
-
-                    </MenuItem>
+                    <MenuItem x:Name="itemListadoFacturas" Header="Listado de Facturas" Click="itemListadoFacturas_Click"/>
+                </MenuItem>
                 <MenuItem Header="Reportes">
                     <MenuItem.Icon>
                         <Image Source="IMG/reporte.png"/>
