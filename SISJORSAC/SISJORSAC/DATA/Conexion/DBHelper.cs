@@ -10,7 +10,7 @@ namespace SISJORSAC.DATA.Conexion
 {
     public class DBHelper
     {
-        private static string cadenaConexion = "server=192.168.0.27;DataBase=BDJORSAC;user=sa;password=Developer2016";
+        private static string cadenaConexion = "server=10.0.2.15;DataBase=BDJORSAC;user=sa;password=BaseDeDatos2015";
         public static SqlParameter MakeParam(string paramName,object objValue)
         {
             SqlParameter param;

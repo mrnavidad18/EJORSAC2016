@@ -1,0 +1,16 @@
+﻿<Controls:MetroWindow x:Class="SISJORSAC.FrmListadoConceptoGasto"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Listado de Concepto de Gasto" Height="479.045" Width="1040.337"
+        WindowStartupLocation="CenterScreen">
+    <Grid >
+
+        <Label Content="Listado de ConceptoGasto:" HorizontalAlignment="Left" Margin="28,22,0,0" VerticalAlignment="Top"/>
+        <DataGrid   x:Name="dgvListadoConceptoGasto" HorizontalAlignment="Left" Margin="28,111,0,0" VerticalAlignment="Top" Height="272" Width="941" AutoGenerateColumns="False" GridLinesVisibility="All" BorderThickness="1" KeyDown="dgvListadoConceptoGasto_KeyDown" />
+
+
+    </Grid>
+</Controls:MetroWindow>

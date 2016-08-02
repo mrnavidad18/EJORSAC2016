@@ -109,6 +109,25 @@ namespace SISJORSAC
             listadoFactura.ShowDialog();
         }
 
+        private void itemListadoProveedores_Click(object sender, RoutedEventArgs e)
+        {
+            FrmListadoProveedor frmlistadoProveedor = new FrmListadoProveedor();
+            frmlistadoProveedor.ShowDialog();
+        }
+
+        private void itemServicios_Click(object sender, RoutedEventArgs e)
+        {
+
+            FrmListadoServicios frmlistadoServicios = new FrmListadoServicios();
+            frmlistadoServicios.ShowDialog();
+        }
+
+        private void itemConceptoGasto_Click(object sender, RoutedEventArgs e)
+        {
+            FrmListadoConceptoGasto frmlistadoConceptoGasto = new FrmListadoConceptoGasto();
+            frmlistadoConceptoGasto.ShowDialog();
+        }
+
 
 
 

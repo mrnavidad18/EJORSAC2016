@@ -1,0 +1,19 @@
+﻿<Controls:MetroWindow x:Class="SISJORSAC.FrmListadoProveedor"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Listado de Proveedores" Height="651.045" Width="1204.337"
+        WindowStartupLocation="CenterScreen">
+    <Grid >
+
+        <Label x:Name="lblBusqueda" Content="" HorizontalAlignment="Left" Margin="28,29,0,0" VerticalAlignment="Top" Width="271"/>
+        <DataGrid   x:Name="dgvListadoProveedor" HorizontalAlignment="Left" Margin="28,111,0,0" VerticalAlignment="Top" Height="362" Width="1124" AutoGenerateColumns="False" GridLinesVisibility="All" BorderThickness="1" KeyDown="dgvListadoProveedor_KeyDown_1"/>
+        <GroupBox Header="Seleccione el tipo de Proveedor:" HorizontalAlignment="Left" Margin="700,25,0,0" VerticalAlignment="Top" Height="58" Width="234"/>
+        <RadioButton x:Name="rdbNatural" Content="NATURALES" HorizontalAlignment="Left" Margin="710,55,0,0" VerticalAlignment="Top" Checked="rdbNatural_Checked"/>
+        <RadioButton x:Name="rdbJuridica" Content="JURIDICOS" HorizontalAlignment="Left" Margin="830,55,0,0" VerticalAlignment="Top" Checked="rdbJuridica_Checked"/>
+        <TextBox x:Name="txtBusqueda" HorizontalAlignment="Left" Height="23" Margin="320,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="232" KeyDown="txtBusqueda_KeyDown" />
+
+    </Grid>
+</Controls:MetroWindow>

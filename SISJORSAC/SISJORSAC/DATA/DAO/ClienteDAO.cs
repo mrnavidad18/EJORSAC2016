@@ -23,21 +23,21 @@ namespace SISJORSAC.DATA.DAO
             {
                 SqlParameter[] dbParams = new SqlParameter[]
              {
-                 DBHelper.MakeParam("@P_NOMBRES",cliente.NOMBRES==null?System.Data.SqlTypes.SqlString.Null:cliente.NOMBRES),
-                 DBHelper.MakeParam("@P_AP_PATERNO",cliente.AP_PATERNO==null?System.Data.SqlTypes.SqlString.Null:cliente.AP_PATERNO),
-                 DBHelper.MakeParam("@P_AP_MATERNO",cliente.AP_MATERNO==null?System.Data.SqlTypes.SqlString.Null:cliente.AP_MATERNO),
+                 DBHelper.MakeParam("@P_NOMBRES",cliente.NOMBRES==null?System.Data.SqlTypes.SqlString.Null:cliente.NOMBRES.ToUpper()),
+                 DBHelper.MakeParam("@P_AP_PATERNO",cliente.AP_PATERNO==null?System.Data.SqlTypes.SqlString.Null:cliente.AP_PATERNO.ToUpper()),
+                 DBHelper.MakeParam("@P_AP_MATERNO",cliente.AP_MATERNO==null?System.Data.SqlTypes.SqlString.Null:cliente.AP_MATERNO.ToUpper()),
                  DBHelper.MakeParam("@P_DNI",cliente.DNI==null?System.Data.SqlTypes.SqlString.Null:cliente.DNI),
                  DBHelper.MakeParam("@P_RUC",cliente.RUC==null?System.Data.SqlTypes.SqlString.Null:cliente.RUC),
-                 DBHelper.MakeParam("@P_RAZON_SOCIAL",cliente.RAZON_SOCIAL==null?System.Data.SqlTypes.SqlString.Null:cliente.RAZON_SOCIAL),
-                 DBHelper.MakeParam("@P_DIRECCION",cliente.DIRECCION==null?System.Data.SqlTypes.SqlString.Null:cliente.DIRECCION),
-                 DBHelper.MakeParam("@P_DEPARTAMENTO",cliente.DEPARTAMENTO==null?System.Data.SqlTypes.SqlString.Null:cliente.DEPARTAMENTO),
-                 DBHelper.MakeParam("@P_PROVINCIA",cliente.PROVINCIA==null?System.Data.SqlTypes.SqlString.Null:cliente.PROVINCIA),
-                 DBHelper.MakeParam("@P_DISTRITO",cliente.DISTRITO==null?System.Data.SqlTypes.SqlString.Null:cliente.DISTRITO),
-                 DBHelper.MakeParam("@P_TEL_FIJO_CASA",cliente.TEL_FIJO_CASA==null?System.Data.SqlTypes.SqlString.Null:cliente.TEL_FIJO_CASA),
-                 DBHelper.MakeParam("@P_TEL_FIJO_OFICINA",cliente.TEL_FIJO_OFICINA==null?System.Data.SqlTypes.SqlString.Null:cliente.TEL_FIJO_OFICINA),
-                 DBHelper.MakeParam("@P_CELULAR",cliente.CELULAR==null?System.Data.SqlTypes.SqlString.Null:cliente.CELULAR),
-                 DBHelper.MakeParam("@P_EMAIL",cliente.EMAIL==null?System.Data.SqlTypes.SqlString.Null:cliente.EMAIL),
-                 DBHelper.MakeParam("@P_OBSERVACIONES",cliente.OBSERVACIONES==null?System.Data.SqlTypes.SqlString.Null:cliente.OBSERVACIONES),
+                 DBHelper.MakeParam("@P_RAZON_SOCIAL",cliente.RAZON_SOCIAL==null?System.Data.SqlTypes.SqlString.Null:cliente.RAZON_SOCIAL.ToUpper()),
+                 DBHelper.MakeParam("@P_DIRECCION",cliente.DIRECCION==null?System.Data.SqlTypes.SqlString.Null:cliente.DIRECCION.ToUpper()),
+                 DBHelper.MakeParam("@P_DEPARTAMENTO",cliente.DEPARTAMENTO==null?System.Data.SqlTypes.SqlString.Null:cliente.DEPARTAMENTO.ToUpper()),
+                 DBHelper.MakeParam("@P_PROVINCIA",cliente.PROVINCIA==null?System.Data.SqlTypes.SqlString.Null:cliente.PROVINCIA.ToUpper()),
+                 DBHelper.MakeParam("@P_DISTRITO",cliente.DISTRITO==null?System.Data.SqlTypes.SqlString.Null:cliente.DISTRITO.ToUpper()),
+                 DBHelper.MakeParam("@P_TEL_FIJO_CASA",cliente.TEL_FIJO_CASA==null?System.Data.SqlTypes.SqlString.Null:cliente.TEL_FIJO_CASA.Trim()),
+                 DBHelper.MakeParam("@P_TEL_FIJO_OFICINA",cliente.TEL_FIJO_OFICINA==null?System.Data.SqlTypes.SqlString.Null:cliente.TEL_FIJO_OFICINA.Trim()),
+                 DBHelper.MakeParam("@P_CELULAR",cliente.CELULAR==null?System.Data.SqlTypes.SqlString.Null:cliente.CELULAR.Trim()),
+                 DBHelper.MakeParam("@P_EMAIL",cliente.EMAIL==null?System.Data.SqlTypes.SqlString.Null:cliente.EMAIL.ToUpper()),
+                 DBHelper.MakeParam("@P_OBSERVACIONES",cliente.OBSERVACIONES==null?System.Data.SqlTypes.SqlString.Null:cliente.OBSERVACIONES.ToUpper()),
                  DBHelper.MakeParam("@P_TIPO_CLIE",cliente.TIPO_CLIE==null?System.Data.SqlTypes.SqlString.Null:cliente.TIPO_CLIE),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
                  msj
@@ -184,21 +184,21 @@ namespace SISJORSAC.DATA.DAO
                  
                  
                  DBHelper.MakeParam("@P_COD_CLI",cliente.COD_CLI),
-                  DBHelper.MakeParam("@P_NOMBRES",cliente.NOMBRES==null?System.Data.SqlTypes.SqlString.Null:cliente.NOMBRES),
-                 DBHelper.MakeParam("@P_AP_PATERNO",cliente.AP_PATERNO==null?System.Data.SqlTypes.SqlString.Null:cliente.AP_PATERNO),
-                 DBHelper.MakeParam("@P_AP_MATERNO",cliente.AP_MATERNO==null?System.Data.SqlTypes.SqlString.Null:cliente.AP_MATERNO),
-                 DBHelper.MakeParam("@P_DNI",cliente.DNI==null?System.Data.SqlTypes.SqlString.Null:cliente.DNI),
-                 DBHelper.MakeParam("@P_RUC",cliente.RUC==null?System.Data.SqlTypes.SqlString.Null:cliente.RUC),
-                 DBHelper.MakeParam("@P_RAZON_SOCIAL",cliente.RAZON_SOCIAL==null?System.Data.SqlTypes.SqlString.Null:cliente.RAZON_SOCIAL),
-                 DBHelper.MakeParam("@P_DIRECCION",cliente.DIRECCION==null?System.Data.SqlTypes.SqlString.Null:cliente.DIRECCION),
-                 DBHelper.MakeParam("@P_DEPARTAMENTO",cliente.DEPARTAMENTO==null?System.Data.SqlTypes.SqlString.Null:cliente.DEPARTAMENTO),
-                 DBHelper.MakeParam("@P_PROVINCIA",cliente.PROVINCIA==null?System.Data.SqlTypes.SqlString.Null:cliente.PROVINCIA),
-                 DBHelper.MakeParam("@P_DISTRITO",cliente.DISTRITO==null?System.Data.SqlTypes.SqlString.Null:cliente.DISTRITO),
-                 DBHelper.MakeParam("@P_TEL_FIJO_CASA",cliente.TEL_FIJO_CASA==null?System.Data.SqlTypes.SqlString.Null:cliente.TEL_FIJO_CASA),
-                 DBHelper.MakeParam("@P_TEL_FIJO_OFICINA",cliente.TEL_FIJO_OFICINA==null?System.Data.SqlTypes.SqlString.Null:cliente.TEL_FIJO_OFICINA),
-                 DBHelper.MakeParam("@P_CELULAR",cliente.CELULAR==null?System.Data.SqlTypes.SqlString.Null:cliente.CELULAR),
-                 DBHelper.MakeParam("@P_EMAIL",cliente.EMAIL==null?System.Data.SqlTypes.SqlString.Null:cliente.EMAIL),
-                 DBHelper.MakeParam("@P_OBSERVACIONES",cliente.OBSERVACIONES==null?System.Data.SqlTypes.SqlString.Null:cliente.OBSERVACIONES),
+                  DBHelper.MakeParam("@P_NOMBRES",cliente.NOMBRES==null?System.Data.SqlTypes.SqlString.Null:cliente.NOMBRES.ToUpper()),
+                 DBHelper.MakeParam("@P_AP_PATERNO",cliente.AP_PATERNO==null?System.Data.SqlTypes.SqlString.Null:cliente.AP_PATERNO.ToUpper()),
+                 DBHelper.MakeParam("@P_AP_MATERNO",cliente.AP_MATERNO==null?System.Data.SqlTypes.SqlString.Null:cliente.AP_MATERNO.ToUpper()),
+                 DBHelper.MakeParam("@P_DNI",cliente.DNI==null?System.Data.SqlTypes.SqlString.Null:cliente.DNI.Trim()),
+                 DBHelper.MakeParam("@P_RUC",cliente.RUC==null?System.Data.SqlTypes.SqlString.Null:cliente.RUC.Trim()),
+                 DBHelper.MakeParam("@P_RAZON_SOCIAL",cliente.RAZON_SOCIAL==null?System.Data.SqlTypes.SqlString.Null:cliente.RAZON_SOCIAL.ToUpper()),
+                 DBHelper.MakeParam("@P_DIRECCION",cliente.DIRECCION==null?System.Data.SqlTypes.SqlString.Null:cliente.DIRECCION.ToUpper()),
+                 DBHelper.MakeParam("@P_DEPARTAMENTO",cliente.DEPARTAMENTO==null?System.Data.SqlTypes.SqlString.Null:cliente.DEPARTAMENTO.ToUpper()),
+                 DBHelper.MakeParam("@P_PROVINCIA",cliente.PROVINCIA==null?System.Data.SqlTypes.SqlString.Null:cliente.PROVINCIA.ToUpper()),
+                 DBHelper.MakeParam("@P_DISTRITO",cliente.DISTRITO==null?System.Data.SqlTypes.SqlString.Null:cliente.DISTRITO.ToUpper()),
+                 DBHelper.MakeParam("@P_TEL_FIJO_CASA",cliente.TEL_FIJO_CASA==null?System.Data.SqlTypes.SqlString.Null:cliente.TEL_FIJO_CASA.Trim()),
+                 DBHelper.MakeParam("@P_TEL_FIJO_OFICINA",cliente.TEL_FIJO_OFICINA==null?System.Data.SqlTypes.SqlString.Null:cliente.TEL_FIJO_OFICINA.Trim()),
+                 DBHelper.MakeParam("@P_CELULAR",cliente.CELULAR==null?System.Data.SqlTypes.SqlString.Null:cliente.CELULAR.Trim()),
+                 DBHelper.MakeParam("@P_EMAIL",cliente.EMAIL==null?System.Data.SqlTypes.SqlString.Null:cliente.EMAIL.ToUpper()),
+                 DBHelper.MakeParam("@P_OBSERVACIONES",cliente.OBSERVACIONES==null?System.Data.SqlTypes.SqlString.Null:cliente.OBSERVACIONES.ToUpper()),
                  DBHelper.MakeParam("@P_TIPO_CLIE",cliente.TIPO_CLIE==null?System.Data.SqlTypes.SqlString.Null:cliente.TIPO_CLIE),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
                  msj
@@ -210,6 +210,73 @@ namespace SISJORSAC.DATA.DAO
             {
                 throw;
             }
+        }
+
+        public List<Cliente> buscarxNombresyApellidos(string pBuqueda,string tipoCliente)
+        {
+            List<Cliente> listaCliente = new List<Cliente>();
+            string query = "SP_TBL_CLIENTE_BUSCARXNOMBRESYAPELLIDOS";
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]{
+
+                     DBHelper.MakeParam("@P_BUSQUEDA",pBuqueda),
+                     DBHelper.MakeParam("@P_TIPOCLIENTE",tipoCliente)
+                 };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
+                {
+                    if (lector != null && lector.HasRows)
+                    {
+                        Cliente cliente;
+                        while (lector.Read())
+                        {
+                            cliente = new Cliente();
+                            if (lector["TIPO_CLIE"].ToString().Equals("NATURAL"))
+                            {
+                                cliente.COD_CLI = int.Parse(lector["COD_CLI"].ToString());
+                                cliente.NOMBRES = lector["NOMBRES"].ToString();
+                                cliente.AP_PATERNO = lector["AP_PATERNO"].ToString();
+                                cliente.AP_MATERNO = lector["AP_MATERNO"].ToString();
+                                cliente.DNI = lector["DNI"].ToString();
+                                cliente.DIRECCION = lector["DIRECCION"].ToString();
+                                cliente.DEPARTAMENTO = lector["DEPARTAMENTO"].ToString();
+                                cliente.PROVINCIA = lector["PROVINCIA"].ToString();
+                                cliente.DISTRITO = lector["DISTRITO"].ToString();
+                                cliente.TEL_FIJO_CASA = lector["TEL_FIJO_CASA"].ToString();
+                                cliente.CELULAR = lector["CELULAR"].ToString();
+                                cliente.EMAIL = lector["EMAIL"].ToString();
+                                cliente.OBSERVACIONES = lector["OBSERVACIONES"].ToString();
+                                listaCliente.Add(cliente);
+                            }
+                            else
+                            {
+                                cliente.COD_CLI = int.Parse(lector["COD_CLI"].ToString());
+                                cliente.RUC = lector["RUC"].ToString();
+                                cliente.RAZON_SOCIAL = lector["RAZON_SOCIAL"].ToString();
+                                cliente.DIRECCION = lector["DIRECCION"].ToString();
+                                cliente.DEPARTAMENTO = lector["DEPARTAMENTO"].ToString();
+                                cliente.PROVINCIA = lector["PROVINCIA"].ToString();
+                                cliente.DISTRITO = lector["DISTRITO"].ToString();
+
+                                cliente.TEL_FIJO_OFICINA = lector["TEL_FIJO_OFICINA"].ToString();
+
+                                cliente.EMAIL = lector["EMAIL"].ToString();
+                                cliente.OBSERVACIONES = lector["OBSERVACIONES"].ToString();
+                                listaCliente.Add(cliente);
+                            }
+                        }
+                    }
+
+                }
+                return listaCliente;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
 

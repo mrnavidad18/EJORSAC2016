@@ -35,9 +35,9 @@ namespace SISJORSAC.DATA.DAO
                 {
                  DBHelper.MakeParam("@P_FECHA_EGRE",gasto.FECHA_EGRE),
                  DBHelper.MakeParam("@P_COD_PROV",gasto.PROVEEDOR.COD_PROV),
-                 DBHelper.MakeParam("@P_DOC_REF",gasto.DOC_REF),
+                 DBHelper.MakeParam("@P_DOC_REF",gasto.DOC_REF..ToUpper()),
                  DBHelper.MakeParam("@P_NRO_DOC_REF",gasto.NRO_DOC_REF),
-                 DBHelper.MakeParam("@P_MONEDA",gasto.MONEDA),
+                 DBHelper.MakeParam("@P_MONEDA",gasto.MONEDA..ToUpper()),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),                            
                 id,
                 msj

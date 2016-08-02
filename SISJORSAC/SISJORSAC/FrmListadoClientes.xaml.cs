@@ -16,7 +16,7 @@ using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
 using SISJORSAC.DATA.Modelo;
 using SISJORSAC.DATA.DAO;
-using System.Data;
+
 
 namespace SISJORSAC
 {
@@ -26,13 +26,21 @@ namespace SISJORSAC
     public partial class FrmListadoClientes : MetroWindow
     {
         ClienteDAO clienteDAO = new ClienteDAO();
+        List<Cliente> listadoCliente = new List<Cliente>();
         public  FrmListadoClientes()
         {
-            InitializeComponent();          
+            InitializeComponent();
+            txtBusqueda.Visibility = Visibility.Hidden;
+            dgvListadoCliente.Visibility = Visibility.Hidden;
         }
         private void ListarClientes(string tipoCliente)
         {
-            var listadoCliente = clienteDAO.ListarCliente(tipoCliente);
+            if (listadoCliente ==null)
+            {
+                listadoCliente = clienteDAO.ListarCliente(tipoCliente);
+
+            }
+
             dgvListadoCliente.ItemsSource = listadoCliente;
             if (tipoCliente.Equals("NATURAL"))
             {
@@ -88,12 +96,12 @@ namespace SISJORSAC
             else
             {
                 DataGridTextColumn columna = new DataGridTextColumn();
-                columna.Header = "Razón Social";
-                columna.Binding = new Binding("RAZON_SOCIAL");
+                columna.Header = "RUC";
+                columna.Binding = new Binding("RUC");
                 dgvListadoCliente.Columns.Add(columna);
                 DataGridTextColumn columna2 = new DataGridTextColumn();
-                columna2.Header = "RUC";
-                columna2.Binding = new Binding("RUC");
+                columna2.Header = "Razón Social";
+                columna2.Binding = new Binding("RAZON_SOCIAL");
                 dgvListadoCliente.Columns.Add(columna2);                              
                 DataGridTextColumn columna5 = new DataGridTextColumn();
                 columna5.Header = "Dirección";
@@ -129,22 +137,35 @@ namespace SISJORSAC
 
         private void rdbNatural_Checked(object sender, RoutedEventArgs e)
         {
+            dgvListadoCliente.Visibility = Visibility.Visible;
             dgvListadoCliente.Columns.Clear();
+            listadoCliente = null;
             ListarClientes("NATURAL");
+            txtBusqueda.Visibility = Visibility.Visible;
+            lblBusqueda.Content = "Busca por DNI / Nombre o Apellidos";
         }
 
         private void rdbJuridica_Checked(object sender, RoutedEventArgs e)
-        {           
+        {
+            dgvListadoCliente.Visibility = Visibility.Visible;
             dgvListadoCliente.Columns.Clear();
+            listadoCliente = null;
             ListarClientes("JURIDICA");
+            txtBusqueda.Visibility = Visibility.Visible;
+            lblBusqueda.Content = "Busca por RUC o Razón Social";
         }
         private async void actualizarNatural()
         {
-             Cliente cli = dgvListadoCliente.SelectedItem as Cliente;               
-             string valor = "";
+             Cliente cli = dgvListadoCliente.SelectedItem as Cliente;                          
              DataGridRow row = (DataGridRow)dgvListadoCliente.ItemContainerGenerator.ContainerFromItem(dgvListadoCliente.SelectedItem);
              int posicion = row.GetIndex();
-
+             if (cli.COD_CLI == 0)
+             {
+                 await this.ShowMessageAsync("Información", "No se puede actualizar esta fila");
+                 dgvListadoCliente.Columns.Clear();
+                 ListarClientes("NATURAL");
+                 return;
+             }
             //foreach (var item in dgvListadoCliente.Items)
             //{
             //    DataGridRow row = (DataGridRow)dgvListadoCliente.ItemContainerGenerator.ContainerFromItem(item);
@@ -346,11 +367,16 @@ namespace SISJORSAC
 
         private async void actualizarJuridica()
         {
-            Cliente cli = dgvListadoCliente.SelectedItem as Cliente;
-            string valor = "";
+            Cliente cli = dgvListadoCliente.SelectedItem as Cliente;           
             DataGridRow row = (DataGridRow)dgvListadoCliente.ItemContainerGenerator.ContainerFromItem(dgvListadoCliente.SelectedItem);
-            int posicion = row.GetIndex();           
-
+            int posicion = row.GetIndex();
+            if (cli.COD_CLI == 0)
+            {
+                await this.ShowMessageAsync("Información", "No se puede actualizar esta fila");
+                dgvListadoCliente.Columns.Clear();
+                ListarClientes("JURIDICA");
+                return;
+            }
             string RUC = "";
             string razonSocial = "";            
             string direccion = "";
@@ -497,6 +523,11 @@ namespace SISJORSAC
 
                         actualizarNatural();
                     }
+                    if (e.Key == Key.F1)
+                    {
+                        await this.ShowMessageAsync("Información", "Selecccione el tipo de cliente que desea actualizar, de doble click sobre la celda que desea actualizar. Una vez realizado los cambios presione F5 y confirme.");
+                        return;
+                    }
                 }
                 else if (rdbJuridica.IsChecked == true)
                 {
@@ -506,6 +537,22 @@ namespace SISJORSAC
                         actualizarJuridica();
                     }
 
+                    if (e.Key == Key.F1)
+                    {
+                        await this.ShowMessageAsync("Información", "Selecccione el tipo de cliente que desea actualizar, de doble click sobre la celda que desea actualizar. Una vez realizado los cambios presione F5 y confirme.");
+                        return;
+
+                    }
+                }
+                else
+                {
+                    if (e.Key == Key.F1)
+                    {
+                        await this.ShowMessageAsync("Información", "Selecccione el tipo de cliente que desea actualizar, de doble click sobre la celda que desea actualizar. Una vez realizado los cambios presione F5 y confirme.");
+                        return;
+                       
+                    }
+                    
                 }
             }
             catch (Exception)
@@ -516,6 +563,35 @@ namespace SISJORSAC
 
 
       }
+
+        private void txtBusqueda_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (rdbJuridica.IsChecked == true)
+            {
+                if (e.Key == Key.Enter)
+                {
+                    listadoCliente = null;
+                    listadoCliente = clienteDAO.buscarxNombresyApellidos(txtBusqueda.Text, "JURIDICA");
+                    dgvListadoCliente.Columns.Clear();
+                    ListarClientes("JURIDICA");
+                }
+            }
+            else
+            {
+                if (e.Key == Key.Enter)
+                {
+                    listadoCliente = null;
+                    listadoCliente = clienteDAO.buscarxNombresyApellidos(txtBusqueda.Text, "NATURAL");
+                    dgvListadoCliente.Columns.Clear();
+                    ListarClientes("NATURAL");
+                }
+            }
+
+            
+        }
+
+
 
 
             

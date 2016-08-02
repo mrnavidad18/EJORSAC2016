@@ -1,0 +1,13 @@
+﻿<Controls:MetroWindow  x:Class="SISJORSAC.FrmListadoServicios"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Listado de Servicios" Height="651.045" Width="1204.337"
+        WindowStartupLocation="CenterScreen">
+    <Grid >
+        <DataGrid   x:Name="dgvListadoServicios" HorizontalAlignment="Left" Margin="28,111,0,0" VerticalAlignment="Top" Height="362" Width="1124" AutoGenerateColumns="False" GridLinesVisibility="All" BorderThickness="1" KeyDown="dgvListadoServicios_KeyDown_1"/>
+
+    </Grid>
+</Controls:MetroWindow>

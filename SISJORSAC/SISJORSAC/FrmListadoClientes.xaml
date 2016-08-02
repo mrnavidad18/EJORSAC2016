@@ -4,15 +4,16 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="FrmListadoClientes" Height="654.03" Width="986.426"
+        Title="FrmListadoClientes" Height="651.045" Width="1204.337"
         WindowStartupLocation="CenterScreen">
     <Grid >
-        
-        <Label Content="Listado de Clientes:" HorizontalAlignment="Left" Margin="28,22,0,0" VerticalAlignment="Top"/>
-        <DataGrid   x:Name="dgvListadoCliente" HorizontalAlignment="Left" Margin="28,92,0,0" VerticalAlignment="Top" Height="242" Width="897" AutoGenerateColumns="False" Grid.Row="1" Grid.Column="1" GridLinesVisibility="All" BorderThickness="1" KeyDown="dgvListadoCliente_KeyDown_1"/>
-        <GroupBox Header="Seleccione el tipo de Cliente:" HorizontalAlignment="Left" Margin="311,10,0,0" VerticalAlignment="Top" Height="58" Width="234"/>
-        <RadioButton x:Name="rdbNatural" Content="NATURALES" HorizontalAlignment="Left" Margin="321,40,0,0" VerticalAlignment="Top" Checked="rdbNatural_Checked"/>
-        <RadioButton x:Name="rdbJuridica" Content="JURIDICOS" HorizontalAlignment="Left" Margin="441,40,0,0" VerticalAlignment="Top" Checked="rdbJuridica_Checked"/>
+
+        <Label x:Name="lblBusqueda" Content="" HorizontalAlignment="Left" Margin="28,22,0,0" VerticalAlignment="Top" Width="239" FontWeight="Bold"/>
+        <DataGrid   x:Name="dgvListadoCliente" HorizontalAlignment="Left" Margin="28,111,0,0" VerticalAlignment="Top" Height="362" Width="1124" AutoGenerateColumns="False" GridLinesVisibility="All" BorderThickness="1" KeyDown="dgvListadoCliente_KeyDown_1"/>
+        <GroupBox Header="Seleccione el tipo de Cliente:" HorizontalAlignment="Left" Margin="529,19,0,0" VerticalAlignment="Top" Height="58" Width="234"/>
+        <RadioButton x:Name="rdbNatural" Content="NATURALES" HorizontalAlignment="Left" Margin="542,49,0,0" VerticalAlignment="Top" Checked="rdbNatural_Checked"/>
+        <RadioButton x:Name="rdbJuridica" Content="JURIDICOS" HorizontalAlignment="Left" Margin="657,49,0,0" VerticalAlignment="Top" Checked="rdbJuridica_Checked" RenderTransformOrigin="0.5,0.5"/>
+        <TextBox x:Name="txtBusqueda" HorizontalAlignment="Left" Height="23" Margin="276,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="225" KeyDown="txtBusqueda_KeyDown" />
 
     </Grid>
 </Controls:MetroWindow>

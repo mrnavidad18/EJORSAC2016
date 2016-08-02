@@ -23,7 +23,7 @@ namespace SISJORSAC.DATA.DAO
             {
                 SqlParameter[] dbParams = new SqlParameter[]
              {
-                 DBHelper.MakeParam("@P_DESCRIPCION",conceptoGasto.DESCRIPCION),
+                 DBHelper.MakeParam("@P_DESCRIPCION",conceptoGasto.DESCRIPCION.ToUpper()),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),  
                  msj
              };
@@ -97,6 +97,32 @@ namespace SISJORSAC.DATA.DAO
                 throw;
             }
         
+        }
+
+
+        public string Actualizar(ConceptoGasto conceptoGasto)
+        {
+            string salidas;
+
+            string query = "SP_TBL_CONCEP_GASTO_ACTUALIZAR";
+            SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
+            msj.Direction = ParameterDirection.Output;
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]
+             {
+                 DBHelper.MakeParam("@P_DESCRIPCION",conceptoGasto.DESCRIPCION.ToUpper()),
+                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),  
+                 DBHelper.MakeParam("@P_COD_CON_GAS",conceptoGasto.COD_CON_GAS),
+                 msj
+             };
+                salidas = DBHelper.ExecuteProcedure(query, dbParams);
+                return salidas;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
     }

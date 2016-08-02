@@ -152,8 +152,17 @@
     <Compile Include="FrmListadoClientes.xaml.cs">
       <DependentUpon>FrmListadoClientes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrmListadoConceptoGasto.xaml.cs">
+      <DependentUpon>FrmListadoConceptoGasto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrmListadoFacturas.xaml.cs">
       <DependentUpon>FrmListadoFacturas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmListadoProveedor.xaml.cs">
+      <DependentUpon>FrmListadoProveedor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmListadoServicios.xaml.cs">
+      <DependentUpon>FrmListadoServicios.xaml</DependentUpon>
     </Compile>
     <Compile Include="FrmProveedor.xaml.cs">
       <DependentUpon>FrmProveedor.xaml</DependentUpon>
@@ -233,7 +242,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FrmListadoConceptoGasto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FrmListadoFacturas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmListadoProveedor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmListadoServicios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

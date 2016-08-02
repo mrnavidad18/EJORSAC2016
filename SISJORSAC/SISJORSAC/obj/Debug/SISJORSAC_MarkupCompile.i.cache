@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\App.xaml
-17-1957079936
+22-853366759
 
-671435405773
+74-149277493
 26-1378237250
-ElegirFactura.xaml;FrmBoleta.xaml;FrmClienteRegistro.xaml;FrmConceptoGasto.xaml;FrmContratoAlquiler.xaml;FrmElegirBoleta.xaml;frmFactura.xaml;FrmGuiaRemision.xaml;FrmListadoClientes.xaml;FrmProveedor.xaml;FrmServicioRegistro.xaml;FrmUsuarioDatos.xaml;MainWindow.xaml;Menu.xaml;Reportes\FRTipoCliente.xaml;Resources\Icons.xaml;Resources\IconsNonShared.xaml;
+ElegirFactura.xaml;FrmBoleta.xaml;FrmClienteRegistro.xaml;FrmConceptoGasto.xaml;FrmContratoAlquiler.xaml;FrmElegirBoleta.xaml;frmFactura.xaml;FrmGasto.xaml;FrmGuiaRemision.xaml;FrmListadoClientes.xaml;FrmListadoConceptoGasto.xaml;FrmListadoFacturas.xaml;FrmListadoProveedor.xaml;FrmListadoServicios.xaml;FrmProveedor.xaml;FrmServicioRegistro.xaml;FrmUsuarioDatos.xaml;MainWindow.xaml;Menu.xaml;Reportes\FRTipoCliente.xaml;Resources\Icons.xaml;Resources\IconsNonShared.xaml;
 
 False
 
