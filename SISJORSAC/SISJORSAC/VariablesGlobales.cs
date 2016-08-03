@@ -32,6 +32,7 @@ namespace SISJORSAC
         public static List<DetalleFactura> listaDetallesFactura = new List<DetalleFactura>();
         public static List<DetalleContrato> listaDetallesContrato = new List<DetalleContrato>();
         public static List<DetalleBoleta> listaDetallesBoleta= new List<DetalleBoleta>();
+        public static List<DetalleGasto> listaDetallesGasto = new List<DetalleGasto>();
         public static Cliente clienteFactura=null;
         public static Cliente clienteBoleta = null;
         public static Cliente clienteContrato = null;

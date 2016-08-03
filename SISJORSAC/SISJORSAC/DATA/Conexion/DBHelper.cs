@@ -10,7 +10,8 @@ namespace SISJORSAC.DATA.Conexion
 {
     public class DBHelper
     {
-        private static string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+        private static string cadenaConexion = "server=10.0.2.15;DataBase=BDJORSAC;user=sa;password=BaseDeDatos2015";
+
         public static SqlParameter MakeParam(string paramName,object objValue)
         {
             SqlParameter param;
@@ -65,7 +66,6 @@ namespace SISJORSAC.DATA.Conexion
 
             }
         }
-
 
         public static SqlDataReader ExecuteDataReaderProcedure(string query)
         {
@@ -173,8 +173,9 @@ namespace SISJORSAC.DATA.Conexion
 
                 cmd.ExecuteNonQuery();
 
-                int id = Convert.ToInt32(cmd.Parameters["@PS_COD"].Value);
                 string mensaje = Convert.ToString(cmd.Parameters["@PS_MSJ"].Value);
+                int id = Convert.ToInt32(cmd.Parameters["@PS_COD"].Value);
+                
 
                 salidas[0] = id;
                 salidas[1] = mensaje;

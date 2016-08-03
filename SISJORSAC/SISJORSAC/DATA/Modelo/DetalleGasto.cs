@@ -14,6 +14,7 @@ namespace SISJORSAC.DATA.Modelo
         public int ITEM { get; set; }
         public int CANTIDAD { get; set; }
         public double PRECIO { get; set; }
+        public double  IMPORTE { get; set; }
 
     }
 }

@@ -40,6 +40,7 @@
                     <MenuItem x:Name="ItemBoleta" Header="Boleta" Click="ItemBoleta_Click"/>
                     <MenuItem x:Name="ItemGuiaRemision" Header="Guía Remisión" Click="ItemGuiaRemision_Click"/>
                     <MenuItem x:Name="ItemContrato" Header="Contrato de Alquiler" Click="ItemContrato_Click"/>
+                    <MenuItem x:Name="itemGasto" Header="Mis Gastos" Click="itemGasto_Click" />
                 </MenuItem>
                 <MenuItem Header="Consultas" >
                     <MenuItem.Icon>

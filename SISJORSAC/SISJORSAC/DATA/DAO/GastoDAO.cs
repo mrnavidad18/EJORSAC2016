@@ -16,7 +16,7 @@ namespace SISJORSAC.DATA.DAO
     {
         public Object[] Agregar(Gasto gasto)
         {
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=2015159";
+            string cadenaConexion = "server=10.0.2.15;DataBase=BDJORSAC;user=sa;password=BaseDeDatos2015";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -185,6 +185,31 @@ namespace SISJORSAC.DATA.DAO
             }
         }
 
+        public string ObtenerNroGasto()
+        {
+            try
+            {
+                string nroFactura = "";
+                string query = "SP_TBL_GASTO_TRAER_ULTIMO_NRO_GASTO";
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query))
+                {
+                    if (lector != null && lector.HasRows)
+                    {
+                        while (lector.Read())
+                        {
+                            nroFactura = lector["NRO_GASTO"].ToString();
+                        }
+                    }
+                }
+
+                return nroFactura;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurio un error al recuperar el ultimo nro. de gasto");
+            }
+
+        }
 
     }
 }

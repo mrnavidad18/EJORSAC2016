@@ -128,6 +128,12 @@ namespace SISJORSAC
             frmlistadoConceptoGasto.ShowDialog();
         }
 
+        private void itemGasto_Click(object sender, RoutedEventArgs e)
+        {
+            FrmGasto frmGasto = new FrmGasto();
+            frmGasto.ShowDialog();
+        }
+
 
 
 
