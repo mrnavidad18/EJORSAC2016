@@ -15,6 +15,7 @@ namespace SISJORSAC.DATA.Modelo
 
         public Cliente cliente { get; set; }
         public string MODALIDAD { get; set; }
+        public string RAZONSOCIAL_NOMBRES { get; set; }
         public string OBSERVACION { get; set; }
         public double TOTAL { get; set; }
 

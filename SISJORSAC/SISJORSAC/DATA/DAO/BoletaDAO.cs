@@ -215,7 +215,7 @@ namespace SISJORSAC.DATA.DAO
                             }
                             else
                             {
-                                boleta.GUIA = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["NRO_GUIA"].ToString()));
+                                boleta.GUIA = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["COD_GUIA"].ToString()));
                             }
                         }
                     }
@@ -268,7 +268,111 @@ namespace SISJORSAC.DATA.DAO
                             }
                             else
                             {
-                                boleta.GUIA = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["NRO_GUIA"].ToString()));
+                                boleta.GUIA = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["COD_GUIA"].ToString()));
+                            }
+                            lista.Add(boleta);
+                        }
+                    }
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurio un error al listar los Boletas");
+            }
+
+        }
+        public List<Boleta> ListarBoletasConClientes(string estado)
+        {
+            try
+            {
+                List<Boleta> lista = null;
+                
+                GuiaRemisionDAO guiaDao = new GuiaRemisionDAO();
+                string query = "SP_TBL_BOLETA_LISTAR_CON_CLIENTES";
+
+                SqlParameter[] param = new SqlParameter[]
+                {
+                      DBHelper.MakeParam("@P_ESTADO",estado)
+                };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, param))
+                {
+
+                    if (lector != null && lector.HasRows)
+                    {
+                        lista = new List<Boleta>();
+                        Boleta boleta;
+                        while (lector.Read())
+                        {
+                            boleta = new Boleta();
+                           
+                            boleta.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
+                            boleta.NRO_BOLETA = lector["NRO_BOLETA"].ToString();
+                            boleta.MODALIDAD = lector["MODALIDAD"].ToString();
+                            boleta.OBSERVACION = lector["OBSERVACION"].ToString();
+                            boleta.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
+                            boleta.RAZONSOCIAL_NOMBRES = lector["CLIENTE"].ToString();
+                            if (lector["COD_GUIA"] == DBNull.Value)
+                            {
+                                boleta.GUIA = null;
+                            }
+                            else
+                            {
+                                boleta.GUIA = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["COD_GUIA"].ToString()));
+                            }
+                            lista.Add(boleta);
+                        }
+                    }
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurio un error al listar los Boletas");
+            }
+
+        }
+
+        public List<Boleta> BuscarBoletasNroBoleta(string nroBoleta)
+        {
+            try
+            {
+                List<Boleta> lista = null;
+                ClienteDAO clienteDao = new ClienteDAO();
+                GuiaRemisionDAO guiaDao = new GuiaRemisionDAO();
+                string query = "SP_TBL_BOLETA_BUSCAR_X_NRO_BOLETA";
+
+                SqlParameter[] param = new SqlParameter[]
+                {
+                      DBHelper.MakeParam("@P_NRO_BOLETA",nroBoleta)
+                };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, param))
+                {
+
+                    if (lector != null && lector.HasRows)
+                    {
+                        lista = new List<Boleta>();
+                        Boleta boleta;
+                        while (lector.Read())
+                        {
+                            boleta = new Boleta();
+                            boleta.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
+                            boleta.NRO_BOLETA = lector["NRO_BOLETA"].ToString();
+                            boleta.MODALIDAD = lector["MODALIDAD"].ToString();
+                            boleta.OBSERVACION = lector["OBSERVACION"].ToString();
+                            boleta.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
+                            boleta.RAZONSOCIAL_NOMBRES = lector["CLIENTE"].ToString();
+                            if (lector["COD_GUIA"] == DBNull.Value)
+                            {
+                                boleta.GUIA = null;
+                            }
+                            else
+                            {
+                                boleta.GUIA = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["COD_GUIA"].ToString()));
                             }
                             lista.Add(boleta);
                         }
