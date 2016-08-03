@@ -33,11 +33,11 @@
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="ITEM" Header="ITEM" Binding="{Binding ITEM, StringFormat=0\{0\}}" IsReadOnly="true"/>
                 <DataGridTextColumn x:Name="CANTIDAD" Header="CANTIDAD" Binding="{Binding CANTIDAD}" IsReadOnly="False">
-                    <!--<DataGridTextColumn.EditingElementStyle>
+                    <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="{x:Type TextBox}">
-                            <EventSetter Event="UIElement.KeyDown" Handler="Importe_KeyDown"/>
+                            <EventSetter Event="UIElement.KeyDown" Handler="Cantidad_KeyDown"/>
                         </Style>
-                    </DataGridTextColumn.EditingElementStyle>-->
+                    </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn x:Name="DESCRIPCION" Header="DESCRIPCION: CONCEPTO DE SERVICIO" Binding="{Binding ConceptoGasto.DESCRIPCION}" IsReadOnly="True" Width="450" />
                 <DataGridTextColumn x:Name="PRECIO" Header="PRECIO UNITARIO" Binding="{Binding PRECIO}" IsReadOnly="True"/>
@@ -48,7 +48,7 @@
         <TextBox x:Name="txtTotal" HorizontalAlignment="Left" Height="23" Margin="695,545,0,60" TextWrapping="Wrap" Width="87" IsEnabled="False" Text="0.0" FontWeight="Bold"/>
         <Label Content="Total:" HorizontalAlignment="Left" Margin="643,543,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
         <Button x:Name="btnGenerarGasto" Content="Generar Gasto" HorizontalAlignment="Left" Margin="565,582,0,0" VerticalAlignment="Top" Width="137" Background="#FF42A5F7" Foreground="White" FontWeight="Bold" Height="35" Click="btnGenerarGasto_Click" />
-        <Button x:Name="btnCancelar" Content="Salir" HorizontalAlignment="Left" Margin="716,582,0,0" VerticalAlignment="Top" Width="64" Height="35" Background="#FFE24030" BorderBrush="#FFAEAEAE" Foreground="White" FontWeight="Bold"/>
+        <Button x:Name="btnCancelar" Content="Salir" HorizontalAlignment="Left" Margin="716,582,0,0" VerticalAlignment="Top" Width="64" Height="35" Background="#FFE24030" BorderBrush="#FFAEAEAE" Foreground="White" FontWeight="Bold" Click="btnCancelar_Click"/>
         <CheckBox x:Name="chkObservacion" Content="Ingresar observaciones" HorizontalAlignment="Left" Margin="44,544,0,-292" VerticalAlignment="Top"/>
         <TextBox x:Name="txtObservacion" HorizontalAlignment="Left" Height="58" Margin="44,563,-58,-351" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" IsEnabled="False"/>
         <Label Content="Servicio:" HorizontalAlignment="Left" Margin="215,174,0,0" VerticalAlignment="Top"/>

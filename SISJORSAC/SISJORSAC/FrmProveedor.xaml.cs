@@ -195,55 +195,104 @@ namespace SISJORSAC
 
         private async void btnCrearCliente_Click(object sender, RoutedEventArgs e)
         {
-            Proveedor proveedor = new Proveedor();
-            string resul = "";
 
-            if (rdNATUTAL.IsChecked == true)
+            if (rdNATUTAL.IsChecked == true || rbJURIDICA.IsChecked == true)
             {
-                proveedor.NOMBRES = txtNombre.Text;
-                proveedor.AP_PATERNO = txtAPPaterno.Text;
-                proveedor.AP_MATERNO = txtAPMaterno.Text;
-                proveedor.DNI = txtDocumento.Text.Trim();
-                proveedor.DIRECCION = txtDireccion.Text;
-                proveedor.DEPARTAMENTO = cboDepartamento.Text.ToString();
-                proveedor.PROVINCIA = cboProvincia.Text.ToString();
-                proveedor.DISTRITO = cboDistrito.Text.ToString();
-                proveedor.TELF_FIJO_CASA = txtTelfFijoCasa.Text;
-                proveedor.CELULAR = txtCelular.Text;
-                proveedor.EMAIL = txtEmail.Text;
-                proveedor.OBSERVACIONES = txtObservaciones.Text;
-                proveedor.TIPO_PRO = rdNATUTAL.Content.ToString();
-                resul = proveedorDAO.Agregar(proveedor);
-                if (resul.Equals("Agregado"))
-                await this.ShowMessageAsync(resul, "Cliente  : " + proveedor.NOMBRES + " , " + proveedor.AP_PATERNO + " , agregado Correctamente");
+                Proveedor proveedor = new Proveedor();
+                string resul = "";
+
+                if (rdNATUTAL.IsChecked == true)
+                {
+                    if (txtNombre.Text.Trim() != "" && txtAPMaterno.Text.Trim() != "" && txtDocumento.Text.Trim() != "" && cboDepartamento.SelectedItem != null && cboProvincia.SelectedItem != null && cboDistrito.SelectedItem != null)
+                    {
+                        proveedor.NOMBRES = txtNombre.Text;
+                        proveedor.AP_PATERNO = txtAPPaterno.Text;
+                        proveedor.AP_MATERNO = txtAPMaterno.Text;
+                        proveedor.DNI = txtDocumento.Text.Trim();
+                        proveedor.DIRECCION = txtDireccion.Text;
+                        proveedor.DEPARTAMENTO = cboDepartamento.Text.ToString();
+                        proveedor.PROVINCIA = cboProvincia.Text.ToString();
+                        proveedor.DISTRITO = cboDistrito.Text.ToString();
+                        proveedor.TELF_FIJO_CASA = txtTelfFijoCasa.Text;
+                        proveedor.CELULAR = txtCelular.Text;
+                        proveedor.EMAIL = txtEmail.Text;
+                        proveedor.OBSERVACIONES = txtObservaciones.Text;
+                        proveedor.TIPO_PRO = rdNATUTAL.Content.ToString();
+                        resul = proveedorDAO.Agregar(proveedor);
+                        if (resul.Equals("Agregado"))
+                            await this.ShowMessageAsync(resul, "Cliente  : " + proveedor.NOMBRES + " , " + proveedor.AP_PATERNO + " , agregado Correctamente");
+                        else
+                            await this.ShowMessageAsync(resul, "¡Lamentablemente ocurrió un error al Agregar!");
+                    }
+                    else
+                    {
+                        await this.ShowMessageAsync("Error", "¡Falta llenar algunos campos!");
+                        return;
+                    }
+                }
+                else if (rbJURIDICA.IsChecked == true)
+                {
+                    if (txtRazonSocial.Text.Trim() != "" && txtDocumento.Text.Trim() != "" && cboDepartamento.SelectedItem != null && cboProvincia.SelectedItem != null && cboDistrito.SelectedItem != null)
+                    {
+                        proveedor.RUC = txtDocumento.Text.Trim();
+                        proveedor.RAZON_SOCIAL = txtRazonSocial.Text;
+                        proveedor.DIRECCION = txtDireccion.Text;
+                        proveedor.DEPARTAMENTO = cboDepartamento.Text.ToString();
+                        proveedor.PROVINCIA = cboProvincia.Text.ToString();
+                        proveedor.DISTRITO = cboDistrito.Text.ToString();
+                        proveedor.TELF_FIJO_OFICINA = txtTelfFijoOficina.Text;
+                        proveedor.EMAIL = txtEmail.Text;
+                        proveedor.OBSERVACIONES = txtObservaciones.Text;
+                        proveedor.TIPO_PRO = rbJURIDICA.Content.ToString();
+                        resul = proveedorDAO.Agregar(proveedor);
+                        if (resul.Equals("Agregado"))
+                            await this.ShowMessageAsync(resul, "Cliente :   " + proveedor.RAZON_SOCIAL + " , agregado correctamente");
+                        else
+                            await this.ShowMessageAsync(resul, "¡Lamentablemente ocurrió un error al Agregar!");
+                    }
+                    else
+                    {
+                        await this.ShowMessageAsync("Error", "¡Falta llenar algunos campos!");
+                        return;
+                    }
+                   
+                }
                 else
-                    await this.ShowMessageAsync(resul, "¡Lamentablemente ocurrió un error al Agregar!");
-            }
-            else if (rbJURIDICA.IsChecked == true)
-            {
-                proveedor.RUC = txtDocumento.Text.Trim();
-                proveedor.RAZON_SOCIAL = txtRazonSocial.Text;
-                proveedor.DIRECCION = txtDireccion.Text;
-                proveedor.DEPARTAMENTO = cboDepartamento.Text.ToString();
-                proveedor.PROVINCIA = cboProvincia.Text.ToString();
-                proveedor.DISTRITO = cboDistrito.Text.ToString();
-                proveedor.TELF_FIJO_OFICINA = txtTelfFijoOficina.Text;
-                proveedor.EMAIL = txtEmail.Text;
-                proveedor.OBSERVACIONES = txtObservaciones.Text;
-                proveedor.TIPO_PRO = rbJURIDICA.Content.ToString();
-                resul=proveedorDAO.Agregar(proveedor);
-                if(resul.Equals("Agregado"))
-                await this.ShowMessageAsync(resul, "Cliente :   " + proveedor.RAZON_SOCIAL + " , agregado correctamente");
-                else
-                    await this.ShowMessageAsync(resul, "¡Lamentablemente ocurrió un error al Agregar!");
+                {
+                    await this.ShowMessageAsync("Error", "Falta Llenar Campos, seleccione que Tipo de Proveedor desea agregar.");
+
+                }
             }
             else
             {
-                await this.ShowMessageAsync("Error", "Falta Llenar Campos, seleccione que Tipo de Proveedor desea agregar.");
+                await this.ShowMessageAsync("Error", "Debe seleccionar un tipo de Proveedor para comenzar con el Registro");
+                return;
+            }           
 
+        }
+        public void limpiarTodo(Grid Formulario)
+        {
+            foreach (object c in Formulario.Children)
+            {
+                if (c is TextBox)
+                {
+                    (c as TextBox).Text = String.Empty;
+
+                }
+                if (c is ComboBox)
+                {
+                    (c as ComboBox).SelectedIndex = -1;
+                }
+                if (c is RadioButton)
+                {
+                    (c as RadioButton).IsChecked = false;
+                }
             }
-           
-
+        }
+        private void btnLimpiarTodo_Click(object sender, RoutedEventArgs e)
+        {
+            limpiarTodo(Proveedores);
+            BloquearTodosLosControles();
         }
 
 

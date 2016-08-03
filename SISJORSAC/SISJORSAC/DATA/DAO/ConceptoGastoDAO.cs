@@ -23,7 +23,7 @@ namespace SISJORSAC.DATA.DAO
             {
                 SqlParameter[] dbParams = new SqlParameter[]
              {
-                 DBHelper.MakeParam("@P_DESCRIPCION",conceptoGasto.DESCRIPCION.ToUpper()),
+                 DBHelper.MakeParam("@P_DESCRIPCION",conceptoGasto.DESCRIPCION==null?System.Data.SqlTypes.SqlString.Null:conceptoGasto.DESCRIPCION.ToUpper()),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),  
                  msj
              };
@@ -111,7 +111,7 @@ namespace SISJORSAC.DATA.DAO
             {
                 SqlParameter[] dbParams = new SqlParameter[]
              {
-                 DBHelper.MakeParam("@P_DESCRIPCION",conceptoGasto.DESCRIPCION.ToUpper()),
+                 DBHelper.MakeParam("@P_DESCRIPCION",conceptoGasto.DESCRIPCION==null?System.Data.SqlTypes.SqlString.Null:conceptoGasto.DESCRIPCION.ToUpper()),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),  
                  DBHelper.MakeParam("@P_COD_CON_GAS",conceptoGasto.COD_CON_GAS),
                  msj

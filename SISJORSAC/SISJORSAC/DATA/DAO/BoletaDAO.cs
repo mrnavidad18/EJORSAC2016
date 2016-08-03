@@ -33,12 +33,12 @@ namespace SISJORSAC.DATA.DAO
 
                 SqlParameter[] dbParams = new SqlParameter[]
              {
-                 DBHelper.MakeParam("@P_FECHA_EMISION",boleta.FECHA_EMISION),
-                 DBHelper.MakeParam("@P_COD_CLI",boleta.cliente.COD_CLI), 
+                 DBHelper.MakeParam("@P_FECHA_EMISION",boleta.FECHA_EMISION==null?System.Data.SqlTypes.SqlDateTime.Null:boleta.FECHA_EMISION),
+                 DBHelper.MakeParam("@P_COD_CLI",boleta.cliente.COD_CLI==null?System.Data.SqlTypes.SqlInt32.Null:boleta.cliente.COD_CLI), 
                  DBHelper.MakeParam("@P_COD_GUIA",boleta.GUIA==null?System.Data.SqlTypes.SqlInt32.Null:boleta.GUIA.COD_GUIA),
-                 DBHelper.MakeParam("@P_MODALIDAD",boleta.MODALIDAD.ToUpper()),              
-                 DBHelper.MakeParam("@P_OBSERVACION",boleta.OBSERVACION.ToUpper()),
-                 DBHelper.MakeParam("@P_TOTAL",boleta.TOTAL),
+                 DBHelper.MakeParam("@P_MODALIDAD",boleta.MODALIDAD==null?System.Data.SqlTypes.SqlString.Null:boleta.MODALIDAD.ToUpper()),              
+                 DBHelper.MakeParam("@P_OBSERVACION",boleta.OBSERVACION==null?System.Data.SqlTypes.SqlString.Null:boleta.OBSERVACION.ToUpper()),
+                 DBHelper.MakeParam("@P_TOTAL",boleta.TOTAL==null?System.Data.SqlTypes.SqlDouble.Null:boleta.TOTAL),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
                 id,
                 msj
@@ -94,12 +94,12 @@ namespace SISJORSAC.DATA.DAO
                 SqlParameter[] dbParams = new SqlParameter[]
              {
                  DBHelper.MakeParam("@P_NRO_BOLETA",boleta.NRO_BOLETA),
-                 DBHelper.MakeParam("@P_FECHA_EMISION",boleta.FECHA_EMISION),
-                 DBHelper.MakeParam("@P_COD_CLI",boleta.cliente.COD_CLI), 
+                 DBHelper.MakeParam("@P_FECHA_EMISION",boleta.FECHA_EMISION==null?System.Data.SqlTypes.SqlDateTime.Null:boleta.FECHA_EMISION),
+                 DBHelper.MakeParam("@P_COD_CLI",boleta.cliente.COD_CLI==null?System.Data.SqlTypes.SqlInt32.Null:boleta.cliente.COD_CLI), 
                  DBHelper.MakeParam("@P_COD_GUIA",boleta.GUIA==null?System.Data.SqlTypes.SqlInt32.Null:boleta.GUIA.COD_GUIA),
-                 DBHelper.MakeParam("@P_MODALIDAD",boleta.MODALIDAD),              
-                 DBHelper.MakeParam("@P_OBSERVACION",boleta.OBSERVACION),
-                 DBHelper.MakeParam("@P_TOTAL",boleta.TOTAL),
+                 DBHelper.MakeParam("@P_MODALIDAD",boleta.MODALIDAD==null?System.Data.SqlTypes.SqlString.Null:boleta.MODALIDAD.ToUpper()),              
+                 DBHelper.MakeParam("@P_OBSERVACION",boleta.OBSERVACION==null?System.Data.SqlTypes.SqlString.Null:boleta.OBSERVACION.ToUpper()),
+                 DBHelper.MakeParam("@P_TOTAL",boleta.TOTAL==null?System.Data.SqlTypes.SqlDouble.Null:boleta.TOTAL),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
                 id,
                 msj
@@ -467,10 +467,7 @@ namespace SISJORSAC.DATA.DAO
              };
 
             return salidas = DBHelper.ExecuteProcedureDetalles(query, dbParams, trx, cn);
-        }
-
-       
-
+        }       
 
         public string ObtenerNroBoleta()
         {

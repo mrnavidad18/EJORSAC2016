@@ -4,9 +4,9 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Registro - Servicios" Height="272" Width="484"
-        WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="Registro - Servicios" Height="266" Width="490"
+        WindowStartupLocation="CenterScreen" WindowTitleBrush="#FF633333">
+    <Grid Name="Servicios" Margin="0,0,-8,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="118*"/>
             <ColumnDefinition/>
@@ -15,16 +15,17 @@
         <Label Content="Precio S/." HorizontalAlignment="Left" Margin="29,79,0,0" VerticalAlignment="Top" Height="26" Width="60"/>
         <Label Content="Tipo Moneda:" HorizontalAlignment="Left" Margin="29,143,0,0" VerticalAlignment="Top" Height="26" Width="83"/>
         <Label Content="Peso" HorizontalAlignment="Left" Margin="29,112,0,0" VerticalAlignment="Top" Height="26" Width="35"/>
-        <TextBox x:Name="txtDescripcion" HorizontalAlignment="Left" Height="51" Margin="117,17,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="342"/>
+        <TextBox x:Name="txtDescripcion" HorizontalAlignment="Left" Height="51" Margin="115,17,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="342"/>
         <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="26" Margin="115,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="73"/>
-        <TextBox x:Name="txtPeso" HorizontalAlignment="Left" Height="26" Margin="117,112,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="73"/>
-        <ComboBox x:Name="cboTipoMoneda" HorizontalAlignment="Left" Margin="117,143,0,0" VerticalAlignment="Top" Width="170" Height="26">
+        <TextBox x:Name="txtPeso" HorizontalAlignment="Left" Height="26" Margin="115,112,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="73"/>
+        <ComboBox x:Name="cboTipoMoneda" HorizontalAlignment="Left" Margin="115,143,0,0" VerticalAlignment="Top" Width="170" Height="26">
             <ComboBoxItem Content="Seleccionar"/>
             <ComboBoxItem Content="SOLES"/>
             <ComboBoxItem Content="DOLARES"/>
         </ComboBox>
-        <Button x:Name="btnServicio" Content="Agregar Servicio" HorizontalAlignment="Left" Margin="314,196,0,0" VerticalAlignment="Top" Width="145" Click="btnServicio_Click" Height="29"  />
-        
+        <Button x:Name="btnServicio" Content="Agregar Servicio" HorizontalAlignment="Left" Margin="188,199,0,0" VerticalAlignment="Top" Width="145" Click="btnServicio_Click" Height="29" Background="#FF76A5DE" FontWeight="Bold" Foreground="#FFF3F3F3"  />
+        <Button x:Name="btnLimpiarTodo" Content="Limpiar Todo" HorizontalAlignment="Left" Margin="349,199,0,0" VerticalAlignment="Top" Width="108" Background="#FFD43434" Foreground="White" FontWeight="Bold" Click="btnLimpiarTodo_Click"/>
+
 
     </Grid>
 </Controls:MetroWindow>

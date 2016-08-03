@@ -84,11 +84,11 @@ namespace SISJORSAC.DATA.DAO
             {
                 SqlParameter[] dbParams = new SqlParameter[]
              {
-                 DBHelper.MakeParam("@P_USERNAME",usuario.username),
-                 DBHelper.MakeParam("@P_CLAVE",usuario.clave),  
-                 DBHelper.MakeParam("@P_NOMBRE",usuario.Nombre),              
-                 DBHelper.MakeParam("@P_APELLIDOS",usuario.Apellidos),
-                 DBHelper.MakeParam("@P_DNI",usuario.DNI),
+                 DBHelper.MakeParam("@P_USERNAME",usuario.username==null?System.Data.SqlTypes.SqlString.Null:usuario.username),
+                 DBHelper.MakeParam("@P_CLAVE",usuario.clave==null?System.Data.SqlTypes.SqlString.Null:usuario.clave),  
+                 DBHelper.MakeParam("@P_NOMBRE",usuario.Nombre==null?System.Data.SqlTypes.SqlString.Null:usuario.Nombre),              
+                 DBHelper.MakeParam("@P_APELLIDOS",usuario.Apellidos==null?System.Data.SqlTypes.SqlString.Null:usuario.Apellidos),
+                 DBHelper.MakeParam("@P_DNI",usuario.DNI==null?System.Data.SqlTypes.SqlString.Null:usuario.DNI),
                  DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                  DBHelper.MakeParam("@P_IDUSUARIO",usuario.idUsuario),
                  msj

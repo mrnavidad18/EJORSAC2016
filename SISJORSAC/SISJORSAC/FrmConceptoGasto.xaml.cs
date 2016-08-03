@@ -33,18 +33,26 @@ namespace SISJORSAC
 
         private async void btnAgregarConcepto_Click(object sender, RoutedEventArgs e)
         {
-            string resul = "";
-            string concepto = txtConceptoGasto.Text;
-            conceptoGasto.DESCRIPCION=concepto;
-            resul=conceptODAO.Agregar(conceptoGasto);
-            if (resul.Equals("Agregado"))
+            if (txtConceptoGasto.Text.Trim() != "")
             {
-                await this.ShowMessageAsync(resul, "¡Concepto de Gasto Agregado Correctamente!");
+                string resul = "";
+                string concepto = txtConceptoGasto.Text;
+                conceptoGasto.DESCRIPCION = concepto;
+                resul = conceptODAO.Agregar(conceptoGasto);
+                if (resul.Equals("Agregado"))
+                {
+                    await this.ShowMessageAsync(resul, "¡Concepto de Gasto Agregado Correctamente!");
+                }
+                else
+                {
+                    await this.ShowMessageAsync(resul, "¡OH No! Ocurrió un error");
+                }
             }
             else
             {
-                await this.ShowMessageAsync(resul, "¡OH No! Ocurrió un error");
+                await this.ShowMessageAsync("Error", "Falta llenar la descripción del concepto de Gasto");
             }
+            
 
 
         }

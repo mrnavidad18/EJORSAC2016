@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Actualiza Tu Información" Height="390" Width="555"
         WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,2,-1">
+    <Grid Name="UsuarioContraseña" Margin="0,0,2,-1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="118*"/>
             <ColumnDefinition/>
@@ -19,7 +19,7 @@
         <PasswordBox x:Name="txtClave" HorizontalAlignment="Left" Height="26" Margin="112,138,0,0"  VerticalAlignment="Top" Width="185"/>
         <TextBox x:Name="txtApellidos" HorizontalAlignment="Left" Height="26" Margin="112,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
         <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="26" Margin="112,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185" RenderTransformOrigin="0.658,-4.192"/>
-        <Button x:Name="btnGuardarCambios" Content="Guardar Cambios" HorizontalAlignment="Left" Margin="29,312,0,0" VerticalAlignment="Top" Width="166" Height="29" RenderTransformOrigin="-0.295,2.241" Click="btnGuardarCambios_Click"  />
+        <Button x:Name="btnGuardarCambios" Content="Guardar Cambios" HorizontalAlignment="Left" Margin="29,312,0,0" VerticalAlignment="Top" Width="166" Height="29" RenderTransformOrigin="-0.295,2.241" Click="btnGuardarCambios_Click" Background="#FF3F8FBD" Foreground="White" FontWeight="Bold"  />
         <Label x:Name="lblNuevaContra" Content="Nueva Contraseña:" HorizontalAlignment="Left" Margin="29,178,0,0" VerticalAlignment="Top" Height="26" Width="115"/>
         <PasswordBox x:Name="txtnuevaContra" HorizontalAlignment="Left" Height="26" Margin="165,178,0,0"  VerticalAlignment="Top" Width="185"/>
         <Label x:Name="lblConfirmarContra" Content="Confirme Contraseña:" HorizontalAlignment="Left" Margin="29,220,0,0" VerticalAlignment="Top" Height="26" Width="127"/>

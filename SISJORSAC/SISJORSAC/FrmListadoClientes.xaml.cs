@@ -361,7 +361,8 @@ namespace SISJORSAC
              }
              else
              {
-                 
+                 dgvListadoCliente.Columns.Clear();
+                 ListarClientes("NATURAL");
              }                                           
         }
 
@@ -506,6 +507,8 @@ namespace SISJORSAC
             }
             else
             {
+                dgvListadoCliente.Columns.Clear();
+                ListarClientes("JURIDICA");
             }
         }
 
@@ -586,14 +589,7 @@ namespace SISJORSAC
                     dgvListadoCliente.Columns.Clear();
                     ListarClientes("NATURAL");
                 }
-            }
-
-            
-        }
-
-
-
-
-            
+            }            
+        }            
     }
 }

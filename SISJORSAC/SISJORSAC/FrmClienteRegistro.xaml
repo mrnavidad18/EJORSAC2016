@@ -4,7 +4,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Registrar Clientes"
+        Title="Registrar Clientes"  WindowStartupLocation="CenterScreen" 
         Height="546" Width="715">
     <Grid x:Name="Clientesss" Margin="0,0,2,0" Loaded="Clientesss_Loaded">
         <Label Content="Nombre:" HorizontalAlignment="Left" Margin="27,77,0,0" VerticalAlignment="Top"/>
@@ -39,6 +39,6 @@
         <ComboBox x:Name="cboProvincia" HorizontalAlignment="Left" Margin="544,106,0,0" VerticalAlignment="Top" Width="134" SelectionChanged="cboProvincia_SelectionChanged"/>
         <ComboBox x:Name="cboDistrito" HorizontalAlignment="Left" Margin="548,138,0,0" VerticalAlignment="Top" Width="130"/>
         <Button x:Name="btnCrearCliente" Content="Crear Cliente" HorizontalAlignment="Left" Margin="300,467,0,0" VerticalAlignment="Top" Width="100" Click="btnCrearCliente_Click"/>
-        <Button Content="Limpiar Todo" HorizontalAlignment="Left" Margin="450,467,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button x:Name="btnLimpiarTodo" Content="Limpiar Todo" HorizontalAlignment="Left" Margin="450,467,0,0" VerticalAlignment="Top" Width="110" Click="btnLimpiarTodo_Click" />
     </Grid>
 </Controls:MetroWindow>

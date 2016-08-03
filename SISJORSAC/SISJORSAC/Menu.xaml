@@ -23,8 +23,7 @@
                         <MenuItem.Icon>
                             <Image Source="IMG/cliente.png" Height="44" Width="60"/>
                         </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="Proveedores"/>
+                    </MenuItem>                    
                     <MenuItem  x:Name="ItemServicioRegistro"  Header="Servicios" Click="ItemServicioRegistro_Click"/>
                     <MenuItem  x:Name="ItemProveedor"  Header="Proveedores" Click="ItemProveedor_Click" />
                     <MenuItem  x:Name="ItemConceptoGastoRegistro"  Header="Concepto de Gasto" Click="ItemConceptoGastoRegistro_Click"  />
@@ -60,7 +59,11 @@
                     
                 </MenuItem>
                 <MenuItem Header="Mi Cuenta">
+                    <MenuItem.Icon>
+                        <Image Source="IMG/CambiarPassword.png"/>
+                    </MenuItem.Icon>
                     <MenuItem x:Name="ItemMiCuenta" Header="Actualizar Mis Datos" Click="ItemMiCuenta_Click" />
+                   
                 </MenuItem>
                 
                 

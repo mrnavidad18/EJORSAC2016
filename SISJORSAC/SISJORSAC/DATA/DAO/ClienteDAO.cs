@@ -52,8 +52,6 @@ namespace SISJORSAC.DATA.DAO
             }
 
         }
-
-
         public List<Cliente> ListarCliente(string tipoCliente)
         {
             List<Cliente> listaProveedor = new List<Cliente>();
@@ -119,8 +117,6 @@ namespace SISJORSAC.DATA.DAO
             }
 
         }
-
-
         public Cliente ObtenerCliente(int codCli)
         {
             Cliente cliente = new Cliente();
@@ -167,8 +163,6 @@ namespace SISJORSAC.DATA.DAO
                 throw;
             }
         }
-
-
         public string Actualizar(Cliente cliente)
         {
             string salidas;
@@ -179,12 +173,9 @@ namespace SISJORSAC.DATA.DAO
             try
             {
                 SqlParameter[] dbParams = new SqlParameter[]
-             {
-                
-                 
-                 
+             {                                                  
                  DBHelper.MakeParam("@P_COD_CLI",cliente.COD_CLI),
-                  DBHelper.MakeParam("@P_NOMBRES",cliente.NOMBRES==null?System.Data.SqlTypes.SqlString.Null:cliente.NOMBRES.ToUpper()),
+                 DBHelper.MakeParam("@P_NOMBRES",cliente.NOMBRES==null?System.Data.SqlTypes.SqlString.Null:cliente.NOMBRES.ToUpper()),
                  DBHelper.MakeParam("@P_AP_PATERNO",cliente.AP_PATERNO==null?System.Data.SqlTypes.SqlString.Null:cliente.AP_PATERNO.ToUpper()),
                  DBHelper.MakeParam("@P_AP_MATERNO",cliente.AP_MATERNO==null?System.Data.SqlTypes.SqlString.Null:cliente.AP_MATERNO.ToUpper()),
                  DBHelper.MakeParam("@P_DNI",cliente.DNI==null?System.Data.SqlTypes.SqlString.Null:cliente.DNI.Trim()),

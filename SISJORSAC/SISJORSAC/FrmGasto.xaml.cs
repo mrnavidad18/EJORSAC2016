@@ -17,9 +17,6 @@ using MahApps.Metro.Behaviours;
 using SISJORSAC.DATA.Modelo;
 using SISJORSAC.DATA.DAO;
 
-
-
-
 namespace SISJORSAC
 {
     /// <summary>
@@ -89,6 +86,7 @@ namespace SISJORSAC
             detalleGasto.CANTIDAD = cantidad;
             detalleGasto.PRECIO = precio;
             detalleGasto.IMPORTE = cantidad * precio;
+            var listado = VariablesGlobales.listaDetallesGasto;
             VariablesGlobales.listaDetallesGasto.Add(detalleGasto);
             LlenarGrid(VariablesGlobales.listaDetallesGasto);
             item++;
@@ -117,7 +115,6 @@ namespace SISJORSAC
                     await this.ShowMessageAsync("Error", "Falta llenar algunos campos");
             }
         }
-
         private async void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
            if(this.dgvListado.SelectedIndex != -1)
@@ -141,9 +138,7 @@ namespace SISJORSAC
                 await this.ShowMessageAsync("Error", "Seleccione un detalle");
             }
         }
-
       
-
         private void GenerarGasto()
         {
             Gasto gasto = new Gasto();
@@ -159,18 +154,74 @@ namespace SISJORSAC
             mensaje = result[1].ToString();
         }
 
-        private void btnGenerarGasto_Click(object sender, RoutedEventArgs e)
-        {
+        private async void btnGenerarGasto_Click(object sender, RoutedEventArgs e)
+        {            
             try
             {
-                GenerarGasto();
+                if (this.txtNroGasto.Text.Trim() != "" && this.cboProveedor.SelectedItem != null   )      
+                {
+                    if (this.dgvListado.Items.Count == 0)
+                    {
+                        await this.ShowMessageAsync("Error", "Falta llenar detalles");
+                    }
+                    else
+                    {
+                        if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar este Gasto?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                        {
+                            GenerarGasto();
+                            await this.ShowMessageAsync("Gasto Generado",mensaje);
+                            VariablesGlobales.listaDetallesGasto = new List<DetalleGasto>();
+                            total = 0;
+                            mensaje = "";                            
+                            this.Close();
+                        }
+                    }
+                }
+                else
+                {
+                    await this.ShowMessageAsync("Error", "Falta llenar algunos campos");
+                }
             }
             catch (Exception ex)
-            {
+            {               
                 MessageBox.Show( ex.Message,"Error");
-               
             }
-        
+        }
+
+        private void Cantidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TextBox t = (TextBox)sender;
+                int cantidad = Convert.ToInt32(t.Text);
+
+                var detalleGasto = this.dgvListado.SelectedItem as DetalleGasto;
+                var detalleEncontrado = VariablesGlobales.listaDetallesGasto.Find(x => x.ITEM == detalleGasto.ITEM);
+                detalleEncontrado.CANTIDAD = cantidad;
+                detalleEncontrado.IMPORTE = cantidad * detalleEncontrado.PRECIO;
+
+                total = 0;
+                foreach (var detalle in VariablesGlobales.listaDetallesGasto)
+                {
+                    total = total + detalle.IMPORTE;
+                }
+                this.txtTotal.Text = total.ToString();
+
+                LlenarGrid(VariablesGlobales.listaDetallesGasto);
+            }
+
+            int ascci = Convert.ToInt32(Convert.ToChar(e.Key));
+            if (ascci >= 65 && ascci <= 90 || ascci >= 97 && ascci <= 122) e.Handled = false;
+            else e.Handled = true;
+
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            VariablesGlobales.listaDetallesGasto = new List<DetalleGasto>();
+            total = 0;
+            mensaje = "";
+            this.Close();
         }
         
 

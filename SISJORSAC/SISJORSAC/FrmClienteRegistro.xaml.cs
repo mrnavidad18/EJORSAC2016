@@ -28,7 +28,7 @@ namespace SISJORSAC
 
         ClienteDAO clienteDAO = new ClienteDAO();
         UbigeoDAO ubigeoDAO = new UbigeoDAO();
-        string nuevoid = "";        
+        string nuevoid = "";
         string nuevoidProvincia = "";
         public FrmClienteRegistro()
         {
@@ -49,8 +49,6 @@ namespace SISJORSAC
             cboDepartamento.SelectedIndex = -1;
             cboProvincia.SelectedIndex = -1;
             cboDistrito.SelectedIndex = -1;
-
-
         }
         private void llenarDepartamentos()
         {
@@ -75,8 +73,6 @@ namespace SISJORSAC
             this.cboDistrito.DisplayMemberPath = "Distrito";
             this.cboDistrito.SelectedValuePath = "IdUbigeo";
         }
-
-
         private void BloquearTodosLosControles()
         {
             txtNombre.IsEnabled = false;
@@ -96,7 +92,7 @@ namespace SISJORSAC
         private void Clientesss_Loaded(object sender, RoutedEventArgs e)
         {
             llenarDepartamentos();
-            BloquearTodosLosControles();           
+            BloquearTodosLosControles();
         }
 
         private void activarParaNaturales()
@@ -133,16 +129,16 @@ namespace SISJORSAC
         {
             txtNombre.BorderBrush = Brushes.Transparent;
             txtAPPaterno.BorderBrush = Brushes.Transparent;
-            txtAPMaterno.BorderBrush = Brushes.Transparent;                       
+            txtAPMaterno.BorderBrush = Brushes.Transparent;
             txtTelfFijoCasa.BorderBrush = Brushes.Transparent;
-            txtCelular.BorderBrush = Brushes.Transparent;           
+            txtCelular.BorderBrush = Brushes.Transparent;
             txtObservaciones.BorderBrush = Brushes.Transparent;
             BloquearTodosLosControles();
             lblTipoDocumento.Content = "RUC:";
-            txtDocumento.IsEnabled = true; 
+            txtDocumento.IsEnabled = true;
             txtDireccion.IsEnabled = true;
-            txtRazonSocial.IsEnabled = true;           
-            txtTelfFijoOficina.IsEnabled = true;          
+            txtRazonSocial.IsEnabled = true;
+            txtTelfFijoOficina.IsEnabled = true;
             txtEmail.IsEnabled = true;
             txtObservaciones.IsEnabled = true;
             cboDepartamento.IsEnabled = true;
@@ -179,7 +175,7 @@ namespace SISJORSAC
                 llenarProvincias(nuevoid);
                 cboProvincia.IsEnabled = true;
             }
-           
+
         }
 
         private void cboProvincia_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -200,55 +196,104 @@ namespace SISJORSAC
 
         private async void btnCrearCliente_Click(object sender, RoutedEventArgs e)
         {
-            string resul = "";
-            Cliente clienteAgregar = new Cliente();
-            if(rdNATUTAL.IsChecked==true){
-            clienteAgregar.NOMBRES = txtNombre.Text;
-            clienteAgregar.AP_PATERNO = txtAPPaterno.Text;
-            clienteAgregar.AP_MATERNO = txtAPMaterno.Text;
-            clienteAgregar.DNI = txtDocumento.Text.Trim();
-            clienteAgregar.DIRECCION = txtDireccion.Text;
-            clienteAgregar.DEPARTAMENTO = cboDepartamento.Text.ToString();
-            clienteAgregar.PROVINCIA = cboProvincia.Text.ToString();
-            clienteAgregar.DISTRITO = cboDistrito.Text.ToString();
-            clienteAgregar.TEL_FIJO_CASA = txtTelfFijoCasa.Text;
-            clienteAgregar.CELULAR = txtCelular.Text;
-            clienteAgregar.EMAIL = txtEmail.Text;
-            clienteAgregar.OBSERVACIONES = txtObservaciones.Text;
-            clienteAgregar.TIPO_CLIE = rdNATUTAL.Content.ToString();
-             resul= clienteDAO.Agregar(clienteAgregar);
-             if (resul.Equals("Agregado"))
-                 await this.ShowMessageAsync(resul, "Cliente  : " + clienteAgregar.NOMBRES + " , " + clienteAgregar.AP_PATERNO + " , agregado Correctamente");
-             else
-                 await this.ShowMessageAsync(resul, "¡Lamentablemente ocurrió un error al Agregar!");
-           
-            }
-            else if (rbJURIDICA.IsChecked == true)
+
+
+            if (rdNATUTAL.IsChecked == true || rbJURIDICA.IsChecked == true)
             {
-                clienteAgregar.RUC = txtDocumento.Text.Trim();
-                clienteAgregar.RAZON_SOCIAL = txtRazonSocial.Text;
-                clienteAgregar.DIRECCION = txtDireccion.Text;
-                clienteAgregar.DEPARTAMENTO = cboDepartamento.Text.ToString();
-                clienteAgregar.PROVINCIA = cboProvincia.Text.ToString();
-                clienteAgregar.DISTRITO = cboDistrito.Text.ToString();
-                clienteAgregar.TEL_FIJO_OFICINA = txtTelfFijoOficina.Text;
-                clienteAgregar.EMAIL = txtEmail.Text;
-                clienteAgregar.OBSERVACIONES = txtObservaciones.Text;
-                clienteAgregar.TIPO_CLIE = rbJURIDICA.Content.ToString();
-                resul= clienteDAO.Agregar(clienteAgregar);
-                if (resul.Equals("Agregado"))
-                    await this.ShowMessageAsync(resul, "Cliente :   " + clienteAgregar.RAZON_SOCIAL + " , agregado correctamente");
-                else
-                    await this.ShowMessageAsync(resul, "¡Lamentablemente ocurrió un error al Agregar!");
-               
+                string resul = "";
+                Cliente clienteAgregar = new Cliente();
+                if (rdNATUTAL.IsChecked == true)
+                {
+                    if (txtNombre.Text.Trim() != "" && txtAPMaterno.Text.Trim() != "" && txtDocumento.Text.Trim() != "" && cboDepartamento.SelectedItem != null && cboProvincia.SelectedItem != null && cboDistrito.SelectedItem != null)
+                    {
+                        clienteAgregar.NOMBRES = txtNombre.Text;
+                        clienteAgregar.AP_PATERNO = txtAPPaterno.Text;
+                        clienteAgregar.AP_MATERNO = txtAPMaterno.Text;
+                        clienteAgregar.DNI = txtDocumento.Text.Trim();
+                        clienteAgregar.DIRECCION = txtDireccion.Text;
+                        clienteAgregar.DEPARTAMENTO = cboDepartamento.Text.ToString();
+                        clienteAgregar.PROVINCIA = cboProvincia.Text.ToString();
+                        clienteAgregar.DISTRITO = cboDistrito.Text.ToString();
+                        clienteAgregar.TEL_FIJO_CASA = txtTelfFijoCasa.Text;
+                        clienteAgregar.CELULAR = txtCelular.Text;
+                        clienteAgregar.EMAIL = txtEmail.Text;
+                        clienteAgregar.OBSERVACIONES = txtObservaciones.Text;
+                        clienteAgregar.TIPO_CLIE = rdNATUTAL.Content.ToString();
+                        resul = clienteDAO.Agregar(clienteAgregar);
+                        if (resul.Equals("Agregado"))
+                            await this.ShowMessageAsync(resul, "Cliente  : " + clienteAgregar.NOMBRES + " , " + clienteAgregar.AP_PATERNO + " , agregado Correctamente");
+                        else
+                            await this.ShowMessageAsync(resul, "¡Lamentablemente ocurrió un error al Agregar!");
+                    }
+                    else
+                    {
+                        await this.ShowMessageAsync("Error", "¡Falta llenar algunos campos!");
+                        return;
+                    }
+
+
+                }
+                else if (rbJURIDICA.IsChecked == true)
+                {
+                    if (txtRazonSocial.Text.Trim() != "" && txtDocumento.Text.Trim() != "" && cboDepartamento.SelectedItem != null && cboProvincia.SelectedItem != null && cboDistrito.SelectedItem != null)
+                    {
+                        clienteAgregar.RUC = txtDocumento.Text.Trim();
+                        clienteAgregar.RAZON_SOCIAL = txtRazonSocial.Text;
+                        clienteAgregar.DIRECCION = txtDireccion.Text;
+                        clienteAgregar.DEPARTAMENTO = cboDepartamento.Text.ToString();
+                        clienteAgregar.PROVINCIA = cboProvincia.Text.ToString();
+                        clienteAgregar.DISTRITO = cboDistrito.Text.ToString();
+                        clienteAgregar.TEL_FIJO_OFICINA = txtTelfFijoOficina.Text;
+                        clienteAgregar.EMAIL = txtEmail.Text;
+                        clienteAgregar.OBSERVACIONES = txtObservaciones.Text;
+                        clienteAgregar.TIPO_CLIE = rbJURIDICA.Content.ToString();
+                        resul = clienteDAO.Agregar(clienteAgregar);
+                        if (resul.Equals("Agregado"))
+                            await this.ShowMessageAsync(resul, "Cliente :   " + clienteAgregar.RAZON_SOCIAL + " , agregado correctamente");
+                        else
+                            await this.ShowMessageAsync(resul, "¡Lamentablemente ocurrió un error al Agregar!");
+                    }
+                    else
+                    {
+                        await this.ShowMessageAsync("Error", "¡Falta llenar algunos campos!");
+                        return;
+                    }
+
+
+                }
             }
             else
             {
-                await this.ShowMessageAsync("Error", "Falta Llenar Campos, seleccione que clienteFactura desea agregar.");
+                await this.ShowMessageAsync("Error", "Debe seleccionar un tipo de cliente para comenzar con el Registro");
+                return;
             }
-            
 
-            
         }
+
+        private void btnLimpiarTodo_Click(object sender, RoutedEventArgs e)
+        {
+            limpiarTodo(Clientesss);
+            BloquearTodosLosControles();
+        }
+
+        public void limpiarTodo(Grid Formulario)
+        {
+                    foreach (object c in Formulario.Children)
+                    {
+                        if (c is TextBox)
+                        {
+                            (c as TextBox).Text = String.Empty;
+
+                        }
+                        if (c is ComboBox)
+                        {
+                            (c as ComboBox).SelectedIndex = -1;
+                        }
+                        if( c is RadioButton)
+                        {
+                            (c as RadioButton).IsChecked = false;
+                        }
+                    }
+       }
     }
 }
