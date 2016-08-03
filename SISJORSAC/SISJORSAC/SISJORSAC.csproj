@@ -164,6 +164,9 @@
     <Compile Include="FrmListadoServicios.xaml.cs">
       <DependentUpon>FrmListadoServicios.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrmListarBoletas.xaml.cs">
+      <DependentUpon>FrmListarBoletas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrmProveedor.xaml.cs">
       <DependentUpon>FrmProveedor.xaml</DependentUpon>
     </Compile>
@@ -255,6 +258,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FrmListadoServicios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmListarBoletas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

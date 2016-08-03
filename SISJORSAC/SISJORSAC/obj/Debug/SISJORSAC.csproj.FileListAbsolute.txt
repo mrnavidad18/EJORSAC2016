@@ -271,3 +271,14 @@ C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debu
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.application
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.exe
 C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.pdb
+C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmGasto.baml
+C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmListadoConceptoGasto.baml
+C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmListadoFacturas.baml
+C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmListadoProveedor.baml
+C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmListadoServicios.baml
+C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmGasto.g.cs
+C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmListadoConceptoGasto.g.cs
+C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmListadoFacturas.g.cs
+C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmListadoProveedor.g.cs
+C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\FrmListadoServicios.g.cs
+C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.FrmVerDetalleFactura.resources

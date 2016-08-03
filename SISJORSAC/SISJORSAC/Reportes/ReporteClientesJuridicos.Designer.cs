@@ -32,9 +32,9 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReporteClientesJuridicos));
             this.sPTBLCLIENTELISTARREPORTEJURIDICOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetPrincipal = new SISJORSAC.DataSetPrincipal();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.sP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter = new SISJORSAC.DataSetPrincipalTableAdapters.SP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter();
+            this.dataSetPrincipal = new SISJORSAC.DataSetPrincipal();
             ((System.ComponentModel.ISupportInitialize)(this.sPTBLCLIENTELISTARREPORTEJURIDICOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetPrincipal)).BeginInit();
             this.SuspendLayout();
@@ -42,12 +42,6 @@
             // sPTBLCLIENTELISTARREPORTEJURIDICOBindingSource
             // 
             this.sPTBLCLIENTELISTARREPORTEJURIDICOBindingSource.DataMember = "SP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICO";
-            this.sPTBLCLIENTELISTARREPORTEJURIDICOBindingSource.DataSource = this.dataSetPrincipal;
-            // 
-            // dataSetPrincipal
-            // 
-            this.dataSetPrincipal.DataSetName = "DataSetPrincipal";
-            this.dataSetPrincipal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -65,6 +59,11 @@
             // sP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter
             // 
             this.sP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataSetPrincipal
+            // 
+            this.dataSetPrincipal.DataSetName = "DataSetPrincipal";
+            this.dataSetPrincipal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ReporteClientesJuridicos
             // 
@@ -89,9 +88,9 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private DataSetPrincipal dataSetPrincipal;
         private System.Windows.Forms.BindingSource sPTBLCLIENTELISTARREPORTEJURIDICOBindingSource;
         private DataSetPrincipalTableAdapters.SP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter sP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter;
+        private DataSetPrincipal dataSetPrincipal;
 
     }
 }

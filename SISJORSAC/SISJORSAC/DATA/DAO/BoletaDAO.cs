@@ -14,7 +14,7 @@ namespace SISJORSAC.DATA.DAO
     {
         public Object[] AgregarBoleta(Boleta boleta)
         {
-            string cadenaConexion = "server=192.168.0.27;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -74,7 +74,7 @@ namespace SISJORSAC.DATA.DAO
 
         public Object[] AgregarBoletaConNroBoleta(Boleta boleta)
         {
-            string cadenaConexion = "server=192.168.0.27;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -286,7 +286,7 @@ namespace SISJORSAC.DATA.DAO
 
         public string ActualizarBoleta(Boleta boleta)
         {
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=2015159";
+            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
