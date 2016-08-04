@@ -30,35 +30,35 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.ConjuntoDatos = new SISJORSAC.ConjuntoDatos();
             this.SP_IMPRIMIR_FACTURABindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ConjuntoDatos = new SISJORSAC.ConjuntoDatos();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SP_IMPRIMIR_FACTURATableAdapter = new SISJORSAC.ConjuntoDatosTableAdapters.SP_IMPRIMIR_FACTURATableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_IMPRIMIR_FACTURABindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).BeginInit();
             this.SuspendLayout();
             // 
-            // reportViewer1
+            // SP_IMPRIMIR_FACTURABindingSource
             // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DataSetTraerFactura";
-            reportDataSource1.Value = this.SP_IMPRIMIR_FACTURABindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SISJORSAC.VISTAPREVIA.Report1.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(733, 428);
-            this.reportViewer1.TabIndex = 0;
+            this.SP_IMPRIMIR_FACTURABindingSource.DataMember = "SP_IMPRIMIR_FACTURA";
+            this.SP_IMPRIMIR_FACTURABindingSource.DataSource = this.ConjuntoDatos;
             // 
             // ConjuntoDatos
             // 
             this.ConjuntoDatos.DataSetName = "ConjuntoDatos";
             this.ConjuntoDatos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // SP_IMPRIMIR_FACTURABindingSource
+            // reportViewer1
             // 
-            this.SP_IMPRIMIR_FACTURABindingSource.DataMember = "SP_IMPRIMIR_FACTURA";
-            this.SP_IMPRIMIR_FACTURABindingSource.DataSource = this.ConjuntoDatos;
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.SP_IMPRIMIR_FACTURABindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SISJORSAC.VISTAPREVIA.RptImprimirFactura.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.Size = new System.Drawing.Size(864, 561);
+            this.reportViewer1.TabIndex = 0;
             // 
             // SP_IMPRIMIR_FACTURATableAdapter
             // 
@@ -68,13 +68,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(733, 428);
+            this.ClientSize = new System.Drawing.Size(864, 561);
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmVerDetalleFactura";
             this.Text = "FrmVerDetalleFactura";
             this.Load += new System.EventHandler(this.FrmVerDetalleFactura_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_IMPRIMIR_FACTURABindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();
             this.ResumeLayout(false);
 
         }

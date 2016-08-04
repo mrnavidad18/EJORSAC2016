@@ -25,31 +25,52 @@ namespace SISJORSAC
     public partial class FrmListadoFacturas : MetroWindow
     {
         FacturaDAO facturaDao = new FacturaDAO();
+        ClienteDAO clienteDao = new ClienteDAO();
+        List<Factura> lista = new List<Factura>();
         public FrmListadoFacturas()
         {
             InitializeComponent();
             ListarFacturas("ACTIVO");
+            ListarClientes();
         }
 
 
         private void ListarFacturas(string estado)
         {
-            var lista = facturaDao.listarFacturas(estado);
-            this.dgvListado.ItemsSource = lista;
+            try
+            {
+                lista = facturaDao.listarFacturas(estado);
+                this.dgvListado.ItemsSource = lista;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message,"Error");
+            }
+           
         }
 
       
 
         private void txtNroComp_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            try
             {
-                TextBox t = (TextBox)sender;
-                string nroFactura =t.Text;
-                var lista = facturaDao.BuscarPorNroFactura(nroFactura);
-                this.dgvListado.ItemsSource = null;
-                this.dgvListado.ItemsSource = lista;
+                if (e.Key == Key.Enter)
+                {
+                    TextBox t = (TextBox)sender;
+                    string nroFactura = t.Text;
+                    var lista = facturaDao.BuscarPorNroFactura(nroFactura);
+                    this.dgvListado.ItemsSource = null;
+                    this.dgvListado.ItemsSource = lista;
+                }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error");
+            }
+            
         }
 
        
@@ -68,6 +89,92 @@ namespace SISJORSAC
             }
            
 
+        }
+
+     
+
+     
+        private void ListarClientes()
+        {
+            try
+            {
+                var listacliente = clienteDao.ListarCliente("JURIDICA");
+
+                this.cboCliente.ItemsSource = listacliente;
+                this.cboCliente.DisplayMemberPath = "RAZON_SOCIAL";
+                this.cboCliente.SelectedValuePath = "COD_CLI";
+            }
+            catch (Exception ex)
+            {
+                
+                 MessageBox.Show(ex.Message,"Error");
+            }
+            
+           
+
+
+
+        }
+
+        private void cboCliente_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                int codCliente = Convert.ToInt32(this.cboCliente.SelectedValue);
+                var cliente = clienteDao.ObtenerCliente(codCliente);
+                var listado = facturaDao.BuscarPorCliente(codCliente);
+                this.dgvListado.ItemsSource = null;
+                this.dgvListado.ItemsSource = listado;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message,"Error");
+            }
+            
+           
+        }
+
+        private void txtFechaDe_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.txtFechaHasta.IsEnabled = true;
+        }
+
+        private void txtFechaHasta_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                DateTime fechaDe = Convert.ToDateTime(this.txtFechaDe.SelectedDate);
+
+                DateTime fechaHasta = Convert.ToDateTime(this.txtFechaHasta.SelectedDate);
+
+                var listado = facturaDao.BuscarPorFechas(fechaDe, fechaHasta);
+                this.dgvListado.ItemsSource = null;
+                this.dgvListado.ItemsSource = listado;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error");
+            }
+            
+
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        
+        private void btnLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            this.txtNroComp.Text = "";
+            this.cboCliente.SelectedIndex = -1;
+            //this.txtFechaDe.SelectedDate = null;
+            //this.txtFechaHasta.SelectedDate = null;
+            this.dgvListado.ItemsSource = null;
+            this.dgvListado.ItemsSource = lista;
         }
     }
 }

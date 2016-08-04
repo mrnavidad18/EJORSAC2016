@@ -137,7 +137,7 @@ namespace PruebasJORSAC.Test
          {
              Servicio servi = new Servicio();
              servi.PRECIO = 2.5;
-             servi.UNIDAD_MEDIDA = "CAJA";
+             
              servi.TIPO_MONE = "SOLES";
              servi.DESCRIPCION = "CORRIENTE";
              servi.PESO = 3.3;

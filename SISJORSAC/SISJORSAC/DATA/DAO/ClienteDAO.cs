@@ -54,7 +54,7 @@ namespace SISJORSAC.DATA.DAO
         }
         public List<Cliente> ListarCliente(string tipoCliente)
         {
-            List<Cliente> listaProveedor = new List<Cliente>();
+            List<Cliente> listaClientes = new List<Cliente>();
             string query = "SP_TBL_CLIENTE_LISTAR";
             try
             {
@@ -71,7 +71,7 @@ namespace SISJORSAC.DATA.DAO
                         while (lector.Read())
                         {
                             cliente = new Cliente();
-                            if (lector["TIPO_CLIE"].ToString().Equals("NATURAL"))
+                            if (tipoCliente.Equals("NATURAL"))
                             {
                                 cliente.COD_CLI = int.Parse(lector["COD_CLI"].ToString());
                                 cliente.NOMBRES = lector["NOMBRES"].ToString();
@@ -86,9 +86,9 @@ namespace SISJORSAC.DATA.DAO
                                 cliente.CELULAR = lector["CELULAR"].ToString();
                                 cliente.EMAIL = lector["EMAIL"].ToString();
                                 cliente.OBSERVACIONES = lector["OBSERVACIONES"].ToString();
-                                listaProveedor.Add(cliente);
+                                listaClientes.Add(cliente);
                             }
-                            else
+                            else if (tipoCliente.Equals("JURIDICA"))
                             {
                                 cliente.COD_CLI = int.Parse(lector["COD_CLI"].ToString());
                                 cliente.RUC = lector["RUC"].ToString();
@@ -102,13 +102,32 @@ namespace SISJORSAC.DATA.DAO
 
                                 cliente.EMAIL = lector["EMAIL"].ToString();
                                 cliente.OBSERVACIONES = lector["OBSERVACIONES"].ToString();
-                                listaProveedor.Add(cliente);
+                                listaClientes.Add(cliente);
+                            }
+                            else
+                            {
+                                cliente.COD_CLI = int.Parse(lector["COD_CLI"].ToString());
+                                cliente.TEL_FIJO_OFICINA = lector["TEL_FIJO_OFICINA"].ToString();
+                                cliente.RUC = lector["RUC"].ToString();
+                                cliente.RAZON_SOCIAL = lector["RAZON_SOCIAL"].ToString();
+                                cliente.NOMBRES = lector["NOMBRES"].ToString();
+                                cliente.AP_PATERNO = lector["AP_PATERNO"].ToString();
+                                cliente.AP_MATERNO = lector["AP_MATERNO"].ToString();
+                                cliente.DNI = lector["DNI"].ToString();
+                                cliente.DIRECCION = lector["DIRECCION"].ToString();
+                                cliente.DEPARTAMENTO = lector["DEPARTAMENTO"].ToString();
+                                cliente.PROVINCIA = lector["PROVINCIA"].ToString();
+                                cliente.DISTRITO = lector["DISTRITO"].ToString();
+                                cliente.TEL_FIJO_CASA = lector["TEL_FIJO_CASA"].ToString();
+                                cliente.CELULAR = lector["CELULAR"].ToString();
+                                cliente.EMAIL = lector["EMAIL"].ToString();
+                                listaClientes.Add(cliente);
                             }
                         }
                     }
 
                 }
-                return listaProveedor;
+                return listaClientes;
             }
             catch (Exception)
             {

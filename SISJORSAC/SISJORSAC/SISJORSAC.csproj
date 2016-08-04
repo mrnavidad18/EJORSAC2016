@@ -199,6 +199,12 @@
       <DependentUpon>ReporteClientesNaturales.cs</DependentUpon>
     </Compile>
     <Compile Include="VariablesGlobales.cs" />
+    <Compile Include="VISTAPREVIA\FrmVerDetalleBoleta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTAPREVIA\FrmVerDetalleBoleta.Designer.cs">
+      <DependentUpon>FrmVerDetalleBoleta.cs</DependentUpon>
+    </Compile>
     <Compile Include="VISTAPREVIA\FrmVerDetalleFactura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -375,10 +381,14 @@
     <EmbeddedResource Include="Reportes\ReporteClientesNaturales.resx">
       <DependentUpon>ReporteClientesNaturales.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VISTAPREVIA\FrmVerDetalleBoleta.resx">
+      <DependentUpon>FrmVerDetalleBoleta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VISTAPREVIA\FrmVerDetalleFactura.resx">
       <DependentUpon>FrmVerDetalleFactura.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VISTAPREVIA\Report1.rdlc" />
+    <EmbeddedResource Include="VISTAPREVIA\RptImprimirBoleta.rdlc" />
+    <EmbeddedResource Include="VISTAPREVIA\RptImprimirFactura.rdlc" />
     <None Include="ConjuntoDatos.xsc">
       <DependentUpon>ConjuntoDatos.xsd</DependentUpon>
     </None>

@@ -48,6 +48,7 @@
                     <MenuItem x:Name="itemListadoCliente" Header="Listado de Clientes" Click="itemListadoCliente_Click"/>
                     <MenuItem x:Name="itemListadoProveedores" Header="Listado de Proveedores" Click="itemListadoProveedores_Click"/>
                     <MenuItem x:Name="itemListadoFacturas" Header="Listado de Facturas" Click="itemListadoFacturas_Click"/>
+                    <MenuItem x:Name="itemListadoBoletas" Header="Listado de Boletas" Click="itemListadoBoletas_Click" />
                     <MenuItem x:Name="itemServicios" Header="Listado de Servicios" Click="itemServicios_Click" />
                     <MenuItem x:Name="itemConceptoGasto" Header="Listado de Concepto de Gastos" Click="itemConceptoGasto_Click"  />
                 </MenuItem>

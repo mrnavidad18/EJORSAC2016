@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="SISJORSAC.exe.manifest" size="17815">
+    <dependentAssembly dependencyType="install" codebase="SISJORSAC.exe.manifest" size="17814">
       <assemblyIdentity name="SISJORSAC.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZKfAQijRz7jELHdvP19lBqahLXSdpCH4VsSorMsrPVI=</dsig:DigestValue>
+        <dsig:DigestValue>gHd/t5UWcN3yquOV/tuTGGGBgW4/O1W7G3mirnfo92E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

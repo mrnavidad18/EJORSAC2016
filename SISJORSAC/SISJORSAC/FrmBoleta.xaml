@@ -29,7 +29,7 @@
             <ComboBoxItem Content="US$ - DOLARES"/>
         </ComboBox>
         <Label Content="Moneda:" HorizontalAlignment="Left" Margin="621,162,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnAgregarDetalle" Content="Agregar Detalle" HorizontalAlignment="Left" Margin="669,239,0,0" VerticalAlignment="Top" Width="136" Background="#FF3D97F1" Foreground="White" Click="btnAgregarDetalle_Click" FontWeight="Bold"/>
+        <Button x:Name="btnAgregarDetalle" Content="Agregar Detalle" HorizontalAlignment="Left" Margin="671,258,0,0" VerticalAlignment="Top" Width="136" Background="#FF3D97F1" Foreground="White" Click="btnAgregarDetalle_Click" FontWeight="Bold"/>
         <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Margin="583,239,0,0" VerticalAlignment="Top" Width="81" Background="#FFEE0B00" Foreground="White" RenderTransformOrigin="-0.4,0.586" Click="btnEliminar_Click" FontWeight="Bold"/>
         <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,278,106,0" Width="782" Height="257" Background="#FFB8B6B6"
                   

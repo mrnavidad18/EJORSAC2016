@@ -1,4 +1,4 @@
-﻿namespace SISJORSAC.Reportes
+﻿namespace SISJORSAC
 {
     partial class ReporteClientesJuridicos
     {
@@ -33,10 +33,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReporteClientesJuridicos));
             this.sPTBLCLIENTELISTARREPORTEJURIDICOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.sP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter = new SISJORSAC.DataSetPrincipalTableAdapters.SP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter();
-            this.dataSetPrincipal = new SISJORSAC.DataSetPrincipal();
+            this.sP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter = new SISJORSAC.ConjuntoDatosTableAdapters.SP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter();
+            this.ConjuntoDatos = new SISJORSAC.ConjuntoDatos();
             ((System.ComponentModel.ISupportInitialize)(this.sPTBLCLIENTELISTARREPORTEJURIDICOBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetPrincipal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).BeginInit();
             this.SuspendLayout();
             // 
             // sPTBLCLIENTELISTARREPORTEJURIDICOBindingSource
@@ -62,8 +62,8 @@
             // 
             // dataSetPrincipal
             // 
-            this.dataSetPrincipal.DataSetName = "DataSetPrincipal";
-            this.dataSetPrincipal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.ConjuntoDatos.DataSetName = "ConjuntoDatos";
+            this.ConjuntoDatos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ReporteClientesJuridicos
             // 
@@ -80,7 +80,7 @@
             this.TransparencyKey = System.Drawing.Color.Blue;
             this.Load += new System.EventHandler(this.ReporteClientesJuridicos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sPTBLCLIENTELISTARREPORTEJURIDICOBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetPrincipal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -89,8 +89,8 @@
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource sPTBLCLIENTELISTARREPORTEJURIDICOBindingSource;
-        private DataSetPrincipalTableAdapters.SP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter sP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter;
-        private DataSetPrincipal dataSetPrincipal;
+        private ConjuntoDatosTableAdapters.SP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter sP_TBL_CLIENTE_LISTAR_REPORTE_JURIDICOTableAdapter;
+        private ConjuntoDatos ConjuntoDatos;
 
     }
 }

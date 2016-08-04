@@ -82,38 +82,47 @@ namespace SISJORSAC
 
         private async void txtClave_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            try
             {
-             string usuario = this.txtUsuario.Text;
-            string clave = this.txtClave.Password;
+                if (e.Key == Key.Enter)
+                {
+                    string usuario = this.txtUsuario.Text;
+                    string clave = this.txtClave.Password;
 
-            Usuario user = new Usuario();
-            user.username = usuario.Trim();
-            user.clave = clave.Trim();
+                    Usuario user = new Usuario();
+                    user.username = usuario.Trim();
+                    user.clave = clave.Trim();
 
-            if (usuario.Trim() == "")
-            {
-                this.lblUsuarioError.Visibility = Visibility.Visible;
-                return;
+                    if (usuario.Trim() == "")
+                    {
+                        this.lblUsuarioError.Visibility = Visibility.Visible;
+                        return;
+                    }
+
+                    if (clave.Trim() == "")
+                    {
+                        this.lblClaveError.Visibility = Visibility.Visible;
+                        return;
+                    }
+                    VariablesGlobales.usuarioConectado = usuDAO.ValidarUsuario(user);
+                    if (VariablesGlobales.usuarioConectado != null)
+                    {
+                        Menu menu = new Menu();
+                        this.Close();
+                        menu.Show();
+                    }
+                    else
+                    {
+                        await this.ShowMessageAsync("Error", "Usuario Incorrecto");
+                    }
+                }
             }
 
-            if (clave.Trim() == "")
+            catch (Exception ex)
             {
-                this.lblClaveError.Visibility = Visibility.Visible;
-                return;
+
+                MessageBox.Show(ex.Message,"Error");
             }
-            VariablesGlobales.usuarioConectado = usuDAO.ValidarUsuario(user);
-            if (VariablesGlobales.usuarioConectado != null)
-            {
-                Menu menu = new Menu();
-                this.Close();
-                menu.Show();
-            }
-            else
-            {
-                await this.ShowMessageAsync("Error", "Usuario Incorrecto");
-            }
-            }
-        }
+        }    
     }
 }

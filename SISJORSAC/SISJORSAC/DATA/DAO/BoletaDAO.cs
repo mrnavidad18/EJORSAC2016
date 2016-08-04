@@ -387,6 +387,109 @@ namespace SISJORSAC.DATA.DAO
             }
 
         }
+        public List<Boleta> BuscarBoletasXCliente(int codClie)
+        {
+            try
+            {
+                List<Boleta> lista = null;
+                ClienteDAO clienteDao = new ClienteDAO();
+                GuiaRemisionDAO guiaDao = new GuiaRemisionDAO();
+                string query = "SP_TBL_BOLETA_BUSCAR_X_COD_CLIENTE";
+
+                SqlParameter[] param = new SqlParameter[]
+                {
+                      DBHelper.MakeParam("@P_COD_CLIE",codClie)
+                };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, param))
+                {
+
+                    if (lector != null && lector.HasRows)
+                    {
+                        lista = new List<Boleta>();
+                        Boleta boleta;
+                        while (lector.Read())
+                        {
+                            boleta = new Boleta();
+                            boleta.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
+                            boleta.NRO_BOLETA = lector["NRO_BOLETA"].ToString();
+                            boleta.MODALIDAD = lector["MODALIDAD"].ToString();
+                            boleta.OBSERVACION = lector["OBSERVACION"].ToString();
+                            boleta.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
+                            boleta.RAZONSOCIAL_NOMBRES = lector["CLIENTE"].ToString();
+                            if (lector["COD_GUIA"] == DBNull.Value)
+                            {
+                                boleta.GUIA = null;
+                            }
+                            else
+                            {
+                                boleta.GUIA = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["COD_GUIA"].ToString()));
+                            }
+                            lista.Add(boleta);
+                        }
+                    }
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurio un error al listar los Boletas");
+            }
+
+        }
+        public List<Boleta> BuscarBoletasXFechas(DateTime de , DateTime hasta)
+        {
+            try
+            {
+                List<Boleta> lista = null;
+                ClienteDAO clienteDao = new ClienteDAO();
+                GuiaRemisionDAO guiaDao = new GuiaRemisionDAO();
+                string query = "SP_TBL_BOLETA_BUSCAR_X_FECHA";
+
+                SqlParameter[] param = new SqlParameter[]
+                {
+                      DBHelper.MakeParam("@P_FECHA_DE",de),
+                      DBHelper.MakeParam("@P_FECHA_HASTA",hasta)
+                };
+
+                using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, param))
+                {
+
+                    if (lector != null && lector.HasRows)
+                    {
+                        lista = new List<Boleta>();
+                        Boleta boleta;
+                        while (lector.Read())
+                        {
+                            boleta = new Boleta();
+                            boleta.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
+                            boleta.NRO_BOLETA = lector["NRO_BOLETA"].ToString();
+                            boleta.MODALIDAD = lector["MODALIDAD"].ToString();
+                            boleta.OBSERVACION = lector["OBSERVACION"].ToString();
+                            boleta.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
+                            boleta.RAZONSOCIAL_NOMBRES = lector["CLIENTE"].ToString();
+                            if (lector["COD_GUIA"] == DBNull.Value)
+                            {
+                                boleta.GUIA = null;
+                            }
+                            else
+                            {
+                                boleta.GUIA = guiaDao.ObtenerGuiaRemision(Convert.ToInt32(lector["COD_GUIA"].ToString()));
+                            }
+                            lista.Add(boleta);
+                        }
+                    }
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurio un error al listar los Boletas");
+            }
+
+        }
 
         public string ActualizarBoleta(Boleta boleta)
         {

@@ -134,6 +134,12 @@ namespace SISJORSAC
             frmGasto.ShowDialog();
         }
 
+        private void itemListadoBoletas_Click(object sender, RoutedEventArgs e)
+        {
+            FrmListarBoletas  listaboleta = new FrmListarBoletas();
+            listaboleta.ShowDialog();
+        }
+
 
 
 

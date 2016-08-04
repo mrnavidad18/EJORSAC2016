@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISJORSAC.exe" size="3326976">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISJORSAC.exe" size="3475968">
       <assemblyIdentity name="SISJORSAC" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qZQKYLQQa+HWaxjM1C47yM5wqBblZmX5KkzGasyfL9Q=</dsig:DigestValue>
+        <dsig:DigestValue>uUfYW7iNyKYPBhg8calvdHKknzr8TWRYRWkFQAIIzJk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -294,13 +294,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="SISJORSAC.exe.config" size="1030">
+  <file name="SISJORSAC.exe.config" size="543">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>V4210Ly4xuueIKseOU3f8yHltr/eMnSliQqcFVQfxxs=</dsig:DigestValue>
+      <dsig:DigestValue>7EnSymdVqi3i7iRgfGByyyE8T6F2qlK7b5FiNWEsjVI=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
