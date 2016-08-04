@@ -12,7 +12,6 @@ namespace SISJORSAC.DATA.DAO
 {
     public class DetalleGastoDAO
     {
-
         public List<DetalleGasto> listarDetalleGasto(int codGasto)
         {
             List<DetalleGasto> listaDetalleGasto = new List<DetalleGasto>();

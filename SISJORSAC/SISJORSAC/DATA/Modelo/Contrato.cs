@@ -29,7 +29,8 @@ namespace SISJORSAC.DATA.Modelo
         public double SUBTOTAL { get; set; }
         public double TOTAL { get; set; }
         public string ESTADO { get; set; }
-
+        public string CLIENTEJURIDICONATURAL { get; set; }
+        public string USUARIONOMBRE { get; set; }
         public List<DetalleContrato> DETALLECONTRATO { get; set; }
     }
 }

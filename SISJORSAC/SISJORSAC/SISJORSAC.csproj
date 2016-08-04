@@ -155,8 +155,17 @@
     <Compile Include="FrmListadoConceptoGasto.xaml.cs">
       <DependentUpon>FrmListadoConceptoGasto.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrmListadoContrato.xaml.cs">
+      <DependentUpon>FrmListadoContrato.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrmListadoFacturas.xaml.cs">
       <DependentUpon>FrmListadoFacturas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmListadoGasto.xaml.cs">
+      <DependentUpon>FrmListadoGasto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmListadoGuiasRemision.xaml.cs">
+      <DependentUpon>FrmListadoGuiasRemision.xaml</DependentUpon>
     </Compile>
     <Compile Include="FrmListadoProveedor.xaml.cs">
       <DependentUpon>FrmListadoProveedor.xaml</DependentUpon>
@@ -255,7 +264,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FrmListadoContrato.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FrmListadoFacturas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmListadoGasto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmListadoGuiasRemision.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -463,6 +484,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IMG\consultas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\CambiarPassword.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

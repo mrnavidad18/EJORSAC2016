@@ -140,6 +140,24 @@ namespace SISJORSAC
             listaboleta.ShowDialog();
         }
 
+        private void itemListadoGuias_Click(object sender, RoutedEventArgs e)
+        {
+            FrmListadoGuiasRemision frmlistadoGUiaRemision = new FrmListadoGuiasRemision();
+            frmlistadoGUiaRemision.ShowDialog();
+        }
+
+        private void itemlistadoContrato_Click(object sender, RoutedEventArgs e)
+        {
+            FrmListadoContrato frmListadoContrato = new FrmListadoContrato();
+            frmListadoContrato.ShowDialog();
+        }
+
+        private void itemListadoGasto_Click(object sender, RoutedEventArgs e)
+        {
+            FrmListadoGasto frmListadoGastos = new FrmListadoGasto();
+            frmListadoGastos.ShowDialog();
+        }
+
 
 
 

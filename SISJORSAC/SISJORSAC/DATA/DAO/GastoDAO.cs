@@ -38,6 +38,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_DOC_REF",gasto.DOC_REF.ToUpper()),
                  DBHelper.MakeParam("@P_NRO_DOC_REF",gasto.NRO_DOC_REF),
                  DBHelper.MakeParam("@P_MONEDA",gasto.MONEDA.ToUpper()),
+                 DBHelper.MakeParam("@P_TOTAL",gasto.TOTAL),
                  DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),                            
                 id,
                 msj
@@ -96,15 +97,15 @@ namespace SISJORSAC.DATA.DAO
             return salidas = DBHelper.ExecuteProcedureDetalles(query, dbParams, trx, cn);
         }
 
-        public List<Gasto> listarGasto(string estado)
+        public List<Gasto> listarGasto(string p_busqueda,string estado)
         {
 
             List<Gasto> listaGasto = new List<Gasto>();
-            string query = "SP_TBL_GASTO_LISTAR";
+            string query = "SP_TBL_GASTO_LITADOYBUSQUEDA";
             try
             {
                 SqlParameter[] dbParams = new SqlParameter[]{
-
+                    DBHelper.MakeParam("@P_BUSQUEDA",p_busqueda),
                      DBHelper.MakeParam("@P_ESTADO",estado)
                  };
                 using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
@@ -130,7 +131,8 @@ namespace SISJORSAC.DATA.DAO
                             gasto.NRO_DOC_REF = lector["NRO_DOC_REF"].ToString();
                             gasto.MONEDA = lector["MONEDA"].ToString();
                             gasto.ESTADO = lector["ESTADO"].ToString();
-
+                            gasto.PROVEEDOR_NaturalJuridico = lector["PROVEEDOR"].ToString();
+                            gasto.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
                             listaGasto.Add(gasto);
                         }
                     }
@@ -173,6 +175,7 @@ namespace SISJORSAC.DATA.DAO
                             gasto.DOC_REF = lector["DOC_REF"].ToString();
                             gasto.NRO_DOC_REF = lector["NRO_DOC_REF"].ToString();
                             gasto.MONEDA = lector["MONEDA"].ToString();
+                            gasto.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
                             gasto.ESTADO = lector["ESTADO"].ToString();                           
                         }
                     }

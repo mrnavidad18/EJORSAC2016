@@ -150,6 +150,7 @@ namespace SISJORSAC
             gasto.DOC_REF = txtDocRef.Text.ToUpper();
             gasto.DetalleGASTO = VariablesGlobales.listaDetallesGasto;
             gasto.NRO_GASTO = txtNroGasto.Text;
+            gasto.TOTAL = total;
             Object[] result = gastoDAO.Agregar(gasto);
             mensaje = result[1].ToString();
         }

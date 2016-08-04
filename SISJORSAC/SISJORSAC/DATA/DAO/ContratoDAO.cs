@@ -105,14 +105,14 @@ namespace SISJORSAC.DATA.DAO
 
             return salidas = DBHelper.ExecuteProcedureDetalles(query, dbParams, trx, cn);
         }
-        public List<Contrato> listarContrato(string estado)
+        public List<Contrato> listarContrato(string p_busqueda,string estado)
         {
             List<Contrato> listaContrato = new List<Contrato>();
-            string query = "SP_TBL_CONTRATO_LISTARTODO";
+            string query = "SP_TBL_CONTRATO_LISTADOYBUSQUEDA";
             try
             {
                 SqlParameter[] dbParams = new SqlParameter[]{
-
+                    DBHelper.MakeParam("@P_Busqueda",p_busqueda),
                      DBHelper.MakeParam("@P_ESTADO",estado)
                  };
                 using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
@@ -152,6 +152,8 @@ namespace SISJORSAC.DATA.DAO
                             contrato.SUBTOTAL = double.Parse(lector["SUBTOTAL"].ToString());
                             contrato.TOTAL = double.Parse(lector["TOTAL"].ToString());
                             contrato.ESTADO = lector["ESTADO"].ToString();
+                            contrato.USUARIONOMBRE = lector["USUARIO"].ToString();
+                            contrato.CLIENTEJURIDICONATURAL = lector["CLIENTE"].ToString();
                             listaContrato.Add(contrato);
                         }
                     }

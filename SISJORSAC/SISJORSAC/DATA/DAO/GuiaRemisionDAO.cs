@@ -179,14 +179,14 @@ namespace SISJORSAC.DATA.DAO
         }
 
 
-        public List<GuiaRemision> listarGuiaRemision(string estado)
+        public List<GuiaRemision> listarGuiaRemision(string p_busqueda,string estado)
         {
             List<GuiaRemision> listaGuiaRemision = new List<GuiaRemision>();
-            string query = "SP_TBL_GUIA_REMISION_LISTARTODO";
+            string query = "SP_TBL_GUIA_REMISION_LISTADOYBUSQUEDA";
             try
             {
                 SqlParameter[] dbParams = new SqlParameter[]{
-
+                     DBHelper.MakeParam("@P_busqueda",p_busqueda),
                      DBHelper.MakeParam("@P_ESTADO",estado)
                  };
 
@@ -223,7 +223,7 @@ namespace SISJORSAC.DATA.DAO
                             guiaRemision.DISTRITO = lector["DISTRITO"].ToString();
                             guiaRemision.SITUACION = lector["SITUACION"].ToString();
                             guiaRemision.ESTADO = lector["ESTADO"].ToString();
-
+                            guiaRemision.CLIENTEJURIDICONATURAL = lector["CLIENTE"].ToString();
                             listaGuiaRemision.Add(guiaRemision);
                         }
                     }
@@ -371,6 +371,9 @@ namespace SISJORSAC.DATA.DAO
                 throw;
             }
         }
+
+        
+        
 
     }
 }

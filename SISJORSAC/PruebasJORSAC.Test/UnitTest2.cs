@@ -16,7 +16,13 @@ namespace PruebasJORSAC.Test
             List<Boleta> lista = dao.ListarBoletas("DISPONIBLE");
             Assert.IsNotNull(lista);
         }
-
+        [TestMethod]
+        public void listarGuias()
+        {
+            GuiaRemisionDAO guiaDAO = new GuiaRemisionDAO();
+            var listado = guiaDAO.listarGuiaRemision("alqu", "DISPONIBLE");
+            Assert.IsTrue(listado.Count > 0);
+        }
 
         [TestMethod]
         public void ListarFacturas()

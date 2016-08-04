@@ -1,0 +1,18 @@
+﻿<Controls:MetroWindow  x:Class="SISJORSAC.FrmListadoGasto"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Listado de Gastos" Height="651.045" Width="1204.337"
+        WindowStartupLocation="CenterScreen">
+    <Grid >
+
+        <Label x:Name="lblBusqueda" Content="Buscar por Número de Gasto /Nro Doc. Referencia:" HorizontalAlignment="Left" Margin="28,22,0,0" VerticalAlignment="Top" Width="307" FontWeight="Bold"/>
+        <DataGrid MouseDoubleClick="OnDoubleClick"   x:Name="dgvListadoGasto" HorizontalAlignment="Left" Margin="28,73,0,0" VerticalAlignment="Top" Height="258" Width="1099" AutoGenerateColumns="False" GridLinesVisibility="All" BorderThickness="1"  IsReadOnly="True"/>
+        <TextBox x:Name="txtBusqueda" HorizontalAlignment="Left" Height="23" Margin="340,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="225" KeyDown="txtBusqueda_KeyDown" />
+        
+        <DataGrid   x:Name="dgvListadoDetalleGasto" HorizontalAlignment="Left" Margin="28,376,0,0" VerticalAlignment="Top" Height="197" Width="1099" AutoGenerateColumns="False" GridLinesVisibility="All" BorderThickness="1"  IsReadOnly="True"/>
+
+    </Grid>
+</Controls:MetroWindow>

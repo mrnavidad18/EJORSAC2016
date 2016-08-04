@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\
 SISJORSAC
 none
 false
 DEBUG;TRACE
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\App.xaml
-23317185749
+C:\Users\Administrador\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\App.xaml
+261758683065
 
-77462299429
-26906790341
-ElegirFactura.xaml;FrmBoleta.xaml;FrmClienteRegistro.xaml;FrmConceptoGasto.xaml;FrmContratoAlquiler.xaml;FrmElegirBoleta.xaml;frmFactura.xaml;FrmGasto.xaml;FrmGuiaRemision.xaml;FrmListadoClientes.xaml;FrmListadoConceptoGasto.xaml;FrmListadoFacturas.xaml;FrmListadoProveedor.xaml;FrmListadoServicios.xaml;FrmListarBoletas.xaml;FrmProveedor.xaml;FrmServicioRegistro.xaml;FrmUsuarioDatos.xaml;MainWindow.xaml;Menu.xaml;Reportes\FRTipoCliente.xaml;Resources\Icons.xaml;Resources\IconsNonShared.xaml;
+80-366704396
+26-1378237250
+ElegirFactura.xaml;FrmBoleta.xaml;FrmClienteRegistro.xaml;FrmConceptoGasto.xaml;FrmContratoAlquiler.xaml;FrmElegirBoleta.xaml;frmFactura.xaml;FrmGasto.xaml;FrmGuiaRemision.xaml;FrmListadoClientes.xaml;FrmListadoConceptoGasto.xaml;FrmListadoContrato.xaml;FrmListadoFacturas.xaml;FrmListadoGasto.xaml;FrmListadoGuiasRemision.xaml;FrmListadoProveedor.xaml;FrmListadoServicios.xaml;FrmListarBoletas.xaml;FrmProveedor.xaml;FrmServicioRegistro.xaml;FrmUsuarioDatos.xaml;MainWindow.xaml;Menu.xaml;Reportes\FRTipoCliente.xaml;Resources\Icons.xaml;Resources\IconsNonShared.xaml;
 
 False
 
