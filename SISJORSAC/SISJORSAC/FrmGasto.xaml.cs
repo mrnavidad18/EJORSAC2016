@@ -57,7 +57,7 @@ namespace SISJORSAC
 
         private void ListarConceptoGasto(string estado)
         {
-            var listadoConcepto = conceptoGastoDAO.listarConceptoGasto(estado);
+            var listadoConcepto = conceptoGastoDAO.listarConceptoGasto("",estado);
             this.cboServicio.ItemsSource = listadoConcepto;
             this.cboServicio.DisplayMemberPath = "DESCRIPCION";
             this.cboServicio.SelectedValuePath = "COD_CON_GAS";

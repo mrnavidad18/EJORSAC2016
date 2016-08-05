@@ -108,7 +108,8 @@ namespace SISJORSAC
             {
                 DataGridTextColumn columna = new DataGridTextColumn();
                 columna.Header = "ITEM";
-                columna.Binding = new Binding("ITEM");                                
+                columna.Binding = new Binding("ITEM");
+                columna.Binding.StringFormat="0{0}";                               
                 dgvListadoDetalleGasto.Columns.Add(columna);
 
                 DataGridTextColumn columnaProv = new DataGridTextColumn();

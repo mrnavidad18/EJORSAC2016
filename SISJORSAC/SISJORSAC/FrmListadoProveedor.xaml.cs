@@ -220,130 +220,130 @@ namespace SISJORSAC
             {
                 nombre = ((TextBox)dgvListadoProveedor.Columns[0].GetCellContent(row)).Text;
 
-                MessageBox.Show(nombre);
+                
             }
             else if (dgvListadoProveedor.Columns[0].GetCellContent(row) is TextBlock)
             {
                 nombre = ((TextBlock)dgvListadoProveedor.Columns[0].GetCellContent(row)).Text;
-                MessageBox.Show(nombre);
+                
             }
             if (dgvListadoProveedor.Columns[1].GetCellContent(row) is TextBox)
             {
                 apPaterno = ((TextBox)dgvListadoProveedor.Columns[1].GetCellContent(row)).Text;
-                MessageBox.Show(apPaterno);
+                
             }
             else if (dgvListadoProveedor.Columns[1].GetCellContent(row) is TextBlock)
             {
                 apPaterno = ((TextBlock)dgvListadoProveedor.Columns[1].GetCellContent(row)).Text;
-                MessageBox.Show(apPaterno);
+                
             }
             if (dgvListadoProveedor.Columns[2].GetCellContent(row) is TextBox)
             {
                 apMaterno = ((TextBox)dgvListadoProveedor.Columns[2].GetCellContent(row)).Text;
 
-                MessageBox.Show(apMaterno);
+                
             }
             else if (dgvListadoProveedor.Columns[2].GetCellContent(row) is TextBlock)
             {
                 apMaterno = ((TextBlock)dgvListadoProveedor.Columns[2].GetCellContent(row)).Text;
-                MessageBox.Show(apMaterno);
+                
             }
             if (dgvListadoProveedor.Columns[3].GetCellContent(row) is TextBox)
             {
                 DNI = ((TextBox)dgvListadoProveedor.Columns[3].GetCellContent(row)).Text;
-                MessageBox.Show(DNI);
+                
             }
             else if (dgvListadoProveedor.Columns[3].GetCellContent(row) is TextBlock)
             {
                 DNI = ((TextBlock)dgvListadoProveedor.Columns[3].GetCellContent(row)).Text;
-                MessageBox.Show(DNI);
+               
             }
             if (dgvListadoProveedor.Columns[4].GetCellContent(row) is TextBox)
             {
                 direccion = ((TextBox)dgvListadoProveedor.Columns[4].GetCellContent(row)).Text;
-                MessageBox.Show(direccion);
+               
             }
             else if (dgvListadoProveedor.Columns[4].GetCellContent(row) is TextBlock)
             {
                 direccion = ((TextBlock)dgvListadoProveedor.Columns[4].GetCellContent(row)).Text;
-                MessageBox.Show(direccion);
+                
             }
             if (dgvListadoProveedor.Columns[5].GetCellContent(row) is TextBox)
             {
                 departamento = ((TextBox)dgvListadoProveedor.Columns[5].GetCellContent(row)).Text;
-                MessageBox.Show(departamento);
+                
             }
             else if (dgvListadoProveedor.Columns[5].GetCellContent(row) is TextBlock)
             {
                 departamento = ((TextBlock)dgvListadoProveedor.Columns[5].GetCellContent(row)).Text;
 
-                MessageBox.Show(departamento);
+               
             }
             if (dgvListadoProveedor.Columns[6].GetCellContent(row) is TextBox)
             {
                 provincia = ((TextBox)dgvListadoProveedor.Columns[6].GetCellContent(row)).Text;
-                MessageBox.Show(provincia);
+               
             }
             else if (dgvListadoProveedor.Columns[6].GetCellContent(row) is TextBlock)
             {
 
                 provincia = ((TextBlock)dgvListadoProveedor.Columns[6].GetCellContent(row)).Text;
-                MessageBox.Show(provincia);
+               
             }
             if (dgvListadoProveedor.Columns[7].GetCellContent(row) is TextBox)
             {
 
                 distrito = ((TextBox)dgvListadoProveedor.Columns[7].GetCellContent(row)).Text;
-                MessageBox.Show(distrito);
+                
             }
             else if (dgvListadoProveedor.Columns[7].GetCellContent(row) is TextBlock)
             {
                 distrito = ((TextBlock)dgvListadoProveedor.Columns[7].GetCellContent(row)).Text;
-                MessageBox.Show(distrito);
+                
             }
             if (dgvListadoProveedor.Columns[8].GetCellContent(row) is TextBox)
             {
                 telfFijocasa = ((TextBox)dgvListadoProveedor.Columns[8].GetCellContent(row)).Text;
-                MessageBox.Show(telfFijocasa);
+               
             }
 
             else if (dgvListadoProveedor.Columns[8].GetCellContent(row) is TextBlock)
             {
                 telfFijocasa = ((TextBlock)dgvListadoProveedor.Columns[8].GetCellContent(row)).Text;
-                MessageBox.Show(telfFijocasa);
+                
             }
             if (dgvListadoProveedor.Columns[9].GetCellContent(row) is TextBox)
             {
                 celular = ((TextBox)dgvListadoProveedor.Columns[9].GetCellContent(row)).Text;
-                MessageBox.Show(celular);
+              
             }
             else if (dgvListadoProveedor.Columns[9].GetCellContent(row) is TextBlock)
             {
                 celular = ((TextBlock)dgvListadoProveedor.Columns[9].GetCellContent(row)).Text;
-                MessageBox.Show(celular);
+                
             }
             if (dgvListadoProveedor.Columns[10].GetCellContent(row) is TextBox)
             {
                 email = ((TextBox)dgvListadoProveedor.Columns[10].GetCellContent(row)).Text;
-                MessageBox.Show(email);
+               
             }
             else if (dgvListadoProveedor.Columns[10].GetCellContent(row) is TextBlock)
             {
                 email = ((TextBlock)dgvListadoProveedor.Columns[10].GetCellContent(row)).Text;
-                MessageBox.Show(email);
+                
             }
             if (dgvListadoProveedor.Columns[11].GetCellContent(row) is TextBox)
             {
 
                 observaciones = ((TextBox)dgvListadoProveedor.Columns[11].GetCellContent(row)).Text;
-                MessageBox.Show(observaciones);
+                
             }
 
             else if (dgvListadoProveedor.Columns[11].GetCellContent(row) is TextBlock)
             {
                 observaciones = ((TextBlock)dgvListadoProveedor.Columns[11].GetCellContent(row)).Text;
 
-                MessageBox.Show(observaciones);
+                
             }
             else
             {
@@ -402,96 +402,81 @@ namespace SISJORSAC
             {
                 RUC = ((TextBox)dgvListadoProveedor.Columns[0].GetCellContent(row)).Text;
 
-                MessageBox.Show(RUC);
+               
             }
             else if (dgvListadoProveedor.Columns[0].GetCellContent(row) is TextBlock)
             {
                 RUC = ((TextBlock)dgvListadoProveedor.Columns[0].GetCellContent(row)).Text;
-                MessageBox.Show(RUC);
+               
             }
             if (dgvListadoProveedor.Columns[1].GetCellContent(row) is TextBox)
             {
                 razonSocial = ((TextBox)dgvListadoProveedor.Columns[1].GetCellContent(row)).Text;
-                MessageBox.Show(razonSocial);
+               
             }
             else if (dgvListadoProveedor.Columns[1].GetCellContent(row) is TextBlock)
             {
                 razonSocial = ((TextBlock)dgvListadoProveedor.Columns[1].GetCellContent(row)).Text;
-                MessageBox.Show(razonSocial);
+               
             }
             if (dgvListadoProveedor.Columns[2].GetCellContent(row) is TextBox)
             {
                 direccion = ((TextBox)dgvListadoProveedor.Columns[2].GetCellContent(row)).Text;
 
-                MessageBox.Show(direccion);
             }
             else if (dgvListadoProveedor.Columns[2].GetCellContent(row) is TextBlock)
             {
                 direccion = ((TextBlock)dgvListadoProveedor.Columns[2].GetCellContent(row)).Text;
-                MessageBox.Show(direccion);
+                
             }
             if (dgvListadoProveedor.Columns[3].GetCellContent(row) is TextBox)
             {
-                departamento = ((TextBox)dgvListadoProveedor.Columns[3].GetCellContent(row)).Text;
-                MessageBox.Show(departamento);
+                departamento = ((TextBox)dgvListadoProveedor.Columns[3].GetCellContent(row)).Text;                
             }
             else if (dgvListadoProveedor.Columns[3].GetCellContent(row) is TextBlock)
             {
-                departamento = ((TextBlock)dgvListadoProveedor.Columns[3].GetCellContent(row)).Text;
-                MessageBox.Show(departamento);
+                departamento = ((TextBlock)dgvListadoProveedor.Columns[3].GetCellContent(row)).Text;                
             }
             if (dgvListadoProveedor.Columns[4].GetCellContent(row) is TextBox)
             {
-                provincia = ((TextBox)dgvListadoProveedor.Columns[4].GetCellContent(row)).Text;
-                MessageBox.Show(provincia);
+                provincia = ((TextBox)dgvListadoProveedor.Columns[4].GetCellContent(row)).Text;                
             }
             else if (dgvListadoProveedor.Columns[4].GetCellContent(row) is TextBlock)
             {
-                provincia = ((TextBlock)dgvListadoProveedor.Columns[4].GetCellContent(row)).Text;
-                MessageBox.Show(provincia);
+                provincia = ((TextBlock)dgvListadoProveedor.Columns[4].GetCellContent(row)).Text;                
             }
             if (dgvListadoProveedor.Columns[5].GetCellContent(row) is TextBox)
             {
-                distrito = ((TextBox)dgvListadoProveedor.Columns[5].GetCellContent(row)).Text;
-                MessageBox.Show(distrito);
+                distrito = ((TextBox)dgvListadoProveedor.Columns[5].GetCellContent(row)).Text;                
             }
             else if (dgvListadoProveedor.Columns[5].GetCellContent(row) is TextBlock)
             {
-                distrito = ((TextBlock)dgvListadoProveedor.Columns[5].GetCellContent(row)).Text;
-
-                MessageBox.Show(distrito);
+                distrito = ((TextBlock)dgvListadoProveedor.Columns[5].GetCellContent(row)).Text;              
             }
             if (dgvListadoProveedor.Columns[6].GetCellContent(row) is TextBox)
             {
-                telfOficina = ((TextBox)dgvListadoProveedor.Columns[6].GetCellContent(row)).Text;
-                MessageBox.Show(telfOficina);
+                telfOficina = ((TextBox)dgvListadoProveedor.Columns[6].GetCellContent(row)).Text;               
             }
             else if (dgvListadoProveedor.Columns[6].GetCellContent(row) is TextBlock)
             {
-                telfOficina = ((TextBlock)dgvListadoProveedor.Columns[6].GetCellContent(row)).Text;
-                MessageBox.Show(telfOficina);
+                telfOficina = ((TextBlock)dgvListadoProveedor.Columns[6].GetCellContent(row)).Text;                
             }
             if (dgvListadoProveedor.Columns[7].GetCellContent(row) is TextBox)
             {
-
-                email = ((TextBox)dgvListadoProveedor.Columns[7].GetCellContent(row)).Text;
-                MessageBox.Show(email);
+                email = ((TextBox)dgvListadoProveedor.Columns[7].GetCellContent(row)).Text;               
             }
             else if (dgvListadoProveedor.Columns[7].GetCellContent(row) is TextBlock)
             {
-                email = ((TextBlock)dgvListadoProveedor.Columns[7].GetCellContent(row)).Text;
-                MessageBox.Show(email);
+                email = ((TextBlock)dgvListadoProveedor.Columns[7].GetCellContent(row)).Text;           
             }
             if (dgvListadoProveedor.Columns[8].GetCellContent(row) is TextBox)
             {
-                observaciones = ((TextBox)dgvListadoProveedor.Columns[8].GetCellContent(row)).Text;
-                MessageBox.Show(observaciones);
+                observaciones = ((TextBox)dgvListadoProveedor.Columns[8].GetCellContent(row)).Text;                
             }
 
             else if (dgvListadoProveedor.Columns[8].GetCellContent(row) is TextBlock)
             {
-                observaciones = ((TextBlock)dgvListadoProveedor.Columns[8].GetCellContent(row)).Text;
-                MessageBox.Show(observaciones);
+                observaciones = ((TextBlock)dgvListadoProveedor.Columns[8].GetCellContent(row)).Text;                
             }
             else
             {

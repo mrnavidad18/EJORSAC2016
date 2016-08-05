@@ -158,6 +158,8 @@ namespace SISJORSAC
             frmListadoGastos.ShowDialog();
         }
 
+ 
+
 
 
 

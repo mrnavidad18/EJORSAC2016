@@ -4,29 +4,41 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Menu - servicios generales jorsac e.i.r.l. - Surco - Lima"
+        Title="Menú    Servicios Generales JORSAC E.I.R.L.  Surco-Lima"
         ResizeMode="NoResize"
         WindowState="Maximized" BorderBrush="Black">
     <Grid x:Name="frmMenu" Background="DarkGray">
-
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <DockPanel x:Name="docPanel" LastChildFill="False" Grid.ColumnSpan="2">
             <Menu Height="30" VerticalAlignment="Top" DockPanel.Dock="Top" >
-                <MenuItem Header="Mantenimiento"  >
+                <MenuItem Header="Mantenimiento" Background="White"  >
                     <MenuItem.Icon>
                         <Image Source="IMG/mantenimiento.png" />
                     </MenuItem.Icon>
-                    <MenuItem x:Name="ItemClienteRegistro" Header="Clientes" Click="ItemClienteRegistro_Click"    >
+                    <MenuItem x:Name="ItemClienteRegistro" Header="Clientes" Click="ItemClienteRegistro_Click" Background="White" Foreground="Black"    >
                         <MenuItem.Icon>
                             <Image Source="IMG/cliente.png" Height="44" Width="60"/>
                         </MenuItem.Icon>
                     </MenuItem>                    
-                    <MenuItem  x:Name="ItemServicioRegistro"  Header="Servicios" Click="ItemServicioRegistro_Click"/>
-                    <MenuItem  x:Name="ItemProveedor"  Header="Proveedores" Click="ItemProveedor_Click" />
-                    <MenuItem  x:Name="ItemConceptoGastoRegistro"  Header="Concepto de Gasto" Click="ItemConceptoGastoRegistro_Click"  />
+                    <MenuItem  x:Name="ItemServicioRegistro"  Header="Servicios" Click="ItemServicioRegistro_Click">
+                        <MenuItem.Icon>
+                            <Image Source="IMG/Servicios.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem  x:Name="ItemProveedor"  Header="Proveedores" Click="ItemProveedor_Click">
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ProveedorRegistro.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem> 
+                    <MenuItem  x:Name="ItemConceptoGastoRegistro"  Header="Concepto de Gasto" Click="ItemConceptoGastoRegistro_Click" >
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ConceptoGastoRegistro.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    
                 </MenuItem>
                 <MenuItem Header="Registro" >
                     <MenuItem.ContextMenu>
@@ -35,38 +47,102 @@
                     <MenuItem.Icon>
                         <Image Source="IMG/save.png"/>
                     </MenuItem.Icon>
-                    <MenuItem x:Name="ItemFactura" Header="Factura" Click="ItemFactura_Click"/>
-                    <MenuItem x:Name="ItemBoleta" Header="Boleta" Click="ItemBoleta_Click"/>
-                    <MenuItem x:Name="ItemGuiaRemision" Header="Guía Remisión" Click="ItemGuiaRemision_Click"/>
-                    <MenuItem x:Name="ItemContrato" Header="Contrato de Alquiler" Click="ItemContrato_Click"/>
-                    <MenuItem x:Name="itemGasto" Header="Mis Gastos" Click="itemGasto_Click" />
+                    <MenuItem x:Name="ItemFactura" Header="Factura" Click="ItemFactura_Click">
+                        <MenuItem.Icon>
+                            <Image Source="IMG/FacturaRegistro.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="ItemBoleta" Header="Boleta" Click="ItemBoleta_Click">
+                        <MenuItem.Icon>
+                            <Image Source="IMG/BoletaRegistro.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="ItemGuiaRemision" Header="Guía Remisión" Click="ItemGuiaRemision_Click">
+                        <MenuItem.Icon>
+                            <Image Source="IMG/GuiaRemisionRegistro.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="ItemContrato" Header="Contrato de Alquiler" Click="ItemContrato_Click">
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ContratoRegistro.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="itemGasto" Header="Mis Gastos" Click="itemGasto_Click" >
+                        <MenuItem.Icon>
+                            <Image Source="IMG/GastosRegistro.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Consultas" >
                     <MenuItem.Icon>
                         <Image Source="IMG/consultas.png"/>
                     </MenuItem.Icon>
-                    <MenuItem x:Name="itemListadoCliente" Header="Listado de Clientes" Click="itemListadoCliente_Click"/>
-                    <MenuItem x:Name="itemListadoProveedores" Header="Listado de Proveedores" Click="itemListadoProveedores_Click"/>
-                    <MenuItem x:Name="itemListadoFacturas" Header="Listado de Facturas" Click="itemListadoFacturas_Click"/>
-                    <MenuItem x:Name="itemListadoBoletas" Header="Listado de Boletas" Click="itemListadoBoletas_Click" />
-                    <MenuItem x:Name="itemServicios" Header="Listado de Servicios" Click="itemServicios_Click" />
-                    <MenuItem x:Name="itemConceptoGasto" Header="Listado de Concepto de Gastos" Click="itemConceptoGasto_Click"  />
-                    <MenuItem x:Name="itemListadoGuias" Header="Listado de Guias de Remisión" Click="itemListadoGuias_Click" />
-                    <MenuItem x:Name="itemlistadoContrato" Header="Listado de Contratos" Click="itemlistadoContrato_Click" />
-                    <MenuItem x:Name="itemListadoGasto" Header="Listado de Gastos" Click="itemListadoGasto_Click" />
+                    <MenuItem x:Name="itemListadoCliente" Header="Listado de Clientes" Click="itemListadoCliente_Click">
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ListadoCliente.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="itemListadoProveedores" Header="Listado de Proveedores" Click="itemListadoProveedores_Click">
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ListadoProveedor.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="itemListadoFacturas" Header="Listado de Facturas" Click="itemListadoFacturas_Click">
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ListadoFactura.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="itemListadoBoletas" Header="Listado de Boletas" Click="itemListadoBoletas_Click" >
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ListadoBoleta.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="itemServicios" Header="Listado de Servicios" Click="itemServicios_Click" >
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ListadoServicio.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="itemConceptoGasto" Header="Listado de Concepto de Gastos" Click="itemConceptoGasto_Click">
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ListadoConceptoGasto.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="itemListadoGuias" Header="Listado de Guias de Remisión" Click="itemListadoGuias_Click" >
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ListadoGuiaRemision.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="itemlistadoContrato" Header="Listado de Contratos" Click="itemlistadoContrato_Click" >
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ListadoContrato.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="itemListadoGasto" Header="Listado de Gastos" Click="itemListadoGasto_Click" >
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ListadoGasto.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Reportes">
                     <MenuItem.Icon>
                         <Image Source="IMG/reporte.png"/>
                     </MenuItem.Icon>
-                    <MenuItem x:Name="ItemCliente" Header="Clientes" Click="ItemCliente_Click"/>
+                    <MenuItem x:Name="ItemCliente" Header="Clientes" Click="ItemCliente_Click">
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ReporteCliente.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                     
                 </MenuItem>
                 <MenuItem Header="Mi Cuenta">
                     <MenuItem.Icon>
                         <Image Source="IMG/CambiarPassword.png"/>
                     </MenuItem.Icon>
-                    <MenuItem x:Name="ItemMiCuenta" Header="Actualizar Mis Datos" Click="ItemMiCuenta_Click" />
+                    <MenuItem x:Name="ItemMiCuenta" Header="Actualizar Mis Datos" Click="ItemMiCuenta_Click">
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ActualizarMisDatos.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                    
                 </MenuItem>
                 

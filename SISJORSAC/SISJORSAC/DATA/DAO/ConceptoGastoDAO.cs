@@ -35,7 +35,6 @@ namespace SISJORSAC.DATA.DAO
                 throw;
             }
         }
-
         public ConceptoGasto ObtenerConceptoGasto(int cod_conceptoGasto)
         {
             ConceptoGasto conceptoGasto = new ConceptoGasto();
@@ -64,8 +63,7 @@ namespace SISJORSAC.DATA.DAO
                 throw;
             }
         }
-
-        public List<ConceptoGasto> listarConceptoGasto(string estado)
+        public List<ConceptoGasto> listarConceptoGasto(string p_busqueda,string estado)
         {
             List<ConceptoGasto> listaConceptoGasto = new List<ConceptoGasto>();
             ConceptoGasto conceptoGasto;
@@ -73,7 +71,8 @@ namespace SISJORSAC.DATA.DAO
             try
             {
                 SqlParameter[] dbParams = new SqlParameter[]{
-                     DBHelper.MakeParam("@ESTADO",estado)
+                     DBHelper.MakeParam("@ESTADO",estado),
+                     DBHelper.MakeParam("@P_BUSQUEDA",p_busqueda)
                  };
                 using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
                 {
@@ -98,8 +97,6 @@ namespace SISJORSAC.DATA.DAO
             }
         
         }
-
-
         public string Actualizar(ConceptoGasto conceptoGasto)
         {
             string salidas;

@@ -28,17 +28,18 @@ namespace SISJORSAC
         public FrmListadoConceptoGasto()
         {
             InitializeComponent();
-            ListarConceptoGasto("DISPONIBLE");
+            ListarConceptoGasto("","DISPONIBLE");
+            txtBusqueda.Focus();
         }
 
-        private void ListarConceptoGasto(string estado)
+        private void ListarConceptoGasto(string p_busqueda,string estado)
         {
-            var listadoConcepto = conceptoGastoDAO.listarConceptoGasto(estado);
+            var listadoConcepto = conceptoGastoDAO.listarConceptoGasto(p_busqueda,estado);
             dgvListadoConceptoGasto.ItemsSource = listadoConcepto;
             if (estado.Equals("DISPONIBLE"))
             {
                 DataGridTextColumn columna = new DataGridTextColumn();
-                columna.Width = 800;
+                columna.Width = 950;
                 columna.Header = "DESCRIPCION";
                 columna.Binding = new Binding("DESCRIPCION");
                 dgvListadoConceptoGasto.Columns.Add(columna);          
@@ -60,7 +61,7 @@ namespace SISJORSAC
             {
                 await this.ShowMessageAsync("Información", "No se puede actualizar esta fila");
                 dgvListadoConceptoGasto.Columns.Clear();
-                ListarConceptoGasto("DISPONIBLE");
+                ListarConceptoGasto("","DISPONIBLE");
                 return;
             }
 
@@ -70,12 +71,12 @@ namespace SISJORSAC
             {
                 descripcion = ((TextBox)dgvListadoConceptoGasto.Columns[0].GetCellContent(row)).Text;
 
-                MessageBox.Show(descripcion);
+                
             }
             else if (dgvListadoConceptoGasto.Columns[0].GetCellContent(row) is TextBlock)
             {
                 descripcion = ((TextBlock)dgvListadoConceptoGasto.Columns[0].GetCellContent(row)).Text;
-                MessageBox.Show(descripcion);
+                
            }            
             else
             {
@@ -88,12 +89,12 @@ namespace SISJORSAC
                 string resul = conceptoGastoDAO.Actualizar(conceptoGasto);
                 await this.ShowMessageAsync("Correcto", resul);
                 dgvListadoConceptoGasto.Columns.Clear();
-                ListarConceptoGasto("DISPONIBLE");
+                ListarConceptoGasto("","DISPONIBLE");
             }
             else
             {
                 dgvListadoConceptoGasto.Columns.Clear();
-                ListarConceptoGasto("DISPONIBLE");
+                ListarConceptoGasto("","DISPONIBLE");
             }
         }
 
@@ -119,6 +120,16 @@ namespace SISJORSAC
             catch (Exception)
             {                
                 throw;
+            }
+        }
+
+        private void txtBusqueda_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                string p_busqueda = txtBusqueda.Text;
+                dgvListadoConceptoGasto.Columns.Clear();
+                ListarConceptoGasto(p_busqueda, "DISPONIBLE");
             }
         }
 

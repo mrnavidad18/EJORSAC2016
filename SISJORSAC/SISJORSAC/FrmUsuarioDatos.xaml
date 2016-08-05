@@ -4,30 +4,30 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Actualiza Tu Información" Height="390" Width="555"
+        Title="Actualiza Tu Información" Height="269" Width="690"
         WindowStartupLocation="CenterScreen">
-    <Grid Name="UsuarioContraseña" Margin="0,0,2,-1">
+    <Grid Name="UsuarioContraseña" Margin="0,0,-8,-1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="118*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="29,96,0,0" VerticalAlignment="Top" Height="26" Width="74"/>
-        <Label Content="Clave:" HorizontalAlignment="Left" Margin="29,138,0,0" VerticalAlignment="Top" Height="26" Width="60"/>
-        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="29,10,0,0" VerticalAlignment="Top" Height="26" Width="83"/>
-        <Label Content="Apellidos" HorizontalAlignment="Left" Margin="29,55,0,0" VerticalAlignment="Top" Height="26" Width="60"/>
-        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="17" Margin="112,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
-        <PasswordBox x:Name="txtClave" HorizontalAlignment="Left" Height="26" Margin="112,138,0,0"  VerticalAlignment="Top" Width="185"/>
-        <TextBox x:Name="txtApellidos" HorizontalAlignment="Left" Height="26" Margin="112,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
-        <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="26" Margin="112,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185" RenderTransformOrigin="0.658,-4.192"/>
-        <Button x:Name="btnGuardarCambios" Content="Guardar Cambios" HorizontalAlignment="Left" Margin="29,312,0,0" VerticalAlignment="Top" Width="166" Height="29" RenderTransformOrigin="-0.295,2.241" Click="btnGuardarCambios_Click" Background="#FF3F8FBD" Foreground="White" FontWeight="Bold"  />
-        <Label x:Name="lblNuevaContra" Content="Nueva Contraseña:" HorizontalAlignment="Left" Margin="29,178,0,0" VerticalAlignment="Top" Height="26" Width="115"/>
-        <PasswordBox x:Name="txtnuevaContra" HorizontalAlignment="Left" Height="26" Margin="165,178,0,0"  VerticalAlignment="Top" Width="185"/>
-        <Label x:Name="lblConfirmarContra" Content="Confirme Contraseña:" HorizontalAlignment="Left" Margin="29,220,0,0" VerticalAlignment="Top" Height="26" Width="127"/>
-        <PasswordBox x:Name="txtConfirmacionNuevaContra" HorizontalAlignment="Left" Height="26" Margin="165,218,0,0"  VerticalAlignment="Top" Width="185"/>
-        <CheckBox x:Name="chkCambiarContraseña" Content="Cambiar Contraseña " HorizontalAlignment="Left" Margin="334,142,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="152" Checked="chkCambiarContraseña_Checked" Unchecked="chkCambiarContraseña_Unchecked"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="30" Margin="325,134,0,0" VerticalAlignment="Top" Width="161"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="123,63,0,0" VerticalAlignment="Top" Height="26" Width="74" FontWeight="Bold"/>
+        <Label Content="Clave:" HorizontalAlignment="Left" Margin="422,61,0,0" VerticalAlignment="Top" Height="26" Width="60" FontWeight="Bold"/>
+        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="123,22,0,0" VerticalAlignment="Top" Height="26" Width="83" FontWeight="Bold"/>
+        <Label Content="Apellidos:" HorizontalAlignment="Left" Margin="407,22,0,0" VerticalAlignment="Top" Height="26" Width="69" FontWeight="Bold"/>
+        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="17" Margin="206,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185" FontWeight="Bold"/>
+        <PasswordBox x:Name="txtClave" HorizontalAlignment="Left" Height="26" Margin="482,61,0,0"  VerticalAlignment="Top" Width="187"/>
+        <TextBox x:Name="txtApellidos" HorizontalAlignment="Left" Height="26" Margin="482,22,-83,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="26" Margin="206,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185" RenderTransformOrigin="0.658,-4.192" FontWeight="Bold"/>
+        <Button x:Name="btnGuardarCambios" Content="Guardar Cambios" HorizontalAlignment="Left" Margin="503,200,0,0" VerticalAlignment="Top" Width="166" Height="29" RenderTransformOrigin="-0.295,2.241" Click="btnGuardarCambios_Click" Background="#FF3F8FBD" Foreground="White" FontWeight="Bold"  />
+        <Label x:Name="lblNuevaContra" Content="Nueva Contraseña:" HorizontalAlignment="Left" Margin="121,105,0,0" VerticalAlignment="Top" Height="26" Width="115" FontWeight="Bold"/>
+        <PasswordBox x:Name="txtnuevaContra" HorizontalAlignment="Left" Height="26" Margin="257,105,0,0"  VerticalAlignment="Top" Width="185" FontWeight="Bold"/>
+        <Label x:Name="lblConfirmarContra" Content="Confirme Contraseña:" HorizontalAlignment="Left" Margin="121,147,0,0" VerticalAlignment="Top" Height="26" Width="127" FontWeight="Bold"/>
+        <PasswordBox x:Name="txtConfirmacionNuevaContra" HorizontalAlignment="Left" Height="26" Margin="257,145,0,0"  VerticalAlignment="Top" Width="185" FontWeight="Bold"/>
+        <CheckBox x:Name="chkCambiarContraseña" Content="Cambiar Contraseña " HorizontalAlignment="Left" Margin="477,108,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="152" Checked="chkCambiarContraseña_Checked" Unchecked="chkCambiarContraseña_Unchecked"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="30" Margin="469,101,0,0" VerticalAlignment="Top" Width="161"/>
 
-
+        <Image HorizontalAlignment="Left" Margin="-4,0,0,67" Width="125" Height="145" VerticalAlignment="Bottom" Stretch="Fill" Source="IMG/logo_rep.PNG"/>
     </Grid>
 </Controls:MetroWindow>
 

@@ -9,12 +9,12 @@
         WindowStartupLocation="CenterScreen"
                       >
     <Grid >
-        <TextBox x:Name="txtUsuario" HorizontalAlignment="Left" Height="23" Controls:TextBoxHelper.Watermark="Ingrese su usuario" Controls:TextBoxHelper.ClearTextButton="True" Margin="25,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="278" KeyDown="txtUsuario_KeyDown"/>
+        <TextBox x:Name="txtUsuario" HorizontalAlignment="Left" Height="23" Controls:TextBoxHelper.Watermark="Ingrese su usuario" Controls:TextBoxHelper.ClearTextButton="True" Margin="25,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" KeyDown="txtUsuario_KeyDown"/>
 
 
         <PasswordBox x:Name="txtClave" HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Ingrese su contraseña" Controls:TextBoxHelper.ClearTextButton="True" Margin="25,243,0,0" VerticalAlignment="Top" Width="287" KeyDown="txtClave_KeyDown" KeyUp="txtClave_KeyUp"/>
         <Button x:Name="btnIngresar" Content="Ingresar" HorizontalAlignment="Left" Margin="25,311,0,0" VerticalAlignment="Top" Width="287" Background="#FF0A0A0A" Foreground="White" Click="Button_Click"/>
-        <Image HorizontalAlignment="Left" Margin="89,0,0,186" Width="158" Height="148" VerticalAlignment="Bottom" Stretch="Fill" Source="IMG/logo_rep.PNG"/>
+        <Image HorizontalAlignment="Left" Margin="88,0,0,186" Width="158" Height="148" VerticalAlignment="Bottom" Stretch="Fill" Source="IMG/logo_rep.PNG"/>
         <Label x:Name="lblUsuarioError" Content="Falta llenar este campo" HorizontalAlignment="Left" Margin="25,218,0,0" VerticalAlignment="Top" Width="114" FontSize="9" Foreground="#FFF10000" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>

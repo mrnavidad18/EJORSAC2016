@@ -28,13 +28,13 @@ namespace SISJORSAC
         public FrmListadoServicios()
         {
             InitializeComponent();
-            ListarServicios("DISPONIBLE");
+            ListarServicios("DISPONIBLE","");
            
         }
 
-        private void ListarServicios(string estado)
+        private void ListarServicios(string estado,string p_busqueda)
         {
-            var listadoServicios = serviciosDAO.listarServicio(estado);
+            var listadoServicios = serviciosDAO.listarServicio(estado, p_busqueda);
             dgvListadoServicios.ItemsSource = listadoServicios;
             if (estado.Equals("DISPONIBLE"))
             {
@@ -73,7 +73,7 @@ namespace SISJORSAC
             {
                 await this.ShowMessageAsync("Información", "No se puede actualizar esta fila");
                 dgvListadoServicios.Columns.Clear();
-                ListarServicios("DISPONIBLE");
+                ListarServicios("DISPONIBLE","");
                 return;
             }
 
@@ -87,44 +87,34 @@ namespace SISJORSAC
             if (dgvListadoServicios.Columns[0].GetCellContent(row) is TextBox)
             {
                 descripcion = ((TextBox)dgvListadoServicios.Columns[0].GetCellContent(row)).Text;
-
-                MessageBox.Show(descripcion);
             }
             else if (dgvListadoServicios.Columns[0].GetCellContent(row) is TextBlock)
             {
-                descripcion = ((TextBlock)dgvListadoServicios.Columns[0].GetCellContent(row)).Text;
-                MessageBox.Show(descripcion);
+                descripcion = ((TextBlock)dgvListadoServicios.Columns[0].GetCellContent(row)).Text;               
             }
             if (dgvListadoServicios.Columns[1].GetCellContent(row) is TextBox)
             {
-                precio =Convert.ToDouble( ((TextBox)dgvListadoServicios.Columns[1].GetCellContent(row)).Text.ToString().Replace(@",","."));
-                MessageBox.Show(precio.ToString().Replace(@".", ","));
+                precio =Convert.ToDouble( ((TextBox)dgvListadoServicios.Columns[1].GetCellContent(row)).Text.ToString().Replace(@",","."));                
             }
             else if (dgvListadoServicios.Columns[1].GetCellContent(row) is TextBlock)
             {
-                precio = Convert.ToDouble(((TextBlock)dgvListadoServicios.Columns[1].GetCellContent(row)).Text.ToString().Replace(@",", "."));
-                MessageBox.Show(precio.ToString().Replace(@".", ","));
+                precio = Convert.ToDouble(((TextBlock)dgvListadoServicios.Columns[1].GetCellContent(row)).Text.ToString().Replace(@",", "."));                
             }
             if (dgvListadoServicios.Columns[2].GetCellContent(row) is TextBox)
             {
                 tipoMoneda = ((TextBox)dgvListadoServicios.Columns[2].GetCellContent(row)).Text;
-
-                MessageBox.Show(tipoMoneda);
             }
             else if (dgvListadoServicios.Columns[2].GetCellContent(row) is TextBlock)
             {
-                tipoMoneda = ((TextBlock)dgvListadoServicios.Columns[2].GetCellContent(row)).Text;
-                MessageBox.Show(tipoMoneda);
+                tipoMoneda = ((TextBlock)dgvListadoServicios.Columns[2].GetCellContent(row)).Text;             
             }
             if (dgvListadoServicios.Columns[3].GetCellContent(row) is TextBox)
             {
-                peso = ((TextBox)dgvListadoServicios.Columns[3].GetCellContent(row)).Text;
-                MessageBox.Show(peso);
+                peso = ((TextBox)dgvListadoServicios.Columns[3].GetCellContent(row)).Text;              
             }
             else if (dgvListadoServicios.Columns[3].GetCellContent(row) is TextBlock)
             {
-                peso = ((TextBlock)dgvListadoServicios.Columns[3].GetCellContent(row)).Text;
-                MessageBox.Show(peso);
+                peso = ((TextBlock)dgvListadoServicios.Columns[3].GetCellContent(row)).Text;               
             }
 
             else
@@ -141,12 +131,12 @@ namespace SISJORSAC
                 string resul = serviciosDAO.Actualizar(servicio);
                 await this.ShowMessageAsync("Correcto", resul);
                 dgvListadoServicios.Columns.Clear();
-                ListarServicios("DISPONIBLE");
+                ListarServicios("DISPONIBLE","");
             }
             else
             {
                 dgvListadoServicios.Columns.Clear();
-                ListarServicios("DISPONIBLE");
+                ListarServicios("DISPONIBLE","");
             }
         }
 
@@ -173,6 +163,16 @@ namespace SISJORSAC
             {
                 
                 throw;
+            }
+        }
+
+        private void txtBusqueda_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                string p_busqueda= txtBusqueda.Text;                
+                dgvListadoServicios.Columns.Clear();
+                ListarServicios("DISPONIBLE", p_busqueda);
             }
         }
 

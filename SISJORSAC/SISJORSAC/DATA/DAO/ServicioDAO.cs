@@ -12,7 +12,6 @@ namespace SISJORSAC.DATA.DAO
 {
     public class ServicioDAO
     {
-
         public string Agregar(Servicio servicio)
         {
             string salidas;
@@ -39,19 +38,17 @@ namespace SISJORSAC.DATA.DAO
             {
                 throw;
             }
-
-
         }
 
-        public List<Servicio> listarServicio(string estado)
+        public List<Servicio> listarServicio(string estado,string p_busqueda)
         {
             List<Servicio> listarServi = new List<Servicio>();
             string query = "SP_TBL_SERV_LISTAR";
             try
             {
                 SqlParameter[] dbParams = new SqlParameter[]{
-
-                     DBHelper.MakeParam("@ESTADO",estado)
+                DBHelper.MakeParam("@ESTADO",estado),
+                DBHelper.MakeParam("@P_BUSQUEDA",p_busqueda)
                  };
 
                 using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, dbParams))
@@ -77,7 +74,6 @@ namespace SISJORSAC.DATA.DAO
             {
                 throw;
             }
-
         }
 
         public Servicio ObtenerServicio(int codServ)
@@ -148,6 +144,5 @@ namespace SISJORSAC.DATA.DAO
 
 
         }
-
     }
 }

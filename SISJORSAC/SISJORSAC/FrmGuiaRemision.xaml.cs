@@ -63,7 +63,7 @@ namespace SISJORSAC
        
         private void Listarservicios(string estado)
         {
-            var listaServicios = servicioDAO.listarServicio(estado);
+            var listaServicios = servicioDAO.listarServicio(estado,"");
             this.cboServicio.ItemsSource = listaServicios;
             this.cboServicio.DisplayMemberPath = "DESCRIPCION";
             this.cboServicio.SelectedValuePath = "COD_SERV";
