@@ -601,7 +601,7 @@ namespace SISJORSAC
 
             DetalleFactura detalleFactura = null;
 
-            VariablesGlobales.listaDetallesFactura.Clear();
+            VariablesGlobales.listaDetallesFactura = new List<DetalleFactura>();
 
             foreach (var detalle in VariablesGlobales.listaDetallesContrato)
             {
