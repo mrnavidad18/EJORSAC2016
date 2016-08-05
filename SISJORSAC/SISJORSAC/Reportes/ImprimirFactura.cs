@@ -26,10 +26,18 @@ namespace SISJORSAC
 
         private void ImprimirFactura_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'ConjuntoDatos.SP_IMPRIMIR_FACTURA' Puede moverla o quitarla según sea necesario.
-            this.SP_IMPRIMIR_FACTURATableAdapter.Fill(this.ConjuntoDatos.SP_IMPRIMIR_FACTURA,nro_factura);
-            AutoPrint();
-            this.reportViewer1.RefreshReport();
+            try
+            {
+                // TODO: esta línea de código carga datos en la tabla 'ConjuntoDatos.SP_IMPRIMIR_FACTURA' Puede moverla o quitarla según sea necesario.
+                this.SP_IMPRIMIR_FACTURATableAdapter.Fill(this.ConjuntoDatos.SP_IMPRIMIR_FACTURA, nro_factura);
+                AutoPrint();
+                this.reportViewer1.RefreshReport();
+            }
+            catch (Exception)
+            {
+                this.reportViewer1.RefreshReport();                
+            }
+           
         }
 
         private void reportViewer1_Load(object sender, EventArgs e)

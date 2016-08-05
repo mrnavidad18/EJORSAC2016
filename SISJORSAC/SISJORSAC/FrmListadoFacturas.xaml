@@ -41,7 +41,6 @@
         <TextBox x:Name="txtNroComp" HorizontalAlignment="Left" Height="23" Margin="116,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" KeyUp="txtNroComp_KeyUp"/>
         <Button x:Name="btnVerDetalle" Content="Ver Detalle" HorizontalAlignment="Left" Margin="333,349,0,0" VerticalAlignment="Top" Width="109" Click="btnVerDetalle_Click" Background="#FF3BA9F5" Foreground="White" FontWeight="Bold"/>
         <ComboBox x:Name="cboCliente" HorizontalAlignment="Left" Margin="222,56,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="cboCliente_SelectionChanged" ToolTip="Clientes" Text="dsds"/>
-        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btnLimpiar" Content="Limpiar" HorizontalAlignment="Left" Margin="664,348,0,0" VerticalAlignment="Top" Width="75" Foreground="#FFEEE7E7" Background="#FFF12A2A" FontWeight="Bold" Click="btnLimpiar_Click"/>
         <Button Content="Salir" HorizontalAlignment="Left" Margin="753,348,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Background="#FFF12A2A" FontWeight="Bold" Foreground="White"/>
     </Grid>
