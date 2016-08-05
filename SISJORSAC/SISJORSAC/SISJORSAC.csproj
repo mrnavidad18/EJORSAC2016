@@ -179,6 +179,9 @@
     <Compile Include="FrmProveedor.xaml.cs">
       <DependentUpon>FrmProveedor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrmReporteFacturas.xaml.cs">
+      <DependentUpon>FrmReporteFacturas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrmServicioRegistro.xaml.cs">
       <DependentUpon>FrmServicioRegistro.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,12 @@
       <DependentUpon>FrmUsuarioDatos.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReporteClientesNaturales.Designer.cs" />
+    <Compile Include="Reportes\FrnReporteFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\FrnReporteFacturas.Designer.cs">
+      <DependentUpon>FrnReporteFacturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\FRTipoCliente.xaml.cs">
       <DependentUpon>FRTipoCliente.xaml</DependentUpon>
     </Compile>
@@ -214,11 +223,23 @@
     <Compile Include="VISTAPREVIA\FrmVerDetalleBoleta.Designer.cs">
       <DependentUpon>FrmVerDetalleBoleta.cs</DependentUpon>
     </Compile>
+    <Compile Include="VISTAPREVIA\FrmVerDetalleContrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTAPREVIA\FrmVerDetalleContrato.Designer.cs">
+      <DependentUpon>FrmVerDetalleContrato.cs</DependentUpon>
+    </Compile>
     <Compile Include="VISTAPREVIA\FrmVerDetalleFactura.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VISTAPREVIA\FrmVerDetalleFactura.Designer.cs">
       <DependentUpon>FrmVerDetalleFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTAPREVIA\FrmVerDetalleGuia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTAPREVIA\FrmVerDetalleGuia.Designer.cs">
+      <DependentUpon>FrmVerDetalleGuia.cs</DependentUpon>
     </Compile>
     <Page Include="ElegirFactura.xaml">
       <SubType>Designer</SubType>
@@ -295,6 +316,10 @@
     <Page Include="FrmProveedor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmReporteFacturas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="FrmServicioRegistro.xaml">
       <SubType>Designer</SubType>
@@ -390,6 +415,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\FrnReporteFacturas.resx">
+      <DependentUpon>FrnReporteFacturas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ImprimirFactura.rdlc" />
     <EmbeddedResource Include="Reportes\ImprimirFactura.resx">
       <DependentUpon>ImprimirFactura.cs</DependentUpon>
@@ -402,14 +430,23 @@
     <EmbeddedResource Include="Reportes\ReporteClientesNaturales.resx">
       <DependentUpon>ReporteClientesNaturales.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RtpInformeFacturas.rdlc" />
     <EmbeddedResource Include="VISTAPREVIA\FrmVerDetalleBoleta.resx">
       <DependentUpon>FrmVerDetalleBoleta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTAPREVIA\FrmVerDetalleContrato.resx">
+      <DependentUpon>FrmVerDetalleContrato.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTAPREVIA\FrmVerDetalleFactura.resx">
       <DependentUpon>FrmVerDetalleFactura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VISTAPREVIA\FrmVerDetalleGuia.resx">
+      <DependentUpon>FrmVerDetalleGuia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VISTAPREVIA\RptImprimirBoleta.rdlc" />
+    <EmbeddedResource Include="VISTAPREVIA\RptImprimirContrato.rdlc" />
     <EmbeddedResource Include="VISTAPREVIA\RptImprimirFactura.rdlc" />
+    <EmbeddedResource Include="VISTAPREVIA\RptVerDetalleGuia.rdlc" />
     <None Include="ConjuntoDatos.xsc">
       <DependentUpon>ConjuntoDatos.xsd</DependentUpon>
     </None>
@@ -487,6 +524,48 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IMG\CambiarPassword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\ActualizarMisDatos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\BoletaRegistro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\ConceptoGastoRegistro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\ContratoRegistro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\FacturaRegistro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\GastosRegistro.png" />
+    <Resource Include="IMG\GuiaRemisionRegistro.png" />
+    <Resource Include="IMG\ListadoBoleta.png" />
+    <Resource Include="IMG\ListadoCliente.png" />
+    <Resource Include="IMG\ListadoConceptoGasto.png" />
+    <Resource Include="IMG\ListadoContrato.png" />
+    <Resource Include="IMG\ListadoFactura.png" />
+    <Resource Include="IMG\ListadoGasto.png" />
+    <Resource Include="IMG\ListadoGuiaRemision.png" />
+    <Resource Include="IMG\ListadoProveedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\ListadoServicio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\logo_rep_icono.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\ProveedorRegistro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\ReporteCliente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\Servicios.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

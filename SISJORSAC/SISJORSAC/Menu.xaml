@@ -132,7 +132,12 @@
                             <Image Source="IMG/ReporteCliente.png" Height="44" Width="60"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    
+                    <MenuItem x:Name="ItemReporteFactura" Header="Facturas" Click="ItemReporteFactura_Click" >
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ReporteCliente.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
                 </MenuItem>
                 <MenuItem Header="Mi Cuenta">
                     <MenuItem.Icon>

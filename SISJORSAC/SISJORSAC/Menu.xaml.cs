@@ -158,6 +158,12 @@ namespace SISJORSAC
             frmListadoGastos.ShowDialog();
         }
 
+        private void ItemReporteFactura_Click(object sender, RoutedEventArgs e)
+        {
+            FrmReporteFacturas reporte = new FrmReporteFacturas();
+            reporte.ShowDialog();
+        }
+
  
 
 

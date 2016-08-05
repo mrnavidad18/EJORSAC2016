@@ -145,5 +145,20 @@ namespace SISJORSAC
             }
 
         }
+
+        private async void btnVerDetalle_Click(object sender, RoutedEventArgs e)
+        {
+             if(this.dgvListadoGuia.SelectedItem != null)
+            {
+            FrmVerDetalleGuia frmDetalle = new FrmVerDetalleGuia();
+            var guia = this.dgvListadoGuia.SelectedItem as GuiaRemision;
+            frmDetalle.nroGuia = guia.NRO_GUIA;
+            frmDetalle.ShowDialog();
+              }
+            else
+            {
+                await this.ShowMessageAsync("ERROR","Por favor elija una factura");
+            }
+        }
     }
 }
