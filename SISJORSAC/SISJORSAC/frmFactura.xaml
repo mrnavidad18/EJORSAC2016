@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="SISJORSAC.frmFactura"
         Title="Registro - Factura" Height="641.425" Width="980.276"
-        WindowStartupLocation="CenterScreen" Closing="MetroWindow_Closing"
+        WindowStartupLocation="CenterScreen" Closing="MetroWindow_Closing" ShowMaxRestoreButton="False"
         >
     <Grid>
         <Image HorizontalAlignment="Left" Height="148" Margin="32,8,0,0" VerticalAlignment="Top" Width="162" Source="IMG/logo_rep.PNG"/>
@@ -63,13 +63,13 @@
             <ComboBoxItem Content="ALQUILER"/>
         </ComboBox>
         <Label Content="Servicio:" HorizontalAlignment="Left" Margin="230,143,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cboServicio" HorizontalAlignment="Left" Margin="315,143,0,0" VerticalAlignment="Top" Width="317" SelectionChanged="cboServicio_SelectionChanged"/>
+        <ComboBox x:Name="cboServicio" HorizontalAlignment="Left" Margin="315,143,0,0" VerticalAlignment="Top" Width="317" SelectionChanged="cboServicio_SelectionChanged" IsEditable="True"/>
         <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="642,143,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="709,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45"/>
         <Button x:Name="btnAgregar" Content="Agregar Detalle" HorizontalAlignment="Left" Margin="665,191,0,0" VerticalAlignment="Top" Width="137" Click="btnAgregar_Click" Foreground="White" Background="#FF42A9FF" FontWeight="Bold"/>
         <Label Content="Precio:" HorizontalAlignment="Left" Margin="764,143,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="820,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" BorderBrush="#FFB6B6B6"/>
-        <CheckBox x:Name="chkObservacion" Content="Ingresar observaciones" HorizontalAlignment="Left" Margin="44,511,0,0" VerticalAlignment="Top" Checked="chkObservacion_Checked"/>
+        <CheckBox x:Name="chkObservacion" Content="Ingresar observaciones" HorizontalAlignment="Left" Margin="44,511,0,0" VerticalAlignment="Top" Checked="chkObservacion_Checked" Unchecked="chkObservacion_Unchecked"/>
         <TextBox x:Name="txtSubtotal" HorizontalAlignment="Left" Height="23" Margin="778,508,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False" Text="0.0" FontWeight="Bold"/>
         <TextBox x:Name="txtIgv" HorizontalAlignment="Left" Height="23" Margin="778,536,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False" Text="0.0" FontWeight="Bold"/>
         <TextBox x:Name="txtTotal" HorizontalAlignment="Left" Height="23" Margin="778,564,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False" Text="0.0" FontWeight="Bold"/>

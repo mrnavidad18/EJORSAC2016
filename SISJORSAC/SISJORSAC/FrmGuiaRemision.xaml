@@ -85,7 +85,7 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <ComboBox x:Name="cboServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="213,264,0,0" VerticalAlignment="Top" Width="382" SelectionChanged="cboServicio_SelectionChanged" />
+        <ComboBox x:Name="cboServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="213,264,0,0" VerticalAlignment="Top" Width="382" SelectionChanged="cboServicio_SelectionChanged"  IsEditable="True"/>
         <Label Grid.ColumnSpan="2" Content="Servicio:" HorizontalAlignment="Left" Margin="159,264,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.222,-0.346"/>
         <Button x:Name="btnAgragarDetalle" Grid.ColumnSpan="2" Content="Agregar detalle" HorizontalAlignment="Left" Margin="741,302,0,0" VerticalAlignment="Top" Width="136" Click="btnAgragarDetalle_Click" Background="#FF47A4F1" Foreground="White" FontWeight="Bold"/>
         <TextBox x:Name="txtPrecioServicio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="808,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="69"/>

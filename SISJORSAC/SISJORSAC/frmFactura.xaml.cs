@@ -640,6 +640,11 @@ namespace SISJORSAC
             }
            
         }
+
+        private void chkObservacion_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.txtObservacion.Text = ""; this.txtObservacion.IsEnabled = false;
+        }
        
     }
 }

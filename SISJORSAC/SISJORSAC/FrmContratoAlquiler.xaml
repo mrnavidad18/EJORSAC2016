@@ -30,7 +30,7 @@
             <ComboBoxItem Content="$"/>
         </ComboBox>
         <CheckBox x:Name="chkIgv" Content="Sin IGV" HorizontalAlignment="Left" Margin="832,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.21,1.778" Unchecked="chkIgv_Unchecked" Checked="chkIgv_Checked"/>
-        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,299,104,0" Width="845" Height="190" Background="#FFB8B6B6"
+        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,299,104,0" Width="845" Height="190" Background="#FFB8B6B6" IsReadOnly="True"
                   
 			AutoGenerateColumns="False"
 			CanUserAddRows="false"
@@ -58,7 +58,7 @@
         </DataGrid>
         <CheckBox x:Name="chkCambiarNroFact" Content="Cambiar Nro. Contra." HorizontalAlignment="Left" Margin="582,13,0,0" VerticalAlignment="Top" Checked="chkCambiarNroContra_Checked"/>
         <Label Content="Servicio:" HorizontalAlignment="Left" Margin="142,208,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cboServicio" HorizontalAlignment="Left" Margin="227,208,0,0" VerticalAlignment="Top" Width="317" SelectionChanged="cboServicio_SelectionChanged"/>
+        <ComboBox x:Name="cboServicio" HorizontalAlignment="Left" Margin="227,208,0,0" VerticalAlignment="Top" Width="317" SelectionChanged="cboServicio_SelectionChanged" IsEditable="True"/>
         <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="554,208,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="621,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45"/>
         <Button x:Name="btnAgregarDetalle" Content="Agregar Detalle" HorizontalAlignment="Left" Margin="752,250,0,0" VerticalAlignment="Top" Width="137" Foreground="White" Background="#FF42A9FF" FontWeight="Bold" Click="btnAgregarDetalle_Click"/>

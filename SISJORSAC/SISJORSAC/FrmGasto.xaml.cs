@@ -36,6 +36,7 @@ namespace SISJORSAC
         {
             InitializeComponent();
             ListarConceptoGasto("DISPONIBLE");
+            txtCantidad.Text = "1";
             this.txtFechaEmision.Text = DateTime.Now.ToString();
             this.txtNroGasto.Text = gastoDAO.ObtenerNroGasto();
         }

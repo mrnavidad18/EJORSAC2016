@@ -50,7 +50,7 @@ namespace SISJORSAC
                     VariablesGlobales.NRO_GUIA_GLOBAL = nroGuia;
                     frmFactura factura = new frmFactura();
                     this.Close();
-                    factura.Show();
+                    factura.ShowDialog();
                 }
                 else
                 {
