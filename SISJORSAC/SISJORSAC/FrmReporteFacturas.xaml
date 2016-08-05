@@ -1,0 +1,11 @@
+﻿<Window x:Class="SISJORSAC.FrmReporteFacturas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FrmReporteFacturas" Height="300" Width="300">
+    <Grid>
+        <DatePicker x:Name="txtFechaDe" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="78,83,0,0"/>
+        <DatePicker x:Name="txtFechaHasta" HorizontalAlignment="Left" Margin="78,141,0,0" VerticalAlignment="Top"/>
+        <Button Content="Ver Reporte" HorizontalAlignment="Left" Margin="87,210,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click"/>
+
+    </Grid>
+</Window>

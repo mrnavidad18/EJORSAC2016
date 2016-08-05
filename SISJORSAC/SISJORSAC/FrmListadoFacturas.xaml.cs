@@ -99,7 +99,6 @@ namespace SISJORSAC
             try
             {
                 var listacliente = clienteDao.ListarCliente("JURIDICA");
-
                 this.cboCliente.ItemsSource = listacliente;
                 this.cboCliente.DisplayMemberPath = "RAZON_SOCIAL";
                 this.cboCliente.SelectedValuePath = "COD_CLI";

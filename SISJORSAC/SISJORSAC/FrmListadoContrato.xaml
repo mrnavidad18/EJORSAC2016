@@ -12,6 +12,7 @@
         <DataGrid   x:Name="dgvListadoContrato" HorizontalAlignment="Left" Margin="28,111,0,0" VerticalAlignment="Top" Height="362" Width="1124" AutoGenerateColumns="False" GridLinesVisibility="All" BorderThickness="1" />
 
         <TextBox x:Name="txtBusqueda" HorizontalAlignment="Left" Height="23" Margin="345,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="225" KeyDown="txtBusqueda_KeyDown" />
+        <Button x:Name="btnVerDetalle" Content="Ver Detalle" HorizontalAlignment="Left" Margin="528,510,0,0" VerticalAlignment="Top" Width="103" Background="#FF39A3D4" FontWeight="Bold" Foreground="White" Click="btnVerDetalle_Click"/>
 
     </Grid>
 </Controls:MetroWindow>

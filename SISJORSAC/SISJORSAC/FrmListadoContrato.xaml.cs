@@ -150,5 +150,21 @@ namespace SISJORSAC
 
         }
 
+        private async void btnVerDetalle_Click(object sender, RoutedEventArgs e)
+        {
+            if(this.dgvListadoContrato.SelectedItem!=null)
+            {
+            var contrato = this.dgvListadoContrato.SelectedItem as Contrato;
+            FrmVerDetalleContrato frmContrato = new FrmVerDetalleContrato();
+            frmContrato.nroContrato = contrato.NRO_CONTRATO;
+            frmContrato.ShowDialog();
+            }
+            else
+            {
+                await this.ShowMessageAsync("ERROR","Por favor elija una factura");
+            }
+
+        }
+        
     }
 }

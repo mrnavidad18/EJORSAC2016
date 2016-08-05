@@ -15,7 +15,7 @@ namespace SISJORSAC.DATA.DAO
 
         public Object[] Agregar(Contrato contrato)
         {
-            string cadenaConexion = "server=YOVANNY/SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -162,7 +162,7 @@ namespace SISJORSAC.DATA.DAO
             }
             catch (Exception)
             {
-                throw;
+                throw new Exception("Ocurrio un error al buscar el contrato");
             }
 
         }
