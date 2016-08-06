@@ -4,7 +4,8 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Listado de Boletas" Height="417.626" Width="838.638">
+        Title="Listado de Boletas" Height="417.626" Width="838.638"
+                      WindowStartupLocation="CenterScreen">
     <Grid>
         <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,106,0,0" Width="781" Height="227" Background="#FFB8B6B6"
                   

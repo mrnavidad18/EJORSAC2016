@@ -16,7 +16,7 @@ namespace SISJORSAC.DATA.DAO
     {
         public Object[] Agregar(Gasto gasto)
         {
-            string cadenaConexion = "server=10.0.2.15;DataBase=BDJORSAC;user=sa;password=BaseDeDatos2015";
+            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();

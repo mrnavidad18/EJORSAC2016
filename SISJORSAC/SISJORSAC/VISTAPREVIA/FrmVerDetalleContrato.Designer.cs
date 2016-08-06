@@ -30,13 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.ConjuntoDatos = new SISJORSAC.ConjuntoDatos();
             this.SP_TBL_CONTRATO_IMPRIMIRBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ConjuntoDatos = new SISJORSAC.ConjuntoDatos();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SP_TBL_CONTRATO_IMPRIMIRTableAdapter = new SISJORSAC.ConjuntoDatosTableAdapters.SP_TBL_CONTRATO_IMPRIMIRTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_TBL_CONTRATO_IMPRIMIRBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).BeginInit();
             this.SuspendLayout();
+            // 
+            // SP_TBL_CONTRATO_IMPRIMIRBindingSource
+            // 
+            this.SP_TBL_CONTRATO_IMPRIMIRBindingSource.DataMember = "SP_TBL_CONTRATO_IMPRIMIR";
+            this.SP_TBL_CONTRATO_IMPRIMIRBindingSource.DataSource = this.ConjuntoDatos;
+            // 
+            // ConjuntoDatos
+            // 
+            this.ConjuntoDatos.DataSetName = "ConjuntoDatos";
+            this.ConjuntoDatos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -47,18 +57,8 @@
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "SISJORSAC.VISTAPREVIA.RptImprimirContrato.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(641, 437);
+            this.reportViewer1.Size = new System.Drawing.Size(854, 524);
             this.reportViewer1.TabIndex = 0;
-            // 
-            // ConjuntoDatos
-            // 
-            this.ConjuntoDatos.DataSetName = "ConjuntoDatos";
-            this.ConjuntoDatos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // SP_TBL_CONTRATO_IMPRIMIRBindingSource
-            // 
-            this.SP_TBL_CONTRATO_IMPRIMIRBindingSource.DataMember = "SP_TBL_CONTRATO_IMPRIMIR";
-            this.SP_TBL_CONTRATO_IMPRIMIRBindingSource.DataSource = this.ConjuntoDatos;
             // 
             // SP_TBL_CONTRATO_IMPRIMIRTableAdapter
             // 
@@ -68,13 +68,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(641, 437);
+            this.ClientSize = new System.Drawing.Size(854, 524);
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmVerDetalleContrato";
             this.Text = "FrmVerDetalleContrato";
             this.Load += new System.EventHandler(this.FrmVerDetalleContrato_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_TBL_CONTRATO_IMPRIMIRBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();
             this.ResumeLayout(false);
 
         }

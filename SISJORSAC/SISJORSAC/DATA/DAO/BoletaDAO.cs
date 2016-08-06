@@ -14,7 +14,7 @@ namespace SISJORSAC.DATA.DAO
     {
         public Object[] AgregarBoleta(Boleta boleta)
         {
-            string cadenaConexion = "server=10.0.2.15;DataBase=BDJORSAC;user=sa;password=BaseDeDatos2015";
+            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -39,7 +39,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_MODALIDAD",boleta.MODALIDAD==null?System.Data.SqlTypes.SqlString.Null:boleta.MODALIDAD.ToUpper()),              
                  DBHelper.MakeParam("@P_OBSERVACION",boleta.OBSERVACION==null?System.Data.SqlTypes.SqlString.Null:boleta.OBSERVACION.ToUpper()),
                  DBHelper.MakeParam("@P_TOTAL",boleta.TOTAL==null?System.Data.SqlTypes.SqlDouble.Null:boleta.TOTAL),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                 id,
                 msj
              };
@@ -100,7 +100,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_MODALIDAD",boleta.MODALIDAD==null?System.Data.SqlTypes.SqlString.Null:boleta.MODALIDAD.ToUpper()),              
                  DBHelper.MakeParam("@P_OBSERVACION",boleta.OBSERVACION==null?System.Data.SqlTypes.SqlString.Null:boleta.OBSERVACION.ToUpper()),
                  DBHelper.MakeParam("@P_TOTAL",boleta.TOTAL==null?System.Data.SqlTypes.SqlDouble.Null:boleta.TOTAL),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                 id,
                 msj
              };
@@ -493,7 +493,7 @@ namespace SISJORSAC.DATA.DAO
 
         public string ActualizarBoleta(Boleta boleta)
         {
-            string cadenaConexion = "server=10.0.2.15;DataBase=BDJORSAC;user=sa;password=BaseDeDatos2015";
+            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
