@@ -5,6 +5,8 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Registro - Guia de Remisión" Height="633.425" Width="989.888"
+                      ResizeMode="NoResize"
+        
         WindowStartupLocation="CenterScreen" Closing="MetroWindow_Closing">
     <Grid Margin="-3,0,2,-2">
 

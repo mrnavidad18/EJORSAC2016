@@ -21,7 +21,7 @@ namespace SISJORSAC.DATA.DAO
         public Object[] AgregarFactura(Factura factura)
         {
 
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=" + VariablesGlobales.MiIp() + ";DataBase=BDJORSAC;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             
             cn.Open();
@@ -54,13 +54,14 @@ namespace SISJORSAC.DATA.DAO
                 SqlParameter[] dbParams = new SqlParameter[]
              {
                 DBHelper.MakeParam("@P_FECHA_EMISION",factura.FECHA_EMISION),
+                DBHelper.MakeParam("@P_NUMERO_CADENA",factura.NUMERO_CADENA),
                 DBHelper.MakeParam("@P_COD_CLI",factura.cliente.COD_CLI ),
                 DBHelper.MakeParam("@P_NRO_GUIA",factura.guiaRemision==null?System.Data.SqlTypes.SqlInt32.Null:factura.guiaRemision.COD_GUIA),
                 DBHelper.MakeParam("@P_MODALIDAD", factura.MODALIDAD==null?System.Data.SqlTypes.SqlString.Null:factura.MODALIDAD.ToUpper()),
                 DBHelper.MakeParam("@P_OBSERVACION", factura.OBSERVACION==null?System.Data.SqlTypes.SqlString.Null:factura.OBSERVACION.ToUpper()),
                 DBHelper.MakeParam("@P_SUB_TOTAL",factura.SUB_TOTAL==null?System.Data.SqlTypes.SqlDouble.Null:factura.SUB_TOTAL),
                 DBHelper.MakeParam("@P_IGV",factura.IGV==null?System.Data.SqlTypes.SqlDouble.Null:factura.IGV ),                     
-                DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),              
+                DBHelper.MakeParam("@P_ESTADO","ACTIVO"),              
                 id,
                 msj
                 
@@ -129,7 +130,7 @@ namespace SISJORSAC.DATA.DAO
                 SqlParameter[] param = new SqlParameter[]
                 {
                       DBHelper.MakeParam("@P_COD_FAC",CodFactura),
-                      DBHelper.MakeParam("@P_ESTADO","DISPONIBLE")
+                      DBHelper.MakeParam("@P_ESTADO","ACTIVO")
                 };
 
                 using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query,param))
@@ -443,7 +444,7 @@ namespace SISJORSAC.DATA.DAO
 
         public Object[] AgregarFacturaConNroFac(Factura factura)
         {
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=" + VariablesGlobales.MiIp() + ";DataBase=BDJORSAC;Integrated Security=True";
 
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
@@ -464,6 +465,7 @@ namespace SISJORSAC.DATA.DAO
                 SqlParameter[] dbParams = new SqlParameter[]
              {
                  DBHelper.MakeParam("@P_NRO_FACTURA",factura.NRO_FACTURA),
+                 DBHelper.MakeParam("@P_NUMERO_CADENA",factura.NUMERO_CADENA),
                  DBHelper.MakeParam("@P_FECHA_EMISION",factura.FECHA_EMISION ),
                 DBHelper.MakeParam("@P_COD_CLI",factura.cliente.COD_CLI ),
                  DBHelper.MakeParam("@P_NRO_GUIA",factura.guiaRemision==null?System.Data.SqlTypes.SqlInt32.Null:factura.guiaRemision.COD_GUIA),                  
@@ -471,7 +473,7 @@ namespace SISJORSAC.DATA.DAO
                 DBHelper.MakeParam("@P_OBSERVACION", factura.OBSERVACION==null?System.Data.SqlTypes.SqlString.Null:factura.OBSERVACION.ToUpper()),
                 DBHelper.MakeParam("@P_SUB_TOTAL",factura.SUB_TOTAL==null?System.Data.SqlTypes.SqlDouble.Null:factura.SUB_TOTAL),
                 DBHelper.MakeParam("@P_IGV",factura.IGV==null?System.Data.SqlTypes.SqlDouble.Null:factura.IGV ),                      
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),              
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),              
                 id,
                 msj
                 

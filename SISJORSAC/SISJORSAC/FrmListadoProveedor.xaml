@@ -5,7 +5,8 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Listado de Proveedores" Height="583.88" Width="1205.83"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+       >
     <Grid Margin="0,0,2,4" >
 
         <Label x:Name="lblBusqueda" Content="" HorizontalAlignment="Left" Margin="354,60,0,0" VerticalAlignment="Top" Width="271"/>

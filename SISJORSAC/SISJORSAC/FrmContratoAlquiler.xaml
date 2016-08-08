@@ -6,7 +6,8 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="SISJORSAC.FrmContratoAlquiler"
-        Title="FrmContratoAlquiler" Height="622.425" Width="976.776"
+        Title="Registro - Contrato de alquiler" Height="622.425" Width="976.776" ResizeMode="NoResize"
+       
         WindowStartupLocation="CenterScreen" Closing="MetroWindow_Closing">
     <Grid>
         <Image HorizontalAlignment="Left" Height="148" VerticalAlignment="Top" Width="162" Source="IMG/logo_rep.PNG"/>

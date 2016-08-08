@@ -127,11 +127,11 @@
                     <MenuItem.Icon>
                         <Image Source="IMG/reporte.png"/>
                     </MenuItem.Icon>
-                    <MenuItem x:Name="ItemCliente" Header="Clientes" Click="ItemCliente_Click">
+                    <!--<MenuItem x:Name="ItemCliente" Header="Clientes" Click="ItemCliente_Click">
                         <MenuItem.Icon>
                             <Image Source="IMG/ReporteCliente.png" Height="44" Width="60"/>
                         </MenuItem.Icon>
-                    </MenuItem>
+                    </MenuItem>-->
                     <MenuItem x:Name="ItemReporteFactura" Header="Facturas" Click="ItemReporteFactura_Click" >
                         <MenuItem.Icon>
                             <Image Source="IMG/ReporteCliente.png" Height="44" Width="60"/>

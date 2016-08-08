@@ -5,7 +5,8 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Registrar Proveedores" WindowStartupLocation="CenterScreen"
-        Height="529" Width="711">
+        Height="529" Width="711" ResizeMode="NoResize"
+        >
     <Grid x:Name="Proveedores" Margin="0,0,2,0" >
         <Label Content="Nombre:" HorizontalAlignment="Left" Margin="16,138,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Apellido Paterno:" HorizontalAlignment="Left" Margin="359,137,0,0" VerticalAlignment="Top" FontWeight="Bold"/>

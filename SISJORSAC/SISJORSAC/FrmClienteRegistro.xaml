@@ -5,7 +5,8 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Registrar Clientes"  WindowStartupLocation="CenterScreen" 
-        Height="546" Width="680">
+        Height="546" Width="680" ResizeMode="NoResize"
+        >
     <Grid x:Name="Clientesss" Margin="0,0,2,0" Loaded="Clientesss_Loaded">
         <Image HorizontalAlignment="Left" Margin="17,0,0,383" Width="134" Height="121" VerticalAlignment="Bottom" Stretch="Fill" Source="IMG/logo_rep.PNG"/>
         <Label Content="Nombre:" HorizontalAlignment="Left" Margin="20,138,0,0" VerticalAlignment="Top" FontWeight="Bold"/>

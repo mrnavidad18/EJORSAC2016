@@ -42,7 +42,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_EMAIL",proveedor.EMAIL==null?System.Data.SqlTypes.SqlString.Null:proveedor.EMAIL.ToUpper()),
                  DBHelper.MakeParam("@P_OBSERVACIONES",proveedor.OBSERVACIONES==null?System.Data.SqlTypes.SqlString.Null:proveedor.OBSERVACIONES.ToUpper()),
                  DBHelper.MakeParam("@P_TIPO_PRO",proveedor.TIPO_PRO==null?System.Data.SqlTypes.SqlString.Null:proveedor.TIPO_PRO),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                  msj
              };
 
@@ -208,7 +208,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_EMAIL",proveedor.EMAIL==null?System.Data.SqlTypes.SqlString.Null:proveedor.EMAIL.Trim()),
                  DBHelper.MakeParam("@P_OBSERVACIONES",proveedor.OBSERVACIONES==null?System.Data.SqlTypes.SqlString.Null:proveedor.OBSERVACIONES.ToUpper()),
                  DBHelper.MakeParam("@P_TIPO_PRO",proveedor.TIPO_PRO==null?System.Data.SqlTypes.SqlString.Null:proveedor.TIPO_PRO.Trim()),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                  DBHelper.MakeParam("@P_COD_PROV",proveedor.COD_PROV),               
                  msj
              };

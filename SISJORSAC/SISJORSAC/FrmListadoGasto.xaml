@@ -5,7 +5,8 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Listado de Gastos" Height="651.045" Width="1204.337"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+       >
     <Grid >
 
         <Label x:Name="lblBusqueda" Content="Buscar por Número de Gasto /Nro Doc. Referencia:" HorizontalAlignment="Left" Margin="513,81,0,0" VerticalAlignment="Top" Width="307" FontWeight="Bold"/>

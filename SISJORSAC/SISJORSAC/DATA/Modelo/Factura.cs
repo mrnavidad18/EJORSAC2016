@@ -21,6 +21,7 @@ namespace SISJORSAC.DATA.Modelo
         public double TOTAL { get; set; }
         public string ESTADO { get; set; }
 
+        public string NUMERO_CADENA { get; set; }
         public List<DetalleFactura> DETALLEFACTURA { get; set; }
 
     }

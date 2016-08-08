@@ -30,13 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.ConjuntoDatos = new SISJORSAC.ConjuntoDatos();
             this.SP_TBL_BOLETA_IMPRIMIRBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ConjuntoDatos = new SISJORSAC.ConjuntoDatos();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SP_TBL_BOLETA_IMPRIMIRTableAdapter = new SISJORSAC.ConjuntoDatosTableAdapters.SP_TBL_BOLETA_IMPRIMIRTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_TBL_BOLETA_IMPRIMIRBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).BeginInit();
             this.SuspendLayout();
+            // 
+            // SP_TBL_BOLETA_IMPRIMIRBindingSource
+            // 
+            this.SP_TBL_BOLETA_IMPRIMIRBindingSource.DataMember = "SP_TBL_BOLETA_IMPRIMIR";
+            this.SP_TBL_BOLETA_IMPRIMIRBindingSource.DataSource = this.ConjuntoDatos;
+            // 
+            // ConjuntoDatos
+            // 
+            this.ConjuntoDatos.DataSetName = "ConjuntoDatos";
+            this.ConjuntoDatos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -50,16 +60,6 @@
             this.reportViewer1.Size = new System.Drawing.Size(738, 556);
             this.reportViewer1.TabIndex = 0;
             // 
-            // ConjuntoDatos
-            // 
-            this.ConjuntoDatos.DataSetName = "ConjuntoDatos";
-            this.ConjuntoDatos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // SP_TBL_BOLETA_IMPRIMIRBindingSource
-            // 
-            this.SP_TBL_BOLETA_IMPRIMIRBindingSource.DataMember = "SP_TBL_BOLETA_IMPRIMIR";
-            this.SP_TBL_BOLETA_IMPRIMIRBindingSource.DataSource = this.ConjuntoDatos;
-            // 
             // SP_TBL_BOLETA_IMPRIMIRTableAdapter
             // 
             this.SP_TBL_BOLETA_IMPRIMIRTableAdapter.ClearBeforeFill = true;
@@ -71,10 +71,11 @@
             this.ClientSize = new System.Drawing.Size(738, 556);
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmVerDetalleBoleta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmVerDetalleBoleta";
             this.Load += new System.EventHandler(this.FrmVerDetalleBoleta_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_TBL_BOLETA_IMPRIMIRBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();
             this.ResumeLayout(false);
 
         }

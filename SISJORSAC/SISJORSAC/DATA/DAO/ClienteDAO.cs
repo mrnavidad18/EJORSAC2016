@@ -39,7 +39,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_EMAIL",cliente.EMAIL==null?System.Data.SqlTypes.SqlString.Null:cliente.EMAIL.ToUpper()),
                  DBHelper.MakeParam("@P_OBSERVACIONES",cliente.OBSERVACIONES==null?System.Data.SqlTypes.SqlString.Null:cliente.OBSERVACIONES.ToUpper()),
                  DBHelper.MakeParam("@P_TIPO_CLIE",cliente.TIPO_CLIE==null?System.Data.SqlTypes.SqlString.Null:cliente.TIPO_CLIE),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                  msj
              };
 
@@ -210,7 +210,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_EMAIL",cliente.EMAIL==null?System.Data.SqlTypes.SqlString.Null:cliente.EMAIL.ToUpper()),
                  DBHelper.MakeParam("@P_OBSERVACIONES",cliente.OBSERVACIONES==null?System.Data.SqlTypes.SqlString.Null:cliente.OBSERVACIONES.ToUpper()),
                  DBHelper.MakeParam("@P_TIPO_CLIE",cliente.TIPO_CLIE==null?System.Data.SqlTypes.SqlString.Null:cliente.TIPO_CLIE),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                  msj
              };
                 salidas = DBHelper.ExecuteProcedure(query, dbParams);

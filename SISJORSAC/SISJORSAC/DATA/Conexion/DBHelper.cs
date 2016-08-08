@@ -10,7 +10,8 @@ namespace SISJORSAC.DATA.Conexion
 {
     public class DBHelper
     {
-        private static string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+
+        private static string cadenaConexion = "server=" + VariablesGlobales.MiIp() + ";DataBase=BDJORSAC;Integrated Security=True";
 
         public static SqlParameter MakeParam(string paramName,object objValue)
         {

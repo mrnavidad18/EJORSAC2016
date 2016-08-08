@@ -30,7 +30,7 @@ namespace SISJORSAC
         {
             InitializeComponent();
             txtBusqueda.Focus();
-            ListadoContratoCparametros("", "DISPONIBLE");
+            ListadoContratoCparametros("", "ACTIVO");
         }
 
         private void txtBusqueda_KeyDown(object sender, KeyEventArgs e)
@@ -39,14 +39,14 @@ namespace SISJORSAC
             {
                 string p_busqueda = txtBusqueda.Text;
                 dgvListadoContrato.Columns.Clear();
-                ListadoContratoCparametros(p_busqueda, "DISPONIBLE");
+                ListadoContratoCparametros(p_busqueda, "ACTIVO");
             }
         }
         private void ListadoContratoCparametros(string p_Busqueda, string estado)
         {
             var listadoContrato = contratoDAO.listarContrato(p_Busqueda, estado);
             dgvListadoContrato.ItemsSource = listadoContrato;
-            if (estado.Equals("DISPONIBLE"))
+            if (estado.Equals("ACTIVO"))
             {
                 DataGridTextColumn columna = new DataGridTextColumn();
                 columna.Header = "Nº de Contrato";

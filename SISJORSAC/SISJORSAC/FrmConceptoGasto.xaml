@@ -5,7 +5,8 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Registrar Concepto Gasto" Height="184.395" Width="482.03"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        >
     <Grid>
         <TextBox x:Name="txtConceptoGasto" HorizontalAlignment="Left" Height="23" Margin="133,16,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="323"/>
         <Label Content="Concepto Gasto:" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top"/>

@@ -16,7 +16,7 @@ namespace SISJORSAC.DATA.DAO
     {
         public Object[] Agregar(Gasto gasto)
         {
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=" + VariablesGlobales.MiIp() + ";DataBase=BDJORSAC;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -39,7 +39,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_NRO_DOC_REF",gasto.NRO_DOC_REF),
                  DBHelper.MakeParam("@P_MONEDA",gasto.MONEDA.ToUpper()),
                  DBHelper.MakeParam("@P_TOTAL",gasto.TOTAL),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),                            
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),                            
                 id,
                 msj
                 };

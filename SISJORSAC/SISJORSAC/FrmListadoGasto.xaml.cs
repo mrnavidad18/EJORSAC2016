@@ -31,7 +31,7 @@ namespace SISJORSAC
         {
             InitializeComponent();
             txtBusqueda.Focus();
-            ListadoGastoCparametros("", "DISPONIBLE");
+            ListadoGastoCparametros("", "ACTIVO");
             dgvListadoDetalleGasto.Visibility = Visibility.Hidden;
         }
 
@@ -43,7 +43,7 @@ namespace SISJORSAC
             {
                 string p_busqueda = txtBusqueda.Text;
                 dgvListadoGasto.Columns.Clear();
-                ListadoGastoCparametros(p_busqueda, "DISPONIBLE");
+                ListadoGastoCparametros(p_busqueda, "ACTIVO");
                 dgvListadoDetalleGasto.Visibility = Visibility.Hidden;
             }
         }
@@ -51,7 +51,7 @@ namespace SISJORSAC
         {
             var listadoGasto = gastoDAO.listarGasto(p_Busqueda, estado);
             dgvListadoGasto.ItemsSource = listadoGasto;
-            if (estado.Equals("DISPONIBLE"))
+            if (estado.Equals("ACTIVO"))
             {
                 DataGridTextColumn columna = new DataGridTextColumn();
                 columna.Header = "Nº de Gasto";

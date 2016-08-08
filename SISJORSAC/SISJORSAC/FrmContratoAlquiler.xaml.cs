@@ -48,6 +48,7 @@ namespace SISJORSAC
             this.txtFechaEmision.Text = DateTime.Now.ToString();
             ListarServicios();
             ListarUsuarios();
+            VariablesGlobales.listaDetallesContrato.Clear();
 
             if (VariablesGlobales.ClickFacturaContrato)
             {
@@ -139,7 +140,7 @@ namespace SISJORSAC
         private void ListarServicios()
         {
 
-            var listaServicios = servicioDAO.listarServicio("DISPONIBLE","");
+            var listaServicios = servicioDAO.listarServicio("ACTIVO","");
             this.cboServicio.ItemsSource = listaServicios;
             this.cboServicio.DisplayMemberPath = "DESCRIPCION";
             this.cboServicio.SelectedValuePath = "COD_SERV";

@@ -11,13 +11,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using MahApps.Metro.Behaviours;
 
 namespace SISJORSAC
 {
     /// <summary>
     /// Lógica de interacción para FrmReporteFacturas.xaml
     /// </summary>
-    public partial class FrmReporteFacturas : Window
+    public partial class FrmReporteFacturas : MetroWindow
     {
         public FrmReporteFacturas()
         {
@@ -30,10 +33,10 @@ namespace SISJORSAC
 
             DateTime fechaHasta = Convert.ToDateTime(this.txtFechaHasta.SelectedDate);
 
-            FrnReporteFacturas reporteFacturas = new FrnReporteFacturas();
+            FrnReporFacturas reporteFacturas = new FrnReporFacturas();
 
-            reporteFacturas.FechaDe = fechaDe;
-            reporteFacturas.FechaHasta = fechaHasta;
+            reporteFacturas.fechaDe = fechaDe;
+            reporteFacturas.fechaHasta = fechaHasta;
 
             reporteFacturas.ShowDialog();
 

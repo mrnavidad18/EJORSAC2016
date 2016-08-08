@@ -28,7 +28,7 @@ namespace SISJORSAC
         public FrmListadoServicios()
         {
             InitializeComponent();
-            ListarServicios("DISPONIBLE","");
+            ListarServicios("ACTIVO","");
            
         }
 
@@ -36,7 +36,7 @@ namespace SISJORSAC
         {
             var listadoServicios = serviciosDAO.listarServicio(estado, p_busqueda);
             dgvListadoServicios.ItemsSource = listadoServicios;
-            if (estado.Equals("DISPONIBLE"))
+            if (estado.Equals("ACTIVO"))
             {
                 DataGridTextColumn columna = new DataGridTextColumn();
                 columna.Width = 600;
@@ -73,7 +73,7 @@ namespace SISJORSAC
             {
                 await this.ShowMessageAsync("Información", "No se puede actualizar esta fila");
                 dgvListadoServicios.Columns.Clear();
-                ListarServicios("DISPONIBLE","");
+                ListarServicios("ACTIVO","");
                 return;
             }
 
@@ -131,12 +131,12 @@ namespace SISJORSAC
                 string resul = serviciosDAO.Actualizar(servicio);
                 await this.ShowMessageAsync("Correcto", resul);
                 dgvListadoServicios.Columns.Clear();
-                ListarServicios("DISPONIBLE","");
+                ListarServicios("ACTIVO","");
             }
             else
             {
                 dgvListadoServicios.Columns.Clear();
-                ListarServicios("DISPONIBLE","");
+                ListarServicios("ACTIVO","");
             }
         }
 
@@ -172,7 +172,7 @@ namespace SISJORSAC
             {
                 string p_busqueda= txtBusqueda.Text;                
                 dgvListadoServicios.Columns.Clear();
-                ListarServicios("DISPONIBLE", p_busqueda);
+                ListarServicios("ACTIVO", p_busqueda);
             }
         }
 

@@ -14,7 +14,7 @@ namespace SISJORSAC.DATA.DAO
     {
         public Object[] AgregarBoleta(Boleta boleta)
         {
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=" + VariablesGlobales.MiIp() + ";DataBase=BDJORSAC;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -74,7 +74,7 @@ namespace SISJORSAC.DATA.DAO
 
         public Object[] AgregarBoletaConNroBoleta(Boleta boleta)
         {
-            string cadenaConexion = "server=10.0.2.15;DataBase=BDJORSAC;user=sa;password=BaseDeDatos2015";
+            string cadenaConexion = "server=" + VariablesGlobales.MiIp() + ";DataBase=BDJORSAC;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -189,7 +189,7 @@ namespace SISJORSAC.DATA.DAO
                 SqlParameter[] param = new SqlParameter[]
                 {
                       DBHelper.MakeParam("@P_COD_BOL",CodBoleta),
-                      DBHelper.MakeParam("@P_ESTADO","DISPONIBLE")
+                      DBHelper.MakeParam("@P_ESTADO","ACTIVO")
                 };
 
                 using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, param))
@@ -493,7 +493,7 @@ namespace SISJORSAC.DATA.DAO
 
         public string ActualizarBoleta(Boleta boleta)
         {
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=" + VariablesGlobales.MiIp() + ";DataBase=BDJORSAC;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -514,7 +514,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_MODALIDAD",boleta.MODALIDAD),              
                  DBHelper.MakeParam("@P_OBSERVACION",boleta.OBSERVACION),
                  DBHelper.MakeParam("@P_TOTAL",boleta.TOTAL),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                  DBHelper.MakeParam("@P_COD_BOL",boleta.NRO_CP),
                  DBHelper.MakeParam("@P_NRO_BOLETA",boleta.NRO_BOLETA),
                  msj

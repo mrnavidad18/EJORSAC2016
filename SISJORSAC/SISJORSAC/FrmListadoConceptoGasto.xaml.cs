@@ -28,7 +28,7 @@ namespace SISJORSAC
         public FrmListadoConceptoGasto()
         {
             InitializeComponent();
-            ListarConceptoGasto("","DISPONIBLE");
+            ListarConceptoGasto("","ACTIVO");
             txtBusqueda.Focus();
         }
 
@@ -36,7 +36,7 @@ namespace SISJORSAC
         {
             var listadoConcepto = conceptoGastoDAO.listarConceptoGasto(p_busqueda,estado);
             dgvListadoConceptoGasto.ItemsSource = listadoConcepto;
-            if (estado.Equals("DISPONIBLE"))
+            if (estado.Equals("ACTIVO"))
             {
                 DataGridTextColumn columna = new DataGridTextColumn();
                 columna.Width = 950;
@@ -61,7 +61,7 @@ namespace SISJORSAC
             {
                 await this.ShowMessageAsync("Información", "No se puede actualizar esta fila");
                 dgvListadoConceptoGasto.Columns.Clear();
-                ListarConceptoGasto("","DISPONIBLE");
+                ListarConceptoGasto("","ACTIVO");
                 return;
             }
 
@@ -89,12 +89,12 @@ namespace SISJORSAC
                 string resul = conceptoGastoDAO.Actualizar(conceptoGasto);
                 await this.ShowMessageAsync("Correcto", resul);
                 dgvListadoConceptoGasto.Columns.Clear();
-                ListarConceptoGasto("","DISPONIBLE");
+                ListarConceptoGasto("","ACTIVO");
             }
             else
             {
                 dgvListadoConceptoGasto.Columns.Clear();
-                ListarConceptoGasto("","DISPONIBLE");
+                ListarConceptoGasto("","ACTIVO");
             }
         }
 
@@ -129,7 +129,7 @@ namespace SISJORSAC
             {
                 string p_busqueda = txtBusqueda.Text;
                 dgvListadoConceptoGasto.Columns.Clear();
-                ListarConceptoGasto(p_busqueda, "DISPONIBLE");
+                ListarConceptoGasto(p_busqueda, "ACTIVO");
             }
         }
 

@@ -30,24 +30,24 @@ namespace SISJORSAC.Reportes
 
         private async void btnReportCliente_Click(object sender, RoutedEventArgs e)
         {
-            ReporteClientesNaturales rn = new ReporteClientesNaturales();
-            ReporteClientesJuridicos rj = new ReporteClientesJuridicos();
+            //ReporteClientesNaturales rn = new ReporteClientesNaturales();
+            //ReporteClientesJuridicos rj = new ReporteClientesJuridicos();
+            //int op = cboRTipoCiente.SelectedIndex;
+            //if (op == 0)
+            //{
+            //    await this.ShowMessageAsync("Fallo", "Elija una Opcion");
+            //}
 
-            int op = cboRTipoCiente.SelectedIndex;
-            if (op == 0)
-            {
-                await this.ShowMessageAsync("Fallo", "Elija una Opcion");
-            }
+            //if (op == 1)
+            //{
+            //    rn.ShowDialog();
+            //}
 
-            if (op == 1)
-            {
-                rn.ShowDialog();
-            }
+            //if (op == 2)
+            //{
+            //    rj.ShowDialog();
+            //}
 
-            if (op == 2)
-            {
-                rj.ShowDialog();
-            }
         }
 
         private void btnReportCliente_Loaded(object sender, RoutedEventArgs e)

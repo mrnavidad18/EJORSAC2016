@@ -41,7 +41,7 @@ namespace SISJORSAC
             string nroGuia =guiaDAO.traerUltimoNroGuia();
             llenarDepartamentos();
             this.txtNroGuiaRemision.Text = nroGuia;
-            Listarservicios("DISPONIBLE");
+            Listarservicios("ACTIVO");
             this.cboCliente.IsEnabled = false;
 
             if (VariablesGlobales.ClickFacturaGuia)

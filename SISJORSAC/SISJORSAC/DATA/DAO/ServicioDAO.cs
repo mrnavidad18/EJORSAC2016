@@ -27,7 +27,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_PRECIO",servicio.PRECIO==null?System.Data.SqlTypes.SqlDouble.Null:servicio.PRECIO ),               
                  DBHelper.MakeParam("@P_TIPO_MONE",servicio.TIPO_MONE==null?System.Data.SqlTypes.SqlString.Null:servicio.TIPO_MONE.ToUpper()),
                  DBHelper.MakeParam("@P_PESO",servicio.PESO==null?System.Data.SqlTypes.SqlDouble.Null:servicio.PESO ),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                  msj
              };
 
@@ -129,7 +129,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_PRECIO",servicio.PRECIO==null?System.Data.SqlTypes.SqlDouble.Null:servicio.PRECIO ),               
                  DBHelper.MakeParam("@P_TIPO_MONE",servicio.TIPO_MONE==null?System.Data.SqlTypes.SqlString.Null:servicio.TIPO_MONE.ToUpper()),
                  DBHelper.MakeParam("@P_PESO",servicio.PESO==null?System.Data.SqlTypes.SqlDouble.Null:servicio.PESO ),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                  DBHelper.MakeParam("@P_COD_SERV",servicio.COD_SERV),
                  msj
              };

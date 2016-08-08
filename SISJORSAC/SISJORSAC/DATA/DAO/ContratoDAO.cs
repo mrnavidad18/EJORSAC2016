@@ -15,7 +15,7 @@ namespace SISJORSAC.DATA.DAO
 
         public Object[] Agregar(Contrato contrato)
         {
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=" + VariablesGlobales.MiIp() + ";DataBase=BDJORSAC;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -50,7 +50,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_RECIBO",contrato.RECIBO==null?System.Data.SqlTypes.SqlString.Null:contrato.RECIBO),
                  DBHelper.MakeParam("@P_IGV",contrato.IGV==null?System.Data.SqlTypes.SqlDouble.Null:contrato.IGV),
                  DBHelper.MakeParam("@P_SUBTOTAL",contrato.SUBTOTAL==null?System.Data.SqlTypes.SqlDouble.Null:contrato.SUBTOTAL),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),                             
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),                             
                 id,
                 msj
              };
@@ -262,7 +262,7 @@ namespace SISJORSAC.DATA.DAO
 
         public Object[] AgregarConNroContrato(Contrato contrato)
         {
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=" + VariablesGlobales.MiIp() + ";DataBase=BDJORSAC;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -298,7 +298,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_RECIBO",contrato.RECIBO==null?System.Data.SqlTypes.SqlString.Null:contrato.RECIBO),
                  DBHelper.MakeParam("@P_IGV",contrato.IGV==null?System.Data.SqlTypes.SqlDouble.Null:contrato.IGV),
                  DBHelper.MakeParam("@P_SUBTOTAL",contrato.SUBTOTAL==null?System.Data.SqlTypes.SqlDouble.Null:contrato.SUBTOTAL),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),                             
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),                             
                 id,
                 msj
              };

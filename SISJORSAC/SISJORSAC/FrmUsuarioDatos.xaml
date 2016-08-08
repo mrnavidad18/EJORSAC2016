@@ -5,7 +5,8 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Actualiza Tu Información" Height="269" Width="690"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        >
     <Grid Name="UsuarioContraseña" Margin="0,0,-8,-1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="118*"/>

@@ -30,7 +30,7 @@ namespace SISJORSAC
         {
             InitializeComponent();
             txtBusqueda.Focus();
-            ListarGuiaRemisionCparametros("", "DISPONIBLE");
+            ListarGuiaRemisionCparametros("", "ACTIVO");
         }
         private void txtBusqueda_KeyDown(object sender, KeyEventArgs e)
         {
@@ -38,7 +38,7 @@ namespace SISJORSAC
             {
                 string p_busqueda = txtBusqueda.Text;
                 dgvListadoGuia.Columns.Clear();
-                ListarGuiaRemisionCparametros(p_busqueda, "DISPONIBLE");
+                ListarGuiaRemisionCparametros(p_busqueda, "ACTIVO");
             }
 
         }
@@ -46,7 +46,7 @@ namespace SISJORSAC
         {
             var listadoGuiaRemision = guiaDAO.listarGuiaRemision(p_Busqueda,estado);
             dgvListadoGuia.ItemsSource = listadoGuiaRemision;
-            if (estado.Equals("DISPONIBLE"))
+            if (estado.Equals("ACTIVO"))
             {
                 DataGridTextColumn columna = new DataGridTextColumn();               
                 columna.Header = "Nº de Guia";

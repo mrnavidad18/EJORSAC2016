@@ -15,7 +15,7 @@ namespace SISJORSAC.DATA.DAO
 
         public Object[] Agregar(GuiaRemision guiaRemision)
         {
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=" + VariablesGlobales.MiIp() + ";DataBase=BDJORSAC;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -51,7 +51,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_DEPARTAMENTO",guiaRemision.DEPARTAMENTO==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.DEPARTAMENTO.ToUpper()),
                  DBHelper.MakeParam("@P_DISTRITO",guiaRemision.DISTRITO==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.DISTRITO.ToUpper()),
                  DBHelper.MakeParam("@P_SITUACION",guiaRemision.SITUACION==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.SITUACION.ToUpper()),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),              
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),              
                 id,
                 msj
              };
@@ -86,7 +86,7 @@ namespace SISJORSAC.DATA.DAO
         }
         public Object[] AgregarConNroGuia(GuiaRemision guiaRemision)
         {
-            string cadenaConexion = "server=YOVANNY\\SQLEXPRESS;DataBase=BDJORSAC;user=sa;password=Developer2016";
+            string cadenaConexion = "server=" + VariablesGlobales.MiIp() + ";DataBase=BDJORSAC;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlTransaction trx = cn.BeginTransaction();
@@ -123,7 +123,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_DEPARTAMENTO",guiaRemision.DEPARTAMENTO==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.DEPARTAMENTO.ToUpper()),
                  DBHelper.MakeParam("@P_DISTRITO",guiaRemision.DISTRITO==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.DISTRITO.ToUpper()),
                  DBHelper.MakeParam("@P_SITUACION",guiaRemision.SITUACION==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.SITUACION.ToUpper()),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),              
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),              
                 id,
                 msj
              };

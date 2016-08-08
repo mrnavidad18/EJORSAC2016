@@ -1,13 +1,2 @@
 C:\Users\Yovanny\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.csprojResolveAssemblyReference.cache
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\PruebasJORSAC.Test.dll
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\PruebasJORSAC.Test.pdb
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\SISJORSAC.exe
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\MahApps.Metro.dll
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\Xceed.Wpf.Toolkit.dll
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\System.Windows.Interactivity.dll
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\SISJORSAC.pdb
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\MahApps.Metro.pdb
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\bin\Debug\MahApps.Metro.xml
 C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.csprojResolveAssemblyReference.cache
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.dll
-C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\PruebasJORSAC.Test\obj\Debug\PruebasJORSAC.Test.pdb

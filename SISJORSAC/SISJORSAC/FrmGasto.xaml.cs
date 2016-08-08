@@ -35,7 +35,7 @@ namespace SISJORSAC
         public FrmGasto()
         {
             InitializeComponent();
-            ListarConceptoGasto("DISPONIBLE");
+            ListarConceptoGasto("ACTIVO");
             txtCantidad.Text = "1";
             this.txtFechaEmision.Text = DateTime.Now.ToString();
             this.txtNroGasto.Text = gastoDAO.ObtenerNroGasto();

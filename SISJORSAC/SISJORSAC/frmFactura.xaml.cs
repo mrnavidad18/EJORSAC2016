@@ -18,6 +18,12 @@ using SISJORSAC.DATA.Modelo;
 using SISJORSAC.DATA.DAO;
 using System.Data.SqlClient;
 
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using SISJORSAC.Reportes;
+using SISJORSAC.DATA.UTIL;
+using System.Drawing.Printing;
+
 namespace SISJORSAC
 {
     /// <summary>
@@ -62,8 +68,25 @@ namespace SISJORSAC
                 ObtenerDatosGuia();
         }
 
-     
-       
+
+
+        private void Imprimir(string numeroFactura)
+        {
+            FrmFacturaImprimirViewer ventana = new FrmFacturaImprimirViewer();
+            ReportDocument doc = new ReportDocument();
+            ParameterField parameter = new ParameterField();
+            ParameterFields parameters = new ParameterFields();
+            ParameterDiscreteValue pdv = new ParameterDiscreteValue();
+            parameter.Name = "@P_NRO_FACTURA";
+            pdv.Value = numeroFactura;
+            parameter.CurrentValues.Add(pdv);
+            parameters.Add(parameter);
+            ventana.crystalReportViewer1.ParameterFieldInfo = parameters;
+            //string fullPath = System.IO.Path.GetFullPath("FacturaImprimir.rpt").Replace("\\bin\\Debug","\\Reportes");
+            doc.Load(@"C:\Program Files\SISJORSAC\Reportes\FacturaImprimir.rpt");
+            ventana.crystalReportViewer1.ReportSource = doc;
+            ventana.ShowDialog();
+        }
 
 
         private  async void btnAgregar_Click(object sender, RoutedEventArgs e)
@@ -78,7 +101,7 @@ namespace SISJORSAC
 
 
                     if (this.chkIgv.IsChecked == false)
-                        igvMonto = subtotal * IGV;
+                        igvMonto =Math.Round(subtotal * IGV,2);
                     else
                         igvMonto = 0;
 
@@ -114,6 +137,8 @@ namespace SISJORSAC
             factura.IGV = igvMonto;
             factura.FECHA_EMISION = DateTime.Now;
             factura.cliente = cliente;
+            NumLetra numLetra = new NumLetra();
+            factura.NUMERO_CADENA=numLetra.Convertir((subtotal+igvMonto).ToString(),true);
             if (this.txtNroGuia.Text == "")
             {
                 factura.guiaRemision = null;
@@ -178,7 +203,7 @@ namespace SISJORSAC
         private void ListarServicios()
         {
 
-            var listaServicios = servicioDAO.listarServicio("DISPONIBLE","");
+            var listaServicios = servicioDAO.listarServicio("ACTIVO","");
             this.cboServicio.ItemsSource = listaServicios;
             this.cboServicio.DisplayMemberPath = "DESCRIPCION";
             this.cboServicio.SelectedValuePath = "COD_SERV";
@@ -216,20 +241,31 @@ namespace SISJORSAC
                     }
                     else
                     {
+                        ImprimirFactura frmimprimir = new ImprimirFactura();
                         if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar esta factura?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
                         {
                             AgregarFactura();
                             string nrofactura = this.txtNroFactura.Text;
-                            ImprimirFactura frmimprimir = new ImprimirFactura();
+                           
                             frmimprimir.nro_factura = nrofactura;
                             await this.ShowMessageAsync(mensaje,"Factura Generada Correctamente");
                             VariablesGlobales.NRO_GUIA_GLOBAL = "";
                             VariablesGlobales.clienteFactura = null;
                             VariablesGlobales.listaDetallesFactura.Clear();
-                            this.Close();
-                            frmimprimir.ShowDialog();
+
+                            if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de IMPRIMIR esta factura?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                            {
+                                Imprimir(nrofactura);
+                                this.Close();
+                            }
+                            else
+                            {
+                                this.Close();
+                            }
                            
                         }
+                       
+                       
                     }
 
                 }
@@ -305,7 +341,7 @@ namespace SISJORSAC
 
                 this.dgvListado.ItemsSource = VariablesGlobales.listaDetallesFactura;
 
-                igvMonto = subtotal * IGV;
+                igvMonto = Math.Round(subtotal * IGV,2);
                 total = subtotal + igvMonto;
 
                 this.txtSubtotal.Text = subtotal.ToString();
@@ -348,7 +384,7 @@ namespace SISJORSAC
         {
             if (this.txtSubtotal.Text == this.txtTotal.Text)
             {
-                igvMonto = subtotal * IGV;
+                igvMonto = Math.Round(subtotal * IGV, 2);
                 total = subtotal + igvMonto;
                 this.txtIgv.Text = igvMonto.ToString();
                 this.txtTotal.Text = total.ToString();
@@ -379,7 +415,7 @@ namespace SISJORSAC
                     subtotal = subtotal + detalle.IMPORTE;
 
                     if (this.chkIgv.IsChecked == false)
-                        igvMonto = subtotal * IGV;
+                        igvMonto = Math.Round(subtotal * IGV, 2);
                     else
                         igvMonto = 0;
                     
@@ -419,7 +455,7 @@ namespace SISJORSAC
                     subtotal = subtotal + detalle.IMPORTE;
 
                     if (this.chkIgv.IsChecked == false)
-                        igvMonto = subtotal * IGV;
+                        igvMonto = Math.Round(subtotal * IGV, 2);
                     else
                         igvMonto = 0;
 
@@ -522,7 +558,7 @@ namespace SISJORSAC
                 item++;
             }
 
-            igvMonto = subtotal * IGV;
+            igvMonto = Math.Round(subtotal * IGV, 2);
             total = subtotal + igvMonto;
 
             this.dgvListado.ItemsSource=VariablesGlobales.listaDetallesFactura;
@@ -565,7 +601,7 @@ namespace SISJORSAC
                 item++;
             }
 
-            igvMonto = subtotal * IGV;
+            igvMonto = Math.Round(subtotal * IGV, 2);
             total = subtotal + igvMonto;
 
             this.dgvListado.ItemsSource = VariablesGlobales.listaDetallesFactura;
@@ -616,7 +652,7 @@ namespace SISJORSAC
                 item++;
             }
 
-            igvMonto = subtotal * IGV;
+            igvMonto = Math.Round(subtotal * IGV, 2);
             total = subtotal + igvMonto;
 
             this.dgvListado.ItemsSource = VariablesGlobales.listaDetallesFactura;

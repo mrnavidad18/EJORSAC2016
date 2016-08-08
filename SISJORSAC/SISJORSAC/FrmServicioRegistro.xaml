@@ -5,7 +5,8 @@
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Registro - Servicios" Height="271" Width="566"
-        WindowStartupLocation="CenterScreen" WindowTitleBrush="#FF633333">
+        WindowStartupLocation="CenterScreen" WindowTitleBrush="#FF633333" ResizeMode="NoResize"
+       >
     <Grid Name="Servicios" Margin="0,0,-8,0">
 
         <Grid.ColumnDefinitions>

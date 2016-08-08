@@ -71,6 +71,7 @@
             this.ClientSize = new System.Drawing.Size(854, 524);
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmVerDetalleContrato";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmVerDetalleContrato";
             this.Load += new System.EventHandler(this.FrmVerDetalleContrato_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SP_TBL_CONTRATO_IMPRIMIRBindingSource)).EndInit();

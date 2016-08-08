@@ -27,7 +27,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_NOMBRE",usuario.Nombre.ToUpper()),              
                  DBHelper.MakeParam("@P_APELLIDOS",usuario.Apellidos.ToUpper()),
                  DBHelper.MakeParam("@P_DNI",usuario.DNI),
-                 DBHelper.MakeParam("@P_ESTADO","DISPONIBLE"),
+                 DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                  msj
              };
                 salidas = DBHelper.ExecuteProcedure(query, dbParams);
