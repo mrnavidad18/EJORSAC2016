@@ -26,9 +26,10 @@
                   >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="NROFACTURA" Header="N° COMP." Binding="{Binding Path=NRO_FACTURA}" IsReadOnly="true"/>
-                <DataGridTextColumn x:Name="RAZONSOCIAL" Header="CLIENTE - RAZON SOCIAL" Binding="{Binding Path=cliente.RAZON_SOCIAL}" IsReadOnly="True" Width="450" />
+                <DataGridTextColumn x:Name="RAZONSOCIAL" Header="CLIENTE - RAZON SOCIAL" Binding="{Binding Path=cliente.RAZON_SOCIAL}" IsReadOnly="True" Width="400" />
                 <DataGridTextColumn x:Name="FECHAEMISION" Header="FECHA EMISION" Binding="{Binding Path=FECHA_EMISION, StringFormat=\{0:dd/MM/yyyy\}}" IsReadOnly="True"  Width="200"/>
-                <DataGridTextColumn x:Name="TOTAL" Header="TOTAL FAC." Binding="{Binding Path=TOTAL}" IsReadOnly="True" Width="200"/>
+                <DataGridTextColumn x:Name="TOTAL" Header="TOTAL FAC." Binding="{Binding Path=TOTAL}" IsReadOnly="True" Width="150"/>
+                <DataGridTextColumn x:Name="ACUENTA" Header="DEBE" Binding="{Binding Path=SALDO}" IsReadOnly="True" Width="150"/>
                 <DataGridTextColumn x:Name="CANCELADO" Header="ESTADO" Binding="{Binding Path=CANCELADO}" IsReadOnly="True" Width="*"/>
 
             </DataGrid.Columns>
@@ -46,9 +47,13 @@
         <Button x:Name="btnLimpiar" Content="Limpiar" HorizontalAlignment="Left" Margin="664,348,0,0" VerticalAlignment="Top" Width="75" Foreground="#FFEEE7E7" Background="#FFF12A2A" FontWeight="Bold" Click="btnLimpiar_Click"/>
         <Button Content="Salir" HorizontalAlignment="Left" Margin="753,348,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Background="#FFF12A2A" FontWeight="Bold" Foreground="White"/>
         <Label Content="Estado:" HorizontalAlignment="Left" Margin="426,59,0,0" VerticalAlignment="Top" Width="62"/>
-        <ComboBox x:Name="cboEstado" HorizontalAlignment="Left" Margin="470,59,0,0" VerticalAlignment="Top" Width="155" SizeChanged="cboEstado_SizeChanged">
+        <ComboBox x:Name="cboEstado" HorizontalAlignment="Left" Margin="470,59,0,0" VerticalAlignment="Top" Width="155" SelectionChanged="cboEstado_SelectionChanged_1">
             <ComboBoxItem Content="CANCELADO"/>
+            <ComboBoxItem Content="TODOS"/>
             <ComboBoxItem Content="PENDIENTE"/>
         </ComboBox>
+        <Button x:Name="btnAgregarPago" Content="Agregar Pago" HorizontalAlignment="Left" Margin="470,349,0,0" VerticalAlignment="Top" Width="168" Click="btnAgregarPago_Click"/>
+        <TextBox x:Name="txtAcuenta" HorizontalAlignment="Left" Height="23" Margin="426,399,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Visibility="Hidden"/>
+        <Button x:Name="btnPagar" Content="Pagar" HorizontalAlignment="Left" Margin="610,396,0,0" VerticalAlignment="Top" Width="75" Click="btnPagar_Click" Visibility="Hidden"/>
     </Grid>
 </Controls:MetroWindow>

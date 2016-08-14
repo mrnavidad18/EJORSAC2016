@@ -516,5 +516,38 @@ namespace SISJORSAC.DATA.DAO
             }
 
         }
+
+        public string ActulizarSaldo(Factura factura)
+        {
+
+            try
+            {
+                string salida = "";
+                string query = "SP_TBL_FACTURA_ACTUALIZAR_SALDO";
+                SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 50);
+                msj.Direction = ParameterDirection.Output;
+
+
+                SqlParameter[] dbParams = new SqlParameter[]
+             {
+                 DBHelper.MakeParam("@P_NRO_FAC",factura.NRO_FACTURA),
+                 DBHelper.MakeParam("@P_SALDO",factura.SALDO),
+                 DBHelper.MakeParam("@P_ACUENTA",factura.ACUENTA),
+                DBHelper.MakeParam("@P_CANCELADO",factura.CANCELADO),
+                msj
+                
+             };
+                salida = DBHelper.ExecuteProcedure(query, dbParams);
+
+                return salida;
+
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+
+        }
     }
 }

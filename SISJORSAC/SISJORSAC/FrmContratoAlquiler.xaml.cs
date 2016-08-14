@@ -16,6 +16,9 @@ using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
 using SISJORSAC.DATA.DAO;
 using SISJORSAC.DATA.Modelo;
+using SISJORSAC.Reportes;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace SISJORSAC
 {
@@ -64,7 +67,23 @@ namespace SISJORSAC
             }
             
         }
-
+        private void Imprimir(string numeroContrato)
+        {
+            FrmContratoImprimirViewer ventana = new FrmContratoImprimirViewer();
+            ReportDocument doc = new ReportDocument();
+            ParameterField parameter = new ParameterField();
+            ParameterFields parameters = new ParameterFields();
+            ParameterDiscreteValue pdv = new ParameterDiscreteValue();
+            parameter.Name = "@P_NRO_CONTRATO";
+            pdv.Value = numeroContrato;
+            parameter.CurrentValues.Add(pdv);
+            parameters.Add(parameter);
+            ventana.crystalReportViewer1.ParameterFieldInfo = parameters;
+            //string fullPath = System.IO.Path.GetFullPath("FacturaImprimir.rpt").Replace("\\bin\\Debug","\\Reportes");
+            doc.Load(@"C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\Reportes\ContratoImprimir.rpt");
+            ventana.crystalReportViewer1.ReportSource = doc;
+            ventana.ShowDialog();
+        }
        
        
 
@@ -162,6 +181,7 @@ namespace SISJORSAC
             detalle.PRECIO = precio;
             detalle.ITEM = item;
             detalle.IMPORTE = cantidad * precio;
+            detalle.DIAS=1;
             VariablesGlobales.listaDetallesContrato.Add(detalle);
 
 
@@ -295,9 +315,47 @@ namespace SISJORSAC
                 int cantidad = Convert.ToInt32(t.Text);
 
                 var detalleContrato = this.dgvListado.SelectedItem as DetalleContrato;
-                var detalleEncontrado = VariablesGlobales.listaDetallesFactura.Find(x => x.IMPORTE == detalleContrato.IMPORTE);
+                var detalleEncontrado = VariablesGlobales.listaDetallesContrato.Find(x => x.IMPORTE == detalleContrato.IMPORTE);
                 detalleEncontrado.CANTIDAD = cantidad;
-                detalleEncontrado.IMPORTE = cantidad * detalleEncontrado.PRECIO;
+                detalleEncontrado.IMPORTE = cantidad * detalleEncontrado.DIAS * detalleEncontrado.PRECIO;
+
+                subtotal = 0;
+                igvMonto = 0;
+                foreach (var detalle in VariablesGlobales.listaDetallesContrato)
+                {
+
+                    subtotal = subtotal + detalle.IMPORTE;
+
+                    if (this.chkIgv.IsChecked == false)
+                        igvMonto = subtotal * IGV;
+                    else
+                        igvMonto = 0;
+
+
+                }
+                total = subtotal + igvMonto;
+                this.txtSubtotal.Text = subtotal.ToString();
+                this.txtIgv.Text = igvMonto.ToString();
+                this.txtTotal.Text = total.ToString();
+                LlenarGrid(VariablesGlobales.listaDetallesContrato);
+
+
+
+
+            }
+        }
+
+        private void Dias_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TextBox t = (TextBox)sender;
+                int dias = Convert.ToInt32(t.Text);
+
+                var detalleContrato = this.dgvListado.SelectedItem as DetalleContrato;
+                var detalleEncontrado = VariablesGlobales.listaDetallesContrato.Find(x => x.ITEM == detalleContrato.ITEM);
+                detalleEncontrado.DIAS = dias;
+                detalleEncontrado.IMPORTE = detalleEncontrado.CANTIDAD * dias * detalleEncontrado.PRECIO;
 
                 subtotal = 0;
                 igvMonto = 0;
@@ -390,12 +448,27 @@ namespace SISJORSAC
                         if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar este contrato?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
                         {
                             AgregarContrato();
-                            await this.ShowMessageAsync(mensaje,"Contrato Generado Correctamente");
-                            VariablesGlobales.NRO_GUIA_GLOBAL = "";
-                            VariablesGlobales.listaDetallesContrato.Clear();
-                            VariablesGlobales.ClickFacturaContrato = false;
+                            if (await this.ShowMessageAsync("Contrato Generado", "¿Desea IMPRIMIR el Contrato?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                            {
+                                Imprimir(this.txtNroContrato.Text);
+                                VariablesGlobales.NRO_GUIA_GLOBAL = "";
+                                VariablesGlobales.listaDetallesContrato.Clear();
+                                VariablesGlobales.ClickFacturaContrato = false;
 
-                            this.Close();
+                                this.Close();
+                            }
+                            else
+                            {
+                                VariablesGlobales.NRO_GUIA_GLOBAL = "";
+                                VariablesGlobales.listaDetallesContrato.Clear();
+                                VariablesGlobales.ClickFacturaContrato = false;
+
+                                this.Close();
+                            }
+                           
+
+                          
+                           
                         }
                     }
 

@@ -15,6 +15,7 @@ namespace SISJORSAC.DATA.Modelo
         public string DIRECCION_OBRA { get; set; }
         public string TRANSPORTE { get; set; }
         public Usuario usuario { get; set; }
+      
         public int TOTAL_DIAS { get; set; }
         public DateTime FECHA_ENTREGA { get; set; }
         public TimeSpan HORA_ENTREGA { get; set; }

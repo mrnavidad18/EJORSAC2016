@@ -17,6 +17,7 @@ namespace SISJORSAC.DATA.Modelo
         public double PRECIO { get; set; }
         public double IMPORTE { get; set; }
         public string ESTADO { get; set; }
+        public int DIAS { get; set; }
 
     }
 }

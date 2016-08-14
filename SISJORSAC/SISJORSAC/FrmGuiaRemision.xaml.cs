@@ -226,15 +226,14 @@ namespace SISJORSAC
 
         private void agregarGuiaRemision()
         {
+            
             GuiaRemision guiaRemision = new GuiaRemision();
             guiaRemision.PTO_PARTIDA = this.txtPtoPartida.Text;
             guiaRemision.PTO_LLEGADA = this.txtptoLlegada.Text;
             guiaRemision.FECHA_EMISION =Convert.ToDateTime(this.txtFechaEmision.Text);
             guiaRemision.cliente = VariablesGlobales.clienteGuia;
-            guiaRemision.VEHICULO_MARCA = this.txtVehiculoMarca.Text;
-            guiaRemision.NONBRE_CONDUCTOR = this.cboChofer.Text;
-            guiaRemision.NRO_CERTIFICADO = this.txtNroCertificado.Text;
-            guiaRemision.NRO_BREVETE = this.txtNroBrevete.Text;
+            guiaRemision.CHOFER = choferDao.obtenerChofer(int.Parse(this.cboChofer.SelectedValue.ToString()));
+            
             //transportista:
             guiaRemision.NOMB_TRANSPORTE = this.txtNombreTransporte.Text;
             guiaRemision.RUC_TRANSPORTE = this.txtRUC.Text.Trim();

@@ -27,6 +27,7 @@ namespace SISJORSAC
         FacturaDAO facturaDao = new FacturaDAO();
         ClienteDAO clienteDao = new ClienteDAO();
         List<Factura> lista = new List<Factura>();
+        Factura factura;
         public FrmListadoFacturas()
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace SISJORSAC
             try
             {
                 lista = facturaDao.listarFacturas(estado,"TODOS");
+                
                 this.dgvListado.ItemsSource = lista;
             }
             catch (Exception ex)
@@ -176,22 +178,77 @@ namespace SISJORSAC
             this.dgvListado.ItemsSource = lista;
         }
 
-        private void cboEstado_SizeChanged(object sender, SizeChangedEventArgs e)
+       
+
+        
+
+        private void cboEstado_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                string estado = this.cboEstado.Text;
-                 var lista = facturaDao.listarFacturas("ACTIVO",estado);
+
+                string estad = ((ComboBoxItem)this.cboEstado.SelectedItem).Content.ToString();
+                var lista = facturaDao.listarFacturas("ACTIVO", estad);
                 this.dgvListado.ItemsSource = lista;
+
+
 
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message,"ERROR");
+                MessageBox.Show(ex.Message, "ERROR");
             }
-            
-
         }
+
+        private  async void btnAgregarPago_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (this.dgvListado.SelectedItem != null)
+            {
+                 factura = this.dgvListado.SelectedItem as Factura;
+                 if (factura.CANCELADO == "PENDIENTE")
+                 {
+                     this.txtAcuenta.Visibility = Visibility.Visible;
+                     this.btnPagar.Visibility = Visibility.Visible;
+                 }
+                 else
+                 {
+                     await this.ShowMessageAsync("ERROR", "Esta factura ya esta cancelada");
+                 }
+            }
+              else
+            {
+                await this.ShowMessageAsync("ERROR","Por favor elija una factura");
+            }
+           
+        }
+
+        private async void btnPagar_Click(object sender, RoutedEventArgs e)
+        {
+          
+            if(this.txtAcuenta.Text.Trim()!="")
+            {
+                double acuenta = double.Parse(this.txtAcuenta.Text);
+                factura.ACUENTA = acuenta;
+                factura.SALDO = factura.SALDO - acuenta;
+                if (factura.SALDO == 0)
+                {
+                    factura.CANCELADO = "CANCELADO";
+                    await this.ShowMessageAsync("AVISO","LA FACTURA HA SIDO CANCELADA");
+                    facturaDao.ActulizarSaldo(factura);
+                }
+                else
+                {
+                    await this.ShowMessageAsync("AVISO", "SE AGREGO UN PAGO DE: " + acuenta);
+                    facturaDao.ActulizarSaldo(factura);
+                }
+                ListarFacturas("ACTIVO");
+                this.txtAcuenta.Visibility = Visibility.Hidden;
+                this.btnPagar.Visibility = Visibility.Hidden;
+            }
+        }
+
+
     }
 }

@@ -133,12 +133,12 @@ namespace SISJORSAC
 
             if (this.chkPendiente.IsChecked==true)
             {
-                factura.CANCELADO = "NO";
+                factura.CANCELADO = "PENDIENTE";
                
             }
             else
             {
-                factura.CANCELADO = "SI";
+                factura.CANCELADO = "CANCELADO";
             }
 
             if(this.txtAcuenta.Text!="")

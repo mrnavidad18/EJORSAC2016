@@ -31,9 +31,8 @@
             <ComboBoxItem Content="$"/>
         </ComboBox>
         <CheckBox x:Name="chkIgv" Content="Sin IGV" HorizontalAlignment="Left" Margin="832,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.21,1.778" Unchecked="chkIgv_Unchecked" Checked="chkIgv_Checked"/>
-        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,299,104,0" Width="845" Height="190" Background="#FFB8B6B6" IsReadOnly="True"
-                  
-			AutoGenerateColumns="False"
+        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,299,104,0" Width="845" Height="190" Background="#FFB8B6B6"
+          AutoGenerateColumns="False"
 			CanUserAddRows="false"
 			SelectionMode="Single"
 			CanUserDeleteRows="True"
@@ -52,6 +51,13 @@
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn x:Name="DESCRIPCION" Header="CONCEPTO DE SERVICIO" Binding="{Binding SERVICIO.DESCRIPCION}" IsReadOnly="True" Width="450" />
+                <DataGridTextColumn x:Name="DIAS" Header="DIAS" Binding="{Binding DIAS}" IsReadOnly="False">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="{x:Type TextBox}">
+                            <EventSetter Event="UIElement.KeyDown" Handler="Dias_KeyDown"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn x:Name="PRECIO" Header="PRECIO UNITARIO" Binding="{Binding PRECIO}" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="IMPORTE" Header="IMPORTE" Binding="{Binding IMPORTE}" IsReadOnly="True" Width="*"/>
 

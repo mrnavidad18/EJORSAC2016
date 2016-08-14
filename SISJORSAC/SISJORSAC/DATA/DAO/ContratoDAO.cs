@@ -100,6 +100,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_ITEM",detalle.ITEM),  
                  DBHelper.MakeParam("@P_CANTIDAD",detalle.CANTIDAD),                               
                  DBHelper.MakeParam("@P_PRECIO",detalle.PRECIO),
+                  DBHelper.MakeParam("@P_DIAS",detalle.DIAS),
                 msj
              };
 
