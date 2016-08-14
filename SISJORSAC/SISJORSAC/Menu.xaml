@@ -38,7 +38,11 @@
                             <Image Source="IMG/ConceptoGastoRegistro.png" Height="44" Width="60"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    
+                    <MenuItem x:Name="itemChoferRegistro" Header="Choferes"  Background="White" Foreground="Black" Click="itemChoferRegistro_Click"    >
+                        <MenuItem.Icon>
+                            <Image Source="IMG/cliente.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Registro" >
                     <MenuItem.ContextMenu>
@@ -73,7 +77,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Consultas" >
+                <MenuItem Header="Consultas"   >
                     <MenuItem.Icon>
                         <Image Source="IMG/consultas.png"/>
                     </MenuItem.Icon>
@@ -118,6 +122,12 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem x:Name="itemListadoGasto" Header="Listado de Gastos" Click="itemListadoGasto_Click" >
+                        <MenuItem.Icon>
+                            <Image Source="IMG/ListadoGasto.png" Height="44" Width="60"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem x:Name="itemListadoChofer" Header="Listado de Choferes" Click="itemListadoChofer_Click" >
                         <MenuItem.Icon>
                             <Image Source="IMG/ListadoGasto.png" Height="44" Width="60"/>
                         </MenuItem.Icon>

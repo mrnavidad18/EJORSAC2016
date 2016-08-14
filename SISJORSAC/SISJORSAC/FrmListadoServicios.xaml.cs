@@ -39,7 +39,7 @@ namespace SISJORSAC
             if (estado.Equals("ACTIVO"))
             {
                 DataGridTextColumn columna = new DataGridTextColumn();
-                columna.Width = 600;
+                columna.Width = 670;
                 columna.Header = "DESCRIPCION";
                 columna.Binding = new Binding("DESCRIPCION");
                 dgvListadoServicios.Columns.Add(columna);
@@ -49,13 +49,17 @@ namespace SISJORSAC
                 columna2.Binding = new Binding("PRECIO");
                 dgvListadoServicios.Columns.Add(columna2);
                 DataGridTextColumn columna3 = new DataGridTextColumn();
-                columna3.Header = "Tipo de Moneda";
-                columna3.Binding = new Binding("TIPO_MONE");
+                columna3.Header = "PESO";
+                columna3.Binding = new Binding("PESO");
                 dgvListadoServicios.Columns.Add(columna3);
                 DataGridTextColumn columna4 = new DataGridTextColumn();
-                columna4.Header = "PESO";
-                columna4.Binding = new Binding("PESO");
-                dgvListadoServicios.Columns.Add(columna4);               
+                columna4.Header = "STOCK";
+                columna4.Binding = new Binding("STOCK");
+                dgvListadoServicios.Columns.Add(columna4);
+                DataGridTextColumn columna5 = new DataGridTextColumn();
+                columna5.Header = "UNIDAD DE MEDIDA";
+                columna5.Binding = new Binding("UNIDAD_MEDIDA");
+                dgvListadoServicios.Columns.Add(columna5);
             }
             else
             {
@@ -79,10 +83,11 @@ namespace SISJORSAC
 
 
             string descripcion = "";
-            double precio = 0;
-            string tipoMoneda = "";
+            string precio = "";
+            string unidad_medida = "";
             string peso = "";
-          
+            int stock = 0;
+            
 
             if (dgvListadoServicios.Columns[0].GetCellContent(row) is TextBox)
             {
@@ -94,28 +99,37 @@ namespace SISJORSAC
             }
             if (dgvListadoServicios.Columns[1].GetCellContent(row) is TextBox)
             {
-                precio =Convert.ToDouble( ((TextBox)dgvListadoServicios.Columns[1].GetCellContent(row)).Text.ToString().Replace(@",","."));                
+                precio = ((TextBox)dgvListadoServicios.Columns[1].GetCellContent(row)).Text;                
             }
             else if (dgvListadoServicios.Columns[1].GetCellContent(row) is TextBlock)
             {
-                precio = Convert.ToDouble(((TextBlock)dgvListadoServicios.Columns[1].GetCellContent(row)).Text.ToString().Replace(@",", "."));                
+                precio =((TextBlock)dgvListadoServicios.Columns[1].GetCellContent(row)).Text;                
             }
             if (dgvListadoServicios.Columns[2].GetCellContent(row) is TextBox)
             {
-                tipoMoneda = ((TextBox)dgvListadoServicios.Columns[2].GetCellContent(row)).Text;
+                peso = ((TextBox)dgvListadoServicios.Columns[2].GetCellContent(row)).Text;              
             }
             else if (dgvListadoServicios.Columns[2].GetCellContent(row) is TextBlock)
             {
-                tipoMoneda = ((TextBlock)dgvListadoServicios.Columns[2].GetCellContent(row)).Text;             
+                peso = ((TextBlock)dgvListadoServicios.Columns[2].GetCellContent(row)).Text;               
             }
             if (dgvListadoServicios.Columns[3].GetCellContent(row) is TextBox)
             {
-                peso = ((TextBox)dgvListadoServicios.Columns[3].GetCellContent(row)).Text;              
+                stock = int.Parse(((TextBox)dgvListadoServicios.Columns[3].GetCellContent(row)).Text);              
             }
             else if (dgvListadoServicios.Columns[3].GetCellContent(row) is TextBlock)
             {
-                peso = ((TextBlock)dgvListadoServicios.Columns[3].GetCellContent(row)).Text;               
+                stock = int.Parse(((TextBlock)dgvListadoServicios.Columns[3].GetCellContent(row)).Text);               
             }
+            if (dgvListadoServicios.Columns[4].GetCellContent(row) is TextBox)
+            {
+                unidad_medida=((TextBox)dgvListadoServicios.Columns[4].GetCellContent(row)).Text;
+            }
+            else if (dgvListadoServicios.Columns[4].GetCellContent(row) is TextBlock)
+            {
+                unidad_medida=((TextBlock)dgvListadoServicios.Columns[4].GetCellContent(row)).Text; 
+            }
+
 
             else
             {
@@ -124,7 +138,8 @@ namespace SISJORSAC
             
             servicio.DESCRIPCION = descripcion;
             servicio.PRECIO = double.Parse(precio.ToString().Replace(@".",","));
-            servicio.TIPO_MONE = tipoMoneda;
+            servicio.STOCK = stock;
+            servicio.UNIDAD_MEDIDA = unidad_medida;
             servicio.PESO = double.Parse(peso.ToString().Replace(@".", ","));                       
             if (await this.ShowMessageAsync("Confirmación", "¿Actualizar este Servicio?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
             {
@@ -175,6 +190,8 @@ namespace SISJORSAC
                 ListarServicios("ACTIVO", p_busqueda);
             }
         }
+
+   
 
 
 

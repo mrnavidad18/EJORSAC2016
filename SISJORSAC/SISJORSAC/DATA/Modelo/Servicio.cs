@@ -15,5 +15,7 @@ namespace SISJORSAC.DATA.Modelo
         public double PESO { get; set; }
         public string ESTADO { get; set; }
 
+        public int STOCK { get; set; }
+        public string UNIDAD_MEDIDA { get; set; }
     }
 }

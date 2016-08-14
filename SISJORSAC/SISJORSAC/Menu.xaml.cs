@@ -164,6 +164,22 @@ namespace SISJORSAC
             reporte.ShowDialog();
         }
 
+        private void itemChoferRegistro_Click(object sender, RoutedEventArgs e)
+        {
+            FrmChoferRegistro FormularioChoferRegisttttro = new FrmChoferRegistro();
+            FormularioChoferRegisttttro.ShowDialog();
+        }
+
+        private void itemListadoChofer_Click(object sender, RoutedEventArgs e)
+        {
+            FrmListadoChoferes listadoChoferes = new FrmListadoChoferes();
+            listadoChoferes.ShowDialog();
+        }
+
+      
+
+       
+
  
 
 

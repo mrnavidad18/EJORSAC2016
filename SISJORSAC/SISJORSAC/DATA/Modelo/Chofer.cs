@@ -13,5 +13,7 @@ namespace SISJORSAC.DATA.Modelo
         public string APELLIDOS { get; set; }
         public string NRO_BREVETE { get; set; }
         public string NOMBRE_COMPLETO { get; set; }
+        public string NRO_CERTIFICADO { get; set; }
+        public string  VEHICULO_MARCA_PLACA { get; set; }
     }
 }

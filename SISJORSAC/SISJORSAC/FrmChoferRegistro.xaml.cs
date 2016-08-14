@@ -20,53 +20,50 @@ using SISJORSAC.DATA.DAO;
 namespace SISJORSAC
 {
     /// <summary>
-    /// Lógica de interacción para FrmServicioRegistro.xaml
+    /// Lógica de interacción para FrmChoferRegistro.xaml
     /// </summary>
-    public partial class FrmServicioRegistro : MetroWindow
+    public partial class FrmChoferRegistro : MetroWindow
     {
-        ServicioDAO serviDAO = new ServicioDAO();
 
-        public FrmServicioRegistro()
+        ChoferDAO choferDAO = new ChoferDAO();
+        public FrmChoferRegistro()
         {
             InitializeComponent();
-            
         }
 
         private async void btnServicio_Click(object sender, RoutedEventArgs e)
         {
 
-            if (txtDescripcion.Text.Trim() != "" && txtPrecio.Text.Trim() != "" && txtPeso.Text.Trim() != ""
-                && txtStock.Text.Trim() != "" && txtUnidadMedida.Text.Trim() !="")
+            if (txtNombres.Text.Trim() != "" && txtApellidos.Text.Trim() != "" && txtNroBrevete.Text.Trim() != ""
+                    && txtNroCertificado.Text.Trim() != "" && txtVehiculoMARCA.Text.Trim() != "")
             {
-                Servicio servicio = new Servicio();
-                servicio.DESCRIPCION = txtDescripcion.Text;
-                servicio.PESO = double.Parse(txtPeso.Text.ToString().Replace(@".", ","));
-                servicio.PRECIO = double.Parse(txtPrecio.Text.ToString().Replace(@".", ","));
-                servicio.STOCK = int.Parse(txtStock.Text.Trim());
-                servicio.UNIDAD_MEDIDA = txtUnidadMedida.Text;
-                string resul = serviDAO.Agregar(servicio);
+                Chofer chofer = new Chofer();
+                chofer.NOMBRES = txtNombres.Text;
+                chofer.APELLIDOS = txtApellidos.Text;
+                chofer.NRO_CERTIFICADO = txtNroCertificado.Text.Trim();
+                chofer.NRO_BREVETE = txtNroBrevete.Text.Trim();
+                chofer.VEHICULO_MARCA_PLACA = txtVehiculoMARCA.Text.ToUpper();
+                string resul = choferDAO.Agregar(chofer);
                 if (resul.Equals("Agregado"))
                 {
-                    await this.ShowMessageAsync(resul, "Servicio : " + servicio.DESCRIPCION + " , agregado con éxito");
+                    await this.ShowMessageAsync(resul, "Chofer : " + chofer.NOMBRES + " , AGREGADO CON ÉXITO");
                 }
                 else
                 {
-                    await this.ShowMessageAsync("Error", "Ocurrió un error al Agregar este servicio.");
+                    await this.ShowMessageAsync("Error", "Ocurrió un error al Agregar este chofer.");
                 }
             }
             else
             {
                 await this.ShowMessageAsync("Error", "Falta llenar algunos campos.");
-            }            
+            }    
         }
-
 
         private void btnLimpiarTodo_Click(object sender, RoutedEventArgs e)
         {
-            limpiarTodo(Servicios);
-            txtDescripcion.Focus();
+            limpiarTodo(GridChofer);
+            txtNombres.Focus();
         }
-
 
         public void limpiarTodo(Grid Formulario)
         {
@@ -87,7 +84,5 @@ namespace SISJORSAC
                 }
             }
         }
-
-
     }
 }

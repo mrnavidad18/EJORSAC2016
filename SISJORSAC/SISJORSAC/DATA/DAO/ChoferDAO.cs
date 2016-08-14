@@ -26,6 +26,8 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_NOMBRES",chofer.NOMBRES.ToUpper()),
                  DBHelper.MakeParam("@P_APELLIDOS",chofer.APELLIDOS.ToUpper()),
                  DBHelper.MakeParam("@P_NRO_BREVETE",chofer.NRO_BREVETE),
+                 DBHelper.MakeParam("@P_NRO_CERTIFICADO",chofer.NRO_CERTIFICADO.ToUpper()),
+                 DBHelper.MakeParam("@P_VEHICULO_MARCA_PLACA",chofer.VEHICULO_MARCA_PLACA.ToUpper()),
                  msj
              };
 
@@ -38,15 +40,18 @@ namespace SISJORSAC.DATA.DAO
            }
 
        }
-       public List<Chofer> Listar()
+       public List<Chofer> Listar(string pBusqueda)
        {
            List<Chofer> lista = new List<Chofer>();
            string query = "SP_TBL_CHOFER_LISTAR";
            try
            {
-               
+               SqlParameter[] dbParams = new SqlParameter[]{
+             
+                DBHelper.MakeParam("@P_BUSQUEDA",pBusqueda)
+                 };
 
-               using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query))
+               using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query,dbParams))
                {
                    if (lector != null && lector.HasRows)
                    {
@@ -59,6 +64,8 @@ namespace SISJORSAC.DATA.DAO
                            chofer.APELLIDOS = lector["APELLIDOS"].ToString();
                            chofer.NRO_BREVETE = lector["NRO_BREVETE"].ToString();
                            chofer.NOMBRE_COMPLETO = lector["NOMBRE_COMPLETO"].ToString();
+                           chofer.NRO_CERTIFICADO = lector["NRO_CERTIFICADO"].ToString();
+                           chofer.VEHICULO_MARCA_PLACA = lector["VEHICULO_MARCA_PLACA"].ToString();
                            lista.Add(chofer); 
                            
                        }
@@ -100,8 +107,8 @@ namespace SISJORSAC.DATA.DAO
                            chofer.APELLIDOS = lector["APELLIDOS"].ToString();
                            chofer.NRO_BREVETE = lector["NRO_BREVETE"].ToString();
                            chofer.NOMBRE_COMPLETO = lector["NOMBRE_COMPLETO"].ToString();
-                           
-
+                           chofer.NRO_CERTIFICADO = lector["NRO_CERTIFICADO"].ToString();
+                           chofer.VEHICULO_MARCA_PLACA = lector["VEHICULO_MARCA_PLACA"].ToString();
                        }
                    }
 
@@ -115,5 +122,36 @@ namespace SISJORSAC.DATA.DAO
            }
 
        }
+
+       public string Actualizar(Chofer chofer)
+       {
+           string salidas;
+
+           string query = "SP_TBL_CHOFER_ACTUALIZAR";
+           SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
+           msj.Direction = ParameterDirection.Output;
+           try
+           {
+               SqlParameter[] dbParams = new SqlParameter[]
+             {
+                 DBHelper.MakeParam("@P_NOMBRES",chofer.NOMBRES.ToUpper()),
+                 DBHelper.MakeParam("@P_APELLIDOS",chofer.APELLIDOS.ToUpper()),
+                 DBHelper.MakeParam("@P_NRO_BREVETE",chofer.NRO_BREVETE),
+                 DBHelper.MakeParam("@P_NRO_CERTIFICADO",chofer.NRO_CERTIFICADO.ToUpper()),
+                 DBHelper.MakeParam("@P_VEHICULO_MARCA_PLACA",chofer.VEHICULO_MARCA_PLACA.ToUpper()),
+                 DBHelper.MakeParam("@P_COD_CHOFER",chofer.COD_CHOFER),
+                 msj
+             };
+
+               salidas = DBHelper.ExecuteProcedure(query, dbParams);
+               return salidas;
+           }
+           catch (Exception)
+           {
+               throw new Exception("Ocurrio un problema al actualizar el  chofer");
+           }
+
+       }
+
     }
 }

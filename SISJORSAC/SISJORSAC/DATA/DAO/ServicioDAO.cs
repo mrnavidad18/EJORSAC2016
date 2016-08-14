@@ -25,12 +25,13 @@ namespace SISJORSAC.DATA.DAO
              {
                  DBHelper.MakeParam("@P_DESCRIPCION",servicio.DESCRIPCION==null?System.Data.SqlTypes.SqlString.Null:servicio.DESCRIPCION.ToUpper() ),
                  DBHelper.MakeParam("@P_PRECIO",servicio.PRECIO==null?System.Data.SqlTypes.SqlDouble.Null:servicio.PRECIO ),               
-                 DBHelper.MakeParam("@P_TIPO_MONE",servicio.TIPO_MONE==null?System.Data.SqlTypes.SqlString.Null:servicio.TIPO_MONE.ToUpper()),
+                 DBHelper.MakeParam("@P_TIPO_MONE","SOLES"),
                  DBHelper.MakeParam("@P_PESO",servicio.PESO==null?System.Data.SqlTypes.SqlDouble.Null:servicio.PESO ),
+                 DBHelper.MakeParam("@P_STOCK",servicio.STOCK==null?System.Data.SqlTypes.SqlInt32.Null:servicio.STOCK ),
+                 DBHelper.MakeParam("@P_UNIDAD_MEDIDA",servicio.UNIDAD_MEDIDA==null?System.Data.SqlTypes.SqlString.Null:servicio.UNIDAD_MEDIDA+" "+"UNIDADES."),
                  DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                  msj
              };
-
                 salidas = DBHelper.ExecuteProcedure(query, dbParams);
                 return salidas;
             }
@@ -64,6 +65,8 @@ namespace SISJORSAC.DATA.DAO
                             servicio.PRECIO=double.Parse(lector["PRECIO"].ToString());                            
                             servicio.TIPO_MONE=lector["TIPO_MONE"].ToString();
                             servicio.PESO=double.Parse(lector["PESO"].ToString());
+                            servicio.STOCK = int.Parse(lector["STOCK"].ToString());
+                            servicio.UNIDAD_MEDIDA = lector["UNIDAD_MEDIDA"].ToString();
                             listarServi.Add(servicio);   
                         }
                     }
@@ -99,6 +102,8 @@ namespace SISJORSAC.DATA.DAO
                             servicio.PRECIO=double.Parse(lector["PRECIO"].ToString());                            
                             servicio.TIPO_MONE=lector["TIPO_MONE"].ToString();
                             servicio.PESO=double.Parse(lector["PESO"].ToString());
+                            servicio.STOCK = int.Parse(lector["STOCK"].ToString());
+                            servicio.UNIDAD_MEDIDA = lector["UNIDAD_MEDIDA"].ToString();
                             servicio.ESTADO=lector["ESTADO"].ToString();                            
                         }
                     }
@@ -127,8 +132,10 @@ namespace SISJORSAC.DATA.DAO
              {
                  DBHelper.MakeParam("@P_DESCRIPCION",servicio.DESCRIPCION==null?System.Data.SqlTypes.SqlString.Null:servicio.DESCRIPCION.ToUpper() ),
                  DBHelper.MakeParam("@P_PRECIO",servicio.PRECIO==null?System.Data.SqlTypes.SqlDouble.Null:servicio.PRECIO ),               
-                 DBHelper.MakeParam("@P_TIPO_MONE",servicio.TIPO_MONE==null?System.Data.SqlTypes.SqlString.Null:servicio.TIPO_MONE.ToUpper()),
+                 DBHelper.MakeParam("@P_TIPO_MONE","SOLES"),
                  DBHelper.MakeParam("@P_PESO",servicio.PESO==null?System.Data.SqlTypes.SqlDouble.Null:servicio.PESO ),
+                 DBHelper.MakeParam("@P_STOCK",servicio.STOCK==null?System.Data.SqlTypes.SqlInt32.Null:servicio.STOCK ),
+                 DBHelper.MakeParam("@P_UNIDAD_MEDIDA",servicio.UNIDAD_MEDIDA==null?System.Data.SqlTypes.SqlString.Null:servicio.UNIDAD_MEDIDA.ToUpper()),
                  DBHelper.MakeParam("@P_ESTADO","ACTIVO"),
                  DBHelper.MakeParam("@P_COD_SERV",servicio.COD_SERV),
                  msj
