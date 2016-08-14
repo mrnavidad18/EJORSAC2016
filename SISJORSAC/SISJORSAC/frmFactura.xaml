@@ -52,7 +52,14 @@
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn x:Name="DESCRIPCION" Header="CONCEPTO DE SERVICIO" Binding="{Binding SERVICIO.DESCRIPCION}" IsReadOnly="True" Width="450" />
+                <DataGridTextColumn x:Name="DESCRIPCION" Header="CONCEPTO DE SERVICIO" Binding="{Binding SERVICIO.DESCRIPCION}" IsReadOnly="True" Width="400" />
+                <DataGridTextColumn x:Name="DIAS" Header="DIAS" Binding="{Binding DIAS}" IsReadOnly="False">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="{x:Type TextBox}">
+                            <EventSetter Event="UIElement.KeyDown" Handler="Dias_KeyDown"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn x:Name="PRECIO" Header="PRECIO UNITARIO" Binding="{Binding PRECIO}" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="IMPORTE" Header="IMPORTE" Binding="{Binding IMPORTE}" IsReadOnly="True" Width="*"/>
 
@@ -77,14 +84,17 @@
         <Label Content="Sub Total:" HorizontalAlignment="Left" Margin="712,507,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
         <Label Content="IGV:" HorizontalAlignment="Left" Margin="735,535,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
         <Label Content="Total:" HorizontalAlignment="Left" Margin="725,563,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
-        <Button x:Name="btnGenerarFactura" Content="Generar Factura" HorizontalAlignment="Left" Margin="379,538,0,0" VerticalAlignment="Top" Width="157" Click="btnGenerarFactura_Click" Background="#FF42A5F7" Foreground="White" FontWeight="Bold" Height="45"/>
+        <Button x:Name="btnGenerarFactura" Content="Generar Factura" HorizontalAlignment="Left" Margin="379,554,0,0" VerticalAlignment="Top" Width="157" Click="btnGenerarFactura_Click" Background="#FF42A5F7" Foreground="White" FontWeight="Bold" Height="45"/>
         <TextBox x:Name="txtObservacion" HorizontalAlignment="Left" Height="58" Margin="44,531,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" IsEnabled="False"/>
-        <Button x:Name="txtCancelar" Content="Salir" HorizontalAlignment="Left" Margin="557,538,0,0" VerticalAlignment="Top" Width="103" Height="45" Background="#FFE24030" BorderBrush="#FFAEAEAE" Foreground="White" FontWeight="Bold" Click="txtCancelar_Click"/>
+        <Button x:Name="txtCancelar" Content="Salir" HorizontalAlignment="Left" Margin="557,554,0,0" VerticalAlignment="Top" Width="103" Height="45" Background="#FFE24030" BorderBrush="#FFAEAEAE" Foreground="White" FontWeight="Bold" Click="txtCancelar_Click"/>
         <Button x:Name="btnEliminarDetalle" Content="Eliminar" HorizontalAlignment="Left" Margin="585,191,0,0" VerticalAlignment="Top" Width="75" Click="btnEliminarDetalle_Click" Background="#FFF10E0E" Foreground="#FFF9F3F3" FontWeight="Bold"/>
         <Button x:Name="btnCambiarBoleta" Content="Boleta" HorizontalAlignment="Left" Margin="885,358,0,0" VerticalAlignment="Top" Width="79" Click="btnCambiarBoleta_Click" Background="#FF13BD68" FontWeight="Bold" Foreground="#FFFDFDFD"/>
         <Button x:Name="btnCambiarContrato" Content="Contrato" HorizontalAlignment="Left" Margin="885,392,0,0" VerticalAlignment="Top" Width="79" Click="btnCambiarContrato_Click" Background="#FF13BD68" FontWeight="Bold" Foreground="#FFFDFDFD"/>
         <Button x:Name="btnCambiarGuia" Content="Guía" HorizontalAlignment="Left" Margin="885,426,0,0" VerticalAlignment="Top" Width="79" Click="btnCambiarGuia_Click" Background="#FF13BD68" FontWeight="Bold" Foreground="#FFFDFDFD"/>
         <Label Content="Cambiar a:" HorizontalAlignment="Left" Margin="888,327,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <CheckBox x:Name="chkPendiente" Content="Pendiente" HorizontalAlignment="Left" Margin="390,522,0,0" VerticalAlignment="Top" Width="99" RenderTransformOrigin="1.123,-0.889"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtAcuenta" HorizontalAlignment="Left" Height="23" Margin="515,519,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
 
     </Grid>
 </Controls:MetroWindow>

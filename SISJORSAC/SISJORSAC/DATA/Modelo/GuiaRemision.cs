@@ -10,6 +10,7 @@ namespace SISJORSAC.DATA.Modelo
     {
         public int COD_GUIA { get; set; }
         public string NRO_GUIA { get; set; }
+        public Chofer CHOFER { get; set; }
         public DateTime FECHA_EMISION { get; set; }
         public string PTO_PARTIDA { get; set; }
         public string PTO_LLEGADA { get; set; }

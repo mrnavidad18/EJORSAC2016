@@ -39,7 +39,7 @@ namespace SISJORSAC
         {
             try
             {
-                lista = facturaDao.listarFacturas(estado);
+                lista = facturaDao.listarFacturas(estado,"TODOS");
                 this.dgvListado.ItemsSource = lista;
             }
             catch (Exception ex)
@@ -174,6 +174,24 @@ namespace SISJORSAC
             //this.txtFechaHasta.SelectedDate = null;
             this.dgvListado.ItemsSource = null;
             this.dgvListado.ItemsSource = lista;
+        }
+
+        private void cboEstado_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            try
+            {
+                string estado = this.cboEstado.Text;
+                 var lista = facturaDao.listarFacturas("ACTIVO",estado);
+                this.dgvListado.ItemsSource = lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message,"ERROR");
+            }
+            
+
         }
     }
 }

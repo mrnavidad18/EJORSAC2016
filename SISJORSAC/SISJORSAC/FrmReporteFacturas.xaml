@@ -8,8 +8,17 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <DatePicker x:Name="txtFechaDe" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="78,83,0,0"/>
-        <DatePicker x:Name="txtFechaHasta" HorizontalAlignment="Left" Margin="78,141,0,0" VerticalAlignment="Top"/>
-        <Button Content="Ver Reporte" HorizontalAlignment="Left" Margin="87,210,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click"/>
+        <DatePicker x:Name="txtFechaHasta" HorizontalAlignment="Left" Margin="78,133,0,0" VerticalAlignment="Top"/>
+        <Button Content="Ver Reporte" HorizontalAlignment="Left" Margin="87,189,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click"/>
+        <ComboBox x:Name="cboComprobante" HorizontalAlignment="Left" Margin="78,51,0,0" VerticalAlignment="Top" Width="143">
+            <ComboBoxItem Content="FACTURA"/>
+            <ComboBoxItem Content="BOLETA"/>
+            <ComboBoxItem/>
+            <ComboBoxItem Content="GUIA REMISION"/>
+            <ComboBoxItem Content="CONTRATO ALQUILER"/>
+            <ComboBoxItem Content="EGRESOS"/>
+        </ComboBox>
+        <Label Content="Seleccione Comprobante:" HorizontalAlignment="Left" Margin="81,26,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Controls:MetroWindow>

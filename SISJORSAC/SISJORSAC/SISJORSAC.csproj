@@ -131,9 +131,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConjuntoDatos.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DATA\DAO\ChoferDAO.cs" />
     <Compile Include="DATA\DAO\DetalleBoletaDAO.cs" />
     <Compile Include="DATA\DAO\DetalleFacturaDAO.cs" />
     <Compile Include="DATA\DAO\UbigeoDAO.cs" />
+    <Compile Include="DATA\Modelo\Chofer.cs" />
     <Compile Include="DATA\UTIL\NumLetra.cs" />
     <Compile Include="FrmBoleta.xaml.cs">
       <DependentUpon>FrmBoleta.xaml</DependentUpon>
@@ -210,6 +212,30 @@
     </Compile>
     <Compile Include="Reportes\FrmImprimirContrato.Designer.cs">
       <DependentUpon>FrmImprimirContrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FrmReportBoleta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\FrmReportBoleta.Designer.cs">
+      <DependentUpon>FrmReportBoleta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FrmReportContrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\FrmReportContrato.Designer.cs">
+      <DependentUpon>FrmReportContrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FrmReportGasto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\FrmReportGasto.Designer.cs">
+      <DependentUpon>FrmReportGasto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FrmReportGuia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\FrmReportGuia.Designer.cs">
+      <DependentUpon>FrmReportGuia.cs</DependentUpon>
     </Compile>
     <Compile Include="Reportes\FrnReporFacturas.cs">
       <SubType>Form</SubType>
@@ -435,6 +461,18 @@
     <EmbeddedResource Include="Reportes\FrmImprimirContrato.resx">
       <DependentUpon>FrmImprimirContrato.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\FrmReportBoleta.resx">
+      <DependentUpon>FrmReportBoleta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\FrmReportContrato.resx">
+      <DependentUpon>FrmReportContrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\FrmReportGasto.resx">
+      <DependentUpon>FrmReportGasto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\FrmReportGuia.resx">
+      <DependentUpon>FrmReportGuia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\FrnReporFacturas.resx">
       <DependentUpon>FrnReporFacturas.cs</DependentUpon>
     </EmbeddedResource>
@@ -443,7 +481,11 @@
     <EmbeddedResource Include="Reportes\ImprimirFactura.resx">
       <DependentUpon>ImprimirFactura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ReporteBoleta.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteContrato.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteFactura.rdlc" />
+    <EmbeddedResource Include="Reportes\ReportGasto.rdlc" />
+    <EmbeddedResource Include="Reportes\ReportGuia.rdlc" />
     <EmbeddedResource Include="VISTAPREVIA\FrmVerDetalleBoleta.resx">
       <DependentUpon>FrmVerDetalleBoleta.cs</DependentUpon>
     </EmbeddedResource>

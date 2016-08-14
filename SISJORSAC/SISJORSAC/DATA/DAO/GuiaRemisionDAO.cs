@@ -38,10 +38,10 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_PTO_PARTIDA",guiaRemision.PTO_PARTIDA==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.PTO_PARTIDA.ToUpper()),  
                  DBHelper.MakeParam("@P_PTO_LLEGADA",guiaRemision.PTO_LLEGADA==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.PTO_LLEGADA.ToUpper()), 
                  DBHelper.MakeParam("@P_COD_CLIE",guiaRemision.cliente.COD_CLI==null?System.Data.SqlTypes.SqlInt32.Null:guiaRemision.cliente.COD_CLI),
+                 DBHelper.MakeParam("@P_COD_CHOFER",guiaRemision.CHOFER==null?System.Data.SqlTypes.SqlInt32.Null:guiaRemision.CHOFER.COD_CHOFER),
                  DBHelper.MakeParam("@P_VEHICULO_MARCA",guiaRemision.VEHICULO_MARCA==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.VEHICULO_MARCA.ToUpper()),
                  DBHelper.MakeParam("@P_NRO_CERTIFICADO",guiaRemision.NRO_CERTIFICADO==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.NRO_CERTIFICADO.Trim()),
-                 DBHelper.MakeParam("@P_NOMBRE_CONDUCTOR",guiaRemision.NONBRE_CONDUCTOR==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.NONBRE_CONDUCTOR.ToUpper()),
-                 DBHelper.MakeParam("@P_NRO_BREVETE",guiaRemision.NRO_BREVETE==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.NRO_BREVETE.Trim().ToUpper()),
+                 
                  DBHelper.MakeParam("@P_NOMB_TRANSPORTE",guiaRemision.NOMB_TRANSPORTE==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.NOMB_TRANSPORTE.ToUpper()),
                  DBHelper.MakeParam("@P_RUC_TRANSPORTE",guiaRemision.RUC_TRANSPORTE==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.RUC_TRANSPORTE.Trim()),
                  DBHelper.MakeParam("@P_TIPO_COMPROB",guiaRemision.TIPO_COMPROB==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.TIPO_COMPROB.ToUpper()),
@@ -112,8 +112,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_COD_CLIE",guiaRemision.cliente.COD_CLI==null?System.Data.SqlTypes.SqlInt32.Null:guiaRemision.cliente.COD_CLI),
                  DBHelper.MakeParam("@P_VEHICULO_MARCA",guiaRemision.VEHICULO_MARCA==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.VEHICULO_MARCA.ToUpper()),
                  DBHelper.MakeParam("@P_NRO_CERTIFICADO",guiaRemision.NRO_CERTIFICADO==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.NRO_CERTIFICADO.Trim()),
-                 DBHelper.MakeParam("@P_NOMBRE_CONDUCTOR",guiaRemision.NONBRE_CONDUCTOR==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.NONBRE_CONDUCTOR.ToUpper()),
-                 DBHelper.MakeParam("@P_NRO_BREVETE",guiaRemision.NRO_BREVETE==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.NRO_BREVETE.Trim().ToUpper()),
+                 DBHelper.MakeParam("@P_COD_CHOFER",guiaRemision.CHOFER==null?System.Data.SqlTypes.SqlInt32.Null:guiaRemision.CHOFER.COD_CHOFER),
                  DBHelper.MakeParam("@P_NOMB_TRANSPORTE",guiaRemision.NOMB_TRANSPORTE==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.NOMB_TRANSPORTE.ToUpper()),
                  DBHelper.MakeParam("@P_RUC_TRANSPORTE",guiaRemision.RUC_TRANSPORTE==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.RUC_TRANSPORTE.Trim()),
                  DBHelper.MakeParam("@P_TIPO_COMPROB",guiaRemision.TIPO_COMPROB==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.TIPO_COMPROB.ToUpper()),
@@ -181,6 +180,7 @@ namespace SISJORSAC.DATA.DAO
 
         public List<GuiaRemision> listarGuiaRemision(string p_busqueda,string estado)
         {
+            ChoferDAO choferDao = new ChoferDAO();
             List<GuiaRemision> listaGuiaRemision = new List<GuiaRemision>();
             string query = "SP_TBL_GUIA_REMISION_LISTADOYBUSQUEDA";
             try
@@ -211,8 +211,7 @@ namespace SISJORSAC.DATA.DAO
                             guiaRemision.cliente = cliente;
                             guiaRemision.VEHICULO_MARCA = lector["VEHICULO_MARCA"].ToString();
                             guiaRemision.NRO_CERTIFICADO = lector["NRO_CERTIFICADO"].ToString();
-                            guiaRemision.NONBRE_CONDUCTOR = lector["NOMBRE_CONDUCTOR"].ToString();
-                            guiaRemision.NRO_BREVETE = lector["NRO_BREVETE"].ToString();
+                            guiaRemision.CHOFER = choferDao.obtenerChofer(int.Parse(lector["COD_CHOFER"].ToString()));
                             guiaRemision.NOMB_TRANSPORTE = lector["NOMB_TRANSPORTE"].ToString();
                             guiaRemision.RUC_TRANSPORTE = lector["RUC_TRANSPORTE"].ToString();
                             guiaRemision.TIPO_COMPROB = lector["TIPO_COMPROB"].ToString();
@@ -239,6 +238,7 @@ namespace SISJORSAC.DATA.DAO
 
         public GuiaRemision ObtenerGuiaRemision(int codGuia)
         {
+            ChoferDAO choferDao = new ChoferDAO();
             GuiaRemision guiaRemision = null;
             string query = "SP_TBL_GUIA_REMISION_OBTENERGUIAXCODIGO";
             try
@@ -265,8 +265,7 @@ namespace SISJORSAC.DATA.DAO
                             guiaRemision.cliente = cliente;
                             guiaRemision.VEHICULO_MARCA = lector["VEHICULO_MARCA"].ToString();
                             guiaRemision.NRO_CERTIFICADO = lector["NRO_CERTIFICADO"].ToString();
-                            guiaRemision.NONBRE_CONDUCTOR = lector["NOMBRE_CONDUCTOR"].ToString();
-                            guiaRemision.NRO_BREVETE = lector["NRO_BREVETE"].ToString();
+                            guiaRemision.CHOFER = choferDao.obtenerChofer(int.Parse(lector["COD_CHOFER"].ToString()));
                             guiaRemision.NOMB_TRANSPORTE = lector["NOMB_TRANSPORTE"].ToString();
                             guiaRemision.RUC_TRANSPORTE = lector["RUC_TRANSPORTE"].ToString();
                             guiaRemision.TIPO_COMPROB = lector["TIPO_COMPROB"].ToString();
@@ -294,6 +293,7 @@ namespace SISJORSAC.DATA.DAO
 
         public GuiaRemision ObtenerGuiaRemisionXNroGuia(string nroGuia)
         {
+            ChoferDAO choferDao = new ChoferDAO();
             GuiaRemision guiaRemision = null;
             string query = "SP_TBL_GUIA_REMISION_OBTENERGUIAXNROGUIA";
             try
@@ -320,8 +320,7 @@ namespace SISJORSAC.DATA.DAO
                             guiaRemision.cliente = cliente;
                             guiaRemision.VEHICULO_MARCA = lector["VEHICULO_MARCA"].ToString();
                             guiaRemision.NRO_CERTIFICADO = lector["NRO_CERTIFICADO"].ToString();
-                            guiaRemision.NONBRE_CONDUCTOR = lector["NOMBRE_CONDUCTOR"].ToString();
-                            guiaRemision.NRO_BREVETE = lector["NRO_BREVETE"].ToString();
+                            guiaRemision.CHOFER = choferDao.obtenerChofer(int.Parse(lector["COD_CHOFER"].ToString()));
                             guiaRemision.NOMB_TRANSPORTE = lector["NOMB_TRANSPORTE"].ToString();
                             guiaRemision.RUC_TRANSPORTE = lector["RUC_TRANSPORTE"].ToString();
                             guiaRemision.TIPO_COMPROB = lector["TIPO_COMPROB"].ToString();

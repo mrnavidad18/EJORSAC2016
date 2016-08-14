@@ -29,6 +29,7 @@ namespace SISJORSAC
         ClienteDAO clienteDAO = new ClienteDAO();
         GuiaRemisionDAO guiaDAO = new GuiaRemisionDAO();
         ServicioDAO servicioDAO = new ServicioDAO();
+        ChoferDAO choferDao = new ChoferDAO();
         string mensaje = "";
         string nuevoid = "";
         int item = 1;
@@ -43,7 +44,7 @@ namespace SISJORSAC
             this.txtNroGuiaRemision.Text = nroGuia;
             Listarservicios("ACTIVO");
             this.cboCliente.IsEnabled = false;
-
+            ListarChofer();
             if (VariablesGlobales.ClickFacturaGuia)
             {
                 ObtenerDatosFactura();
@@ -58,7 +59,14 @@ namespace SISJORSAC
             }
         }
 
-       
+
+        private void ListarChofer()
+        {
+            var lista = choferDao.Listar();
+            this.cboChofer.ItemsSource = lista;
+            this.cboChofer.DisplayMemberPath = "NOMBRE_COMPLETO";
+            this.cboChofer.SelectedValuePath = "COD_CHOFER";
+        }
 
        
         private void Listarservicios(string estado)
@@ -224,7 +232,7 @@ namespace SISJORSAC
             guiaRemision.FECHA_EMISION =Convert.ToDateTime(this.txtFechaEmision.Text);
             guiaRemision.cliente = VariablesGlobales.clienteGuia;
             guiaRemision.VEHICULO_MARCA = this.txtVehiculoMarca.Text;
-            guiaRemision.NONBRE_CONDUCTOR = this.txtNombreConductor.Text;
+            guiaRemision.NONBRE_CONDUCTOR = this.cboChofer.Text;
             guiaRemision.NRO_CERTIFICADO = this.txtNroCertificado.Text;
             guiaRemision.NRO_BREVETE = this.txtNroBrevete.Text;
             //transportista:
@@ -491,6 +499,17 @@ namespace SISJORSAC
             FrmBoleta frmBoleta = new FrmBoleta();
             this.Close();
             frmBoleta.ShowDialog();
+        }
+
+        private void cboChofer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboChofer.SelectedIndex != -1)
+            {
+                int codigo = int.Parse(this.cboChofer.SelectedValue.ToString());
+                var chofer = choferDao.obtenerChofer(codigo);
+                this.txtNroBrevete.Text = chofer.NRO_BREVETE;
+            }
+           
         }
 
       

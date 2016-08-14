@@ -30,7 +30,6 @@
         <Label Content="Nº de Certificado:" HorizontalAlignment="Left" Margin="635,215,0,0" VerticalAlignment="Top" Width="107" Grid.Column="1" Height="26"/>
         <Label Content="Nombre del Conductor:" HorizontalAlignment="Left" Margin="158,185,0,0" VerticalAlignment="Top" Width="139" Grid.Column="1" Height="26"/>
         <TextBox x:Name="txtNroCertificado" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="740,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
-        <TextBox x:Name="txtNombreConductor" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="301,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328"/>
         <Label Content="Nº de Brevete:" HorizontalAlignment="Left" Margin="654,185,0,0" VerticalAlignment="Top" Width="139" Grid.Column="1" Height="26"/>
         <TextBox x:Name="txtNroBrevete" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="740,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
         <Label Content="Nombre del Transporte:" HorizontalAlignment="Left" Margin="20,539,0,0" VerticalAlignment="Top" Width="137" Height="26"/>
@@ -106,6 +105,8 @@
         <Label Content="Cambiar a:" HorizontalAlignment="Left" Margin="895,376,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnCambiarContrato" Content="Contrato" HorizontalAlignment="Left" Margin="890,438,0,0" VerticalAlignment="Top" Width="81" Background="#FF13BD68" Foreground="White" FontWeight="Bold"  RenderTransformOrigin="0.707,-0.586" Click="btnCambiarContrato_Click"/>
         <Button x:Name="btnCambiarBoleta" Content="Boleta" HorizontalAlignment="Left" Margin="890,471,0,0" VerticalAlignment="Top" Width="81" Background="#FF13BD68" Foreground="White" FontWeight="Bold" RenderTransformOrigin="0.707,-0.586" Click="btnCambiarBoleta_Click"/>
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cboChofer" HorizontalAlignment="Left" Margin="302,184,0,0" VerticalAlignment="Top" Width="340" SelectionChanged="cboChofer_SelectionChanged"/>
 
 
     </Grid>

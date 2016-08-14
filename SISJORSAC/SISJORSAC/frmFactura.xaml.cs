@@ -129,12 +129,32 @@ namespace SISJORSAC
         private void AgregarFactura()
         {
             Factura factura = new Factura();
-          
 
+
+            if (this.chkPendiente.IsChecked==true)
+            {
+                factura.CANCELADO = "NO";
+               
+            }
+            else
+            {
+                factura.CANCELADO = "SI";
+            }
+
+            if(this.txtAcuenta.Text!="")
+            {
+                factura.ACUENTA = double.Parse(this.txtAcuenta.Text);
+            }
+            else
+            {
+                factura.ACUENTA = 0;
+            }
+            
             factura.MODALIDAD = ((ComboBoxItem)this.cboModalidad.SelectedItem).Content.ToString();
             
             factura.SUB_TOTAL = subtotal;
             factura.IGV = igvMonto;
+            factura.SALDO = total - factura.ACUENTA;
             factura.FECHA_EMISION = DateTime.Now;
             factura.cliente = cliente;
             NumLetra numLetra = new NumLetra();
@@ -180,6 +200,7 @@ namespace SISJORSAC
             detalle.PRECIO = precio;
             detalle.ITEM = item;
             detalle.IMPORTE = cantidad * precio;
+            detalle.DIAS = 1;
             VariablesGlobales.listaDetallesFactura.Add(detalle);
 
       
@@ -445,7 +466,7 @@ namespace SISJORSAC
                 var detalleFactura = this.dgvListado.SelectedItem as DetalleFactura;
                 var detalleEncontrado = VariablesGlobales.listaDetallesFactura.Find(x => x.ITEM == detalleFactura.ITEM);
                 detalleEncontrado.CANTIDAD = cantidad;
-                detalleEncontrado.IMPORTE = cantidad * detalleEncontrado.PRECIO;
+                detalleEncontrado.IMPORTE = cantidad * detalleEncontrado.PRECIO*detalleEncontrado.DIAS;
 
                 subtotal = 0;
                 igvMonto = 0;
@@ -471,6 +492,41 @@ namespace SISJORSAC
 
 
                
+            }
+        }
+
+        private void Dias_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TextBox t = (TextBox)sender;
+                int dias = Convert.ToInt32(t.Text);
+
+                var detalleFactura = this.dgvListado.SelectedItem as DetalleFactura;
+                var detalleEncontrado = VariablesGlobales.listaDetallesFactura.Find(x => x.ITEM == detalleFactura.ITEM);
+                detalleEncontrado.DIAS = dias;
+                detalleEncontrado.IMPORTE = dias * detalleEncontrado.PRECIO*detalleEncontrado.CANTIDAD;
+
+                subtotal = 0;
+                igvMonto = 0;
+                foreach (var detalle in VariablesGlobales.listaDetallesFactura)
+                {
+
+                    subtotal = subtotal + detalle.IMPORTE;
+
+                    if (this.chkIgv.IsChecked == false)
+                        igvMonto = Math.Round(subtotal * IGV, 2);
+                    else
+                        igvMonto = 0;
+
+
+                }
+                total = subtotal + igvMonto;
+                this.txtSubtotal.Text = subtotal.ToString();
+                this.txtIgv.Text = igvMonto.ToString();
+                this.txtTotal.Text = total.ToString();
+                this.dgvListado.ItemsSource = null;
+                dgvListado.ItemsSource = VariablesGlobales.listaDetallesFactura;
             }
         }
 

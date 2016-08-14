@@ -14,6 +14,7 @@ namespace SISJORSAC.DATA.Modelo
         public Servicio SERVICIO { get; set; }
         public Factura FACTURA { get; set; }
         public int CANTIDAD { get; set; }
+        public int DIAS { get; set; }
         public double PRECIO { get; set; }
         public double IMPORTE { get; set; }
         public string ESTADO { get; set; }

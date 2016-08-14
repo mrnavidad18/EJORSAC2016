@@ -21,10 +21,19 @@ namespace SISJORSAC
 
         private void FrnReporFacturas_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'ConjuntoDatos.SP_REPORTE_FACTURAS' Puede moverla o quitarla según sea necesario.
-            this.SP_REPORTE_FACTURASTableAdapter.Fill(this.ConjuntoDatos.SP_REPORTE_FACTURAS,fechaDe,fechaHasta);
+            try
+            {
+                // TODO: esta línea de código carga datos en la tabla 'ConjuntoDatos.SP_REPORTE_FACTURAS' Puede moverla o quitarla según sea necesario.
+                this.SP_REPORTE_FACTURASTableAdapter.Fill(this.ConjuntoDatos.SP_REPORTE_FACTURAS, fechaDe, fechaHasta);
 
-            this.reportViewer1.RefreshReport();
+                this.reportViewer1.RefreshReport();
+            }
+            catch (Exception)
+            {
+
+                this.reportViewer1.RefreshReport();
+            }
+            
         }
     }
 }

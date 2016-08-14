@@ -53,5 +53,15 @@ namespace SISJORSAC.Properties {
                 return ((string)(this["BDJORSACConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=YOVANNY\\SQLEXPRESS;Initial Catalog=BDJORSAC;Integrated Security=True")]
+        public string BDJORSACConnectionString3 {
+            get {
+                return ((string)(this["BDJORSACConnectionString3"]));
+            }
+        }
     }
 }

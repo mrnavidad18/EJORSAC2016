@@ -1,7 +1,7 @@
 ﻿<Controls:MetroWindow x:Class="SISJORSAC.FrmListadoFacturas"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Consulta - Facturas" Height="417.626" Width="849.444"
+        Title="Consulta - Facturas" Height="482.126" Width="1108.944"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
@@ -10,7 +10,7 @@
 
     <Grid Margin="-9,0,9,0">
 
-        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,106,0,0" Width="819" Height="227" Background="#FFB8B6B6"
+        <DataGrid  x:Name="dgvListado" HorizontalAlignment="Right"   VerticalAlignment="Top"  Margin="0,106,10,0" Width="1071" Height="227" Background="#FFB8B6B6"
                   
                    AutoGenerateColumns="False"
                   CanUserAddRows="false"
@@ -27,22 +27,28 @@
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="NROFACTURA" Header="N° COMP." Binding="{Binding Path=NRO_FACTURA}" IsReadOnly="true"/>
                 <DataGridTextColumn x:Name="RAZONSOCIAL" Header="CLIENTE - RAZON SOCIAL" Binding="{Binding Path=cliente.RAZON_SOCIAL}" IsReadOnly="True" Width="450" />
-                <DataGridTextColumn x:Name="FECHAEMISION" Header="FECHA EMISION" Binding="{Binding Path=FECHA_EMISION, StringFormat=\{0:dd/MM/yyyy\}}" IsReadOnly="True"/>
-                <DataGridTextColumn x:Name="TOTAL" Header="TOTAL FAC." Binding="{Binding Path=TOTAL}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn x:Name="FECHAEMISION" Header="FECHA EMISION" Binding="{Binding Path=FECHA_EMISION, StringFormat=\{0:dd/MM/yyyy\}}" IsReadOnly="True"  Width="200"/>
+                <DataGridTextColumn x:Name="TOTAL" Header="TOTAL FAC." Binding="{Binding Path=TOTAL}" IsReadOnly="True" Width="200"/>
+                <DataGridTextColumn x:Name="CANCELADO" Header="ESTADO" Binding="{Binding Path=CANCELADO}" IsReadOnly="True" Width="*"/>
 
             </DataGrid.Columns>
         </DataGrid>
-        <GroupBox Header="Buscar por:" HorizontalAlignment="Left" Margin="22,23,0,0" VerticalAlignment="Top" Width="819" Height="74"/>
-        <DatePicker x:Name="txtFechaHasta" HorizontalAlignment="Left" Margin="691,56,0,0" VerticalAlignment="Top" Width="140" RenderTransformOrigin="-0.207,2.165" IsEnabled="False" SelectedDateChanged="txtFechaHasta_SelectedDateChanged"/>
-        <DatePicker x:Name="txtFechaDe" Margin="511,56,186,0" VerticalAlignment="Top" SelectedDateChanged="txtFechaDe_SelectedDateChanged"/>
-        <Label Content="Fecha de Pago  De:" HorizontalAlignment="Left" Height="31" Margin="403,56,0,0" VerticalAlignment="Top" Width="112"/>
+        <GroupBox Header="Buscar por:" HorizontalAlignment="Left" Margin="22,23,0,0" VerticalAlignment="Top" Width="1071" Height="74"/>
+        <DatePicker x:Name="txtFechaHasta" HorizontalAlignment="Left" Margin="921,56,0,0" VerticalAlignment="Top" Width="140" RenderTransformOrigin="-0.207,2.165" IsEnabled="False" SelectedDateChanged="txtFechaHasta_SelectedDateChanged"/>
+        <DatePicker x:Name="txtFechaDe" Margin="733,56,235,0" VerticalAlignment="Top" SelectedDateChanged="txtFechaDe_SelectedDateChanged"/>
+        <Label Content="Fecha de Pago  De:" HorizontalAlignment="Left" Height="31" Margin="625,56,0,0" VerticalAlignment="Top" Width="112"/>
         <Label Content="Nro. Comp. :" HorizontalAlignment="Left" Margin="39,56,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label Content="Cliente:" HorizontalAlignment="Left" Height="31" Margin="177,56,0,0" VerticalAlignment="Top" Width="59"/>
-        <Label Content="Hasta:" Height="31" Margin="650,56,102,0" VerticalAlignment="Top"/>
+        <Label Content="Hasta:" Height="31" Margin="868,56,187,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtNroComp" HorizontalAlignment="Left" Height="23" Margin="116,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" KeyUp="txtNroComp_KeyUp"/>
         <Button x:Name="btnVerDetalle" Content="Ver Detalle" HorizontalAlignment="Left" Margin="333,349,0,0" VerticalAlignment="Top" Width="109" Click="btnVerDetalle_Click" Background="#FF3BA9F5" Foreground="White" FontWeight="Bold"/>
-        <ComboBox x:Name="cboCliente" HorizontalAlignment="Left" Margin="222,56,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="cboCliente_SelectionChanged" ToolTip="Clientes" Text="dsds"/>
+        <ComboBox x:Name="cboCliente" HorizontalAlignment="Left" Margin="222,56,0,0" VerticalAlignment="Top" Width="199" SelectionChanged="cboCliente_SelectionChanged" ToolTip="Clientes" Text="dsds"/>
         <Button x:Name="btnLimpiar" Content="Limpiar" HorizontalAlignment="Left" Margin="664,348,0,0" VerticalAlignment="Top" Width="75" Foreground="#FFEEE7E7" Background="#FFF12A2A" FontWeight="Bold" Click="btnLimpiar_Click"/>
         <Button Content="Salir" HorizontalAlignment="Left" Margin="753,348,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Background="#FFF12A2A" FontWeight="Bold" Foreground="White"/>
+        <Label Content="Estado:" HorizontalAlignment="Left" Margin="426,59,0,0" VerticalAlignment="Top" Width="62"/>
+        <ComboBox x:Name="cboEstado" HorizontalAlignment="Left" Margin="470,59,0,0" VerticalAlignment="Top" Width="155" SizeChanged="cboEstado_SizeChanged">
+            <ComboBoxItem Content="CANCELADO"/>
+            <ComboBoxItem Content="PENDIENTE"/>
+        </ComboBox>
     </Grid>
 </Controls:MetroWindow>

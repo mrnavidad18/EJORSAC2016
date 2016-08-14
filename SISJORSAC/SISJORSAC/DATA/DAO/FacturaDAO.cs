@@ -56,6 +56,10 @@ namespace SISJORSAC.DATA.DAO
                 DBHelper.MakeParam("@P_FECHA_EMISION",factura.FECHA_EMISION),
                 DBHelper.MakeParam("@P_NUMERO_CADENA",factura.NUMERO_CADENA),
                 DBHelper.MakeParam("@P_COD_CLI",factura.cliente.COD_CLI ),
+                DBHelper.MakeParam("@P_ACUENTA",factura.ACUENTA),
+                DBHelper.MakeParam("@P_SALDO",factura.SALDO ),
+             
+                DBHelper.MakeParam("@P_CANCELADO",factura.CANCELADO),
                 DBHelper.MakeParam("@P_NRO_GUIA",factura.guiaRemision==null?System.Data.SqlTypes.SqlInt32.Null:factura.guiaRemision.COD_GUIA),
                 DBHelper.MakeParam("@P_MODALIDAD", factura.MODALIDAD==null?System.Data.SqlTypes.SqlString.Null:factura.MODALIDAD.ToUpper()),
                 DBHelper.MakeParam("@P_OBSERVACION", factura.OBSERVACION==null?System.Data.SqlTypes.SqlString.Null:factura.OBSERVACION.ToUpper()),
@@ -107,6 +111,7 @@ namespace SISJORSAC.DATA.DAO
 
             SqlParameter[] dbParams = new SqlParameter[]
              {
+                 DBHelper.MakeParam("@P_DIAS",detalle.DIAS),
                  DBHelper.MakeParam("@P_ITEM",detalle.ITEM),
                  DBHelper.MakeParam("@P_COD_SERV",detalle.SERVICIO.COD_SERV),
                  DBHelper.MakeParam("@P_COD_FACTURA",detalle.FACTURA.COD_FAC),  
@@ -175,7 +180,7 @@ namespace SISJORSAC.DATA.DAO
 
         }
 
-        public List<Factura> listarFacturas(string estado)
+        public List<Factura> listarFacturas(string estado,string cancelado)
         {
             try
             {
@@ -187,7 +192,8 @@ namespace SISJORSAC.DATA.DAO
                 string query = "SP_TBL_FACTURA_LISTAR";
                 SqlParameter[] param = new SqlParameter[]
                 {
-                      DBHelper.MakeParam("@P_ESTADO",estado)
+                      DBHelper.MakeParam("@P_ESTADO",estado),
+                      DBHelper.MakeParam("@P_CANCELADO",cancelado)
                 };
 
                 using (SqlDataReader lector = DBHelper.ExecuteDataReaderProcedure(query, param))
@@ -204,6 +210,9 @@ namespace SISJORSAC.DATA.DAO
                             factura.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
                             factura.NRO_FACTURA = lector["NRO_FACTURA"].ToString();
                             factura.MODALIDAD = lector["MODALIDAD"].ToString();
+                            factura.CANCELADO = lector["CANCELADO"].ToString();
+                            factura.ACUENTA = double.Parse(lector["MONTO_ACUENTA"].ToString());
+                            factura.SALDO = double.Parse(lector["SALDO"].ToString());
                             factura.OBSERVACION = lector["OBSERVACION"].ToString();
                             factura.SUB_TOTAL = Convert.ToDouble(lector["SUB_TOTAL"].ToString());
                             factura.IGV = Convert.ToDouble(lector["IGV"].ToString());
@@ -468,6 +477,10 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_NUMERO_CADENA",factura.NUMERO_CADENA),
                  DBHelper.MakeParam("@P_FECHA_EMISION",factura.FECHA_EMISION ),
                 DBHelper.MakeParam("@P_COD_CLI",factura.cliente.COD_CLI ),
+                DBHelper.MakeParam("@P_ACUENTA",factura.ACUENTA),
+               
+                DBHelper.MakeParam("@P_SALDO",factura.SALDO ),
+                DBHelper.MakeParam("@P_CANCELADO",factura.CANCELADO),
                  DBHelper.MakeParam("@P_NRO_GUIA",factura.guiaRemision==null?System.Data.SqlTypes.SqlInt32.Null:factura.guiaRemision.COD_GUIA),                  
                 DBHelper.MakeParam("@P_MODALIDAD", factura.MODALIDAD==null?System.Data.SqlTypes.SqlString.Null:factura.MODALIDAD.ToUpper()),
                 DBHelper.MakeParam("@P_OBSERVACION", factura.OBSERVACION==null?System.Data.SqlTypes.SqlString.Null:factura.OBSERVACION.ToUpper()),
