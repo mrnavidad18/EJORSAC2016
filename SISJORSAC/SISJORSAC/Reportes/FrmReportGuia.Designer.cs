@@ -30,13 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.ConjuntoDatos = new SISJORSAC.ConjuntoDatos();
             this.SP_TBL_GUIA_REPORTEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ConjuntoDatos = new SISJORSAC.ConjuntoDatos();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SP_TBL_GUIA_REPORTETableAdapter = new SISJORSAC.ConjuntoDatosTableAdapters.SP_TBL_GUIA_REPORTETableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_TBL_GUIA_REPORTEBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).BeginInit();
             this.SuspendLayout();
+            // 
+            // SP_TBL_GUIA_REPORTEBindingSource
+            // 
+            this.SP_TBL_GUIA_REPORTEBindingSource.DataMember = "SP_TBL_GUIA_REPORTE";
+            this.SP_TBL_GUIA_REPORTEBindingSource.DataSource = this.ConjuntoDatos;
+            // 
+            // ConjuntoDatos
+            // 
+            this.ConjuntoDatos.DataSetName = "ConjuntoDatos";
+            this.ConjuntoDatos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -50,16 +60,6 @@
             this.reportViewer1.Size = new System.Drawing.Size(773, 406);
             this.reportViewer1.TabIndex = 0;
             // 
-            // ConjuntoDatos
-            // 
-            this.ConjuntoDatos.DataSetName = "ConjuntoDatos";
-            this.ConjuntoDatos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // SP_TBL_GUIA_REPORTEBindingSource
-            // 
-            this.SP_TBL_GUIA_REPORTEBindingSource.DataMember = "SP_TBL_GUIA_REPORTE";
-            this.SP_TBL_GUIA_REPORTEBindingSource.DataSource = this.ConjuntoDatos;
-            // 
             // SP_TBL_GUIA_REPORTETableAdapter
             // 
             this.SP_TBL_GUIA_REPORTETableAdapter.ClearBeforeFill = true;
@@ -72,10 +72,10 @@
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmReportGuia";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmReportGuia";
+            this.Text = "Reporte Guia";
             this.Load += new System.EventHandler(this.FrmReportGuia_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_TBL_GUIA_REPORTEBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();
             this.ResumeLayout(false);
 
         }

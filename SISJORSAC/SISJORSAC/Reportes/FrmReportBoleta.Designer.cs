@@ -72,7 +72,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmReportBoleta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmReportBoleta";
+            this.Text = "Reporte Boleta";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmReportBoleta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SP_TBL_BOLETA_REPORTEBindingSource)).EndInit();

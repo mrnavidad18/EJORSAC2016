@@ -29,36 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.ConjuntoDatos = new SISJORSAC.ConjuntoDatos();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.SP_REPORTE_GASTOSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ConjuntoDatos = new SISJORSAC.ConjuntoDatos();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SP_REPORTE_GASTOSTableAdapter = new SISJORSAC.ConjuntoDatosTableAdapters.SP_REPORTE_GASTOSTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_REPORTE_GASTOSBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).BeginInit();
             this.SuspendLayout();
             // 
-            // reportViewer1
+            // SP_REPORTE_GASTOSBindingSource
             // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.SP_REPORTE_GASTOSBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SISJORSAC.Reportes.ReportGasto.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(782, 441);
-            this.reportViewer1.TabIndex = 0;
+            this.SP_REPORTE_GASTOSBindingSource.DataMember = "SP_REPORTE_GASTOS";
+            this.SP_REPORTE_GASTOSBindingSource.DataSource = this.ConjuntoDatos;
             // 
             // ConjuntoDatos
             // 
             this.ConjuntoDatos.DataSetName = "ConjuntoDatos";
             this.ConjuntoDatos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // SP_REPORTE_GASTOSBindingSource
+            // reportViewer1
             // 
-            this.SP_REPORTE_GASTOSBindingSource.DataMember = "SP_REPORTE_GASTOS";
-            this.SP_REPORTE_GASTOSBindingSource.DataSource = this.ConjuntoDatos;
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource2.Name = "DataSet1";
+            reportDataSource2.Value = this.SP_REPORTE_GASTOSBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SISJORSAC.Reportes.ReportGasto.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.Size = new System.Drawing.Size(782, 441);
+            this.reportViewer1.TabIndex = 0;
             // 
             // SP_REPORTE_GASTOSTableAdapter
             // 
@@ -71,10 +71,11 @@
             this.ClientSize = new System.Drawing.Size(782, 441);
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmReportGasto";
-            this.Text = "FrmReportGasto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Reporte Gasto";
             this.Load += new System.EventHandler(this.FrmReportGasto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_REPORTE_GASTOSBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();
             this.ResumeLayout(false);
 
         }

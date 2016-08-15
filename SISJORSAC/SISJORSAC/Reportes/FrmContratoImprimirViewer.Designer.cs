@@ -51,7 +51,8 @@
             this.ClientSize = new System.Drawing.Size(811, 608);
             this.Controls.Add(this.crystalReportViewer1);
             this.Name = "FrmContratoImprimirViewer";
-            this.Text = "FrmContratoImprimirViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Imprimir Contrato";
             this.ResumeLayout(false);
 
         }

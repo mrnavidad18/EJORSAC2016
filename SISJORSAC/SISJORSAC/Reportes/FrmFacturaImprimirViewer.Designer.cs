@@ -52,7 +52,7 @@
             this.Controls.Add(this.crystalReportViewer1);
             this.Name = "FrmFacturaImprimirViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmFacturaImprimirViewer";
+            this.Text = "Imprimir Factura";
             this.ResumeLayout(false);
 
         }

@@ -73,7 +73,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmVerDetalleGuia";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmVerDetalleGuia";
+            this.Text = "Vista Previa Guia";
             this.Load += new System.EventHandler(this.FrmVerDetalleGuia_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SP_TBL_GUIA_REMISION_IMPRIMIRBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();

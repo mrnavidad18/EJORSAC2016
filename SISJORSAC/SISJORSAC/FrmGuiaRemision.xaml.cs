@@ -16,6 +16,9 @@ using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
 using SISJORSAC.DATA.Modelo;
 using SISJORSAC.DATA.DAO;
+using SISJORSAC.Reportes;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace SISJORSAC
 {
@@ -62,7 +65,23 @@ namespace SISJORSAC
             }
         }
 
-
+        private void Imprimir(string numeroGuia)
+        {
+            FrmGuiaImprimirViewer ventana = new FrmGuiaImprimirViewer();
+            ReportDocument doc = new ReportDocument();
+            ParameterField parameter = new ParameterField();
+            ParameterFields parameters = new ParameterFields();
+            ParameterDiscreteValue pdv = new ParameterDiscreteValue();
+            parameter.Name = "@P_NRO_GUIA";
+            pdv.Value = numeroGuia;
+            parameter.CurrentValues.Add(pdv);
+            parameters.Add(parameter);
+            ventana.crystalReportViewer1.ParameterFieldInfo = parameters;
+            //string fullPath = System.IO.Path.GetFullPath("FacturaImprimir.rpt").Replace("\\bin\\Debug","\\Reportes");
+            doc.Load(@"C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\Reportes\GuiaReporte.rpt");
+            ventana.crystalReportViewer1.ReportSource = doc;
+            ventana.ShowDialog();
+        }
         private void ListarChofer()
         {
             var lista = choferDao.Listar("");
@@ -298,20 +317,29 @@ namespace SISJORSAC
             }
             else
             {
-                if (txtPtoPartida.Text.Trim()!="" && cboChofer.SelectedItem != null && cboTipoTraslado.SelectedItem!=null && cboDistrito.SelectedItem!=null
+                if (txtptoLlegada.Text.Trim()!="" && cboChofer.SelectedItem != null && cboTipoTraslado.SelectedItem!=null && cboDistrito.SelectedItem!=null
                     && cboProvincia.SelectedItem!=null && cboDepartamento.SelectedItem!=null)
                 {
                     if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar esta Guía?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
                     {
                         agregarGuiaRemision();
-                        await this.ShowMessageAsync(mensaje, "Guia generada correctamente");
+                       
                         VariablesGlobales.NRO_GUIA_GLOBAL = "";
                         VariablesGlobales.clienteFactura = null;
                         VariablesGlobales.listaDetallesFactura.Clear();
                         VariablesGlobales.listaDetallesGuia.Clear();
                         VariablesGlobales.ClickFacturaGuia = false;
                         VariablesGlobales.ClickBoletaGuia = false;
-                        this.Close();
+                        if (await this.ShowMessageAsync("Guia Generada", "¿Deseas Imrimir la Guia?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                        {
+                            Imprimir(this.txtNroGuiaRemision.Text);
+                            this.Close();
+                        }
+                        else
+                        {
+                            this.Close();
+                        }
+                       
                     }
                 }
                 else
@@ -582,6 +610,11 @@ namespace SISJORSAC
             {
                 await this.ShowMessageAsync("Error", "Seleccione un detalle");
             }
+        }
+
+        private void chkCambiarNroGuia_Checked(object sender, RoutedEventArgs e)
+        {
+            this.txtNroGuiaRemision.IsEnabled = true;
         }
 
       

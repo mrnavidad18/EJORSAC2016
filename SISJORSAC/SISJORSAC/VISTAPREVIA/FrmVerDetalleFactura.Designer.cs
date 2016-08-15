@@ -72,7 +72,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmVerDetalleFactura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmVerDetalleFactura";
+            this.Text = "Vista Previa Factura";
             this.Load += new System.EventHandler(this.FrmVerDetalleFactura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SP_IMPRIMIR_FACTURABindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();

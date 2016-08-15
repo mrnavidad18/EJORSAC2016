@@ -74,7 +74,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrnReporFacturas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrnReporFacturas";
+            this.Text = "Reporte Factura";
             this.Load += new System.EventHandler(this.FrnReporFacturas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SP_REPORTE_FACTURASBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();

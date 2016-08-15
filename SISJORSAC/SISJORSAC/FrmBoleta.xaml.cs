@@ -437,16 +437,16 @@ namespace SISJORSAC
                             VariablesGlobales.clienteBoleta = null;
                             VariablesGlobales.listaDetallesFactura = null;
                             VariablesGlobales.ClickFacturaBoleta = false;
-                            if (await this.ShowMessageAsync("Boleta Generada", "¿Desea IMPRIMIR la boleta?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
-                            {
-                                Imprimir(this.txtNroBoleta.Text);
-                                this.Close();
-                            }
-                            else
-                            {
-                                this.Close();
-                            }
-                           
+                            //if (await this.ShowMessageAsync("Boleta Generada", "¿Desea IMPRIMIR la boleta?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                            //{
+                            //    Imprimir(this.txtNroBoleta.Text);
+                            //    this.Close();
+                            //}
+                            //else
+                            //{
+                            //    this.Close();
+                            //}
+                            this.Close();
                         }
                     }
 
