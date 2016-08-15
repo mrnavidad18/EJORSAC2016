@@ -93,7 +93,6 @@
         <Button x:Name="btnCambiarGuia" Content="Guía" HorizontalAlignment="Left" Margin="885,426,0,0" VerticalAlignment="Top" Width="79" Click="btnCambiarGuia_Click" Background="#FF13BD68" FontWeight="Bold" Foreground="#FFFDFDFD"/>
         <Label Content="Cambiar a:" HorizontalAlignment="Left" Margin="888,327,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <CheckBox x:Name="chkPendiente" Content="Pendiente" HorizontalAlignment="Left" Margin="390,522,0,0" VerticalAlignment="Top" Width="99" RenderTransformOrigin="1.123,-0.889"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
         <TextBox x:Name="txtAcuenta" HorizontalAlignment="Left" Height="23" Margin="515,519,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" KeyDown="txtAcuenta_KeyDown"/>
 
     </Grid>

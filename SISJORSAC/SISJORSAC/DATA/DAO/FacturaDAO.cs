@@ -151,6 +151,9 @@ namespace SISJORSAC.DATA.DAO
                             factura.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
                             factura.NRO_FACTURA = lector["NRO_FACTURA"].ToString();
                             factura.MODALIDAD = lector["MODALIDAD"].ToString();
+                            factura.CANCELADO = lector["CANCELADO"].ToString();
+                            factura.ACUENTA = double.Parse(lector["MONTO_ACUENTA"].ToString());
+                            factura.SALDO = double.Parse(lector["SALDO"].ToString());
                             factura.OBSERVACION = lector["OBSERVACION"].ToString();
                             factura.SUB_TOTAL = Convert.ToDouble(lector["SUB_TOTAL"].ToString());
                             factura.IGV = Convert.ToDouble(lector["IGV"].ToString());
@@ -271,6 +274,9 @@ namespace SISJORSAC.DATA.DAO
                             factura.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
                             factura.NRO_FACTURA = lector["NRO_FACTURA"].ToString();
                             factura.MODALIDAD = lector["MODALIDAD"].ToString();
+                            factura.CANCELADO = lector["CANCELADO"].ToString();
+                            factura.ACUENTA = double.Parse(lector["MONTO_ACUENTA"].ToString());
+                            factura.SALDO = double.Parse(lector["SALDO"].ToString());
                             factura.OBSERVACION = lector["OBSERVACION"].ToString();
                             factura.SUB_TOTAL = Convert.ToDouble(lector["SUB_TOTAL"].ToString());
                             factura.IGV = Convert.ToDouble(lector["IGV"].ToString());
@@ -327,6 +333,9 @@ namespace SISJORSAC.DATA.DAO
                         {
                             factura = new Factura();
                             factura.COD_FAC = Convert.ToInt32(lector["COD_FAC"].ToString());
+                            factura.CANCELADO = lector["CANCELADO"].ToString();
+                            factura.ACUENTA = double.Parse(lector["MONTO_ACUENTA"].ToString());
+                            factura.SALDO = double.Parse(lector["SALDO"].ToString());
                             factura.FECHA_EMISION = Convert.ToDateTime(lector["FECHA_EMISION"].ToString());
                             factura.NRO_FACTURA = lector["NRO_FACTURA"].ToString();
                             factura.MODALIDAD = lector["MODALIDAD"].ToString();
@@ -392,8 +401,11 @@ namespace SISJORSAC.DATA.DAO
                             factura.MODALIDAD = lector["MODALIDAD"].ToString();
                             factura.OBSERVACION = lector["OBSERVACION"].ToString();
                             factura.SUB_TOTAL = Convert.ToDouble(lector["SUB_TOTAL"].ToString());
+                            factura.SALDO = Convert.ToDouble(lector["SALDO"].ToString());
+                            factura.ACUENTA = Convert.ToDouble(lector["MONTO_ACUENTA"].ToString());
                             factura.IGV = Convert.ToDouble(lector["IGV"].ToString());
                             factura.TOTAL = Convert.ToDouble(lector["TOTAL"].ToString());
+                            factura.CANCELADO = lector["CANCELADO"].ToString();
                             factura.ESTADO = lector["ESTADO"].ToString();
                             factura.cliente = clienteDao.ObtenerCliente(Convert.ToInt32(lector["COD_CLI"].ToString()));
 

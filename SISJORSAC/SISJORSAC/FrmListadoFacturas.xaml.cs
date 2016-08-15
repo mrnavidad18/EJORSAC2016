@@ -246,6 +246,7 @@ namespace SISJORSAC
                 ListarFacturas("ACTIVO");
                 this.txtAcuenta.Visibility = Visibility.Hidden;
                 this.btnPagar.Visibility = Visibility.Hidden;
+                    this.txtAcuenta.Text=string.Empty;
             }
         }
 

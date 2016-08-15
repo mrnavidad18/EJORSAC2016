@@ -83,7 +83,8 @@ namespace SISJORSAC
             parameters.Add(parameter);
             ventana.crystalReportViewer1.ParameterFieldInfo = parameters;
             //string fullPath = System.IO.Path.GetFullPath("FacturaImprimir.rpt").Replace("\\bin\\Debug","\\Reportes");
-            doc.Load(@"C:\Program Files\SISJORSAC\Reportes\FacturaImprimir.rpt");
+            doc.Load(@"C:\Program Files (x86)\SISJORSAC\Reportes\FacturaImprimir.rpt");
+           // doc.Load(@"C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\Reportes\FacturaImprimir.rpt");
             ventana.crystalReportViewer1.ReportSource = doc;
             ventana.ShowDialog();
         }
@@ -144,10 +145,12 @@ namespace SISJORSAC
             if(this.txtAcuenta.Text!="")
             {
                 factura.ACUENTA = double.Parse(this.txtAcuenta.Text);
+                factura.SALDO = total - factura.ACUENTA;
             }
             else
             {
                 factura.ACUENTA = 0;
+                factura.SALDO = 0;
             }
             
             factura.MODALIDAD = ((ComboBoxItem)this.cboModalidad.SelectedItem).Content.ToString();
@@ -161,7 +164,7 @@ namespace SISJORSAC
             }
             factura.SUB_TOTAL = subtotal;
             factura.IGV = igvMonto;
-            factura.SALDO = total - factura.ACUENTA;
+            
             factura.FECHA_EMISION = DateTime.Now;
             factura.cliente = cliente;
             NumLetra numLetra = new NumLetra();
