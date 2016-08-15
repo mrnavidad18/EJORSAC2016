@@ -12,7 +12,8 @@ namespace SISJORSAC.DATA.DAO
 {
     public class GuiaRemisionDAO
     {
-
+        ServicioDAO serviDAO = new ServicioDAO();
+        ChoferDAO choferDAO = new ChoferDAO();
         public Object[] Agregar(GuiaRemision guiaRemision)
         {
             string cadenaConexion = "server=" + VariablesGlobales.MiIp() + ";DataBase=BDJORSAC;Integrated Security=True";
@@ -38,10 +39,7 @@ namespace SISJORSAC.DATA.DAO
                  DBHelper.MakeParam("@P_PTO_PARTIDA",guiaRemision.PTO_PARTIDA==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.PTO_PARTIDA.ToUpper()),  
                  DBHelper.MakeParam("@P_PTO_LLEGADA",guiaRemision.PTO_LLEGADA==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.PTO_LLEGADA.ToUpper()), 
                  DBHelper.MakeParam("@P_COD_CLIE",guiaRemision.cliente.COD_CLI==null?System.Data.SqlTypes.SqlInt32.Null:guiaRemision.cliente.COD_CLI),
-                 DBHelper.MakeParam("@P_COD_CHOFER",guiaRemision.CHOFER==null?System.Data.SqlTypes.SqlInt32.Null:guiaRemision.CHOFER.COD_CHOFER),
-                 DBHelper.MakeParam("@P_VEHICULO_MARCA",guiaRemision.VEHICULO_MARCA==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.VEHICULO_MARCA.ToUpper()),
-                 DBHelper.MakeParam("@P_NRO_CERTIFICADO",guiaRemision.NRO_CERTIFICADO==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.NRO_CERTIFICADO.Trim()),
-                 
+                 DBHelper.MakeParam("@P_COD_CHOFER",guiaRemision.CHOFER==null?System.Data.SqlTypes.SqlInt32.Null:guiaRemision.CHOFER.COD_CHOFER),                                
                  DBHelper.MakeParam("@P_NOMB_TRANSPORTE",guiaRemision.NOMB_TRANSPORTE==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.NOMB_TRANSPORTE.ToUpper()),
                  DBHelper.MakeParam("@P_RUC_TRANSPORTE",guiaRemision.RUC_TRANSPORTE==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.RUC_TRANSPORTE.Trim()),
                  DBHelper.MakeParam("@P_TIPO_COMPROB",guiaRemision.TIPO_COMPROB==null?System.Data.SqlTypes.SqlString.Null:guiaRemision.TIPO_COMPROB.ToUpper()),
@@ -62,9 +60,15 @@ namespace SISJORSAC.DATA.DAO
 
                 foreach (DetalleGuiaRemision detalle in guiaRemision.DETALLEGUIAREMISION)
                 {
+                    Servicio servicioparaActualizar = new Servicio();
                     GuiaRemision guiaa = new GuiaRemision();
                     guiaa.COD_GUIA = Convert.ToInt32(salidas[0]);
-
+                    servicioparaActualizar = serviDAO.ObtenerServicio(detalle.SERVICIO.COD_SERV);
+                    if (servicioparaActualizar != null)
+                    {
+                        servicioparaActualizar.STOCK = servicioparaActualizar.STOCK - detalle.CANTIDAD;
+                        serviDAO.ActualizarStock(servicioparaActualizar);
+                    }
                     detalle.GUIA_REMISION = guiaa;
                     if (AgregarDetalle(detalle, trx, cn) == null)
                     {
@@ -195,10 +199,12 @@ namespace SISJORSAC.DATA.DAO
                     if (lector != null && lector.HasRows)
                     {
                         Cliente cliente;
+                        Chofer chofer;
                         ClienteDAO clienteDAO = new ClienteDAO();
                         GuiaRemision guiaRemision;
                         while (lector.Read())
                         {
+                            chofer = new Chofer();
                             cliente = new Cliente();
                             guiaRemision = new GuiaRemision();
                             guiaRemision.COD_GUIA=int.Parse(lector["COD_GUIA"].ToString());
@@ -207,11 +213,16 @@ namespace SISJORSAC.DATA.DAO
                             guiaRemision.PTO_PARTIDA = lector["PTO_PARTIDA"].ToString();
                             guiaRemision.PTO_LLEGADA = lector["PTO_LLEGADA"].ToString();
                             int codCliente = int.Parse(lector["COD_CLIE"].ToString());
+                            int codChofer = int.Parse(lector["COD_CHOFER"].ToString());
                             cliente = clienteDAO.ObtenerCliente(codCliente);
+                            chofer = choferDAO.obtenerChofer(codChofer);
                             guiaRemision.cliente = cliente;
-                            guiaRemision.VEHICULO_MARCA = lector["VEHICULO_MARCA"].ToString();
-                            guiaRemision.NRO_CERTIFICADO = lector["NRO_CERTIFICADO"].ToString();
-                            guiaRemision.CHOFER = choferDao.obtenerChofer(int.Parse(lector["COD_CHOFER"].ToString()));
+                            guiaRemision.VEHICULO_MARCA = chofer.VEHICULO_MARCA_PLACA;
+                            guiaRemision.NRO_CERTIFICADO = chofer.NRO_CERTIFICADO;
+                            guiaRemision.NONBRE_CONDUCTOR = chofer.NOMBRE_COMPLETO;
+                            guiaRemision.NRO_BREVETE = chofer.NRO_BREVETE;
+                            //guiaRemision.CHOFER = choferDao.obtenerChofer(int.Parse(lector["COD_CHOFER"].ToString()));
+                            guiaRemision.CHOFER = chofer;
                             guiaRemision.NOMB_TRANSPORTE = lector["NOMB_TRANSPORTE"].ToString();
                             guiaRemision.RUC_TRANSPORTE = lector["RUC_TRANSPORTE"].ToString();
                             guiaRemision.TIPO_COMPROB = lector["TIPO_COMPROB"].ToString();
@@ -240,6 +251,7 @@ namespace SISJORSAC.DATA.DAO
         {
             ChoferDAO choferDao = new ChoferDAO();
             GuiaRemision guiaRemision = null;
+            Chofer chofer;
             string query = "SP_TBL_GUIA_REMISION_OBTENERGUIAXCODIGO";
             try
             {
@@ -254,6 +266,7 @@ namespace SISJORSAC.DATA.DAO
                         Cliente cliente = new Cliente();
                         while (lector.Read())
                         {
+                            chofer = new Chofer();
                             guiaRemision = new GuiaRemision();
                             guiaRemision.COD_GUIA = int.Parse(lector["COD_GUIA"].ToString());
                             guiaRemision.NRO_GUIA = lector["NRO_GUIA"].ToString();
@@ -263,6 +276,13 @@ namespace SISJORSAC.DATA.DAO
                             int codCliente = int.Parse(lector["COD_CLIE"].ToString());
                             cliente = clienteDAO.ObtenerCliente(codCliente);
                             guiaRemision.cliente = cliente;
+                            int codChofer = int.Parse(lector["COD_CHOFER"].ToString());                            
+                            chofer = choferDAO.obtenerChofer(codChofer);
+                            guiaRemision.cliente = cliente;
+                            guiaRemision.VEHICULO_MARCA = chofer.VEHICULO_MARCA_PLACA;
+                            guiaRemision.NRO_CERTIFICADO = chofer.NRO_CERTIFICADO;
+                            guiaRemision.NONBRE_CONDUCTOR = chofer.NOMBRE_COMPLETO;
+                            guiaRemision.NRO_BREVETE = chofer.NRO_BREVETE;
                             guiaRemision.VEHICULO_MARCA = lector["VEHICULO_MARCA"].ToString();
                             guiaRemision.NRO_CERTIFICADO = lector["NRO_CERTIFICADO"].ToString();
                             guiaRemision.CHOFER = choferDao.obtenerChofer(int.Parse(lector["COD_CHOFER"].ToString()));
@@ -276,7 +296,6 @@ namespace SISJORSAC.DATA.DAO
                             guiaRemision.DISTRITO = lector["DISTRITO"].ToString();
                             guiaRemision.SITUACION = lector["SITUACION"].ToString();
                             guiaRemision.ESTADO = lector["ESTADO"].ToString();
-
                         }
                     }
 
@@ -293,6 +312,7 @@ namespace SISJORSAC.DATA.DAO
 
         public GuiaRemision ObtenerGuiaRemisionXNroGuia(string nroGuia)
         {
+            Chofer chofer;
             ChoferDAO choferDao = new ChoferDAO();
             GuiaRemision guiaRemision = null;
             string query = "SP_TBL_GUIA_REMISION_OBTENERGUIAXNROGUIA";
@@ -305,6 +325,7 @@ namespace SISJORSAC.DATA.DAO
                 {
                     if (lector != null && lector.HasRows)
                     {
+                        chofer = new Chofer();
                         ClienteDAO clienteDAO = new ClienteDAO();
                         Cliente cliente = new Cliente();
                         while (lector.Read())
@@ -318,6 +339,14 @@ namespace SISJORSAC.DATA.DAO
                             int codCliente = int.Parse(lector["COD_CLIE"].ToString());
                             cliente = clienteDAO.ObtenerCliente(codCliente);
                             guiaRemision.cliente = cliente;
+
+                            int codChofer = int.Parse(lector["COD_CHOFER"].ToString());
+                            chofer = choferDAO.obtenerChofer(codChofer);                            
+                            guiaRemision.VEHICULO_MARCA = chofer.VEHICULO_MARCA_PLACA;
+                            guiaRemision.NRO_CERTIFICADO = chofer.NRO_CERTIFICADO;
+                            guiaRemision.NONBRE_CONDUCTOR = chofer.NOMBRE_COMPLETO;
+                            guiaRemision.NRO_BREVETE = chofer.NRO_BREVETE;
+
                             guiaRemision.VEHICULO_MARCA = lector["VEHICULO_MARCA"].ToString();
                             guiaRemision.NRO_CERTIFICADO = lector["NRO_CERTIFICADO"].ToString();
                             guiaRemision.CHOFER = choferDao.obtenerChofer(int.Parse(lector["COD_CHOFER"].ToString()));

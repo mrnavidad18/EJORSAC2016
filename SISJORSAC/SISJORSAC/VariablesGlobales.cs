@@ -24,7 +24,7 @@ namespace SISJORSAC
                     localIp = ip.ToString();
                 }
             }
-            return localIp;
+            return ".";
         }
 
         public static Usuario usuarioConectado;

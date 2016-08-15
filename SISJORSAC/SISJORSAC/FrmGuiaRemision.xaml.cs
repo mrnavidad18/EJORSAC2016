@@ -25,6 +25,8 @@ namespace SISJORSAC
     public partial class FrmGuiaRemision : MetroWindow
     {
 
+        int stockGlobal = 0;
+        int cantidadGlobal = 0;
         UbigeoDAO ubigeoDAO = new UbigeoDAO();
         ClienteDAO clienteDAO = new ClienteDAO();
         GuiaRemisionDAO guiaDAO = new GuiaRemisionDAO();
@@ -37,6 +39,7 @@ namespace SISJORSAC
         public FrmGuiaRemision()
         {
             InitializeComponent();
+            this.cboTipoTraslado.SelectedIndex = 2;
             this.txtPtoPartida.Text = "Av. SANTIAGO DE SURCO 4676 - URB. SAN ROQUE, SURCO";
             this.txtFechaEmision.Text = DateTime.Now.ToString();
             string nroGuia =guiaDAO.traerUltimoNroGuia();
@@ -66,6 +69,7 @@ namespace SISJORSAC
             this.cboChofer.ItemsSource = lista;
             this.cboChofer.DisplayMemberPath = "NOMBRE_COMPLETO";
             this.cboChofer.SelectedValuePath = "COD_CHOFER";
+            this.cboChofer.SelectedIndex = 0;
         }
 
        
@@ -183,37 +187,62 @@ namespace SISJORSAC
           
         }
 
-        private DetalleGuiaRemision AgregarDetallesGuiaButton()
-        {
-            DetalleGuiaRemision detalle = new DetalleGuiaRemision();
+        //private DetalleGuiaRemision AgregarDetallesGuiaButton()
+        //{
+        //    DetalleGuiaRemision detalle = new DetalleGuiaRemision();
             
-            int codServicio = Convert.ToInt32(this.cboServicio.SelectedValue);
-            int cantidad = Convert.ToInt32(this.txtCantidadServicio.Text);
-            double precio = Convert.ToDouble(this.txtPrecioServicio.Text);
+        //    int codServicio = Convert.ToInt32(this.cboServicio.SelectedValue);
+        //    int cantidad = Convert.ToInt32(this.txtCantidadServicio.Text);
+        //    double precio = Convert.ToDouble(this.txtPrecioServicio.Text);
 
-            detalle.SERVICIO = servicioDAO.ObtenerServicio(codServicio);
-            detalle.CANTIDAD = cantidad;
-            detalle.ITEM = item;
+        //    detalle.SERVICIO = servicioDAO.ObtenerServicio(codServicio);
+        //    detalle.CANTIDAD = cantidad;
+        //    detalle.ITEM = item;
+                 
+        //    VariablesGlobales.listaDetallesGuia.Add(detalle);
 
-            VariablesGlobales.listaDetallesGuia.Add(detalle);
-
-            item++;
-            return detalle;
+        //    item++;
+        //    return detalle;
         
-        }
+        //}
 
         private void cboServicio_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var servicio = servicioDAO.ObtenerServicio(int.Parse(cboServicio.SelectedValue.ToString()));
             this.txtPrecioServicio.Text = servicio.PRECIO.ToString();
+            this.txtMiStock.Text = servicio.STOCK.ToString();
         }
 
         private async void btnAgragarDetalle_Click(object sender, RoutedEventArgs e)
         {
-            if (this.txtCantidadServicio.Text.Trim() != "" && this.cboServicio.SelectedItem!=null && this.txtPrecioServicio.Text.Trim()!="")
+            if (this.txtCantidadServicio.Text.Trim() != "" && this.cboServicio.SelectedItem!=null && this.txtPrecioServicio.Text.Trim()!="" && txtMiStock.Text.Trim()!="")
             {
-                var detalle = AgregarDetallesGuiaButton();
+                DetalleGuiaRemision detalle = new DetalleGuiaRemision();
+
+                int codServicio = Convert.ToInt32(this.cboServicio.SelectedValue);
+                int cantidad = Convert.ToInt32(this.txtCantidadServicio.Text);
+                double precio = Convert.ToDouble(this.txtPrecioServicio.Text);
+
+                detalle.SERVICIO = servicioDAO.ObtenerServicio(codServicio);
+                detalle.CANTIDAD = cantidad;
+                detalle.ITEM = item;                
+                if (detalle.SERVICIO.STOCK >= detalle.CANTIDAD)
+                {
+                    detalle.SERVICIO.STOCK = detalle.SERVICIO.STOCK - detalle.CANTIDAD;
+                }
+                else
+                {
+                    await this.ShowMessageAsync("Error", "La cantidad excede el stock");
+                    return;
+                }
+                cantidadGlobal = cantidad;
+                VariablesGlobales.listaDetallesGuia.Add(detalle);
                 LlenarGrid(VariablesGlobales.listaDetallesGuia);
+                stockGlobal = int.Parse(txtMiStock.Text);
+                txtMiStock.Text = string.Empty;
+                txtCantidadServicio.Text = 1.ToString();
+                item++;
+                
             }
             else
             {
@@ -269,18 +298,27 @@ namespace SISJORSAC
             }
             else
             {
-                if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar esta Guía?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                if (txtPtoPartida.Text.Trim()!="" && cboChofer.SelectedItem != null && cboTipoTraslado.SelectedItem!=null && cboDistrito.SelectedItem!=null
+                    && cboProvincia.SelectedItem!=null && cboDepartamento.SelectedItem!=null)
                 {
-                    agregarGuiaRemision();
-                    await this.ShowMessageAsync(mensaje,"Guia generada correctamente");
-                    VariablesGlobales.NRO_GUIA_GLOBAL = "";
-                    VariablesGlobales.clienteFactura = null;
-                    VariablesGlobales.listaDetallesFactura.Clear();
-                    VariablesGlobales.listaDetallesGuia.Clear();
-                    VariablesGlobales.ClickFacturaGuia = false;
-                    VariablesGlobales.ClickBoletaGuia = false;
-                    this.Close();
+                    if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar esta Guía?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                    {
+                        agregarGuiaRemision();
+                        await this.ShowMessageAsync(mensaje, "Guia generada correctamente");
+                        VariablesGlobales.NRO_GUIA_GLOBAL = "";
+                        VariablesGlobales.clienteFactura = null;
+                        VariablesGlobales.listaDetallesFactura.Clear();
+                        VariablesGlobales.listaDetallesGuia.Clear();
+                        VariablesGlobales.ClickFacturaGuia = false;
+                        VariablesGlobales.ClickBoletaGuia = false;
+                        this.Close();
+                    }
                 }
+                else
+                {
+                    await this.ShowMessageAsync("Error", "Falta llenar algunos campos");
+                }
+              
                
             }
           
@@ -408,21 +446,30 @@ namespace SISJORSAC
             this.dgvDetalleGuia.ItemsSource = detalle;
         }
 
-        private void Importe_KeyDown(object sender, KeyEventArgs e)
+        private  void Importe_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
                 TextBox t = (TextBox)sender;
                 int cantidad = Convert.ToInt32(t.Text);
-
-                var detalleGuia = this.dgvDetalleGuia.SelectedItem as DetalleGuiaRemision;
-                var detalleEncontrado = VariablesGlobales.listaDetallesGuia.Find(x => x.ITEM == detalleGuia.ITEM);
-                detalleEncontrado.CANTIDAD = cantidad;
-
-                LlenarGrid(VariablesGlobales.listaDetallesGuia);
                 
-
-
+                var detalleGuia = this.dgvDetalleGuia.SelectedItem as DetalleGuiaRemision;
+                DetalleGuiaRemision detalleEncontrado = null;
+                detalleEncontrado = VariablesGlobales.listaDetallesGuia.Find(x => x.ITEM == detalleGuia.ITEM);
+                if (stockGlobal >= cantidad)
+                {
+                    detalleEncontrado.SERVICIO.STOCK = stockGlobal - cantidad;
+                    detalleEncontrado.CANTIDAD = cantidad;
+                    cantidadGlobal = cantidad;
+                    LlenarGrid(VariablesGlobales.listaDetallesGuia);
+                }
+                else
+                {
+                    detalleEncontrado.CANTIDAD = cantidadGlobal;                                        
+                    LlenarGrid(VariablesGlobales.listaDetallesGuia);
+                    MessageBox.Show("La cantidad excede el stock...");
+                    return;
+                }                                                
 
 
             }
@@ -507,8 +554,34 @@ namespace SISJORSAC
                 int codigo = int.Parse(this.cboChofer.SelectedValue.ToString());
                 var chofer = choferDao.obtenerChofer(codigo);
                 this.txtNroBrevete.Text = chofer.NRO_BREVETE;
+                this.txtNroCertificado.Text = chofer.NRO_CERTIFICADO;
+                this.txtVehiculoMarca.Text = chofer.VEHICULO_MARCA_PLACA;
             }
            
+        }
+
+        private async void btnEliminarDet_Click(object sender, RoutedEventArgs e)
+        {
+           if(this.dgvDetalleGuia.SelectedIndex != -1)
+            {
+                var detalleguia = this.dgvDetalleGuia.SelectedItem as DetalleGuiaRemision;
+                VariablesGlobales.listaDetallesGuia.RemoveAll(x => x.ITEM == detalleguia.ITEM);
+                item=1;
+               
+                foreach (var detalle in VariablesGlobales.listaDetallesGuia)
+                {
+                    detalle.ITEM = item;
+                   
+                    item++;
+                }
+              
+                
+                LlenarGrid(VariablesGlobales.listaDetallesGuia);
+            }
+            else
+            {
+                await this.ShowMessageAsync("Error", "Seleccione un detalle");
+            }
         }
 
       

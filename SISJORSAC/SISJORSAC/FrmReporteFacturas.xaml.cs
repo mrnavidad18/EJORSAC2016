@@ -30,8 +30,14 @@ namespace SISJORSAC
        
         private  async void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (this.txtFechaDe.SelectedDate == null || this.txtFechaHasta.SelectedDate == null)
+            {
+                await this.ShowMessageAsync("Error", "Seleccione el rango de fechas para continuar");
+                return;
+            }
             DateTime fechaDe = Convert.ToDateTime(this.txtFechaDe.SelectedDate);
             DateTime fechaHasta = Convert.ToDateTime(this.txtFechaHasta.SelectedDate);
+                       
             string res = SeleccionarCombo();
             if (this.cboComprobante.SelectedItem != null)
             {

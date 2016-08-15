@@ -151,5 +151,35 @@ namespace SISJORSAC.DATA.DAO
 
 
         }
+
+
+        public string ActualizarStock(Servicio servicio)
+        {
+         
+            string salidas;
+            string query = "SP_TBL_SERV_ACTUALIZAR_STOCK";
+            SqlParameter msj = new SqlParameter("@PS_MSJ", SqlDbType.VarChar, 100);
+            msj.Direction = ParameterDirection.Output;
+           
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]
+             {                
+                 DBHelper.MakeParam("@P_STOCKACTUALIZAR",servicio.STOCK==null?System.Data.SqlTypes.SqlInt32.Null:servicio.STOCK ),                 
+                 DBHelper.MakeParam("@P_COD_SERVICIO",servicio.COD_SERV)    ,
+                 msj
+             };
+
+                 salidas=DBHelper.ExecuteProcedure(query, dbParams);
+                 
+                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return salidas;
+        }
     }
 }

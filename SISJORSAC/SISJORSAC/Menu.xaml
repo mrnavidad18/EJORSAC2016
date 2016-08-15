@@ -133,7 +133,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Reportes">
+                <MenuItem Header="Reportes" >
                     <MenuItem.Icon>
                         <Image Source="IMG/reporte.png"/>
                     </MenuItem.Icon>
@@ -142,12 +142,11 @@
                             <Image Source="IMG/ReporteCliente.png" Height="44" Width="60"/>
                         </MenuItem.Icon>
                     </MenuItem>-->
-                    <MenuItem x:Name="ItemReporteFactura" Header="Facturas" Click="ItemReporteFactura_Click" >
+                    <MenuItem x:Name="ItemReporteFactura" Header="Comprobantes/Guia/Egreso" Click="ItemReporteFactura_Click" >
                         <MenuItem.Icon>
                             <Image Source="IMG/ReporteCliente.png" Height="44" Width="60"/>
                         </MenuItem.Icon>
                     </MenuItem>
-
                 </MenuItem>
                 <MenuItem Header="Mi Cuenta">
                     <MenuItem.Icon>
@@ -157,14 +156,9 @@
                         <MenuItem.Icon>
                             <Image Source="IMG/ActualizarMisDatos.png" Height="44" Width="60"/>
                         </MenuItem.Icon>
-                    </MenuItem>
-                   
-                </MenuItem>
-                
-                
+                    </MenuItem>                   
+                </MenuItem>                                
             </Menu>
         </DockPanel>
-
-
     </Grid>
 </Controls:MetroWindow>

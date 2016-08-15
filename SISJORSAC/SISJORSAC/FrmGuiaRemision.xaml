@@ -80,7 +80,9 @@
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn x:Name="DESCRIPCIONSERVICIO" Header="DESCRIPCION SERVICIO" Binding="{Binding SERVICIO.DESCRIPCION}" IsReadOnly="True" Width="460"/>
+                <DataGridTextColumn x:Name="DESCRIPCIONSERVICIO" Header="DESCRIPCION SERVICIO" Binding="{Binding SERVICIO.DESCRIPCION}" IsReadOnly="True" Width="350"/>
+                <DataGridTextColumn x:Name="SERVICIOSTOCK" Header="STOCK" Binding="{Binding SERVICIO.STOCK}" IsReadOnly="True" Width="80"/>
+                <DataGridTextColumn x:Name="SERVICIOUNIDADMEIDA" Header="UNIDAD MEDIDA" Binding="{Binding SERVICIO.UNIDAD_MEDIDA}" IsReadOnly="True" Width="120"/>
                 <DataGridTextColumn x:Name="PESO" Header="PESO TOTAL" Binding="{Binding SERVICIO.PESO}" IsReadOnly="True" Width="*" />
 
             </DataGrid.Columns>
@@ -100,13 +102,15 @@
         <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="244,33,0,0" TextWrapping="Wrap" Text="GUÍA REMISION" VerticalAlignment="Top" Width="108" IsEnabled="False" FontWeight="Bold"/>
         <CheckBox x:Name="chkCambiarNroGuia" Grid.ColumnSpan="2" Content="Cambiar Nro. Guía" HorizontalAlignment="Left" Margin="498,10,0,0" VerticalAlignment="Top"/>
         <Label Grid.ColumnSpan="2" Content="Tipo Cliente:" HorizontalAlignment="Left" Margin="158,92,0,0" VerticalAlignment="Top"/>
-        <Button Grid.ColumnSpan="2" Content="Eliminar" HorizontalAlignment="Left" Margin="661,302,0,0" VerticalAlignment="Top" Width="75" Background="#FFE83C3C" Foreground="#FFFFFBFB" FontWeight="Bold"/>
+        <Button Grid.ColumnSpan="2" Content="Eliminar" HorizontalAlignment="Left" Margin="661,302,0,0" VerticalAlignment="Top" Width="75" Background="#FFE83C3C" Foreground="#FFFFFBFB" FontWeight="Bold" x:Name="btnEliminarDet" Click="btnEliminarDet_Click" />
         <Button x:Name="btnCambiarFactura" Content="Factura" HorizontalAlignment="Left" Margin="892,404,0,0" VerticalAlignment="Top" Width="75" Background="#FF13BD68" Foreground="White" FontWeight="Bold" Click="btnCambiarFactura_Click" RenderTransformOrigin="0.707,-0.586"/>
         <Label Content="Cambiar a:" HorizontalAlignment="Left" Margin="895,376,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnCambiarContrato" Content="Contrato" HorizontalAlignment="Left" Margin="890,438,0,0" VerticalAlignment="Top" Width="81" Background="#FF13BD68" Foreground="White" FontWeight="Bold"  RenderTransformOrigin="0.707,-0.586" Click="btnCambiarContrato_Click"/>
         <Button x:Name="btnCambiarBoleta" Content="Boleta" HorizontalAlignment="Left" Margin="890,471,0,0" VerticalAlignment="Top" Width="81" Background="#FF13BD68" Foreground="White" FontWeight="Bold" RenderTransformOrigin="0.707,-0.586" Click="btnCambiarBoleta_Click"/>
         <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="cboChofer" HorizontalAlignment="Left" Margin="302,184,0,0" VerticalAlignment="Top" Width="340" SelectionChanged="cboChofer_SelectionChanged"/>
+        <TextBox x:Name="txtMiStock" HorizontalAlignment="Left" Height="23" Margin="902,238,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="69"/>
+        <Label Content="Stock" HorizontalAlignment="Left" Margin="838,238,0,0" VerticalAlignment="Top" Width="47"/>
 
 
     </Grid>
