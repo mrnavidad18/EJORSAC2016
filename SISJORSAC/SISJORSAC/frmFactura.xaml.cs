@@ -151,7 +151,14 @@ namespace SISJORSAC
             }
             
             factura.MODALIDAD = ((ComboBoxItem)this.cboModalidad.SelectedItem).Content.ToString();
-            
+            if (txtObservacion.IsEnabled == true && txtObservacion.Text.Trim() != "")
+            {
+                factura.OBSERVACION = txtObservacion.Text.ToUpper();
+            }
+            else
+            {
+                factura.OBSERVACION = "";
+            }
             factura.SUB_TOTAL = subtotal;
             factura.IGV = igvMonto;
             factura.SALDO = total - factura.ACUENTA;
@@ -170,7 +177,7 @@ namespace SISJORSAC
             }
             
             factura.DETALLEFACTURA = VariablesGlobales.listaDetallesFactura;
-            factura.OBSERVACION = this.txtObservacion.Text;
+           // factura.OBSERVACION = this.txtObservacion.Text;
             if (chkCambiarNroFact.IsChecked == true)
             {
                 factura.NRO_FACTURA = this.txtNroFactura.Text;
@@ -736,6 +743,24 @@ namespace SISJORSAC
         private void chkObservacion_Unchecked(object sender, RoutedEventArgs e)
         {
             this.txtObservacion.Text = ""; this.txtObservacion.IsEnabled = false;
+        }
+
+        private void txtCantidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;            
+            else
+                e.Handled = true;
+        }
+
+        private void txtAcuenta_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else if (e.Key == Key.Decimal || e.Key == Key.OemPeriod)
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
        
     }

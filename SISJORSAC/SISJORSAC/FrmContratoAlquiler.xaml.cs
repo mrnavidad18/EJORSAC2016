@@ -718,6 +718,14 @@ namespace SISJORSAC
             this.Close();
             frmGuia.ShowDialog();
         }
+
+        private void txtCantidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;          
+            else
+                e.Handled = true;
+        }
       
     }
 }

@@ -88,6 +88,44 @@ namespace SISJORSAC
             }
         }
 
+        private void txtUnidadMedida_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;            
+            else
+                e.Handled = true;
+        }
+
+        private void txtPeso_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else if (e.Key == Key.Decimal || e.Key == Key.OemPeriod || e.Key == Key.Tab)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void txtPrecio_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else if (e.Key == Key.Decimal || e.Key == Key.OemPeriod || e.Key == Key.Tab)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void txtStock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else if (e.Key==Key.Tab)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
 
     }
 }

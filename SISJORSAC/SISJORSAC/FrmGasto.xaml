@@ -50,19 +50,19 @@
         <Label Content="Total:" HorizontalAlignment="Left" Margin="643,543,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
         <Button x:Name="btnGenerarGasto" Content="Generar Gasto" HorizontalAlignment="Left" Margin="565,582,0,0" VerticalAlignment="Top" Width="137" Background="#FF42A5F7" Foreground="White" FontWeight="Bold" Height="35" Click="btnGenerarGasto_Click" />
         <Button x:Name="btnCancelar" Content="Salir" HorizontalAlignment="Left" Margin="716,582,0,0" VerticalAlignment="Top" Width="64" Height="35" Background="#FFE24030" BorderBrush="#FFAEAEAE" Foreground="White" FontWeight="Bold" Click="btnCancelar_Click"/>
-        <CheckBox x:Name="chkObservacion" Content="Ingresar observaciones" HorizontalAlignment="Left" Margin="44,544,0,-292" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkObservacion" Content="Ingresar observaciones" HorizontalAlignment="Left" Margin="44,544,0,-292" VerticalAlignment="Top" Unchecked="chkObservacion_Unchecked" Checked="chkObservacion_Checked"/>
         <TextBox x:Name="txtObservacion" HorizontalAlignment="Left" Height="58" Margin="44,563,-58,-351" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" IsEnabled="False"/>
         <Label Content="Servicio:" HorizontalAlignment="Left" Margin="215,174,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cboServicio" HorizontalAlignment="Left" Margin="269,171,0,0" VerticalAlignment="Top" Width="299" IsEnabled="True" IsEditable="True" />
         <Label Content="Precio:" HorizontalAlignment="Left" Margin="576,170,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="626,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" BorderBrush="#FFB6B6B6"/>
+        <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="626,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" BorderBrush="#FFB6B6B6" KeyDown="txtPrecio_KeyDown"/>
         <Label Content="Doc. Ref." HorizontalAlignment="Left" Margin="213,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.582,0"/>
         <TextBox x:Name="txtDocRef" HorizontalAlignment="Left" Height="23" Margin="292,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" BorderBrush="#FFB6B6B6"/>
         <GroupBox Header="Tipo de Proveedor" HorizontalAlignment="Left" Margin="216,58,0,0" VerticalAlignment="Top" Width="197" Height="60"/>
         <RadioButton x:Name="rdNATUTAL" Content="NATURAL" HorizontalAlignment="Left" Margin="240,93,0,0" VerticalAlignment="Top" Checked="rdNATUTAL_Checked" />
         <RadioButton x:Name="rbJURIDICA" Content="JURIDICA" HorizontalAlignment="Left" Margin="321,93,0,0" VerticalAlignment="Top" Checked="rbJURIDICA_Checked_1"  />
         <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="209,200,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="269,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" MaxLength="5" />
+        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="269,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" MaxLength="5" KeyDown="txtCantidad_KeyDown" />
 
     </Grid>
 </Controls:MetroWindow>

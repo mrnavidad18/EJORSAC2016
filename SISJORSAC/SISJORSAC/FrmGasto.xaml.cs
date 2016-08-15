@@ -35,10 +35,14 @@ namespace SISJORSAC
         public FrmGasto()
         {
             InitializeComponent();
+          
             ListarConceptoGasto("ACTIVO");
             txtCantidad.Text = "1";
             this.txtFechaEmision.Text = DateTime.Now.ToString();
             this.txtNroGasto.Text = gastoDAO.ObtenerNroGasto();
+
+            chkObservacion.Visibility = Visibility.Hidden;
+            txtObservacion.Visibility = Visibility.Hidden;
         }
         private void ListarProveedores(string tipoCliente)
         {
@@ -224,6 +228,36 @@ namespace SISJORSAC
             total = 0;
             mensaje = "";
             this.Close();
+        }
+
+        private void txtCantidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;           
+            else
+                e.Handled = true;
+        }
+
+        private void chkObservacion_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.txtObservacion.Text = "";
+            this.txtObservacion.IsEnabled = false;
+
+        }
+
+        private void chkObservacion_Checked(object sender, RoutedEventArgs e)
+        {
+            this.txtObservacion.IsEnabled = true;
+        }
+
+        private void txtPrecio_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                e.Handled = false;
+            else if (e.Key == Key.Decimal || e.Key == Key.OemPeriod)
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
         
 

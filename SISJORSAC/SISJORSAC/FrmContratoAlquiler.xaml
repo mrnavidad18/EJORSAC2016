@@ -67,7 +67,7 @@
         <Label Content="Servicio:" HorizontalAlignment="Left" Margin="142,208,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cboServicio" HorizontalAlignment="Left" Margin="227,208,0,0" VerticalAlignment="Top" Width="317" SelectionChanged="cboServicio_SelectionChanged" IsEditable="True"/>
         <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="554,208,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="621,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45"/>
+        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="621,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" KeyDown="txtCantidad_KeyDown"/>
         <Button x:Name="btnAgregarDetalle" Content="Agregar Detalle" HorizontalAlignment="Left" Margin="752,250,0,0" VerticalAlignment="Top" Width="137" Foreground="White" Background="#FF42A9FF" FontWeight="Bold" Click="btnAgregarDetalle_Click"/>
         <Label Content="Precio:" HorizontalAlignment="Left" Margin="676,208,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="732,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" BorderBrush="#FFB6B6B6"/>
