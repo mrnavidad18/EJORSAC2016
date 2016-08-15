@@ -201,6 +201,18 @@
     <Compile Include="FrmUsuarioDatos.xaml.cs">
       <DependentUpon>FrmUsuarioDatos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrmVerDetalleBoleta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVerDetalleBoleta.Designer.cs">
+      <DependentUpon>FrmVerDetalleBoleta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\BoletaImprimir.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoletaImprimir.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\ContratoImprimir.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -213,6 +225,12 @@
       <DependentUpon>FacturaImprimir.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\FrmBoletaImprimirViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\FrmBoletaImprimirViewer.Designer.cs">
+      <DependentUpon>FrmBoletaImprimirViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\FrmContratoImprimirViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +242,12 @@
     </Compile>
     <Compile Include="Reportes\FrmFacturaImprimirViewer.Designer.cs">
       <DependentUpon>FrmFacturaImprimirViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FrmGuiaImprimirViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\FrmGuiaImprimirViewer.Designer.cs">
+      <DependentUpon>FrmGuiaImprimirViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Reportes\FrmImprimirContrato.cs">
       <SubType>Form</SubType>
@@ -263,6 +287,12 @@
     </Compile>
     <Compile Include="Reportes\FRTipoCliente.xaml.cs">
       <DependentUpon>FRTipoCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\GuiaReporte.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GuiaReporte.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\ImprimirFactura.cs">
       <SubType>Form</SubType>
@@ -473,9 +503,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="FrmVerDetalleBoleta.resx">
+      <DependentUpon>FrmVerDetalleBoleta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\BoletaImprimir.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BoletaImprimir.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ContratoImprimir.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -485,11 +522,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FacturaImprimir.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\FrmBoletaImprimirViewer.resx">
+      <DependentUpon>FrmBoletaImprimirViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\FrmContratoImprimirViewer.resx">
       <DependentUpon>FrmContratoImprimirViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\FrmFacturaImprimirViewer.resx">
       <DependentUpon>FrmFacturaImprimirViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\FrmGuiaImprimirViewer.resx">
+      <DependentUpon>FrmGuiaImprimirViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\FrmImprimirContrato.resx">
       <DependentUpon>FrmImprimirContrato.cs</DependentUpon>
@@ -508,6 +551,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\FrnReporFacturas.resx">
       <DependentUpon>FrnReporFacturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\GuiaReporte.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GuiaReporte.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ImprimirContrato.rdlc" />
     <EmbeddedResource Include="Reportes\ImprimirFactura.rdlc" />

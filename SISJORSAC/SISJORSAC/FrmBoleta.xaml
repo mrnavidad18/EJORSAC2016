@@ -65,7 +65,7 @@
         <Label Content="Total:" HorizontalAlignment="Left" Margin="666,543,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.553,0.423"/>
         <Button x:Name="btnGenerarFactura" Content="Generar Boleta" HorizontalAlignment="Left" Margin="588,582,0,0" VerticalAlignment="Top" Width="137" Background="#FF42A5F7" Foreground="White" FontWeight="Bold" Height="35" Click="btnGenerarBoleta_Click"/>
         <Button x:Name="txtCancelar" Content="Salir" HorizontalAlignment="Left" Margin="739,582,0,0" VerticalAlignment="Top" Width="64" Height="35" Background="#FFE24030" BorderBrush="#FFAEAEAE" Foreground="White" FontWeight="Bold" Click="txtCancelar_Click"/>
-        <CheckBox x:Name="chkObservacion" Content="Ingresar observaciones" HorizontalAlignment="Left" Margin="44,544,0,0" VerticalAlignment="Top" Checked="chkObservacion_Checked"/>
+        <CheckBox x:Name="chkObservacion" Content="Ingresar observaciones" HorizontalAlignment="Left" Margin="44,544,0,0" VerticalAlignment="Top" Checked="chkObservacion_Checked" Unchecked="chkObservacion_Unchecked"/>
         <TextBox x:Name="txtObservacion" HorizontalAlignment="Left" Height="58" Margin="44,563,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" IsEnabled="False"/>
         <Label Content="Nro. Guía:" HorizontalAlignment="Left" Margin="621,128,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtNroGuia" HorizontalAlignment="Left" Height="23" Margin="701,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" IsEnabled="False"/>
@@ -75,7 +75,7 @@
         <Label Content="Servicio:" HorizontalAlignment="Left" Margin="156,198,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cboServicio" HorizontalAlignment="Left" Margin="215,198,0,0" VerticalAlignment="Top" Width="317" SelectionChanged="cboServicio_SelectionChanged" IsEditable="True"/>
         <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="540,198,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="608,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" MaxLength="5" />
+        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="608,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" MaxLength="5" KeyDown="txtCantidad_KeyDown" />
         <Label Content="Precio:" HorizontalAlignment="Left" Margin="676,198,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="726,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" BorderBrush="#FFB6B6B6"/>
         <Button x:Name="btnCambiarFactura" Content="Factura" HorizontalAlignment="Left" Margin="826,364,0,0" VerticalAlignment="Top" Width="79" Background="#FF13BD68" Foreground="White" FontWeight="Bold" Click="btnCambiarFactura_Click" RenderTransformOrigin="0.707,-0.586"/>

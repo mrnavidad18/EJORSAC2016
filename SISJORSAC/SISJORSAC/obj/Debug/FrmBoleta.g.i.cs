@@ -421,6 +421,12 @@ namespace SISJORSAC {
             
             #line default
             #line hidden
+            
+            #line 68 "..\..\FrmBoleta.xaml"
+            this.chkObservacion.Unchecked += new System.Windows.RoutedEventHandler(this.chkObservacion_Unchecked);
+            
+            #line default
+            #line hidden
             return;
             case 23:
             this.txtObservacion = ((System.Windows.Controls.TextBox)(target));
@@ -457,6 +463,12 @@ namespace SISJORSAC {
             return;
             case 28:
             this.txtCantidad = ((System.Windows.Controls.TextBox)(target));
+            
+            #line 78 "..\..\FrmBoleta.xaml"
+            this.txtCantidad.KeyDown += new System.Windows.Input.KeyEventHandler(this.txtCantidad_KeyDown);
+            
+            #line default
+            #line hidden
             return;
             case 29:
             this.txtPrecio = ((System.Windows.Controls.TextBox)(target));

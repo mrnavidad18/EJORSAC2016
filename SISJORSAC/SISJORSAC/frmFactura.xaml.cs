@@ -276,12 +276,12 @@ namespace SISJORSAC
                             string nrofactura = this.txtNroFactura.Text;
                            
                             frmimprimir.nro_factura = nrofactura;
-                            await this.ShowMessageAsync(mensaje,"Factura Generada Correctamente");
+                            
                             VariablesGlobales.NRO_GUIA_GLOBAL = "";
                             VariablesGlobales.clienteFactura = null;
                             VariablesGlobales.listaDetallesFactura.Clear();
 
-                            if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de IMPRIMIR esta factura?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                            if (await this.ShowMessageAsync("Factura Generada", "¿Esta seguro de IMPRIMIR esta factura?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
                             {
                                 Imprimir(nrofactura);
                                 this.Close();
@@ -292,8 +292,7 @@ namespace SISJORSAC
                             }
                            
                         }
-                       
-                       
+                                              
                     }
 
                 }
@@ -307,12 +306,7 @@ namespace SISJORSAC
                 MessageBox.Show(ex.Message,"Error");
                 VariablesGlobales.NRO_GUIA_GLOBAL = "";
               
-            }
-
-         
-
-          
-            
+            }                               
 
         }
 
