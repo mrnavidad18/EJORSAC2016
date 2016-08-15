@@ -140,6 +140,9 @@
     <Compile Include="FrmBoleta.xaml.cs">
       <DependentUpon>FrmBoleta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrmChoferRegistro.xaml.cs">
+      <DependentUpon>FrmChoferRegistro.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrmClienteRegistro.xaml.cs">
       <DependentUpon>FrmClienteRegistro.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,9 @@
       <DependentUpon>FrmGasto.xaml</DependentUpon>
     </Compile>
     <Compile Include="FrmGuiaRemision.xaml.cs" />
+    <Compile Include="FrmListadoChoferes.xaml.cs">
+      <DependentUpon>FrmListadoChoferes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrmListadoClientes.xaml.cs">
       <DependentUpon>FrmListadoClientes.xaml</DependentUpon>
     </Compile>
@@ -195,11 +201,23 @@
     <Compile Include="FrmUsuarioDatos.xaml.cs">
       <DependentUpon>FrmUsuarioDatos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\ContratoImprimir.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContratoImprimir.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\FacturaImprimir.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FacturaImprimir.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\FrmContratoImprimirViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\FrmContratoImprimirViewer.Designer.cs">
+      <DependentUpon>FrmContratoImprimirViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Reportes\FrmFacturaImprimirViewer.cs">
       <SubType>Form</SubType>
@@ -285,6 +303,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FrmChoferRegistro.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="FrmClienteRegistro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -310,6 +332,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FrmGuiaRemision.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FrmListadoChoferes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -451,9 +477,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ContratoImprimir.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ContratoImprimir.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\FacturaImprimir.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FacturaImprimir.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\FrmContratoImprimirViewer.resx">
+      <DependentUpon>FrmContratoImprimirViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\FrmFacturaImprimirViewer.resx">
       <DependentUpon>FrmFacturaImprimirViewer.cs</DependentUpon>

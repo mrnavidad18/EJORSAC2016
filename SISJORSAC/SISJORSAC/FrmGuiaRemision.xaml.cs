@@ -62,7 +62,7 @@ namespace SISJORSAC
 
         private void ListarChofer()
         {
-            var lista = choferDao.Listar();
+            var lista = choferDao.Listar("");
             this.cboChofer.ItemsSource = lista;
             this.cboChofer.DisplayMemberPath = "NOMBRE_COMPLETO";
             this.cboChofer.SelectedValuePath = "COD_CHOFER";

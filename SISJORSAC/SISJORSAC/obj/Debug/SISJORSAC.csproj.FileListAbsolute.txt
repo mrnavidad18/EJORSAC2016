@@ -315,3 +315,6 @@ C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJO
 C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.FrmReportContrato.resources
 C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.FrmReportGasto.resources
 C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.FrmReportGuia.resources
+C:\Users\Navidad\Desktop\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\SISJORSAC.exe.config
+C:\Users\Navidad\Desktop\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.exe
+C:\Users\Navidad\Desktop\EJORSAC2016\SISJORSAC\SISJORSAC\obj\Debug\SISJORSAC.pdb
