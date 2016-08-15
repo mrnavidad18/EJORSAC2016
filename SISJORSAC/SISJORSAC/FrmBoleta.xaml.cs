@@ -16,6 +16,9 @@ using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
 using SISJORSAC.DATA.Modelo;
 using SISJORSAC.DATA.DAO;
+using SISJORSAC.Reportes;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 
 namespace SISJORSAC
@@ -60,6 +63,23 @@ namespace SISJORSAC
            
         }
 
+        private void Imprimir(string numeroBoleta)
+        {
+            FrmBoletaImprimirViewer ventana = new FrmBoletaImprimirViewer();
+            ReportDocument doc = new ReportDocument();
+            ParameterField parameter = new ParameterField();
+            ParameterFields parameters = new ParameterFields();
+            ParameterDiscreteValue pdv = new ParameterDiscreteValue();
+            parameter.Name = "@P_NRO_BOLETA";
+            pdv.Value = numeroBoleta;
+            parameter.CurrentValues.Add(pdv);
+            parameters.Add(parameter);
+            ventana.crystalReportViewer1.ParameterFieldInfo = parameters;
+            //string fullPath = System.IO.Path.GetFullPath("FacturaImprimir.rpt").Replace("\\bin\\Debug","\\Reportes");
+            doc.Load(@"C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\Reportes\BoletaImprimir.rpt");
+            ventana.crystalReportViewer1.ReportSource = doc;
+            ventana.ShowDialog();
+        }
         private void ObtenerDatosGuia()
         {
             this.cboCliente.DisplayMemberPath = "RAZON_SOCIAL";
@@ -412,13 +432,21 @@ namespace SISJORSAC
                         if (await this.ShowMessageAsync("Confirmacion", "¿Esta seguro de generar esta Boleta?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
                         {
                             AgregarBoleta();
-                            await this.ShowMessageAsync("Boleta Generada",mensaje);
                             VariablesGlobales.NRO_GUIA_GLOBAL = "";
                             VariablesGlobales.clienteFactura = null;
                             VariablesGlobales.clienteBoleta = null;
                             VariablesGlobales.listaDetallesFactura = null;
                             VariablesGlobales.ClickFacturaBoleta = false;
-                            this.Close();
+                            if (await this.ShowMessageAsync("Boleta Generada", "¿Desea IMPRIMIR la boleta?", MessageDialogStyle.AffirmativeAndNegative) == MessageDialogResult.Affirmative)
+                            {
+                                Imprimir(this.txtNroBoleta.Text);
+                                this.Close();
+                            }
+                            else
+                            {
+                                this.Close();
+                            }
+                           
                         }
                     }
 
