@@ -52,7 +52,7 @@
 	<summary>
 		<codepage>1252</codepage>
 		<title>Installation Database</title>
-		<subject/>
+		<subject></subject>
 		<author>##ID_STRING2##</author>
 		<keywords>Installer,MSI,Database</keywords>
 		<comments>Contact:  Your local administrator</comments>
@@ -225,6 +225,7 @@
 	<table name="AppSearch">
 		<col key="yes" def="s72">Property</col>
 		<col key="yes" def="s72">Signature_</col>
+		<row><td>DOTNETVERSION45FULL</td><td>DotNet45Full</td></row>
 	</table>
 
 	<table name="BBControl">
@@ -1920,7 +1921,10 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>facturaimprimir.rpt</td><td>ISX_DEFAULTCOMPONENT2</td><td>FA75E3~1.RPT|FacturaImprimir.rpt</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\Reportes\FacturaImprimir.rpt</td><td>1</td><td/></row>
+		<row><td>boletaimprimir.rpt</td><td>ISX_DEFAULTCOMPONENT1</td><td>BOLETA~4.RPT|BoletaImprimir.rpt</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\Reportes\BoletaImprimir.rpt</td><td>1</td><td/></row>
+		<row><td>contratoimprimir.rpt</td><td>ISX_DEFAULTCOMPONENT1</td><td>CO47B2~1.RPT|ContratoImprimir.rpt</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\Reportes\ContratoImprimir.rpt</td><td>1</td><td/></row>
+		<row><td>facturaimprimir.rpt</td><td>ISX_DEFAULTCOMPONENT1</td><td>FA75E3~1.RPT|FacturaImprimir.rpt</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\Reportes\FacturaImprimir.rpt</td><td>1</td><td/></row>
+		<row><td>guiareporte.rpt</td><td>ISX_DEFAULTCOMPONENT1</td><td>GU8FA6~1.RPT|GuiaReporte.rpt</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\Reportes\GuiaReporte.rpt</td><td>1</td><td/></row>
 		<row><td>mahapps.metro.dll</td><td>MahApps.Metro.dll</td><td>MAHAPP~1.DLL|MahApps.Metro.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\MahApps.Metro.dll</td><td>1</td><td/></row>
 		<row><td>mahapps.metro.pdb</td><td>ISX_DEFAULTCOMPONENT3</td><td>MAHAPP~1.PDB|MahApps.Metro.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\MahApps.Metro.pdb</td><td>1</td><td/></row>
 		<row><td>mahapps.metro.xml</td><td>ISX_DEFAULTCOMPONENT3</td><td>MAHAPP~1.XML|MahApps.Metro.xml</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\bin\Debug\MahApps.Metro.xml</td><td>1</td><td/></row>
@@ -2682,9 +2686,10 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>SISJORSAC</td><td>0</td><td/><td>1143235584</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>SISJORSAC</td><td>0</td><td/><td>2082737600</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>1143223296</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>1143223296</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL</td><td>1033</td><td>Microsoft .NET Framework 4.5 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>2082780544</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>1143223296</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>1143223296</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>1143223296</td></row>
@@ -3784,8 +3789,8 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>1143223296</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>1143223296</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>1143223296</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.SISJORSAC.com</td><td>0</td><td/><td>1143235584</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>SISJORSAC</td><td>0</td><td/><td>1143235584</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.SISJORSAC.com</td><td>0</td><td/><td>2082737600</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>SISJORSAC</td><td>0</td><td/><td>2082737600</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>LAUNCH~1.EXE|Launch SISJORSAC.exe</td><td>0</td><td/><td>1143243872</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>1143223296</td></row>
 	</table>
@@ -4093,6 +4098,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 	<table name="LaunchCondition">
 		<col key="yes" def="s255">Condition</col>
 		<col def="l255">Description</col>
+		<row><td>DOTNETVERSION45FULL&gt;="#1"</td><td>##IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL##</td></row>
 	</table>
 
 	<table name="ListBox">
@@ -4421,7 +4427,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>RestartManagerOption</td><td>CloseRestart</td><td/></row>
 		<row><td>SERIALNUMBER</td><td/><td/></row>
 		<row><td>SERIALNUMVALSUCCESSRETVAL</td><td>1</td><td/></row>
-		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR</td><td/></row>
+		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;DOTNETVERSION45FULL</td><td/></row>
 		<row><td>SelectedSetupType</td><td>##IDS__DisplayName_Typical##</td><td/></row>
 		<row><td>SetupType</td><td>Typical</td><td/></row>
 		<row><td>UpgradeCode</td><td>{6DB31A8E-982F-4B9F-BEDC-6F82786667BC}</td><td/></row>
@@ -4466,6 +4472,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="s255">Key</col>
 		<col def="S255">Name</col>
 		<col def="I2">Type</col>
+		<row><td>DotNet45Full</td><td>2</td><td>SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full</td><td>Version</td><td>2</td></row>
 	</table>
 
 	<table name="Registry">

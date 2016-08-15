@@ -80,7 +80,7 @@ namespace SISJORSAC
             parameters.Add(parameter);
             ventana.crystalReportViewer1.ParameterFieldInfo = parameters;
             //string fullPath = System.IO.Path.GetFullPath("FacturaImprimir.rpt").Replace("\\bin\\Debug","\\Reportes");
-            doc.Load(@"C:\Users\jhon01\Documents\GitHub\EJORSAC2016\SISJORSAC\SISJORSAC\Reportes\ContratoImprimir.rpt");
+            doc.Load(@"C:\Program Files\SISJORSAC\Reportes\ContratoImprimir.rpt");
             ventana.crystalReportViewer1.ReportSource = doc;
             ventana.ShowDialog();
         }

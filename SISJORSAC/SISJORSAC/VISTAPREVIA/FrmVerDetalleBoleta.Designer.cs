@@ -72,7 +72,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmVerDetalleBoleta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmVerDetalleBoleta";
+            this.Text = "Vista Previa Boleta";
             this.Load += new System.EventHandler(this.FrmVerDetalleBoleta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SP_TBL_BOLETA_IMPRIMIRBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConjuntoDatos)).EndInit();
